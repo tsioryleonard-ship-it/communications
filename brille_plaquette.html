@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRILLE · Plaquette Tarifaire 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Fascinate&family=Gruppo&family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --noir: #1a1a2e;
+  --orange: #f49f4c;
+  --rose: #f5abaf;
+  --peche: #fdd5a5;
+  --jaune: #f8f4b8;
+  --bleu: #a8dbeb;
+  --vert: #cbe1b6;
+  --mauve: #b8aed7;
+  --gris: #777;
+  --blanc: #ffffff;
+  --fond: #f7f5f2;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  background: var(--fond);
+  color: var(--noir);
+  min-height: 100vh;
+}
+
+/* ===== PAGE CONTAINER ===== */
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0;
+  background: white;
+  box-shadow: 0 0 80px rgba(0,0,0,.12);
+}
+
+/* ===== HEADER ===== */
+.header {
+  background: var(--noir);
+  padding: 44px 52px 36px;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(244,159,76,.18) 0%, transparent 70%);
+}
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; left: 30%;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(168,219,235,.1) 0%, transparent 70%);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  position: relative;
+  z-index: 2;
+}
+
+.logo-circle {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.08);
+  border: 1.5px solid rgba(255,255,255,.15);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  padding: 8px;
+}
+.logo-circle img { width: 100%; height: 100%; object-fit: contain; }
+
+.header-text h1 {
+  font-family: 'Fascinate', cursive;
+  font-size: 42px;
+  color: var(--peche);
+  letter-spacing: 6px;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.header-text .tagline {
+  font-size: 12px;
+  color: rgba(255,255,255,.4);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.header-text .subtitle {
+  font-family: 'Gruppo', sans-serif;
+  font-size: 19px;
+  color: white;
+  opacity: .85;
+}
+
+.header-right {
+  margin-left: auto;
+  text-align: right;
+  position: relative;
+  z-index: 2;
+}
+.year-badge {
+  background: var(--orange);
+  color: white;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 2px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.contact-mini {
+  font-size: 11px;
+  color: rgba(255,255,255,.4);
+  line-height: 1.8;
+}
+
+/* ===== INTRO STRIP ===== */
+.intro-strip {
+  background: linear-gradient(135deg, var(--jaune) 0%, var(--peche) 100%);
+  padding: 22px 52px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.intro-strip .is-icon { font-size: 28px; }
+.intro-strip p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--noir);
+  max-width: 700px;
+}
+.intro-strip strong { font-weight: 700; }
+
+/* ===== SECTION TITLE ===== */
+.section-title {
+  padding: 32px 52px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-title h2 {
+  font-family: 'Gruppo', sans-serif;
+  font-size: 22px;
+  color: var(--noir);
+}
+.st-line {
+  flex: 1;
+  height: 1.5px;
+  background: linear-gradient(90deg, #e0e0e0, transparent);
+}
+
+/* ===== FORMULES GRID ===== */
+.formules {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin: 0 52px 32px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,.1);
+}
+
+/* CARD */
+.fc {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.fc-decouverte { background: white; border-right: 1px solid #f0f0f0; }
+.fc-standard { background: white; border-right: 1px solid #f0f0f0; }
+.fc-programme { background: var(--noir); color: white; }
+
+/* HEADER CARD */
+.fc-head {
+  padding: 24px 24px 16px;
+  text-align: center;
+  position: relative;
+}
+.fc-decouverte .fc-head { background: var(--vert); }
+.fc-standard .fc-head { background: var(--orange); }
+.fc-programme .fc-head { background: var(--mauve); }
+
+.fc-num {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  opacity: .6;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  color: var(--noir);
+}
+.fc-programme .fc-num { color: white; }
+
+.fc-name {
+  font-family: 'Gruppo', sans-serif;
+  font-size: 20px;
+  color: var(--noir);
+  margin-bottom: 6px;
+}
+.fc-programme .fc-name { color: white; }
+
+.fc-price {
+  font-family: 'Fascinate', cursive;
+  font-size: 32px;
+  color: var(--noir);
+  line-height: 1;
+}
+.fc-programme .fc-price { color: var(--peche); }
+
+.fc-price-sub {
+  font-size: 10px;
+  color: rgba(0,0,0,.4);
+  margin-top: 3px;
+}
+.fc-programme .fc-price-sub { color: rgba(255,255,255,.4); }
+
+/* BADGE POPULAIRE */
+.badge-pop {
+  position: absolute;
+  top: 12px; right: 12px;
+  background: var(--orange);
+  color: white;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+/* BODY CARD */
+.fc-body { padding: 20px 24px; flex: 1; }
+
+.fc-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0,0,0,.06);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.fc-programme .fc-row { border-bottom-color: rgba(255,255,255,.08); }
+.fc-row:last-child { border-bottom: none; }
+
+.fc-row-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.fc-row-content {}
+.fc-row-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gris);
+  margin-bottom: 2px;
+}
+.fc-programme .fc-row-label { color: rgba(255,255,255,.4); }
+.fc-row-val { font-weight: 600; color: var(--noir); }
+.fc-programme .fc-row-val { color: white; }
+
+/* LIVRABLE TAGS */
+.fc-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
+.fc-tag {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.fc-decouverte .fc-tag { background: rgba(203,225,182,.4); color: #306040; }
+.fc-standard .fc-tag { background: rgba(244,159,76,.15); color: #904000; }
+.fc-programme .fc-tag { background: rgba(255,255,255,.12); color: rgba(255,255,255,.85); }
+
+/* FOOTER CARD */
+.fc-footer {
+  padding: 14px 24px 20px;
+  text-align: center;
+}
+.fc-cta {
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all .2s;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+}
+.fc-decouverte .fc-cta {
+  background: var(--vert);
+  color: var(--noir);
+}
+.fc-standard .fc-cta {
+  background: var(--orange);
+  color: white;
+}
+.fc-programme .fc-cta {
+  background: var(--peche);
+  color: var(--noir);
+}
+
+/* ===== TARIFS DÉGRESSIFS ===== */
+.degressif {
+  margin: 0 52px 32px;
+  background: var(--noir);
+  border-radius: 20px;
+  padding: 28px 32px;
+  position: relative;
+  overflow: hidden;
+}
+.degressif::before {
+  content: 'TARIFS DÉGRESSIFS';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  font-family: 'Fascinate', cursive;
+  font-size: 80px;
+  color: rgba(255,255,255,.03);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.deg-title {
+  font-family: 'Gruppo', sans-serif;
+  font-size: 18px;
+  color: var(--peche);
+  text-align: center;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
+
+.deg-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.deg-card {
+  border-radius: 14px;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+}
+.deg-1 { background: rgba(248,244,184,.12); border: 1.5px solid rgba(248,244,184,.2); }
+.deg-3 { background: rgba(244,159,76,.12); border: 1.5px solid rgba(244,159,76,.25); }
+.deg-7 { background: rgba(184,174,215,.12); border: 1.5px solid rgba(184,174,215,.25); }
+
+.deg-ateliers {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,.4);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.deg-price {
+  font-family: 'Fascinate', cursive;
+  font-size: 30px;
+  margin-bottom: 4px;
+}
+.deg-1 .deg-price { color: var(--jaune); }
+.deg-3 .deg-price { color: var(--orange); }
+.deg-7 .deg-price { color: var(--mauve); }
+
+.deg-eco {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--vert);
+  margin-bottom: 4px;
+}
+.deg-unit {
+  font-size: 11px;
+  color: rgba(255,255,255,.3);
+}
+.deg-reduit {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  font-size: 10px;
+  color: rgba(255,255,255,.4);
+}
+.deg-reduit strong { color: rgba(255,255,255,.65); }
+
+/* ===== OUTILS NUMÉRIQUES ===== */
+.outils-section {
+  margin: 0 52px 32px;
+}
+.outils-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.outil-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: white;
+  border: 1.5px solid #f0f0f0;
+  border-radius: 14px;
+  padding: 16px;
+  transition: all .2s;
+}
+.outil-card:hover { border-color: var(--orange); box-shadow: 0 4px 20px rgba(244,159,76,.1); }
+.outil-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.oi-1 { background: #fff8f0; }
+.oi-2 { background: #e8f4fb; }
+.oi-3 { background: #eaf6ee; }
+.oi-4 { background: #f0eafa; }
+.oi-5 { background: #fff8e0; }
+.oi-6 { background: #fce8ec; }
+
+.outil-text h4 {
+  font-family: 'Gruppo', sans-serif;
+  font-size: 14px;
+  margin-bottom: 3px;
+}
+.outil-text p {
+  font-size: 11px;
+  color: var(--gris);
+  line-height: 1.5;
+}
+.outil-badge {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-top: 5px;
+  display: inline-block;
+}
+.ob-decouverte { background: rgba(203,225,182,.3); color: #306040; }
+.ob-standard { background: rgba(244,159,76,.2); color: #904000; }
+.ob-programme { background: rgba(184,174,215,.3); color: #504080; }
+.ob-all { background: rgba(26,26,46,.08); color: var(--noir); }
+
+/* ===== FLEUR DÉCO ===== */
+.petales-strip {
+  margin: 0 52px 32px;
+  background: linear-gradient(135deg, #f8f4f0, #fdf8f5);
+  border-radius: 16px;
+  padding: 22px 28px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.ps-title {
+  flex-shrink: 0;
+}
+.ps-title h3 {
+  font-family: 'Gruppo', sans-serif;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+.ps-title p {
+  font-size: 11px;
+  color: var(--gris);
+}
+.ps-petales {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  flex: 1;
+  justify-content: flex-end;
+}
+.ps-p {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: white;
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  border: 1.5px solid #eee;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: var(--noir);
+  padding: 28px 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.footer-brand {
+  font-family: 'Fascinate', cursive;
+  font-size: 22px;
+  color: var(--peche);
+  letter-spacing: 3px;
+}
+.footer-contact {
+  text-align: center;
+}
+.footer-contact p {
+  font-size: 12px;
+  color: rgba(255,255,255,.5);
+  line-height: 1.8;
+}
+.footer-contact strong { color: rgba(255,255,255,.85); }
+.footer-qr {
+  text-align: right;
+  font-size: 11px;
+  color: rgba(255,255,255,.3);
+}
+.footer-link {
+  color: var(--orange);
+  font-size: 11px;
+  font-weight: 700;
+  word-break: break-all;
+}
+
+/* ===== PRINT ===== */
+@media print {
+  body { background: white; }
+  .page { box-shadow: none; max-width: 100%; }
+  .fc:hover, .outil-card:hover { transform: none; box-shadow: none; }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.formules, .degressif, .outils-section, .petales-strip {
+  animation: fadeUp .5s ease both;
+}
+.formules { animation-delay: .1s; }
+.degressif { animation-delay: .2s; }
+.outils-section { animation-delay: .3s; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-inner">
+      <div class="logo-circle">
+        <img id="logo" src="" alt="BRILLE">
+      </div>
+      <div class="header-text">
+        <div class="tagline">Qualité de Vie de l'Enfant · 6–12 ans</div>
+        <h1>brille</h1>
+        <div class="subtitle">Ingénieure QVE · Ateliers & Accompagnement Famille</div>
+      </div>
+      <div class="header-right">
+        <div class="year-badge">TARIFS 2026</div>
+        <div class="contact-mini">
+          📞 06 11 14 07 15<br>
+          ✉️ tsioryleonard@gmail.com<br>
+          🌐 brille.ingenierie
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTRO STRIP -->
+  <div class="intro-strip">
+    <div class="is-icon">🌸</div>
+    <p>
+      La méthode <strong>BRILLE</strong> s'appuie sur une <strong>fleur QVE à 7 pétales</strong> pour diagnostiquer, outiller et accompagner chaque enfant de 6 à 12 ans. 
+      Chaque formule inclut un <strong>accès à l'application numérique BRILLE</strong> et des outils personnalisés adaptés au profil de l'enfant.
+    </p>
+  </div>
+
+  <!-- FORMULES -->
+  <div class="section-title">
+    <h2>🎯 Nos 3 Formules</h2>
+    <div class="st-line"></div>
+  </div>
+
+  <div class="formules">
+
+    <!-- DÉCOUVERTE -->
+    <div class="fc fc-decouverte">
+      <div class="fc-head">
+        <div class="fc-num">Formule 01</div>
+        <div class="fc-name">Découverte</div>
+        <div class="fc-price">300€</div>
+        <div class="fc-price-sub">par atelier · 2h</div>
+      </div>
+      <div class="fc-body">
+        <div class="fc-row">
+          <div class="fc-row-icon">⏱️</div>
+          <div class="fc-row-content">
+            <div class="fc-row-label">Durée</div>
+            <div class="fc-row-val">2h · 1 séance</div>
+          </div>
+        </div>
+        <div class="fc-row">
+          <div class="fc-row-icon">👥</div>
+          <div class="fc-row-content">
+            <div class="fc-row-label">Tranche d'âge</div>
+            <div class="fc-row-val">Tout confondu · 6–12 ans</div>
+          </div>
+        </div>
+        <div class="fc-row">
+          <div class="fc-row-icon">📋</div>
+          <div class="fc-row-content">
+            <div class="fc-row-label">Déroulement</div>
+            <div class="fc-row-val">Présentation · Conférence 7 pétales · Diagnostic QVE · Collecte contacts</div>
+          </div>
+        </div>
+        <div class="fc-row">
+          <div class="fc-row-icon">🎁</div>
+          <div class="fc-row-content">
+            <div class="fc-row-label">Livrable Famille</div>
+            <div class="fc-tags">
+              <span class="fc-tag">🔴 Kit pétale prioritaire</span>
+              <span class="fc-tag">🌸 Accès app BRILLE</span>
+              <span class="fc-tag">📧 Kit de départ</span>
+            </div>
+          </div>
+        </div>
+        <div class="fc-row">
+          <div class="fc-row-icon">🏢</div>
+          <div class="fc-row-content">
+            <div class="fc-row-label">Livrable Centre</div>
+            <div class="fc-tags">
+              <span class="fc-tag">🗣️ Bilan oral fin de séance</span>
+              <span class="fc-tag">📊 KPI familles</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fc-footer">
+        <button class="fc-cta">Réserver · Découverte →</button>
+      </div>
+    </div>
+
+    <!-- STANDARD -->
+    <div class="fc fc-standard">
+      <div class="fc-head">
+        <div class="badge-pop">✨ Recommandé</div>
+        <div class="fc-num">Formule 02</div>
+        <div class="fc-name">Standard</div>
+        <div class="fc-price">400€</div>
+        <div class="fc-price-sub">par atelier · 2h</div>
+      </div>
+      <div class="fc-body">
+        <div class="fc-row">
+          <div class="fc-row-icon">⏱️</div>
+          <div class="fc-row-content">
+            <div class="fc-row-label">Durée</div>
+            <div class="fc-row-val">2h · ponctuel</div>
+          </div>
+        </div>
+        <div class="fc-row">
+          <div class="fc-row-icon">👥</div>
+          <div class="fc-row-content">
+            <div class="fc-row-label">Tranche d'âge</div>
+            <div class="fc-row-val">Tranche spécifique · 6–7 / 8–9 / 10–12</div>
+          </div>
+        </div>
+        <div class="fc-row">
+          <div class="fc-row-icon">📋</div>
+          <div class="fc-row-content">
+            <div class="fc-row-label">Déroulement</div>
+            <div class="fc-row-val">Thématique choisie par le centre · Conception outils · Distribution kit</div>
+          </div>
+        </div>
+        <div class="fc-row">
+          <div class="fc-row-icon">🎁</div>
+          <div class="fc-row-content">
+            <div class="fc-row-label">Livrable Famille</div>
+            <div class="fc-tags">
+              <span class="fc-tag">🛠️ Kit pétale complet</span>
+              <span class="fc-tag">🃏 Carte mémoire plastifiée</span>
+              <span class="fc-tag">⚖️ Charte famille</span>
+              <span class="fc-tag">📱 Accès fiche outil</span>
+            </div>
+          </div>
+        </div>
+        <div class="fc-row">
+          <div class="fc-row-icon">🏢</div>
+          <div class="fc-row-content">
+            <div class="fc-row-label">Livrable Centre</div>
+            <div class="fc-tags">
+              <span class="fc-tag">📋 CR PDCA sous 5 jours</span>
+              <span class="fc-tag">💬 Bilan qualitatif</span>
+              <span class="fc-tag">📊 KPI familles</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fc-footer">
+        <button class="fc-cta">Réserver · Standard →</button>
+      </div>
+    </div>
+
+    <!-- PROGRAMME -->
+    <div class="fc fc-programme">
+      <div class="fc-head">
+        <div class="fc-num">Formule 03</div>
+        <div class="fc-name">Programme</div>
+        <div class="fc-price">2 300€</div>
+        <div class="fc-price-sub">7 séances · 7 mois</div>
+      </div>
+      <div class="fc-body">
+        <div class="fc-row">
+          <div class="fc-row-icon">⏱️</div>
+          <div class="fc-row-content">
+            <div class="fc-row-label">Durée</div>
+            <div class="fc-row-val">2h / mois · 7 mois</div>
+          </div>
+        </div>
+        <div class="fc-row">
+          <div class="fc-row-icon">👥</div>
+          <div class="fc-row-content">
+            <div class="fc-row-label">Tranche d'âge</div>
+            <div class="fc-row-val">Tranche spécifique · 6–7 / 8–9 / 10–12</div>
+          </div>
+        </div>
+        <div class="fc-row">
+          <div class="fc-row-icon">📋</div>
+          <div class="fc-row-content">
+            <div class="fc-row-label">Déroulement</div>
+            <div class="fc-row-val">1 pétale par mois · découverte progressive · suivi longitudinal</div>
+          </div>
+        </div>
+        <div class="fc-row">
+          <div class="fc-row-icon">🎁</div>
+          <div class="fc-row-content">
+            <div class="fc-row-label">Livrable Famille</div>
+            <div class="fc-tags">
+              <span class="fc-tag">📓 Carnet de bord 7 séances</span>
+              <span class="fc-tag">🌸 Accès toutes les fiches</span>
+              <span class="fc-tag">📊 Bilan début & fin</span>
+            </div>
+          </div>
+        </div>
+        <div class="fc-row">
+          <div class="fc-row-icon">🏢</div>
+          <div class="fc-row-content">
+            <div class="fc-row-label">Livrable Centre</div>
+            <div class="fc-tags">
+              <span class="fc-tag">📋 Bilan fin de programme</span>
+              <span class="fc-tag">👨‍👩‍👧 Retour famille complet</span>
+              <span class="fc-tag">📈 Évolution QVE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fc-footer">
+        <button class="fc-cta">Réserver · Programme →</button>
+      </div>
+    </div>
+
+  </div><!-- /formules -->
+
+  <!-- TARIFS DÉGRESSIFS -->
+  <div class="degressif">
+    <div class="deg-title">💰 Tarifs Dégressifs — Formule Standard</div>
+    <div class="deg-grid">
+      <div class="deg-card deg-1">
+        <div class="deg-ateliers">1 atelier</div>
+        <div class="deg-price">400€</div>
+        <div class="deg-unit">tarif plein</div>
+        <div class="deg-reduit">Tarif réduit : <strong>non applicable</strong></div>
+      </div>
+      <div class="deg-card deg-3">
+        <div class="deg-ateliers">3 ateliers</div>
+        <div class="deg-price">1 100€</div>
+        <div class="deg-eco">-8% · économie 100€</div>
+        <div class="deg-unit">367€ / atelier</div>
+        <div class="deg-reduit">Tarif réduit : <strong>367€ / atelier</strong></div>
+      </div>
+      <div class="deg-card deg-7">
+        <div class="deg-ateliers">7 ateliers</div>
+        <div class="deg-price">2 300€</div>
+        <div class="deg-eco">-18% · économie 500€</div>
+        <div class="deg-unit">328€ / atelier</div>
+        <div class="deg-reduit">Tarif réduit : <strong>328€ / atelier</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OUTILS NUMÉRIQUES -->
+  <div class="section-title">
+    <h2>💻 Outils Numériques Inclus</h2>
+    <div class="st-line"></div>
+  </div>
+
+  <div class="outils-section">
+    <div class="outils-grid">
+      <div class="outil-card">
+        <div class="outil-icon oi-1">🌸</div>
+        <div class="outil-text">
+          <h4>Application BRILLE</h4>
+          <p>Espace famille personnalisé avec fleur QVE interactive, grimoire des victoires et suivi de progression.</p>
+          <span class="outil-badge ob-all">✅ Toutes formules</span>
+        </div>
+      </div>
+      <div class="outil-card">
+        <div class="outil-icon oi-2">📋</div>
+        <div class="outil-text">
+          <h4>Fiches Pétales en ligne</h4>
+          <p>7 fiches outils interactives adaptées à chaque tranche d'âge (6–7 / 8–9 / 10–12 ans), accessibles par lien email.</p>
+          <span class="outil-badge ob-standard">⚙️ Standard & Programme</span>
+        </div>
+      </div>
+      <div class="outil-card">
+        <div class="outil-icon oi-3">📊</div>
+        <div class="outil-text">
+          <h4>Bilan PDCA Centre Social</h4>
+          <p>Rapport complet Plan·Do·Check·Act envoyé au référent dans les 5 jours suivant l'atelier.</p>
+          <span class="outil-badge ob-standard">⚙️ Standard & Programme</span>
+        </div>
+      </div>
+      <div class="outil-card">
+        <div class="outil-icon oi-4">📓</div>
+        <div class="outil-text">
+          <h4>Carnet de Bord Numérique</h4>
+          <p>7 onglets séance avec météo du jour, victoires, actions semaine et bilan final d'évolution QVE.</p>
+          <span class="outil-badge ob-programme">🗓️ Programme uniquement</span>
+        </div>
+      </div>
+      <div class="outil-card">
+        <div class="outil-icon oi-5">🎭</div>
+        <div class="outil-text">
+          <h4>Conférence Interactive</h4>
+          <p>Diaporama animé pour vidéoprojecteur — présentation ludique des 7 pétales avec questions participatives.</p>
+          <span class="outil-badge ob-decouverte">🔍 Découverte & Standard</span>
+        </div>
+      </div>
+      <div class="outil-card">
+        <div class="outil-icon oi-6">📧</div>
+        <div class="outil-text">
+          <h4>Kit de Départ par Email</h4>
+          <p>Email personnalisé automatique avec code d'accès, pétale prioritaire, actions semaine et lien fiche outil.</p>
+          <span class="outil-badge ob-all">✅ Toutes formules</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LES 7 PÉTALES -->
+  <div class="petales-strip">
+    <div class="ps-title">
+      <h3>🌸 Les 7 Pétales QVE</h3>
+      <p>Domaines de la qualité de vie de l'enfant</p>
+    </div>
+    <div class="ps-petales">
+      <div class="ps-p" style="border-color:#a8dbeb33;background:#e8f4fb;">🧭 Boussole des Alliés</div>
+      <div class="ps-p" style="border-color:#fdd5a533;background:#fff8f0;">⭐ Constellation des Talents</div>
+      <div class="ps-p" style="border-color:#f5abaf33;background:#fce8ec;">🌤️ Météo Intérieure</div>
+      <div class="ps-p" style="border-color:#f8f4b833;background:#fff8e0;">🏠 QG du Commandant</div>
+      <div class="ps-p" style="border-color:#a8dbeb33;background:#e8f4fb;">⚖️ Charte de la Famille</div>
+      <div class="ps-p" style="border-color:#b8aed733;background:#f0eafa;">🏆 Grimoire des Victoires</div>
+      <div class="ps-p" style="border-color:#cbe1b633;background:#eaf6ee;">🌳 Arbre des Possibles</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-brand">brille</div>
+    <div class="footer-contact">
+      <p>
+        <strong>Ingénieure QVE · Léonard Tsiory</strong><br>
+        📞 06 11 14 07 15 &nbsp;·&nbsp; ✉️ tsioryleonard@gmail.com
+      </p>
+    </div>
+    <div class="footer-qr">
+      <p>Accès à l'application</p>
+      <div class="footer-link">brille.ingenierie</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+document.getElementById('logo').src = 'data:image/png;base64,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';
+</script>
+</body>
+</html>
