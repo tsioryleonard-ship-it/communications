@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&family=Gruppo&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green:#7EC8A4;--green-light:#e8f7f0;--green-dark:#3a7a5c;
+  --amber:#F4C97A;--amber-light:#fdf6e3;--amber-dark:#a07a1a;
+  --red:#E88A8A;--red-light:#fdeaea;--red-dark:#a03030;
+  --mauve:#c8a0d4;--mauve-light:#f5eef8;--mauve-dark:#7a3a8a;
+  --white:#fff;--bg:#faf9f7;--text:#3a3530;--muted:#9a9490;
+  --border:#ede9e4;--radius:14px;
+}
+body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);padding:20px 16px 40px;min-height:100vh}
+h1{font-family:'Gruppo',sans-serif;font-size:1.6rem;color:var(--green-dark);text-align:center;margin-bottom:4px;letter-spacing:1px}
+.subtitle{text-align:center;font-size:.8rem;color:var(--muted);margin-bottom:20px;font-weight:400}
+
+/* Progress bar */
+.progress-wrap{background:var(--border);border-radius:99px;height:8px;margin-bottom:24px;overflow:hidden}
+.progress-bar{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--green),var(--mauve));transition:width .5s ease}
+.progress-label{font-size:.72rem;color:var(--muted);text-align:right;margin-top:4px;margin-bottom:20px}
+
+/* Phase headers */
+.phase{margin-bottom:8px;margin-top:18px;display:flex;align-items:center;gap:8px}
+.phase-badge{font-family:'Gruppo',sans-serif;font-size:.7rem;padding:3px 10px;border-radius:99px;font-weight:500;letter-spacing:.5px;white-space:nowrap}
+.phase-line{flex:1;height:1px;background:var(--border)}
+
+/* Task rows */
+.task{display:grid;grid-template-columns:28px 1fr 110px 90px;gap:8px;align-items:center;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:10px 12px;margin-bottom:6px;transition:box-shadow .15s,opacity .2s}
+.task:hover{box-shadow:0 2px 12px rgba(0,0,0,.07)}
+.task.done{opacity:.55}
+.task.done .task-name{text-decoration:line-through;color:var(--muted)}
+
+/* Checkbox */
+.cb{width:20px;height:20px;border-radius:6px;border:1.5px solid var(--border);background:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .15s,border-color .15s}
+.cb.checked{background:var(--green);border-color:var(--green)}
+.cb svg{display:none}
+.cb.checked svg{display:block}
+
+/* Task name */
+.task-name{font-size:.82rem;font-weight:500;line-height:1.3}
+.task-note{font-size:.71rem;color:var(--muted);font-weight:400;margin-top:2px}
+
+/* Deadline input */
+.deadline{font-size:.75rem;border:1px solid var(--border);border-radius:8px;padding:4px 7px;background:var(--bg);color:var(--text);font-family:'Quicksand',sans-serif;width:100%;outline:none;cursor:pointer}
+.deadline:focus{border-color:var(--green);background:#fff}
+
+/* Status badge */
+.status-sel{font-size:.7rem;border:1px solid var(--border);border-radius:8px;padding:4px 6px;background:var(--bg);color:var(--text);font-family:'Quicksand',sans-serif;width:100%;outline:none;cursor:pointer;font-weight:500}
+.status-sel:focus{border-color:var(--mauve)}
+.status-sel[data-s="todo"]{background:var(--bg);color:var(--muted)}
+.status-sel[data-s="wip"]{background:var(--amber-light);color:var(--amber-dark);border-color:var(--amber)}
+.status-sel[data-s="done"]{background:var(--green-light);color:var(--green-dark);border-color:var(--green)}
+.status-sel[data-s="block"]{background:var(--red-light);color:var(--red-dark);border-color:var(--red)}
+
+/* Overdue indicator */
+.overdue .deadline{border-color:var(--red);color:var(--red-dark);background:var(--red-light)}
+
+/* Notes textarea */
+.notes-row{grid-column:1/-1;margin-top:2px}
+.notes-input{width:100%;font-size:.72rem;border:1px solid var(--border);border-radius:8px;padding:6px 8px;font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--text);resize:none;outline:none;min-height:32px}
+.notes-input:focus{border-color:var(--mauve);background:#fff}
+.notes-input::placeholder{color:var(--muted)}
+
+/* Save/reset */
+.actions{display:flex;gap:8px;margin-top:20px;justify-content:center}
+.btn{font-family:'Gruppo',sans-serif;font-size:.8rem;padding:8px 20px;border-radius:99px;border:none;cursor:pointer;letter-spacing:.5px;transition:opacity .15s}
+.btn-save{background:var(--green-dark);color:#fff}
+.btn-reset{background:transparent;color:var(--muted);border:1px solid var(--border)}
+.btn:hover{opacity:.8}
+.saved-toast{display:none;text-align:center;font-size:.72rem;color:var(--green-dark);margin-top:8px}
+.saved-toast.show{display:block}
+</style>
+
+<h1>✨ Atelier Étincelle</h1>
+<p class="subtitle">Tableau de bord · Expérimentation 2 centres sociaux</p>
+
+<div class="progress-wrap"><div class="progress-bar" id="pbar" style="width:0%"></div></div>
+<p class="progress-label" id="plabel">0 / 0 tâches complétées</p>
+
+<div id="board"></div>
+
+<div class="actions">
+  <button class="btn btn-save" onclick="saveAll()">Sauvegarder</button>
+  <button class="btn btn-reset" onclick="resetAll()">Réinitialiser</button>
+</div>
+<p class="saved-toast" id="toast">✓ Sauvegardé</p>
+
+<script>
+const PHASES = [
+  {
+    label:"Phase 1 · Confirmer le partenariat",color:"#7EC8A4",textColor:"#2a6644",
+    tasks:[
+      {id:"p1t1",name:"Relance centre social n°1",note:"Mail ou appel de suivi",deadline:"",status:"todo",notes:""},
+      {id:"p1t2",name:"Relance centre social n°2",note:"Mail ou appel de suivi",deadline:"",status:"todo",notes:""},
+      {id:"p1t3",name:"Valider la date et le créneau",note:"2h, salle avec vidéoprojecteur",deadline:"",status:"todo",notes:""},
+      {id:"p1t4",name:"Valider la logistique salle",note:"Tables, chaises, prise, luminosité",deadline:"",status:"todo",notes:""},
+      {id:"p1t5",name:"Confirmer le nombre de binômes",note:"Objectif : 5 familles (enfants 6–12)",deadline:"",status:"todo",notes:""},
+    ]
+  },
+  {
+    label:"Phase 2 · Préparer les supports",color:"#c8a0d4",textColor:"#5a2a6a",
+    tasks:[
+      {id:"p2t1",name:"Envoyer lien fleur QVE aux familles",note:"Par mail via le centre (pas d'impression)",deadline:"",status:"todo",notes:""},
+      {id:"p2t2",name:"Préparer les feutres (vert, orange, rouge)",note:"1 jeu par binôme minimum",deadline:"",status:"todo",notes:""},
+      {id:"p2t3",name:"Vérifier lien slideshow sur mobile/tablette",note:"tsioryleonard-ship-it.github.io",deadline:"",status:"todo",notes:""},
+      {id:"p2t4",name:"Créer fiche feedback à chaud",note:"5 min, remplie en fin d'atelier",deadline:"",status:"todo",notes:""},
+      {id:"p2t5",name:"Préparer post-its et timer",note:"Pour les activités participatives",deadline:"",status:"todo",notes:""},
+    ]
+  },
+  {
+    label:"Phase 3 · Préparer l'animation",color:"#F4C97A",textColor:"#7a5010",
+    tasks:[
+      {id:"p3t1",name:"Script de facilitation minuté",note:"Chaque séquence : ce que je dis, ce que je fais",deadline:"",status:"todo",notes:""},
+      {id:"p3t2",name:"Rédiger les consignes des activités",note:"Formulation adaptée aux 6–12 ans",deadline:"",status:"todo",notes:""},
+      {id:"p3t3",name:"Préparer l'accroche d'ouverture",note:"Intro BRILLE, posture non thérapeutique",deadline:"",status:"todo",notes:""},
+      {id:"p3t4",name:"Préparer un plan B timing",note:"Si une séquence déborde",deadline:"",status:"todo",notes:""},
+      {id:"p3t5",name:"Répétition à blanc (seule ou avec témoin)",note:"Chronomètre en main, toute la séquence",deadline:"",status:"todo",notes:""},
+    ]
+  },
+  {
+    label:"Phase 4 · Jour J & après",color:"#E88A8A",textColor:"#7a2020",
+    tasks:[
+      {id:"p4t1",name:"Atelier centre social n°1",note:"Jour J — 2h avec 5 binômes",deadline:"",status:"todo",notes:""},
+      {id:"p4t2",name:"Atelier centre social n°2",note:"Jour J — 2h avec 5 binômes",deadline:"",status:"todo",notes:""},
+      {id:"p4t3",name:"Débrief PDCA après chaque atelier",note:"Plan → Do → Check → Act",deadline:"",status:"todo",notes:""},
+      {id:"p4t4",name:"Envoyer mail de remerciement",note:"+ proposition de suite (partenariat payant)",deadline:"",status:"todo",notes:""},
+      {id:"p4t5",name:"Capitaliser les retours familles",note:"Analyser les fiches feedback",deadline:"",status:"todo",notes:""},
+    ]
+  }
+];
+
+const KEY = "brille_etincelle_v1";
+let state = {};
+
+function load(){
+  try{const s=localStorage.getItem(KEY);if(s)state=JSON.parse(s);}catch(e){}
+}
+function save(){
+  try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}
+}
+
+function getTask(id){
+  return state[id]||{deadline:"",status:"todo",notes:"",done:false};
+}
+
+function updateProgress(){
+  let total=0,done=0;
+  PHASES.forEach(p=>p.tasks.forEach(t=>{total++;if(getTask(t.id).done)done++;}));
+  const pct=total?Math.round(done/total*100):0;
+  document.getElementById("pbar").style.width=pct+"%";
+  document.getElementById("plabel").textContent=done+" / "+total+" tâches complétées";
+}
+
+function renderStatus(sel){
+  const v=sel.value;
+  sel.dataset.s=v;
+}
+
+function isOverdue(deadline){
+  if(!deadline)return false;
+  const d=new Date(deadline);
+  const today=new Date();today.setHours(0,0,0,0);
+  return d<today;
+}
+
+function render(){
+  const board=document.getElementById("board");
+  board.innerHTML="";
+  PHASES.forEach(phase=>{
+    const ph=document.createElement("div");
+    ph.className="phase";
+    ph.innerHTML=`<span class="phase-badge" style="background:${phase.color}20;color:${phase.textColor};border:1px solid ${phase.color}">${phase.label}</span><div class="phase-line"></div>`;
+    board.appendChild(ph);
+
+    phase.tasks.forEach(t=>{
+      const ts=getTask(t.id);
+      const over=!ts.done&&isOverdue(ts.deadline);
+      const row=document.createElement("div");
+      row.className="task"+(ts.done?" done":"")+(over?" overdue":"");
+      row.id="row_"+t.id;
+      row.innerHTML=`
+        <div class="cb${ts.done?" checked":""}" id="cb_${t.id}" onclick="toggleDone('${t.id}')">
+          <svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3 3 7-7" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <div class="task-name">${t.name}</div>
+          <div class="task-note">${t.note}</div>
+        </div>
+        <input class="deadline" type="date" value="${ts.deadline}" id="dl_${t.id}" onchange="updateField('${t.id}','deadline',this.value);checkOverdue('${t.id}')">
+        <select class="status-sel" id="st_${t.id}" onchange="updateField('${t.id}','status',this.value);renderStatus(this)" data-s="${ts.status}">
+          <option value="todo"${ts.status==='todo'?' selected':''}>À faire</option>
+          <option value="wip"${ts.status==='wip'?' selected':''}>En cours</option>
+          <option value="done"${ts.status==='done'?' selected':''}>Terminé</option>
+          <option value="block"${ts.status==='block'?' selected':''}>Bloqué</option>
+        </select>
+        <div class="notes-row">
+          <textarea class="notes-input" placeholder="Notes…" rows="1" id="nt_${t.id}" onchange="updateField('${t.id}','notes',this.value)">${ts.notes}</textarea>
+        </div>
+      `;
+      board.appendChild(row);
+    });
+  });
+  updateProgress();
+}
+
+function toggleDone(id){
+  const ts=getTask(id);
+  ts.done=!ts.done;
+  if(ts.done)ts.status="done";
+  state[id]=ts;
+  render();
+}
+
+function updateField(id,field,val){
+  const ts=getTask(id);
+  ts[field]=val;
+  state[id]=ts;
+  updateProgress();
+}
+
+function checkOverdue(id){
+  const row=document.getElementById("row_"+id);
+  const ts=getTask(id);
+  const over=!ts.done&&isOverdue(ts.deadline);
+  row.classList.toggle("overdue",over);
+}
+
+function saveAll(){
+  save();
+  const t=document.getElementById("toast");
+  t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"),2000);
+}
+
+function resetAll(){
+  if(!confirm("Réinitialiser toutes les données ?"))return;
+  state={};save();render();
+}
+
+load();render();
+</script>
