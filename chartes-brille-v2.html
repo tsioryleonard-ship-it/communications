@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRILLE – Chartes d'engagement</title>
+<link href="https://fonts.googleapis.com/css2?family=Fascinate&family=Gruppo&family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Palette officielle charte graphique Brille */
+  --orange:      #f49f4c;
+  --rose:        #f5abaf;
+  --peche:       #fdd5a5;
+  --jaune:       #f8f4b8;
+  --bleu:        #a4c2e7;
+  --bleu-clair:  #a8dbeb;
+  --vert:        #cbe1b6;
+  --mauve:       #b8aed7;
+  --rose-pale:   #ebc6e0;
+  --noir:        #000000;
+  --blanc:       #ffffff;
+  --creme:       #fdfcf8;
+  --texte:       #1a1a1a;
+  --gris:        #888;
+  --gris-light:  #eee;
+
+  /* Par public */
+  --col-familles:    var(--vert);
+  --col-partenaires: var(--bleu);
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Quicksand',sans-serif;font-weight:300;background:var(--creme);color:var(--texte);min-height:100vh;}
+
+/* ══ HEADER ══ */
+.header{
+  background:var(--blanc);
+  border-bottom:2px solid #eee;
+  padding:16px 40px;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:100;
+}
+.header-brand{display:flex;align-items:center;gap:14px;}
+
+/* LOGO SVG inline */
+.logo-wrap svg{display:block;}
+
+.header-sub{font-family:'Quicksand',sans-serif;font-size:0.7rem;font-weight:300;letter-spacing:1.5px;color:var(--gris);margin-top:2px;}
+
+/* ══ TOGGLES ══ */
+.toggles{display:flex;gap:10px;}
+.toggle-group{display:flex;border-radius:40px;border:1.5px solid #e0e0e0;background:#f8f8f8;padding:3px;gap:2px;}
+.tg-btn{
+  padding:7px 18px;border-radius:30px;border:none;
+  font-family:'Quicksand',sans-serif;font-size:0.72rem;font-weight:600;
+  letter-spacing:0.4px;cursor:pointer;transition:all 0.2s;
+  background:transparent;color:var(--gris);
+}
+.tg-btn.on-familles{background:var(--vert);color:#2a4a1a;box-shadow:0 2px 8px rgba(203,225,182,0.5);}
+.tg-btn.on-partenaires{background:var(--bleu);color:#1a2a4a;box-shadow:0 2px 8px rgba(164,194,231,0.5);}
+.tg-btn.on-tone{background:var(--noir);color:#fff;}
+
+/* ══ CONTENT ══ */
+.content{max-width:800px;margin:0 auto;padding:48px 32px 80px;}
+
+/* ══ PANELS ══ */
+.panel{display:none;animation:fadeUp 0.35s ease both;}
+.panel.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+/* ══ HERO ══ */
+.hero{
+  border-radius:20px;padding:40px 44px;margin-bottom:28px;
+  position:relative;overflow:hidden;
+}
+.hero-tag{
+  font-family:'Gruppo',sans-serif;font-size:0.65rem;font-weight:400;
+  text-transform:uppercase;letter-spacing:3px;
+  background:rgba(0,0,0,0.08);display:inline-block;
+  padding:4px 14px;border-radius:20px;margin-bottom:16px;
+  color:rgba(0,0,0,0.55);
+}
+.hero-title{
+  font-family:'Gruppo',sans-serif;font-size:2rem;letter-spacing:1px;
+  color:var(--noir);margin-bottom:8px;
+  -webkit-text-stroke:0.5px var(--noir);
+}
+.hero-sub{font-size:0.85rem;font-weight:400;color:rgba(0,0,0,0.6);}
+
+.hero-familles-warm{background:linear-gradient(135deg,var(--vert) 0%,var(--peche) 100%);}
+.hero-familles-formal{background:var(--jaune);}
+.hero-partenaires-warm{background:linear-gradient(135deg,var(--bleu) 0%,var(--rose-pale) 100%);}
+.hero-partenaires-formal{background:var(--mauve);}
+
+/* HERO deco circles */
+.hero::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,0.15);}
+.hero::after{content:'';position:absolute;bottom:-40px;left:-30px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,0.1);}
+
+/* ══ INTRO BAR ══ */
+.intro-bar{
+  border-left:4px solid;border-radius:0 12px 12px 0;
+  padding:16px 22px;margin-bottom:28px;
+  font-size:0.88rem;line-height:1.7;
+}
+.intro-bar.vert{border-color:var(--vert);background:#f0f8e8;}
+.intro-bar.bleu{border-color:var(--bleu);background:#eaf3fb;}
+.intro-bar.jaune{border-color:#ccc090;background:#fdfcee;}
+.intro-bar.mauve{border-color:var(--mauve);background:#f5f2fb;}
+
+/* ══ SECTION TITLE ══ */
+.s-title{
+  font-family:'Gruppo',sans-serif;font-size:1rem;letter-spacing:1px;
+  -webkit-text-stroke:0.3px currentColor;
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:12px;margin-top:24px;
+}
+.s-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.s-dot.vert{background:var(--vert);}
+.s-dot.bleu{background:var(--bleu);}
+.s-dot.orange{background:var(--orange);}
+.s-dot.rose{background:var(--rose);}
+.s-dot.mauve{background:var(--mauve);}
+
+/* ══ CARDS ══ */
+.card{
+  background:var(--blanc);border-radius:14px;
+  padding:18px 22px;margin-bottom:10px;
+  border:1.5px solid #ebebeb;
+}
+.card-row{display:flex;align-items:flex-start;gap:0;margin-bottom:7px;font-size:0.87rem;line-height:1.65;}
+.card-row:last-child{margin-bottom:0;}
+.num{
+  min-width:22px;height:22px;border-radius:50%;
+  font-size:0.62rem;font-weight:700;
+  display:inline-flex;align-items:center;justify-content:center;
+  margin-right:10px;flex-shrink:0;margin-top:1px;
+}
+.num.vert{background:var(--vert);color:#2a4a1a;}
+.num.bleu{background:var(--bleu);color:#1a2a4a;}
+.num.orange{background:var(--orange);color:#fff;}
+.num.mauve{background:var(--mauve);color:#2a1a4a;}
+
+/* TWO COL GRID */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px;}
+
+/* ══ SIGNATURE ══ */
+.sig-block{
+  border-top:2px solid #eee;padding-top:28px;margin-top:32px;
+  display:grid;gap:24px;
+}
+.sig-block.cols-2{grid-template-columns:1fr 1fr;}
+.sig-block.cols-3{grid-template-columns:1fr 1fr 1fr;}
+.sig-col label{font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:1.2px;color:var(--gris);display:block;margin-bottom:8px;}
+.sig-name{font-size:0.85rem;font-weight:500;margin-bottom:28px;line-height:1.5;}
+.sig-line{border-bottom:1.5px solid #ddd;margin-bottom:5px;}
+.sig-hint{font-size:0.68rem;color:var(--gris);}
+
+.doc-note{text-align:center;font-size:0.68rem;color:#aaa;margin-top:20px;padding-top:14px;border-top:1px solid #f0f0f0;}
+
+/* ══ FORMAL PAGE ══ */
+.formal-page{
+  background:var(--blanc);
+  border:1px solid #ddd;
+  border-radius:4px;
+  padding:52px 56px;
+}
+.formal-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:32px;padding-bottom:18px;border-bottom:2px solid var(--noir);}
+.formal-doc-info{text-align:right;font-size:0.72rem;color:var(--gris);line-height:1.9;}
+.formal-title-bloc{text-align:center;margin-bottom:36px;}
+.formal-title{font-family:'Gruppo',sans-serif;font-size:1.5rem;letter-spacing:2px;-webkit-text-stroke:0.4px var(--noir);margin-bottom:6px;}
+.formal-subtitle{font-size:0.72rem;letter-spacing:1.5px;color:var(--gris);text-transform:uppercase;}
+.formal-art{margin-bottom:22px;}
+.formal-art-title{
+  font-family:'Gruppo',sans-serif;font-size:0.88rem;letter-spacing:1px;
+  border-bottom:1px solid #eee;padding-bottom:5px;margin-bottom:11px;
+  text-transform:uppercase;color:var(--texte);
+}
+.formal-art p,.formal-art li{font-size:0.82rem;line-height:1.85;margin-bottom:6px;}
+.formal-art ul{padding-left:16px;}
+.formal-art li{margin-bottom:3px;}
+
+/* color accent on formal titles depending on public */
+.formal-familles .formal-art-title{border-color:var(--vert);}
+.formal-partenaires .formal-art-title{border-color:var(--bleu);}
+
+/* ══ COLOR PILL ══ */
+.pill{display:inline-block;padding:3px 12px;border-radius:20px;font-size:0.7rem;font-weight:600;}
+.pill.vert{background:var(--vert);color:#2a4a1a;}
+.pill.bleu{background:var(--bleu);color:#1a2a4a;}
+
+@media print{
+  .header{display:none!important;}
+  .panel{display:block!important;animation:none!important;}
+  body{background:#fff;}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-brand">
+    <!-- Logo Brille SVG recréé fidèlement -->
+    <div class="logo-wrap">
+      <svg width="110" height="56" viewBox="0 0 110 56" xmlns="http://www.w3.org/2000/svg">
+        <!-- Wordmark "brille" en police arrondie grasse -->
+        <text x="4" y="32" font-family="'Fascinate', cursive" font-size="28" fill="#000" letter-spacing="-1">brille</text>
+        <!-- Soleil / cercle jaune lumineux -->
+        <ellipse cx="62" cy="50" rx="14" ry="8" fill="#f8f4b8" opacity="0.9"/>
+        <ellipse cx="62" cy="49" rx="11" ry="6" fill="#fdf9c0"/>
+        <!-- Sourire arc-en-ciel -->
+        <path d="M 54 46 Q 62 54 70 46" stroke="url(#rainbow)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <!-- Petites cornes/yeux du sourire -->
+        <path d="M 54 46 Q 52 43 55 42" stroke="url(#rainbow)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <path d="M 70 46 Q 72 43 69 42" stroke="url(#rainbow)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <defs>
+          <linearGradient id="rainbow" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#7ec8e3"/>
+            <stop offset="33%" stop-color="#a8e6cf"/>
+            <stop offset="66%" stop-color="#f9ca24"/>
+            <stop offset="100%" stop-color="#f0932b"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <div>
+      <div style="font-family:'Gruppo',sans-serif;font-size:0.65rem;letter-spacing:2px;color:var(--gris);text-transform:uppercase;">Ateliers socio-éducatifs · Soutien à la parentalité</div>
+    </div>
+  </div>
+
+  <div class="toggles">
+    <div class="toggle-group">
+      <button class="tg-btn on-familles" id="btn-familles" onclick="setPublic('familles')">Familles</button>
+      <button class="tg-btn" id="btn-partenaires" onclick="setPublic('partenaires')">Partenaires</button>
+    </div>
+    <div class="toggle-group">
+      <button class="tg-btn on-tone" id="btn-warm" onclick="setTone('warm')">Chaleureux</button>
+      <button class="tg-btn" id="btn-formal" onclick="setTone('formal')">Institutionnel</button>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- ═══════════════════════════════
+       FAMILLES · WARM
+  ═══════════════════════════════ -->
+  <div class="panel active" id="panel-familles-warm">
+
+    <div class="hero hero-familles-warm">
+      <div class="hero-tag">Atelier Étincelle · BRILLE</div>
+      <div class="hero-title">Charte d'engagement<br>des familles</div>
+      <div class="hero-sub">Parents &amp; enfants · Ensemble, on s'engage ✦</div>
+    </div>
+
+    <div class="intro-bar vert">
+      Bienvenue dans l'Atelier Étincelle ! Pour que ce moment soit beau pour tout le monde — enfants et parents — voici quelques engagements simples à prendre ensemble. Pas de règles compliquées : juste de la bienveillance, du respect et de la curiosité.
+    </div>
+
+    <div class="s-title" style="color:#3a6a1a;"><div class="s-dot vert"></div>Ce que BRILLE s'engage à faire pour vous</div>
+    <div class="card">
+      <div class="card-row"><span class="num vert">1</span>Vous accueillir dans un espace bienveillant, sans jugement, adapté aux enfants de 6 à 12 ans.</div>
+      <div class="card-row"><span class="num vert">2</span>Proposer des activités participatives et ludiques, ancrées dans le quotidien de votre famille.</div>
+      <div class="card-row"><span class="num vert">3</span>Respecter la confidentialité de tout ce qui sera partagé pendant l'atelier.</div>
+      <div class="card-row"><span class="num vert">4</span>Vous remettre un bilan à la fin, pour que vous repartiez avec des idées concrètes.</div>
+      <div class="card-row"><span class="num vert">5</span>Traiter vos données personnelles dans le strict respect du RGPD, sans vous démarcher sans votre accord.</div>
+    </div>
+
+    <div class="s-title" style="color:#3a6a1a;"><div class="s-dot orange"></div>Ce que nous vous demandons de votre côté</div>
+    <div class="card">
+      <div class="card-row"><span class="num orange">1</span>Venir à l'heure et prévenir en cas d'absence, pour que nous puissions organiser le groupe.</div>
+      <div class="card-row"><span class="num orange">2</span>Participer activement — l'atelier est conçu pour vous autant que pour votre enfant !</div>
+      <div class="card-row"><span class="num orange">3</span>Accueillir les idées de votre enfant avec curiosité, même si elles vous surprennent.</div>
+      <div class="card-row"><span class="num orange">4</span>Respecter les autres familles et leurs différences.</div>
+      <div class="card-row"><span class="num orange">5</span>Signaler avant l'atelier toute situation particulière qui nous permettrait de mieux vous accompagner.</div>
+    </div>
+
+    <div class="s-title" style="color:#3a6a1a;"><div class="s-dot rose"></div>Infos pratiques</div>
+    <div class="card">
+      <div class="card-row"><span class="num rose">↗</span><span><strong>Durée :</strong> 2 heures en continu, parent et enfant ensemble.</span></div>
+      <div class="card-row"><span class="num rose">↗</span><span><strong>Matériel :</strong> Tout est fourni par BRILLE — venez juste comme vous êtes !</span></div>
+      <div class="card-row"><span class="num rose">↗</span><span><strong>Photos :</strong> Uniquement avec votre accord explicite, à des fins pédagogiques.</span></div>
+      <div class="card-row"><span class="num rose">↗</span><span><strong>Contact :</strong> 06 11 14 07 15 · tsioryleonard@gmail.com</span></div>
+    </div>
+
+    <div class="sig-block cols-2">
+      <div class="sig-col">
+        <label>Pour BRILLE</label>
+        <div class="sig-name">Tsiory Leonard<br><span style="font-weight:300;color:var(--gris);">Fondatrice</span></div>
+        <div class="sig-line"></div>
+        <div class="sig-hint">Signature + date</div>
+      </div>
+      <div class="sig-col">
+        <label>Pour la famille</label>
+        <div class="sig-name">Nom du parent :<br>Prénom(s) de l'enfant :</div>
+        <div class="sig-line"></div>
+        <div class="sig-hint">Signature + date</div>
+      </div>
+    </div>
+    <div class="doc-note">BRILLE · Tsiory Leonard · 06 11 14 07 15 · tsioryleonard@gmail.com · Réf. BRILLE-CH-FAM-001</div>
+  </div>
+
+  <!-- ═══════════════════════════════
+       FAMILLES · FORMAL
+  ═══════════════════════════════ -->
+  <div class="panel" id="panel-familles-formal">
+    <div class="formal-page formal-familles">
+
+      <div class="formal-header">
+        <div>
+          <svg width="90" height="46" viewBox="0 0 110 56" xmlns="http://www.w3.org/2000/svg">
+            <text x="4" y="32" font-family="'Fascinate', cursive" font-size="28" fill="#000" letter-spacing="-1">brille</text>
+            <ellipse cx="62" cy="50" rx="14" ry="8" fill="#f8f4b8" opacity="0.9"/>
+            <ellipse cx="62" cy="49" rx="11" ry="6" fill="#fdf9c0"/>
+            <path d="M 54 46 Q 62 54 70 46" stroke="url(#rainbow2)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <path d="M 54 46 Q 52 43 55 42" stroke="url(#rainbow2)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <path d="M 70 46 Q 72 43 69 42" stroke="url(#rainbow2)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <defs>
+              <linearGradient id="rainbow2" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#7ec8e3"/>
+                <stop offset="50%" stop-color="#a8e6cf"/>
+                <stop offset="100%" stop-color="#f0932b"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <div style="font-family:'Quicksand',sans-serif;font-size:0.68rem;font-weight:300;letter-spacing:1.5px;color:var(--gris);margin-top:2px;">Ateliers socio-éducatifs · Soutien à la parentalité</div>
+        </div>
+        <div class="formal-doc-info">
+          <strong>Charte d'engagement des familles</strong><br>
+          Atelier Étincelle · Centre social<br>
+          Référence : BRILLE-CH-FAM-001
+        </div>
+      </div>
+
+      <div class="formal-title-bloc">
+        <div class="formal-title">Charte d'engagement</div>
+        <div class="formal-subtitle">Familles participantes · Atelier Étincelle · BRILLE</div>
+      </div>
+
+      <div class="formal-art">
+        <div class="formal-art-title">Préambule</div>
+        <p>La présente charte formalise les engagements réciproques entre BRILLE, micro-entreprise spécialisée dans les dispositifs socio-éducatifs à destination des familles (ci-après « BRILLE »), et les familles participantes à l'Atelier Étincelle (ci-après « les Participants »).</p>
+        <p>Cette démarche s'inscrit dans une approche non thérapeutique, fondée sur la Qualité de Vie de l'Enfant (QVE), visant à renforcer les liens familiaux par des outils participatifs adaptés aux enfants de 6 à 12 ans.</p>
+      </div>
+
+      <div class="formal-art">
+        <div class="formal-art-title">Article 1 · Engagements de BRILLE</div>
+        <ul>
+          <li>Accueillir les familles dans un cadre bienveillant, sécurisé et non discriminant</li>
+          <li>Proposer des activités pédagogiques adaptées à la tranche d'âge 6–12 ans et à la dynamique parent-enfant</li>
+          <li>Garantir la confidentialité des échanges et informations partagés durant l'atelier</li>
+          <li>Fournir l'intégralité du matériel pédagogique nécessaire au bon déroulement de la séance</li>
+          <li>Remettre un compte-rendu qualitatif à l'issue de chaque session</li>
+          <li>Traiter les données personnelles dans le strict respect du RGPD</li>
+          <li>Ne pas démarcher directement les familles sans accord préalable de la structure partenaire</li>
+        </ul>
+      </div>
+
+      <div class="formal-art">
+        <div class="formal-art-title">Article 2 · Engagements des familles participantes</div>
+        <ul>
+          <li>Se présenter à l'heure convenue et signaler toute absence dans les meilleurs délais</li>
+          <li>S'engager activement dans les activités proposées, parent et enfant conjointement</li>
+          <li>Respecter les autres familles participantes ainsi que les animateurs</li>
+          <li>Ne pas divulguer à des tiers les informations personnelles partagées par d'autres participants</li>
+          <li>Informer BRILLE de toute situation particulière susceptible d'impacter la participation</li>
+          <li>Donner leur accord explicite préalablement à toute prise de photographie ou de témoignage</li>
+        </ul>
+      </div>
+
+      <div class="formal-art">
+        <div class="formal-art-title">Article 3 · Informations pratiques</div>
+        <p>L'Atelier Étincelle se déroule sur une durée de deux heures, en présence conjointe du parent et de l'enfant. L'ensemble du matériel pédagogique est fourni par BRILLE. Contact : Tsiory Leonard · 06 11 14 07 15 · tsioryleonard@gmail.com</p>
+      </div>
+
+      <div class="formal-art">
+        <div class="formal-art-title">Article 4 · Durée et résiliation</div>
+        <p>La présente charte est valable pour la durée du cycle de sessions auquel la famille est inscrite. Chaque partie peut y mettre fin à tout moment, sans préjudice pour les sessions déjà planifiées.</p>
+      </div>
+
+      <div class="sig-block cols-2">
+        <div class="sig-col">
+          <label>Pour BRILLE</label>
+          <div class="sig-name">Tsiory Leonard<br>Fondatrice</div>
+          <div class="sig-line"></div>
+          <div class="sig-hint">Signature + date</div>
+        </div>
+        <div class="sig-col">
+          <label>Pour la famille</label>
+          <div class="sig-name">Nom, Prénom :<br>Prénom(s) de l'enfant :</div>
+          <div class="sig-line"></div>
+          <div class="sig-hint">Signature + date</div>
+        </div>
+      </div>
+      <div class="doc-note">BRILLE · Tsiory Leonard · 06 11 14 07 15 · tsioryleonard@gmail.com · Document BRILLE-CH-FAM-001</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════
+       PARTENAIRES · WARM
+  ═══════════════════════════════ -->
+  <div class="panel" id="panel-partenaires-warm">
+
+    <div class="hero hero-partenaires-warm">
+      <div class="hero-tag">Atelier Étincelle · Centre social</div>
+      <div class="hero-title">Charte de partenariat<br>BRILLE × Votre structure</div>
+      <div class="hero-sub">Construisons ensemble quelque chose de beau pour les familles ✦</div>
+    </div>
+
+    <div class="intro-bar bleu">
+      Ce partenariat, c'est avant tout une rencontre entre deux engagements : le vôtre auprès des familles de votre territoire, et le nôtre pour leur bien-être. L'Atelier Étincelle ne peut exister qu'avec vous.
+    </div>
+
+    <div class="s-title" style="color:#1a2a4a;"><div class="s-dot bleu"></div>Ce que BRILLE s'engage à faire</div>
+    <div class="card">
+      <div class="card-row"><span class="num bleu">1</span>Apporter tout le matériel pédagogique — vous n'avez besoin que d'une salle avec tables, chaises et si possible un vidéoprojecteur.</div>
+      <div class="card-row"><span class="num bleu">2</span>Animer l'atelier dans le respect de notre approche QVE, bienveillante et non thérapeutique.</div>
+      <div class="card-row"><span class="num bleu">3</span>Présenter notre attestation d'assurance RC Pro avant toute intervention.</div>
+      <div class="card-row"><span class="num bleu">4</span>Respecter votre règlement intérieur et vos procédures internes.</div>
+      <div class="card-row"><span class="num bleu">5</span>Vous remettre un bilan qualitatif et quantitatif à l'issue de chaque session.</div>
+      <div class="card-row"><span class="num bleu">6</span>Ne pas démarcher directement vos familles sans votre accord préalable.</div>
+    </div>
+
+    <div class="s-title" style="color:#1a2a4a;"><div class="s-dot mauve"></div>Ce que nous vous demandons</div>
+    <div class="two-col">
+      <div class="card">
+        <div style="font-family:'Gruppo',sans-serif;font-size:0.82rem;color:#3a2a6a;margin-bottom:10px;letter-spacing:0.5px;">Logistique</div>
+        <div class="card-row"><span class="num mauve">1</span>Une salle adaptée : tables, chaises (vidéoprojecteur apprécié)</div>
+        <div class="card-row"><span class="num mauve">2</span>Un·e référent·e famille désigné·e pour le suivi</div>
+      </div>
+      <div class="card">
+        <div style="font-family:'Gruppo',sans-serif;font-size:0.82rem;color:#3a2a6a;margin-bottom:10px;letter-spacing:0.5px;">Communication</div>
+        <div class="card-row"><span class="num mauve">1</span>Mobilisation des familles via vos canaux habituels</div>
+        <div class="card-row"><span class="num mauve">2</span>Transmission de vos exigences RC Pro et conventions</div>
+      </div>
+    </div>
+
+    <div class="sig-block cols-3">
+      <div class="sig-col">
+        <label>Pour BRILLE</label>
+        <div class="sig-name">Tsiory Leonard<br><span style="font-weight:300;color:var(--gris);">Fondatrice</span></div>
+        <div class="sig-line"></div>
+        <div class="sig-hint">Signature + date</div>
+      </div>
+      <div class="sig-col">
+        <label>Pour la structure</label>
+        <div class="sig-name">Nom, Prénom :<br>Fonction :</div>
+        <div class="sig-line"></div>
+        <div class="sig-hint">Signature + cachet + date</div>
+      </div>
+      <div class="sig-col">
+        <label>Référent·e désigné·e</label>
+        <div class="sig-name">Nom, Prénom :<br>Fonction :</div>
+        <div class="sig-line"></div>
+        <div class="sig-hint">Signature + date</div>
+      </div>
+    </div>
+    <div class="doc-note">BRILLE · Tsiory Leonard · 06 11 14 07 15 · tsioryleonard@gmail.com · Réf. BRILLE-CH-PART-001</div>
+  </div>
+
+  <!-- ═══════════════════════════════
+       PARTENAIRES · FORMAL
+  ═══════════════════════════════ -->
+  <div class="panel" id="panel-partenaires-formal">
+    <div class="formal-page formal-partenaires">
+
+      <div class="formal-header">
+        <div>
+          <svg width="90" height="46" viewBox="0 0 110 56" xmlns="http://www.w3.org/2000/svg">
+            <text x="4" y="32" font-family="'Fascinate', cursive" font-size="28" fill="#000" letter-spacing="-1">brille</text>
+            <ellipse cx="62" cy="50" rx="14" ry="8" fill="#f8f4b8" opacity="0.9"/>
+            <ellipse cx="62" cy="49" rx="11" ry="6" fill="#fdf9c0"/>
+            <path d="M 54 46 Q 62 54 70 46" stroke="url(#rainbow3)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <path d="M 54 46 Q 52 43 55 42" stroke="url(#rainbow3)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <path d="M 70 46 Q 72 43 69 42" stroke="url(#rainbow3)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <defs>
+              <linearGradient id="rainbow3" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#7ec8e3"/>
+                <stop offset="50%" stop-color="#a8e6cf"/>
+                <stop offset="100%" stop-color="#f0932b"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <div style="font-family:'Quicksand',sans-serif;font-size:0.68rem;font-weight:300;letter-spacing:1.5px;color:var(--gris);margin-top:2px;">Ateliers socio-éducatifs · Soutien à la parentalité</div>
+        </div>
+        <div class="formal-doc-info">
+          <strong>Charte de partenariat institutionnel</strong><br>
+          Atelier Étincelle · Centre social<br>
+          Document bilatéral<br>
+          Référence : BRILLE-CH-PART-001
+        </div>
+      </div>
+
+      <div class="formal-title-bloc">
+        <div class="formal-title">Charte de partenariat</div>
+        <div class="formal-subtitle">BRILLE × Structure partenaire · Atelier Étincelle</div>
+      </div>
+
+      <div class="formal-art">
+        <div class="formal-art-title">Préambule</div>
+        <p>La présente charte formalise les engagements réciproques entre BRILLE, micro-entreprise spécialisée dans les dispositifs socio-éducatifs à destination des familles (ci-après « BRILLE »), et la structure d'accueil partenaire (ci-après « le Partenaire »), dans le cadre de la mise en œuvre de l'Atelier Étincelle.</p>
+        <p>Ce partenariat repose sur des valeurs communes de bienveillance, de respect des familles et de complémentarité des actions. Il s'inscrit dans une démarche non thérapeutique fondée sur la Qualité de Vie de l'Enfant (QVE).</p>
+      </div>
+
+      <div class="formal-art">
+        <div class="formal-art-title">Article 1 · Objet du partenariat</div>
+        <p>Le présent accord définit les modalités d'accueil et d'organisation de l'Atelier Étincelle dans les locaux du Partenaire, ainsi que les responsabilités de chacune des parties. Il ne constitue pas une convention de prestation de services mais un cadre de collaboration volontaire.</p>
+      </div>
+
+      <div class="formal-art">
+        <div class="formal-art-title">Article 2 · Engagements de BRILLE</div>
+        <ul>
+          <li>Fournir l'ensemble du matériel pédagogique nécessaire à l'animation de l'atelier</li>
+          <li>Assurer l'animation dans le respect de la méthodologie BRILLE et de ses valeurs éthiques</li>
+          <li>Présenter une attestation d'assurance Responsabilité Civile Professionnelle valide avant toute intervention</li>
+          <li>Respecter le règlement intérieur et les procédures de la structure partenaire</li>
+          <li>Informer le/la référent·e désigné·e de tout incident ou situation préoccupante</li>
+          <li>Remettre un bilan qualitatif et quantitatif à l'issue de chaque session</li>
+          <li>Traiter les données personnelles des familles dans le strict respect du RGPD</li>
+          <li>Ne pas démarcher directement les familles accueillies sans accord préalable du Partenaire</li>
+        </ul>
+      </div>
+
+      <div class="formal-art">
+        <div class="formal-art-title">Article 3 · Engagements du partenaire</div>
+        <ul>
+          <li>Mettre à disposition une salle adaptée, équipée de tables et de chaises, pour la durée de l'atelier</li>
+          <li>Assurer la mobilisation des familles participantes via ses dispositifs de communication habituels</li>
+          <li>Désigner un·e référent·e famille chargé·e du suivi du partenariat</li>
+          <li>Communiquer à BRILLE tout élément susceptible d'impacter le déroulement de l'atelier</li>
+          <li>Ne pas modifier ni interférer dans le contenu ou la méthodologie sans accord préalable</li>
+          <li>Transmettre à BRILLE les exigences spécifiques en matière d'assurance et de conventions</li>
+          <li>Signaler à BRILLE toute situation de vulnérabilité identifiée parmi les familles participantes</li>
+        </ul>
+      </div>
+
+      <div class="formal-art">
+        <div class="formal-art-title">Article 4 · Responsabilités</div>
+        <p>BRILLE est seul·e responsable du contenu pédagogique et de l'animation de l'atelier. Le Partenaire est responsable de la sécurité des locaux mis à disposition et de leur conformité aux normes applicables.</p>
+      </div>
+
+      <div class="formal-art">
+        <div class="formal-art-title">Article 5 · Confidentialité</div>
+        <p>Les deux parties s'engagent à la confidentialité concernant les informations échangées dans le cadre de ce partenariat. Les données relatives aux familles ne peuvent être communiquées à des tiers sans consentement explicite, sauf obligation légale.</p>
+      </div>
+
+      <div class="formal-art">
+        <div class="formal-art-title">Article 6 · Durée, évaluation et résiliation</div>
+        <p>La présente charte prend effet à la date de signature et couvre la période d'expérimentation définie d'un commun accord. Chaque partie peut y mettre fin avec un préavis de 15 jours, sans préjudice pour les sessions déjà planifiées.</p>
+      </div>
+
+      <div class="sig-block cols-3">
+        <div class="sig-col">
+          <label>Pour BRILLE</label>
+          <div class="sig-name">Tsiory Leonard<br>Fondatrice</div>
+          <div class="sig-line"></div>
+          <div class="sig-hint">Signature + date</div>
+        </div>
+        <div class="sig-col">
+          <label>Pour le partenaire</label>
+          <div class="sig-name">Nom, Prénom :<br>Fonction :</div>
+          <div class="sig-line"></div>
+          <div class="sig-hint">Signature + cachet officiel + date</div>
+        </div>
+        <div class="sig-col">
+          <label>Référent·e désigné·e</label>
+          <div class="sig-name">Nom, Prénom :<br>Fonction :</div>
+          <div class="sig-line"></div>
+          <div class="sig-hint">Signature + date</div>
+        </div>
+      </div>
+      <div class="doc-note">BRILLE · Tsiory Leonard · 06 11 14 07 15 · tsioryleonard@gmail.com · Document BRILLE-CH-PART-001</div>
+    </div>
+  </div>
+
+</div><!-- /.content -->
+
+<script>
+let pub = 'familles', tone = 'warm';
+
+function setPublic(p) {
+  pub = p;
+  document.getElementById('btn-familles').className = 'tg-btn' + (p === 'familles' ? ' on-familles' : '');
+  document.getElementById('btn-partenaires').className = 'tg-btn' + (p === 'partenaires' ? ' on-partenaires' : '');
+  show();
+}
+
+function setTone(t) {
+  tone = t;
+  document.getElementById('btn-warm').className = 'tg-btn' + (t === 'warm' ? ' on-tone' : '');
+  document.getElementById('btn-formal').className = 'tg-btn' + (t === 'formal' ? ' on-tone' : '');
+  show();
+}
+
+function show() {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  const el = document.getElementById('panel-' + pub + '-' + tone);
+  if (el) {
+    el.style.animation = 'none';
+    el.offsetHeight;
+    el.style.animation = '';
+    el.classList.add('active');
+  }
+}
+
+document.addEventListener('DOMContentLoaded', show);
+</script>
+</body>
+</html>
