@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Réunion Atelier Étincelle – BRILLE</title>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&family=Gruppo&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --vert: #7BC67A;
+    --vert-light: #e8f5e8;
+    --vert-pale: #f4faf4;
+    --vert-dark: #4a9449;
+    --blanc: #ffffff;
+    --gris: #6b7280;
+    --gris-light: #f9fafb;
+    --texte: #2d3748;
+    --ombre: 0 4px 24px rgba(123,198,122,0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 300;
+    background: #f7fbf7;
+    color: var(--texte);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--blanc);
+    border-bottom: 3px solid var(--vert-light);
+    padding: 28px 40px 22px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 16px rgba(123,198,122,0.10);
+  }
+
+  .logo-area { display: flex; align-items: center; gap: 14px; }
+
+  .logo-text {
+    font-family: 'Gruppo', sans-serif;
+    font-size: 2rem;
+    color: var(--vert-dark);
+    letter-spacing: 3px;
+  }
+
+  .badge-etincelle {
+    background: var(--vert);
+    color: white;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .header-right {
+    text-align: right;
+    font-size: 0.8rem;
+    color: var(--gris);
+    line-height: 1.6;
+  }
+  .header-right strong { color: var(--vert-dark); font-weight: 600; }
+
+  /* NAV TABS */
+  nav {
+    display: flex;
+    gap: 6px;
+    padding: 18px 40px 0;
+    background: var(--blanc);
+    border-bottom: 1px solid var(--vert-light);
+    overflow-x: auto;
+  }
+
+  .tab {
+    padding: 10px 20px;
+    border: none;
+    background: transparent;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--gris);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+  }
+
+  .tab:hover { color: var(--vert-dark); }
+
+  .tab.active {
+    color: var(--vert-dark);
+    border-bottom-color: var(--vert);
+    font-weight: 600;
+  }
+
+  /* CONTENT */
+  main { padding: 36px 40px; max-width: 860px; margin: 0 auto; }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* CARDS */
+  .card {
+    background: var(--blanc);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    box-shadow: var(--ombre);
+    border-left: 4px solid var(--vert);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 90px; height: 90px;
+    background: var(--vert-light);
+    border-radius: 50%;
+    opacity: 0.5;
+  }
+
+  .card-title {
+    font-family: 'Gruppo', sans-serif;
+    font-size: 1.1rem;
+    color: var(--vert-dark);
+    letter-spacing: 1.5px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .card-title .emoji { font-size: 1.3rem; }
+
+  .card p { font-size: 0.9rem; line-height: 1.8; color: var(--texte); margin-bottom: 10px; }
+  .card p:last-child { margin-bottom: 0; }
+
+  /* PITCH BLOC */
+  .pitch-bloc {
+    background: var(--vert-pale);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-top: 14px;
+    border: 1px solid var(--vert-light);
+  }
+
+  .pitch-bloc .label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--vert-dark);
+    margin-bottom: 8px;
+  }
+
+  .pitch-bloc p {
+    font-size: 0.88rem;
+    line-height: 1.85;
+    color: var(--texte);
+    font-style: italic;
+  }
+
+  /* QUESTIONS */
+  .question-group { margin-bottom: 24px; }
+
+  .question-group-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--vert-dark);
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed var(--vert-light);
+  }
+
+  .question-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 11px 0;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: background 0.15s;
+    border-radius: 8px;
+    padding-left: 8px;
+  }
+
+  .question-item:hover { background: var(--vert-pale); }
+  .question-item:last-child { border-bottom: none; }
+
+  .q-check {
+    width: 20px; height: 20px;
+    border: 2px solid var(--vert);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 1px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .question-item.checked .q-check {
+    background: var(--vert);
+  }
+
+  .question-item.checked .q-check::after {
+    content: '✓';
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .question-item.checked .q-text { text-decoration: line-through; color: var(--gris); }
+
+  .q-text { font-size: 0.87rem; line-height: 1.6; }
+
+  /* OBJECTIONS */
+  .objection-card {
+    background: var(--blanc);
+    border-radius: 12px;
+    margin-bottom: 14px;
+    border: 1px solid var(--vert-light);
+    overflow: hidden;
+  }
+
+  .objection-header {
+    padding: 16px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: var(--vert-pale);
+    transition: background 0.2s;
+  }
+
+  .objection-header:hover { background: var(--vert-light); }
+
+  .objection-header .obj-title {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--texte);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .obj-tag {
+    font-size: 0.65rem;
+    background: var(--vert);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+
+  .chevron {
+    font-size: 0.8rem;
+    color: var(--vert-dark);
+    transition: transform 0.25s;
+    flex-shrink: 0;
+  }
+
+  .objection-card.open .chevron { transform: rotate(180deg); }
+
+  .objection-body {
+    display: none;
+    padding: 18px 20px;
+    font-size: 0.86rem;
+    line-height: 1.8;
+    color: var(--texte);
+    border-top: 1px solid var(--vert-light);
+  }
+
+  .objection-card.open .objection-body { display: block; }
+
+  .reponse-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--vert-dark);
+    margin-bottom: 6px;
+  }
+
+  /* TRAME */
+  .trame-step {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 10px;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    width: 34px; height: 34px;
+    background: var(--vert);
+    color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .step-content { flex: 1; padding-top: 4px; }
+  .step-content strong { font-size: 0.9rem; font-weight: 600; color: var(--vert-dark); }
+  .step-content p { font-size: 0.82rem; color: var(--gris); margin-top: 2px; line-height: 1.5; }
+
+  .step-time {
+    font-size: 0.72rem;
+    color: var(--vert-dark);
+    background: var(--vert-pale);
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-weight: 600;
+    margin-top: 4px;
+    display: inline-block;
+  }
+
+  .trame-connector {
+    width: 2px;
+    height: 16px;
+    background: var(--vert-light);
+    margin: 0 0 0 16px;
+  }
+
+  /* HIGHLIGHT BOX */
+  .highlight {
+    background: linear-gradient(135deg, var(--vert-pale), #fff);
+    border: 1.5px solid var(--vert);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-top: 16px;
+    font-size: 0.87rem;
+    line-height: 1.75;
+  }
+
+  .highlight strong { color: var(--vert-dark); font-weight: 600; }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 28px;
+    font-size: 0.75rem;
+    color: var(--gris);
+    letter-spacing: 0.5px;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    header { padding: 16px 18px; flex-direction: column; align-items: flex-start; gap: 8px; }
+    nav { padding: 14px 18px 0; }
+    main { padding: 22px 18px; }
+    .card { padding: 20px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-area">
+    <div class="logo-text">BRILLE</div>
+    <span class="badge-etincelle">✦ Atelier Étincelle</span>
+  </div>
+  <div class="header-right">
+    <strong>Réunion Centre Social</strong><br>
+    Directrice & Référente famille<br>
+    Atelier pilote gratuit
+  </div>
+</header>
+
+<nav>
+  <button class="tab active" onclick="showTab('pitch')">🌟 Pitch</button>
+  <button class="tab" onclick="showTab('trame')">📋 Trame réunion</button>
+  <button class="tab" onclick="showTab('questions')">💬 Questions à poser</button>
+  <button class="tab" onclick="showTab('objections')">🛡️ Objections</button>
+</nav>
+
+<main>
+
+  <!-- PITCH -->
+  <div id="pitch" class="section active">
+    <div class="card">
+      <div class="card-title"><span class="emoji">🌟</span> Ton pitch d'ouverture (2 min)</div>
+      <p>À utiliser dès les premières minutes, après les présentations. Naturel, chaleureux, ancré dans leur réalité.</p>
+      <div class="pitch-bloc">
+        <div class="label">Ce que tu dis</div>
+        <p>
+          « Merci de me recevoir. Vous avez reçu ma fiche projet, donc vous avez déjà une idée de ce que je propose — je voudrais vous en parler de façon plus concrète et surtout comprendre comment ça pourrait s'inscrire dans ce que vous faites déjà ici.<br><br>
+          Je m'appelle [Prénom], je suis fondatrice de BRILLE, une micro-entreprise spécialisée dans les ateliers socio-éducatifs pour les familles. Ma démarche n'est pas thérapeutique — c'est de la médiation et de la co-construction. Je crois que les enfants, quand on leur donne les bons outils et un cadre bienveillant, ont des ressources extraordinaires.<br><br>
+          L'atelier Étincelle, c'est une séance de 2 heures où un enfant de 6 à 12 ans et son parent travaillent ensemble, autour d'un concept que j'appelle la Qualité de Vie de l'Enfant — la QVE. On utilise des outils visuels et participatifs, inspirés du Lean et du Kanban, adaptés aux enfants. L'objectif : que l'enfant prenne la parole, que le parent l'écoute autrement, et qu'ils repartent avec quelque chose de concret.<br><br>
+          Je propose un premier atelier pilote gratuit, pour que vous puissiez voir par vous-mêmes, sans engagement de votre part. »
+        </p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="emoji">✦</span> Tes 3 arguments clés</div>
+      <div class="pitch-bloc">
+        <div class="label">1 · Pertinence terrain</div>
+        <p>L'atelier répond directement aux familles qui ne vont pas vers les dispositifs classiques. Pas de jargon, pas de posture "experte". Une approche participative où la famille est actrice.</p>
+      </div>
+      <div class="pitch-bloc">
+        <div class="label">2 · Zéro risque pour le centre</div>
+        <p>Gratuit pour le pilote. Tu apportes tout le matériel pédagogique. Le centre fournit juste la salle, les tables et les chaises. Aucune charge administrative de leur côté.</p>
+      </div>
+      <div class="pitch-bloc">
+        <div class="label">3 · Complémentarité</div>
+        <p>Ce n'est pas une concurrence à leurs dispositifs — c'est une brique supplémentaire. L'atelier peut s'articuler avec leurs actions existantes (sorties familles, accompagnement parentalité, etc.).</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="emoji">🎯</span> Ton objectif du jour</div>
+      <div class="highlight">
+        Repartir avec <strong>une date</strong> (même approximative) pour un atelier pilote gratuit, ou à défaut un <strong>engagement verbal clair</strong> et un prochain pas défini (qui fait quoi, avant quand).
+      </div>
+    </div>
+  </div>
+
+  <!-- TRAME -->
+  <div id="trame" class="section">
+    <div class="card">
+      <div class="card-title"><span class="emoji">📋</span> Trame de la réunion (~45 min)</div>
+      <p>Structure suggérée pour tenir l'objectif sans brusquer.</p>
+    </div>
+
+    <div class="trame-step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <strong>Accueil & brise-glace</strong>
+        <p>Remercier d'avoir pris le temps. Demander comment elles ont reçu la fiche projet — ce qui a retenu leur attention.</p>
+        <span class="step-time">5 min</span>
+      </div>
+    </div>
+    <div class="trame-connector"></div>
+
+    <div class="trame-step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <strong>Ton pitch de présentation</strong>
+        <p>BRILLE, la QVE, l'Atelier Étincelle. Court, vivant, ancré. S'appuyer sur la fiche qu'elles ont déjà.</p>
+        <span class="step-time">8 min</span>
+      </div>
+    </div>
+    <div class="trame-connector"></div>
+
+    <div class="trame-step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <strong>Les écouter — comprendre leur réalité</strong>
+        <p>Poser tes questions sur leur public, leurs besoins, leurs contraintes. Prendre des notes. Ne pas vendre à ce moment — écouter.</p>
+        <span class="step-time">15 min</span>
+      </div>
+    </div>
+    <div class="trame-connector"></div>
+
+    <div class="trame-step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <strong>Relier leur réalité à l'atelier</strong>
+        <p>Montrer les points de connexion entre ce qu'elles t'ont dit et ce que propose Étincelle. Personnaliser en temps réel.</p>
+        <span class="step-time">8 min</span>
+      </div>
+    </div>
+    <div class="trame-connector"></div>
+
+    <div class="trame-step">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <strong>Proposer le pilote gratuit</strong>
+        <p>Formuler la proposition concrète. Expliquer les modalités pratiques (salle + équipement fourni par elles, matériel pédagogique par toi). Lever les questions.</p>
+        <span class="step-time">7 min</span>
+      </div>
+    </div>
+    <div class="trame-connector"></div>
+
+    <div class="trame-step">
+      <div class="step-num">6</div>
+      <div class="step-content">
+        <strong>Closing — prochain pas concret</strong>
+        <p>« Qu'est-ce qu'il faudrait pour qu'on puisse fixer une date ? » Si pas de date ce jour : qui valide ? Quand se recontacte-t-on ?</p>
+        <span class="step-time">5 min</span>
+      </div>
+    </div>
+
+    <div class="highlight" style="margin-top:20px;">
+      <strong>À éviter :</strong> parler trop longtemps de toi sans les impliquer · montrer tous tes outils d'un coup · partir sans prochain pas défini.
+    </div>
+  </div>
+
+  <!-- QUESTIONS -->
+  <div id="questions" class="section">
+    <div class="card">
+      <div class="card-title"><span class="emoji">💬</span> Questions à poser</div>
+      <p>Coche au fur et à mesure pendant la réunion. Elles sont ordonnées par priorité.</p>
+    </div>
+
+    <div class="card">
+      <div class="question-group">
+        <div class="question-group-title">🏠 Comprendre leur public & leurs besoins</div>
+
+        <div class="question-item" onclick="toggleCheck(this)">
+          <div class="q-check"></div>
+          <div class="q-text">Quelles sont les familles que vous accueillez principalement ici — en termes d'âges des enfants, de situations familiales ?</div>
+        </div>
+        <div class="question-item" onclick="toggleCheck(this)">
+          <div class="q-check"></div>
+          <div class="q-text">Avez-vous des familles qui viennent peu ou irrégulièrement, que vous avez du mal à mobiliser ?</div>
+        </div>
+        <div class="question-item" onclick="toggleCheck(this)">
+          <div class="q-check"></div>
+          <div class="q-text">Dans vos dispositifs parentalité actuels, qu'est-ce qui fonctionne bien ? Qu'est-ce qui manque selon vous ?</div>
+        </div>
+        <div class="question-item" onclick="toggleCheck(this)">
+          <div class="q-check"></div>
+          <div class="q-text">Est-ce que les enfants participent directement à vos actions familles, ou s'adressent-elles plutôt aux parents ?</div>
+        </div>
+      </div>
+
+      <div class="question-group">
+        <div class="question-group-title">🔗 Comprendre leur organisation</div>
+
+        <div class="question-item" onclick="toggleCheck(this)">
+          <div class="q-check"></div>
+          <div class="q-text">Comment fonctionne votre programmation — est-ce qu'il y a des créneaux disponibles, ou tout est déjà planifié ?</div>
+        </div>
+        <div class="question-item" onclick="toggleCheck(this)">
+          <div class="q-check"></div>
+          <div class="q-text">Quel serait le bon moment dans l'année / dans la semaine pour accueillir ce type d'atelier ?</div>
+        </div>
+        <div class="question-item" onclick="toggleCheck(this)">
+          <div class="q-check"></div>
+          <div class="q-text">Côté locaux, avez-vous une salle qui pourrait accueillir des petits groupes avec tables et chaises (environ 5-6 binômes parent-enfant) ?</div>
+        </div>
+        <div class="question-item" onclick="toggleCheck(this)">
+          <div class="q-check"></div>
+          <div class="q-text">Êtes-vous équipés d'un vidéoprojecteur ou d'un écran que vous mettez à disposition des intervenants ?</div>
+        </div>
+      </div>
+
+      <div class="question-group">
+        <div class="question-group-title">📋 Questions pratiques & partenariat</div>
+
+        <div class="question-item" onclick="toggleCheck(this)">
+          <div class="q-check"></div>
+          <div class="q-text">Pour accueillir un intervenant extérieur, quels sont vos prérequis habituels — convention, assurance RC Pro, autre ?</div>
+        </div>
+        <div class="question-item" onclick="toggleCheck(this)">
+          <div class="q-check"></div>
+          <div class="q-text">Avez-vous des exigences spécifiques en termes d'assurance professionnelle de votre côté ou du côté de l'intervenant ?</div>
+        </div>
+        <div class="question-item" onclick="toggleCheck(this)">
+          <div class="q-check"></div>
+          <div class="q-text">Qui serait la personne référente au sein de votre équipe pour ce type d'action ?</div>
+        </div>
+        <div class="question-item" onclick="toggleCheck(this)">
+          <div class="q-check"></div>
+          <div class="q-text">Avez-vous déjà travaillé avec des micro-entreprises ou des indépendants comme intervenants ? Comment ça s'est passé ?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OBJECTIONS -->
+  <div id="objections" class="section">
+    <div class="card">
+      <div class="card-title"><span class="emoji">🛡️</span> Objections probables & réponses</div>
+      <p>Clique sur chaque objection pour voir comment y répondre avec calme et confiance.</p>
+    </div>
+
+    <div class="objection-card" onclick="toggleObj(this)">
+      <div class="objection-header">
+        <div class="obj-title">
+          <span class="obj-tag">Légitimité</span>
+          « Vous êtes une micro-entreprise, vous n'avez pas encore d'expérience terrain… »
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="objection-body">
+        <div class="reponse-label">Ta réponse</div>
+        C'est exactement pour ça que je propose un pilote gratuit — pour construire cette expérience ensemble, avec vous, dans votre contexte. Mon parcours académique (Master MEEF en ingénierie de formation, mémoire sur la QVT que j'ai transposée en QVE) et ma conception rigoureuse de l'atelier sont ma base solide. Mais je sais que la légitimité terrain se construit sur le terrain. C'est ce que je viens chercher ici.
+      </div>
+    </div>
+
+    <div class="objection-card" onclick="toggleObj(this)">
+      <div class="objection-header">
+        <div class="obj-title">
+          <span class="obj-tag">Budget</span>
+          « On n'a pas de budget pour ça. »
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="objection-body">
+        <div class="reponse-label">Ta réponse</div>
+        Le pilote est gratuit — il n'y a aucun coût pour le centre. Vous mettez à disposition une salle et du mobilier, j'apporte tout le matériel pédagogique. Si l'atelier fait ses preuves et que vous souhaitez le pérenniser, on pourra à ce moment-là voir comment l'intégrer dans votre programmation, potentiellement via des financements comme la CAF ou l'ACSE auxquels les centres sociaux ont accès.
+      </div>
+    </div>
+
+    <div class="objection-card" onclick="toggleObj(this)">
+      <div class="objection-header">
+        <div class="obj-title">
+          <span class="obj-tag">Public</span>
+          « On ne sait pas si nos familles adhéreront. »
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="objection-body">
+        <div class="reponse-label">Ta réponse</div>
+        C'est une question très juste, et c'est justement ce que le pilote va permettre de tester. Je ne demande pas un engagement sur 10 sessions — juste une première séance avec 4 à 6 binômes que vous mobilisez parmi les familles qui vous semblent les plus ouvertes. On évalue ensemble après. S'il n'y a pas d'adhésion, on en tire des enseignements. S'il y en a, on a une base concrète pour aller plus loin.
+      </div>
+    </div>
+
+    <div class="objection-card" onclick="toggleObj(this)">
+      <div class="objection-header">
+        <div class="obj-title">
+          <span class="obj-tag">Planning</span>
+          « On est très chargés, on ne peut pas s'engager maintenant. »
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="objection-body">
+        <div class="reponse-label">Ta réponse</div>
+        Je comprends tout à fait. Je ne vous demande pas de décider aujourd'hui du planning complet. Juste de me dire : est-ce que le principe vous intéresse ? Si oui, on peut se laisser quelques jours pour regarder vos agendas, et je recontacte [la référente famille] d'ici [date]. Ça vous va ?
+      </div>
+    </div>
+
+    <div class="objection-card" onclick="toggleObj(this)">
+      <div class="objection-header">
+        <div class="obj-title">
+          <span class="obj-tag">Assurance</span>
+          « On a besoin que vous ayez une RC Pro. »
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="objection-body">
+        <div class="reponse-label">Ta réponse</div>
+        Tout à fait, c'est une exigence que je comprends et que j'anticipais. Pouvez-vous me préciser vos exigences — le type de couverture, le montant minimum ? Cela me permettra de m'assurer que mon contrat correspond à vos besoins, ou de l'adapter si nécessaire avant le pilote.
+      </div>
+    </div>
+
+    <div class="objection-card" onclick="toggleObj(this)">
+      <div class="objection-header">
+        <div class="obj-title">
+          <span class="obj-tag">Doublon</span>
+          « On a déjà des actions parentalité similaires. »
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="objection-body">
+        <div class="reponse-label">Ta réponse</div>
+        C'est une très bonne chose que vous ayez déjà des actions ! Ce que je propose n'est pas concurrent — c'est complémentaire. La spécificité d'Étincelle, c'est de mettre l'enfant en position de co-acteur, pas seulement d'être "accompagné". Et les outils participatifs que j'utilise (Kanban, PDCA adaptés) sont assez uniques dans ce secteur. Je serais curieuse de voir comment l'atelier peut s'articuler avec ce que vous faites déjà.
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<footer>BRILLE · 06 11 14 07 15 · tsioryleonard@gmail.com · Atelier Étincelle – Centre social</footer>
+
+<script>
+  function showTab(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  function toggleCheck(el) {
+    el.classList.toggle('checked');
+  }
+
+  function toggleObj(el) {
+    el.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
