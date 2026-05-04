@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRILLE – Dossier de Présentation</title>
+<link href="https://fonts.googleapis.com/css2?family=Fascinate&family=Gruppo&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --vert:   #7BC67A;
+  --bleu:   #7AB8D4;
+  --jaune:  #F5C842;
+  --rose:   #D98BB0;
+  --blanc:  #FFFFFF;
+  --creme:  #FAFAF7;
+  --texte:  #2C3A2E;
+  --gris:   #7A8A7C;
+  --vert-dark: #4a9449;
+  --bleu-dark: #3a7a9a;
+  --jaune-dark:#c49a10;
+  --rose-dark: #a85a88;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+
+html{scroll-behavior:smooth;}
+
+body{
+  font-family:'Quicksand',sans-serif;
+  font-weight:300;
+  background:var(--creme);
+  color:var(--texte);
+  overflow-x:hidden;
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:#f0f4f0;}
+::-webkit-scrollbar-thumb{background:var(--vert);border-radius:10px;}
+
+/* ─── NAV LATÉRALE ─── */
+.sidenav{
+  position:fixed;
+  left:0;top:0;
+  width:72px;height:100vh;
+  background:var(--blanc);
+  border-right:1px solid #e8f0e8;
+  display:flex;flex-direction:column;
+  align-items:center;
+  padding:24px 0;
+  gap:6px;
+  z-index:200;
+  box-shadow:2px 0 20px rgba(123,198,122,0.08);
+}
+
+.nav-logo{
+  font-family:'Fascinate',cursive;
+  font-size:0.6rem;
+  color:var(--vert-dark);
+  letter-spacing:2px;
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  margin-bottom:20px;
+  padding-bottom:16px;
+  border-bottom:2px solid var(--vert);
+}
+
+.nav-dot{
+  width:40px;height:40px;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  transition:all 0.25s;
+  font-size:1rem;
+  background:transparent;
+  border:none;
+  position:relative;
+}
+.nav-dot:hover{background:var(--vert);transform:scale(1.1);}
+.nav-dot.active{background:var(--vert);box-shadow:0 4px 16px rgba(123,198,122,0.35);}
+.nav-dot .tooltip{
+  position:absolute;
+  left:52px;
+  background:var(--texte);
+  color:white;
+  font-size:0.7rem;
+  font-family:'Quicksand',sans-serif;
+  font-weight:500;
+  white-space:nowrap;
+  padding:5px 10px;
+  border-radius:6px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 0.2s;
+  letter-spacing:0.3px;
+}
+.nav-dot:hover .tooltip{opacity:1;}
+
+/* ─── MAIN WRAPPER ─── */
+.main{margin-left:72px;}
+
+/* ─── SECTIONS ─── */
+section{
+  min-height:100vh;
+  padding:60px 70px 60px 60px;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+/* ─── BLOBS DÉCORATIFS ─── */
+.blob{
+  position:absolute;
+  border-radius:50%;
+  opacity:0.12;
+  pointer-events:none;
+}
+
+/* ─── SECTION 1 · COUVERTURE ─── */
+#cover{
+  background:linear-gradient(145deg,#f0faf0 0%,#fff 50%,#f5f8ff 100%);
+  min-height:100vh;
+}
+#cover .blob-1{width:500px;height:500px;background:var(--vert);top:-150px;right:-100px;opacity:0.1;}
+#cover .blob-2{width:300px;height:300px;background:var(--bleu);bottom:-80px;left:100px;opacity:0.08;}
+#cover .blob-3{width:200px;height:200px;background:var(--rose);top:40%;right:10%;opacity:0.08;}
+
+.cover-inner{max-width:700px;position:relative;z-index:2;}
+
+.cover-tag{
+  display:inline-block;
+  background:var(--vert);
+  color:white;
+  font-size:0.68rem;
+  font-weight:700;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  padding:6px 16px;
+  border-radius:20px;
+  margin-bottom:32px;
+  animation:fadeUp 0.6s ease both;
+}
+
+.cover-logo{
+  font-family:'Fascinate',cursive;
+  font-size:5.5rem;
+  color:var(--vert-dark);
+  line-height:1;
+  letter-spacing:8px;
+  margin-bottom:8px;
+  animation:fadeUp 0.7s ease 0.1s both;
+}
+
+.cover-tagline{
+  font-family:'Gruppo',sans-serif;
+  font-size:1.3rem;
+  color:var(--gris);
+  letter-spacing:3px;
+  text-transform:uppercase;
+  margin-bottom:40px;
+  animation:fadeUp 0.7s ease 0.2s both;
+}
+
+.cover-desc{
+  font-size:1.05rem;
+  line-height:1.9;
+  color:var(--texte);
+  max-width:560px;
+  margin-bottom:50px;
+  animation:fadeUp 0.7s ease 0.3s both;
+}
+
+.cover-chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:50px;
+  animation:fadeUp 0.7s ease 0.4s both;
+}
+
+.chip{
+  padding:8px 18px;
+  border-radius:24px;
+  font-size:0.78rem;
+  font-weight:600;
+  letter-spacing:0.5px;
+  border:1.5px solid;
+}
+.chip-vert{color:var(--vert-dark);border-color:var(--vert);background:rgba(123,198,122,0.08);}
+.chip-bleu{color:var(--bleu-dark);border-color:var(--bleu);background:rgba(122,184,212,0.08);}
+.chip-rose{color:var(--rose-dark);border-color:var(--rose);background:rgba(217,139,176,0.08);}
+
+.cover-contact{
+  font-size:0.82rem;
+  color:var(--gris);
+  line-height:2;
+  animation:fadeUp 0.7s ease 0.5s both;
+}
+.cover-contact strong{color:var(--vert-dark);font-weight:600;}
+
+/* ─── SECTION TITRES ─── */
+.section-label{
+  font-size:0.65rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:3px;
+  color:var(--vert);
+  margin-bottom:10px;
+}
+.section-title{
+  font-family:'Gruppo',sans-serif;
+  font-size:2.4rem;
+  color:var(--texte);
+  letter-spacing:2px;
+  margin-bottom:40px;
+  line-height:1.2;
+}
+.section-title span{color:var(--vert-dark);}
+
+/* ─── SECTION 2 · QUI SUIS-JE ─── */
+#about{background:var(--blanc);}
+#about .blob-a{width:400px;height:400px;background:var(--vert);top:-100px;right:-80px;opacity:0.07;}
+
+.about-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+  max-width:900px;
+}
+
+.about-card{
+  background:var(--creme);
+  border-radius:20px;
+  padding:28px 30px;
+  border-left:4px solid var(--vert);
+  position:relative;
+  overflow:hidden;
+  transition:transform 0.25s,box-shadow 0.25s;
+}
+.about-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(123,198,122,0.14);}
+.about-card::after{
+  content:'';
+  position:absolute;
+  top:-20px;right:-20px;
+  width:80px;height:80px;
+  border-radius:50%;
+  background:var(--vert);
+  opacity:0.06;
+}
+
+.about-card-icon{font-size:1.8rem;margin-bottom:12px;}
+.about-card-title{
+  font-family:'Gruppo',sans-serif;
+  font-size:1rem;
+  letter-spacing:1.5px;
+  color:var(--vert-dark);
+  margin-bottom:10px;
+  text-transform:uppercase;
+}
+.about-card p{font-size:0.86rem;line-height:1.85;color:var(--texte);}
+.about-card ul{list-style:none;padding:0;}
+.about-card ul li{
+  font-size:0.85rem;
+  line-height:1.7;
+  padding-left:16px;
+  position:relative;
+  color:var(--texte);
+}
+.about-card ul li::before{
+  content:'✦';
+  position:absolute;left:0;
+  color:var(--vert);
+  font-size:0.6rem;
+  top:5px;
+}
+
+.about-card.full{grid-column:span 2;}
+
+.valeurs-row{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-top:14px;
+}
+.valeur-pill{
+  background:white;
+  border:1.5px solid var(--vert-light,#c8e8c8);
+  border-radius:20px;
+  padding:7px 16px;
+  font-size:0.78rem;
+  font-weight:600;
+  color:var(--vert-dark);
+  display:flex;align-items:center;gap:6px;
+}
+
+/* ─── SECTION 3 · DIPLÔMES & COMPÉTENCES ─── */
+#skills{background:linear-gradient(160deg,#f4faf4 0%,#fff 100%);}
+#skills .blob-s{width:350px;height:350px;background:var(--bleu);bottom:-80px;left:-80px;opacity:0.07;}
+
+.skills-layout{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:30px;
+  max-width:920px;
+}
+
+.diplome-list{display:flex;flex-direction:column;gap:14px;}
+
+.diplome-item{
+  display:flex;
+  gap:16px;
+  align-items:flex-start;
+  background:white;
+  border-radius:16px;
+  padding:18px 20px;
+  box-shadow:0 3px 18px rgba(0,0,0,0.04);
+  transition:transform 0.2s;
+}
+.diplome-item:hover{transform:translateX(6px);}
+
+.diplome-year{
+  min-width:50px;
+  font-family:'Gruppo',sans-serif;
+  font-size:1rem;
+  color:var(--vert);
+  letter-spacing:1px;
+  padding-top:2px;
+}
+.diplome-body{}
+.diplome-title{font-size:0.88rem;font-weight:600;color:var(--texte);margin-bottom:3px;}
+.diplome-sub{font-size:0.78rem;color:var(--gris);line-height:1.5;}
+
+.comp-grid{display:flex;flex-direction:column;gap:14px;}
+
+.comp-bloc{
+  background:white;
+  border-radius:16px;
+  padding:20px 22px;
+  box-shadow:0 3px 18px rgba(0,0,0,0.04);
+}
+.comp-bloc-title{
+  font-size:0.72rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  color:var(--vert-dark);
+  margin-bottom:12px;
+}
+.comp-tags{display:flex;flex-wrap:wrap;gap:8px;}
+.comp-tag{
+  background:#f0faf0;
+  color:var(--texte);
+  border-radius:8px;
+  padding:5px 12px;
+  font-size:0.78rem;
+  font-weight:500;
+  border:1px solid #d4ead4;
+}
+
+/* ─── SECTION 4 · BRILLE & SES OFFRES ─── */
+#offres{background:var(--blanc);}
+#offres .blob-o{width:600px;height:600px;background:var(--jaune);top:50%;right:-200px;transform:translateY(-50%);opacity:0.05;}
+
+.offres-intro{
+  max-width:680px;
+  font-size:0.95rem;
+  line-height:1.9;
+  color:var(--gris);
+  margin-bottom:44px;
+}
+
+.offres-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+  max-width:900px;
+}
+
+.offre-card{
+  border-radius:24px;
+  padding:30px 28px;
+  position:relative;
+  overflow:hidden;
+  cursor:default;
+  transition:transform 0.3s,box-shadow 0.3s;
+}
+.offre-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,0.08);}
+
+.offre-card.vert  {background:linear-gradient(135deg,rgba(123,198,122,0.15),rgba(123,198,122,0.04));border:2px solid rgba(123,198,122,0.35);}
+.offre-card.bleu  {background:linear-gradient(135deg,rgba(122,184,212,0.15),rgba(122,184,212,0.04));border:2px solid rgba(122,184,212,0.35);}
+.offre-card.jaune {background:linear-gradient(135deg,rgba(245,200,66,0.15),rgba(245,200,66,0.04));border:2px solid rgba(245,200,66,0.35);}
+.offre-card.rose  {background:linear-gradient(135deg,rgba(217,139,176,0.15),rgba(217,139,176,0.04));border:2px solid rgba(217,139,176,0.35);}
+
+.offre-icon{font-size:2.2rem;margin-bottom:14px;}
+.offre-nom{
+  font-family:'Gruppo',sans-serif;
+  font-size:1.5rem;
+  letter-spacing:2px;
+  margin-bottom:4px;
+}
+.offre-card.vert  .offre-nom{color:var(--vert-dark);}
+.offre-card.bleu  .offre-nom{color:var(--bleu-dark);}
+.offre-card.jaune .offre-nom{color:var(--jaune-dark);}
+.offre-card.rose  .offre-nom{color:var(--rose-dark);}
+
+.offre-lieu{
+  font-size:0.7rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  margin-bottom:14px;
+  opacity:0.65;
+}
+.offre-card.vert  .offre-lieu{color:var(--vert-dark);}
+.offre-card.bleu  .offre-lieu{color:var(--bleu-dark);}
+.offre-card.jaune .offre-lieu{color:var(--jaune-dark);}
+.offre-card.rose  .offre-lieu{color:var(--rose-dark);}
+
+.offre-desc{font-size:0.84rem;line-height:1.75;color:var(--texte);}
+
+.offre-badge{
+  position:absolute;top:18px;right:18px;
+  font-size:0.62rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:1px;
+  padding:4px 10px;border-radius:12px;
+  color:white;
+}
+.offre-card.vert  .offre-badge{background:var(--vert);}
+.offre-card.bleu  .offre-badge{background:var(--bleu);}
+.offre-card.jaune .offre-badge{background:var(--jaune-dark);}
+.offre-card.rose  .offre-badge{background:var(--rose);}
+
+/* ─── SECTION 5 · FLEUR QVE ─── */
+#qve{
+  background:linear-gradient(150deg,#fff 0%,#f4faf4 50%,#f8f5ff 100%);
+  align-items:center;
+}
+
+.qve-layout{
+  display:grid;
+  grid-template-columns:1fr 1.1fr;
+  gap:50px;
+  align-items:center;
+  max-width:950px;
+}
+
+.qve-text .section-title{margin-bottom:20px;}
+.qve-intro{font-size:0.92rem;line-height:1.9;color:var(--gris);margin-bottom:28px;}
+
+.qve-pillars{display:flex;flex-direction:column;gap:10px;}
+.qve-pillar{
+  display:flex;align-items:center;gap:12px;
+  background:white;
+  border-radius:12px;
+  padding:12px 16px;
+  font-size:0.84rem;
+  font-weight:500;
+  box-shadow:0 2px 12px rgba(0,0,0,0.04);
+  transition:transform 0.2s;
+}
+.qve-pillar:hover{transform:translateX(6px);}
+.qve-pillar-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;}
+
+/* FLEUR SVG CONTAINER */
+.flower-container{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* ─── SECTION 6 · ÉTINCELLE ZOOM ─── */
+#etincelle{background:var(--blanc);}
+#etincelle .blob-e{width:450px;height:450px;background:var(--vert);top:-100px;right:-100px;opacity:0.06;}
+
+.etincelle-layout{
+  display:grid;
+  grid-template-columns:1.1fr 1fr;
+  gap:40px;
+  align-items:start;
+  max-width:920px;
+}
+
+.etincelle-details{display:flex;flex-direction:column;gap:16px;}
+
+.detail-row{
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+  background:#f8fbf8;
+  border-radius:14px;
+  padding:16px 18px;
+}
+.detail-icon{font-size:1.3rem;flex-shrink:0;margin-top:1px;}
+.detail-body{}
+.detail-title{font-size:0.82rem;font-weight:700;color:var(--vert-dark);margin-bottom:3px;letter-spacing:0.3px;}
+.detail-text{font-size:0.82rem;color:var(--texte);line-height:1.65;}
+
+.etincelle-flow{display:flex;flex-direction:column;gap:0;}
+
+.flow-step{
+  display:flex;
+  gap:16px;
+  align-items:flex-start;
+  padding-bottom:20px;
+  position:relative;
+}
+.flow-step::before{
+  content:'';
+  position:absolute;
+  left:19px;top:40px;
+  width:2px;height:calc(100% - 20px);
+  background:linear-gradient(to bottom,var(--vert),transparent);
+  opacity:0.3;
+}
+.flow-step:last-child::before{display:none;}
+
+.flow-num{
+  width:38px;height:38px;
+  background:var(--vert);
+  color:white;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:0.82rem;
+  flex-shrink:0;
+  box-shadow:0 4px 14px rgba(123,198,122,0.3);
+}
+.flow-content{}
+.flow-title{font-size:0.88rem;font-weight:600;color:var(--texte);margin-bottom:3px;}
+.flow-desc{font-size:0.8rem;color:var(--gris);line-height:1.6;}
+.flow-time{
+  font-size:0.68rem;font-weight:700;
+  color:var(--vert-dark);
+  background:rgba(123,198,122,0.1);
+  padding:2px 8px;border-radius:8px;
+  display:inline-block;margin-top:4px;
+}
+
+/* ─── SECTION 7 · APPROCHE & VALEURS ─── */
+#approche{background:linear-gradient(160deg,#f4faf4,#fff);}
+#approche .blob-ap{width:300px;height:300px;background:var(--rose);bottom:-60px;right:-60px;opacity:0.06;}
+
+.approche-intro{max-width:660px;font-size:0.95rem;line-height:1.9;color:var(--gris);margin-bottom:40px;}
+
+.principes-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  max-width:920px;
+  margin-bottom:40px;
+}
+
+.principe{
+  background:white;
+  border-radius:18px;
+  padding:24px 22px;
+  text-align:center;
+  box-shadow:0 4px 20px rgba(0,0,0,0.04);
+  transition:transform 0.25s;
+}
+.principe:hover{transform:translateY(-5px);}
+.principe-icon{font-size:2rem;margin-bottom:12px;}
+.principe-title{
+  font-family:'Gruppo',sans-serif;
+  font-size:0.95rem;
+  letter-spacing:1px;
+  color:var(--vert-dark);
+  margin-bottom:8px;
+}
+.principe p{font-size:0.8rem;line-height:1.7;color:var(--gris);}
+
+.outils-bloc{
+  background:white;
+  border-radius:20px;
+  padding:28px 32px;
+  max-width:920px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.04);
+}
+.outils-title{
+  font-size:0.7rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:2px;
+  color:var(--vert-dark);margin-bottom:16px;
+}
+.outils-row{display:flex;gap:14px;flex-wrap:wrap;}
+.outil-tag{
+  background:#f0faf0;
+  border:1.5px solid #c8e8c8;
+  border-radius:10px;
+  padding:8px 16px;
+  font-size:0.8rem;
+  font-weight:500;
+  color:var(--texte);
+  display:flex;align-items:center;gap:6px;
+}
+
+/* ─── SECTION 8 · PARTENARIAT ─── */
+#partenariat{background:var(--blanc);}
+
+.partenariat-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+  max-width:900px;
+  margin-bottom:36px;
+}
+
+.part-card{
+  border-radius:20px;
+  padding:28px 26px;
+  background:var(--creme);
+}
+.part-card-title{
+  font-family:'Gruppo',sans-serif;
+  font-size:1.05rem;
+  letter-spacing:1.5px;
+  color:var(--vert-dark);
+  margin-bottom:16px;
+  display:flex;align-items:center;gap:10px;
+}
+.part-card ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:8px;}
+.part-card ul li{
+  font-size:0.84rem;
+  line-height:1.65;
+  padding-left:18px;
+  position:relative;
+}
+.part-card ul li::before{
+  content:'→';
+  position:absolute;left:0;
+  color:var(--vert);
+  font-size:0.8rem;
+}
+
+.cta-bloc{
+  background:linear-gradient(135deg,var(--vert),var(--vert-dark));
+  border-radius:24px;
+  padding:36px 40px;
+  max-width:900px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:30px;
+  color:white;
+}
+.cta-text{}
+.cta-title{
+  font-family:'Gruppo',sans-serif;
+  font-size:1.6rem;
+  letter-spacing:2px;
+  margin-bottom:10px;
+}
+.cta-desc{font-size:0.88rem;line-height:1.7;opacity:0.88;}
+.cta-contact{
+  flex-shrink:0;
+  text-align:center;
+}
+.cta-contact p{font-size:0.82rem;opacity:0.8;margin-bottom:8px;}
+.cta-contact strong{display:block;font-size:1rem;margin-bottom:4px;}
+.cta-contact span{font-size:0.85rem;opacity:0.85;}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(24px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+.reveal{
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity 0.6s ease,transform 0.6s ease;
+}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ─── PROGRESS ─── */
+.progress-bar{
+  position:fixed;
+  top:0;left:72px;right:0;
+  height:3px;
+  background:linear-gradient(to right,var(--vert),var(--bleu));
+  transform-origin:left;
+  transform:scaleX(0);
+  z-index:300;
+  transition:transform 0.1s;
+}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:768px){
+  .sidenav{display:none;}
+  .main{margin-left:0;}
+  section{padding:50px 24px;}
+  .about-grid,.skills-layout,.offres-grid,.qve-layout,.etincelle-layout,.partenariat-grid{grid-template-columns:1fr;}
+  .principes-grid{grid-template-columns:1fr 1fr;}
+  .about-card.full{grid-column:span 1;}
+  .cover-logo{font-size:3.5rem;}
+  .cta-bloc{flex-direction:column;}
+}
+
+/* ─── MÉTHODE BRILLE ACRONYME ─── */
+.methode-bloc{
+  background:white;
+  border-radius:24px;
+  padding:36px 40px;
+  max-width:920px;
+  margin-bottom:40px;
+  box-shadow:0 4px 24px rgba(123,198,122,0.10);
+  position:relative;
+  overflow:hidden;
+}
+.methode-bloc::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:4px;
+  background:linear-gradient(to right,#E8A0C8,#7BC67A,#7AB8D4,#F5C842,#D98BB0,#a78bfa,#7BC67A);
+}
+.methode-title{
+  font-size:0.65rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:3px;
+  color:var(--vert-dark);margin-bottom:24px;
+}
+.methode-letters{
+  display:flex;flex-direction:column;gap:10px;
+  margin-bottom:30px;
+}
+.methode-row{
+  display:flex;align-items:baseline;gap:16px;
+}
+.methode-letter{
+  font-family:'Gruppo',sans-serif;
+  font-size:2.6rem;
+  line-height:1;
+  min-width:44px;
+  text-align:center;
+  letter-spacing:1px;
+}
+.methode-word{
+  font-size:1rem;
+  font-weight:700;
+  color:var(--texte);
+  min-width:200px;
+}
+.methode-def{
+  font-size:0.82rem;
+  color:var(--gris);
+  font-style:italic;
+  line-height:1.5;
+}
+.methode-phrase{
+  background:linear-gradient(135deg,#f4faf4,#fff);
+  border-left:4px solid var(--vert);
+  border-radius:0 12px 12px 0;
+  padding:18px 22px;
+  font-size:0.88rem;
+  line-height:1.85;
+  color:var(--texte);
+}
+.methode-phrase strong{color:var(--vert-dark);}
+
+</style>
+</head>
+<body>
+
+<!-- PROGRESS BAR -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- SIDENAV -->
+<nav class="sidenav">
+  <div class="nav-logo">BRILLE</div>
+  <button class="nav-dot active" onclick="scrollTo('cover')">🏠<span class="tooltip">Accueil</span></button>
+  <button class="nav-dot" onclick="scrollTo('about')">👤<span class="tooltip">Qui suis-je</span></button>
+  <button class="nav-dot" onclick="scrollTo('skills')">🎓<span class="tooltip">Formation</span></button>
+  <button class="nav-dot" onclick="scrollTo('offres')">🌸<span class="tooltip">Les offres</span></button>
+  <button class="nav-dot" onclick="scrollTo('qve')">🌼<span class="tooltip">La QVE</span></button>
+  <button class="nav-dot" onclick="scrollTo('etincelle')">✨<span class="tooltip">Atelier Étincelle</span></button>
+  <button class="nav-dot" onclick="scrollTo('approche')">🧭<span class="tooltip">Approche</span></button>
+  <button class="nav-dot" onclick="scrollTo('partenariat')">🤝<span class="tooltip">Partenariat</span></button>
+</nav>
+
+<div class="main">
+
+<!-- ══════════════════════════════════════════════
+     SECTION 1 · COUVERTURE
+══════════════════════════════════════════════ -->
+<section id="cover">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="cover-inner">
+    <span class="cover-tag">Dossier de présentation</span>
+    <div class="cover-logo">BRILLE</div>
+    <div class="cover-tagline">Ateliers socio-éducatifs · Familles & Parentalité</div>
+    <p class="cover-desc">
+      BRILLE conçoit et anime des dispositifs participatifs à destination des enfants de 6 à 12 ans et de leurs familles. Notre approche s'ancre dans la <strong>Qualité de Vie de l'Enfant (QVE)</strong>, en mobilisant des outils issus de l'ingénierie de formation pour co-construire avec les familles — pas pour elles.
+    </p>
+    <div class="cover-chips">
+      <span class="chip chip-vert">✦ Non thérapeutique</span>
+      <span class="chip chip-bleu">✦ Co-construction</span>
+      <span class="chip chip-rose">✦ Médiation familiale</span>
+      <span class="chip chip-vert">✦ Participatif</span>
+    </div>
+    <div class="cover-contact">
+      <strong>Tsiory Leonard</strong> · Fondatrice de BRILLE<br>
+      📞 06 11 14 07 15 &nbsp;·&nbsp; ✉️ tsioryleonard@gmail.com
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 2 · QUI SUIS-JE
+══════════════════════════════════════════════ -->
+<section id="about">
+  <div class="blob blob-a"></div>
+  <div class="section-label reveal">Fondatrice</div>
+  <div class="section-title reveal">Qui suis-<span>je</span> ?</div>
+
+  <div class="about-grid">
+    <div class="about-card reveal">
+      <div class="about-card-icon">🌿</div>
+      <div class="about-card-title">Mon parcours</div>
+      <p>Fondatrice de BRILLE, je suis ingénieure de formation spécialisée dans l'accompagnement des familles et le soutien à la parentalité. Mon travail naît d'une conviction : l'enfant est un acteur de sa propre vie — il a les ressources, il faut créer les conditions pour qu'il les exprime.</p>
+    </div>
+
+    <div class="about-card reveal">
+      <div class="about-card-icon">🎓</div>
+      <div class="about-card-title">Titulaire de</div>
+      <ul>
+        <li>Master 2 MEEF Ingénierie de la Formation</li>
+        <li>Master en Politiques Publiques</li>
+        <li>Diplôme en Droit</li>
+        <li>BAFA avec spécialisation</li>
+      </ul>
+    </div>
+
+    <div class="about-card full reveal">
+      <div class="about-card-icon">💡</div>
+      <div class="about-card-title">Ce qui me distingue</div>
+      <p style="margin-bottom:16px;">J'ai transposé le concept de Qualité de Vie au Travail (QVT), sujet de mon mémoire de Master, en <strong>Qualité de Vie de l'Enfant (QVE)</strong> — une approche inédite qui place l'enfant au centre de la démarche, avec des outils adaptés à son âge et à sa réalité.</p>
+      <div class="valeurs-row">
+        <span class="valeur-pill">🤝 Médiation</span>
+        <span class="valeur-pill">🔧 Ingénierie pédagogique</span>
+        <span class="valeur-pill">📐 Rigueur méthodologique</span>
+        <span class="valeur-pill">❤️ Posture bienveillante</span>
+        <span class="valeur-pill">🎯 Action terrain</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 3 · FORMATION & COMPÉTENCES
+══════════════════════════════════════════════ -->
+<section id="skills">
+  <div class="blob blob-s"></div>
+  <div class="section-label reveal">Expertise</div>
+  <div class="section-title reveal">Formation & <span>Compétences</span></div>
+
+  <div class="skills-layout">
+    <div>
+      <div class="section-label" style="margin-bottom:18px;font-size:0.62rem;">Parcours académique</div>
+      <div class="diplome-list">
+        <div class="diplome-item reveal">
+          <div class="diplome-year">M2</div>
+          <div class="diplome-body">
+            <div class="diplome-title">Master 2 MEEF – Ingénierie de la Formation</div>
+            <div class="diplome-sub">Mémoire sur la Qualité de Vie au Travail (QVT) — transposée en QVE dans BRILLE</div>
+          </div>
+        </div>
+        <div class="diplome-item reveal">
+          <div class="diplome-year">M1</div>
+          <div class="diplome-body">
+            <div class="diplome-title">Master en Politiques Publiques</div>
+            <div class="diplome-sub">Analyse des politiques sociales, action publique, gouvernance territoriale</div>
+          </div>
+        </div>
+        <div class="diplome-item reveal">
+          <div class="diplome-year">L3</div>
+          <div class="diplome-body">
+            <div class="diplome-title">Diplôme en Droit</div>
+            <div class="diplome-sub">Droit civil, droit de la famille, cadre juridique de l'action sociale</div>
+          </div>
+        </div>
+        <div class="diplome-item reveal">
+          <div class="diplome-year">🏕️</div>
+          <div class="diplome-body">
+            <div class="diplome-title">BAFA avec spécialisation</div>
+            <div class="diplome-sub">Animation, encadrement de mineurs, pédagogie active</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-label" style="margin-bottom:18px;font-size:0.62rem;">Compétences clés</div>
+      <div class="comp-grid">
+        <div class="comp-bloc reveal">
+          <div class="comp-bloc-title">Ingénierie pédagogique</div>
+          <div class="comp-tags">
+            <span class="comp-tag">Conception de dispositifs</span>
+            <span class="comp-tag">Ingénierie de formation</span>
+            <span class="comp-tag">Évaluation de séquences</span>
+            <span class="comp-tag">Adaptation aux publics</span>
+          </div>
+        </div>
+        <div class="comp-bloc reveal">
+          <div class="comp-bloc-title">Animation & médiation</div>
+          <div class="comp-tags">
+            <span class="comp-tag">Facilitation participative</span>
+            <span class="comp-tag">Médiation familiale</span>
+            <span class="comp-tag">Posture non-directive</span>
+            <span class="comp-tag">Co-construction</span>
+          </div>
+        </div>
+        <div class="comp-bloc reveal">
+          <div class="comp-bloc-title">Outils & méthodes</div>
+          <div class="comp-tags">
+            <span class="comp-tag">Lean Management</span>
+            <span class="comp-tag">Kanban adapté enfants</span>
+            <span class="comp-tag">Cycle PDCA</span>
+            <span class="comp-tag">Design thinking</span>
+          </div>
+        </div>
+        <div class="comp-bloc reveal">
+          <div class="comp-bloc-title">Développement</div>
+          <div class="comp-tags">
+            <span class="comp-tag">Action sociale</span>
+            <span class="comp-tag">Partenariats institutionnels</span>
+            <span class="comp-tag">Montage de projet</span>
+            <span class="comp-tag">Pitching professionnel</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 4 · LES 4 OFFRES BRILLE
+══════════════════════════════════════════════ -->
+<section id="offres">
+  <div class="blob blob-o"></div>
+  <div class="section-label reveal">L'écosystème BRILLE</div>
+  <div class="section-title reveal">4 offres pour <span>une vision</span></div>
+  <p class="offres-intro reveal">
+    BRILLE structure son action autour de quatre dispositifs complémentaires, chacun pensé pour un contexte d'intervention spécifique. Tous partagent la même philosophie : mettre l'enfant et sa famille en position d'acteurs.
+  </p>
+
+  <div class="offres-grid">
+    <div class="offre-card vert reveal">
+      <span class="offre-badge">Phase 1 · En cours</span>
+      <div class="offre-icon">✨</div>
+      <div class="offre-nom">Étincelle</div>
+      <div class="offre-lieu">📍 Centre social</div>
+      <p class="offre-desc">Atelier de 2h parent-enfant (6-12 ans) autour de la QVE. Espace de parole, d'écoute et de co-construction dans un lieu de proximité. Premier dispositif déployé.</p>
+    </div>
+
+    <div class="offre-card bleu reveal">
+      <span class="offre-badge">À venir</span>
+      <div class="offre-icon">☀️</div>
+      <div class="offre-nom">Lueur</div>
+      <div class="offre-lieu">📍 Centre de loisirs</div>
+      <p class="offre-desc">Dispositif participatif en centre de loisirs. L'enfant explore sa QVE dans un cadre ludique et collectif, avec des outils visuels adaptés au temps libre.</p>
+    </div>
+
+    <div class="offre-card jaune reveal">
+      <span class="offre-badge">À venir</span>
+      <div class="offre-icon">🌟</div>
+      <div class="offre-nom">Rayon</div>
+      <div class="offre-lieu">📍 École élémentaire</div>
+      <p class="offre-desc">Intervention en milieu scolaire pour intégrer la QVE dans le quotidien de l'enfant. En lien avec les équipes enseignantes et éducatives.</p>
+    </div>
+
+    <div class="offre-card rose reveal">
+      <span class="offre-badge">À venir</span>
+      <div class="offre-icon">🤲</div>
+      <div class="offre-nom">Main Tendue</div>
+      <div class="offre-lieu">📍 Accompagnement parents</div>
+      <p class="offre-desc">Dispositif dédié aux parents. Ateliers de soutien à la parentalité, d'écoute et d'outillage pour mieux comprendre et accompagner l'épanouissement de leur enfant.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 5 · LA FLEUR QVE
+══════════════════════════════════════════════ -->
+<section id="qve">
+  <div class="qve-layout">
+    <div class="qve-text">
+      <div class="section-label reveal">Concept fondateur</div>
+      <div class="section-title reveal">La <span>Fleur QVE</span></div>
+      <p class="qve-intro reveal">
+        La <strong>Qualité de Vie de l'Enfant</strong> est le fil conducteur de tous les dispositifs BRILLE. Transposée de la QVT (Qualité de Vie au Travail), elle repose sur 7 dimensions interconnectées — les pétales de la fleur — qui ensemble dessinent l'épanouissement global de l'enfant.
+      </p>
+      <div class="qve-pillars reveal">
+        <div class="qve-pillar">
+          <div class="qve-pillar-dot" style="background:#7BC67A;"></div>
+          <span><strong>Expression & parole</strong> — l'enfant ose dire ce qu'il ressent</span>
+        </div>
+        <div class="qve-pillar">
+          <div class="qve-pillar-dot" style="background:#7AB8D4;"></div>
+          <span><strong>Relations & liens</strong> — famille, pairs, adultes de confiance</span>
+        </div>
+        <div class="qve-pillar">
+          <div class="qve-pillar-dot" style="background:#F5C842;"></div>
+          <span><strong>Autonomie & agentivité</strong> — capacité à décider et agir</span>
+        </div>
+        <div class="qve-pillar">
+          <div class="qve-pillar-dot" style="background:#D98BB0;"></div>
+          <span><strong>Sécurité affective</strong> — sentiment d'être aimé et protégé</span>
+        </div>
+        <div class="qve-pillar">
+          <div class="qve-pillar-dot" style="background:#a78bfa;"></div>
+          <span><strong>Épanouissement & plaisir</strong> — joie, curiosité, créativité</span>
+        </div>
+        <div class="qve-pillar">
+          <div class="qve-pillar-dot" style="background:#f97316;"></div>
+          <span><strong>Reconnaissance</strong> — être vu, valorisé, écouté</span>
+        </div>
+        <div class="qve-pillar">
+          <div class="qve-pillar-dot" style="background:#10b981;"></div>
+          <span><strong>Environnement & bien-être</strong> — cadre de vie, corps, santé</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FLEUR SVG -->
+    <div class="flower-container reveal">
+      <svg viewBox="0 0 520 520" width="420" height="420" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <!-- Chemins en arc pour les labels courbes sur chaque pétale -->
+          <!-- P1 haut (0°) -->
+          <path id="arc1" d="M 230,108 A 80,80 0 0,1 290,108"/>
+          <!-- P2 haut-droite (51.4°) -->
+          <path id="arc2" d="M 303,148 A 80,80 0 0,1 343,200"/>
+          <!-- P3 bas-droite (102.8°) -->
+          <path id="arc3" d="M 310,270 A 80,80 0 0,1 280,330"/>
+          <!-- P4 bas (154.3°) -->
+          <path id="arc4" d="M 222,348 A 80,80 0 0,1 298,348"/>
+          <!-- P5 bas-gauche (205.7°) -->
+          <path id="arc5" d="M 178,330 A 80,80 0 0,1 148,270"/>
+          <!-- P6 haut-gauche (257.1°) -->
+          <path id="arc6" d="M 178,200 A 80,80 0 0,1 214,148"/>
+          <!-- P7 haut-gauche (308.5°) -->
+          <path id="arc7" d="M 228,112 A 80,80 0 0,0 176,148"/>
+        </defs>
+
+        <!-- 7 pétales organiques en forme de larme arrondie, centrés sur 260,260 -->
+        <!-- Chaque pétale = ellipse orientée vers l'extérieur depuis le centre -->
+
+        <!-- P1 · Mon organisation et autonomie · haut · rose/mauve -->
+        <g transform="rotate(0,260,260)">
+          <ellipse cx="260" cy="148" rx="46" ry="88" fill="#E8A0C8" opacity="0.88"/>
+          <circle cx="260" cy="80" r="14" fill="#E8A0C8" opacity="0.6"/>
+          <text font-family="Quicksand,sans-serif" font-size="9" fill="white" font-weight="700" text-anchor="middle">
+            <textPath href="#arc1" startOffset="50%">Mon organisation et autonomie</textPath>
+          </text>
+        </g>
+
+        <!-- P2 · Mes émotions apprivoisées · haut-droite -->
+        <g transform="rotate(51.4,260,260)">
+          <ellipse cx="260" cy="148" rx="46" ry="88" fill="#D4809C" opacity="0.88"/>
+          <circle cx="260" cy="80" r="14" fill="#D4809C" opacity="0.6"/>
+        </g>
+
+        <!-- P3 · Le sens de mes apprentissages · droite-bas -->
+        <g transform="rotate(102.8,260,260)">
+          <ellipse cx="260" cy="148" rx="46" ry="88" fill="#C878B0" opacity="0.88"/>
+          <circle cx="260" cy="80" r="14" fill="#C878B0" opacity="0.6"/>
+        </g>
+
+        <!-- P4 · Mes liens et ma parole · bas -->
+        <g transform="rotate(154.3,260,260)">
+          <ellipse cx="260" cy="148" rx="46" ry="88" fill="#D090BC" opacity="0.88"/>
+          <circle cx="260" cy="80" r="14" fill="#D090BC" opacity="0.6"/>
+        </g>
+
+        <!-- P5 · Ma place et mes droits · bas-gauche -->
+        <g transform="rotate(205.7,260,260)">
+          <ellipse cx="260" cy="148" rx="46" ry="88" fill="#C882A8" opacity="0.88"/>
+          <circle cx="260" cy="80" r="14" fill="#C882A8" opacity="0.6"/>
+        </g>
+
+        <!-- P6 · Mon équilibre et mon énergie · gauche -->
+        <g transform="rotate(257.1,260,260)">
+          <ellipse cx="260" cy="148" rx="46" ry="88" fill="#D898BE" opacity="0.88"/>
+          <circle cx="260" cy="80" r="14" fill="#D898BE" opacity="0.6"/>
+        </g>
+
+        <!-- P7 · Ce qui me fait briller · haut-gauche -->
+        <g transform="rotate(308.5,260,260)">
+          <ellipse cx="260" cy="148" rx="46" ry="88" fill="#E0A4CC" opacity="0.88"/>
+          <circle cx="260" cy="80" r="14" fill="#E0A4CC" opacity="0.6"/>
+        </g>
+
+        <!-- Labels sur chaque pétale par rotation -->
+        <!-- P1 label -->
+        <g transform="rotate(0,260,260)">
+          <text text-anchor="middle" font-family="Quicksand,sans-serif" font-size="8.5" fill="white" font-weight="700">
+            <tspan x="260" y="122">Mon organisation</tspan>
+            <tspan x="260" dy="11">et autonomie</tspan>
+          </text>
+        </g>
+        <!-- P2 label -->
+        <g transform="rotate(51.4,260,260)">
+          <text text-anchor="middle" font-family="Quicksand,sans-serif" font-size="8.5" fill="white" font-weight="700">
+            <tspan x="260" y="122">Mes émotions</tspan>
+            <tspan x="260" dy="11">apprivoisées</tspan>
+          </text>
+        </g>
+        <!-- P3 label -->
+        <g transform="rotate(102.8,260,260)">
+          <text text-anchor="middle" font-family="Quicksand,sans-serif" font-size="8.5" fill="white" font-weight="700">
+            <tspan x="260" y="118">Le sens de mes</tspan>
+            <tspan x="260" dy="11">apprentissages</tspan>
+          </text>
+        </g>
+        <!-- P4 label -->
+        <g transform="rotate(154.3,260,260)">
+          <text text-anchor="middle" font-family="Quicksand,sans-serif" font-size="8.5" fill="white" font-weight="700">
+            <tspan x="260" y="122">Mes liens</tspan>
+            <tspan x="260" dy="11">et ma parole</tspan>
+          </text>
+        </g>
+        <!-- P5 label -->
+        <g transform="rotate(205.7,260,260)">
+          <text text-anchor="middle" font-family="Quicksand,sans-serif" font-size="8.5" fill="white" font-weight="700">
+            <tspan x="260" y="122">Ma place</tspan>
+            <tspan x="260" dy="11">et mes droits</tspan>
+          </text>
+        </g>
+        <!-- P6 label -->
+        <g transform="rotate(257.1,260,260)">
+          <text text-anchor="middle" font-family="Quicksand,sans-serif" font-size="8.5" fill="white" font-weight="700">
+            <tspan x="260" y="118">Mon équilibre</tspan>
+            <tspan x="260" dy="11">et mon énergie</tspan>
+          </text>
+        </g>
+        <!-- P7 label -->
+        <g transform="rotate(308.5,260,260)">
+          <text text-anchor="middle" font-family="Quicksand,sans-serif" font-size="8.5" fill="white" font-weight="700">
+            <tspan x="260" y="122">Ce qui me</tspan>
+            <tspan x="260" dy="11">fait briller</tspan>
+          </text>
+        </g>
+
+        <!-- Centre lumineux -->
+        <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FFF9C4" stop-opacity="1"/>
+          <stop offset="60%" stop-color="#FFF176" stop-opacity="0.7"/>
+          <stop offset="100%" stop-color="#FFF9C4" stop-opacity="0"/>
+        </radialGradient>
+        <circle cx="260" cy="260" r="62" fill="url(#glow)"/>
+        <circle cx="260" cy="260" r="56" fill="white" opacity="0.95"/>
+        <circle cx="260" cy="260" r="50" fill="none" stroke="#E8A0C8" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.5"/>
+
+        <!-- Smiley centre (arc sourire) -->
+        <path d="M 242,264 Q 260,282 278,264" stroke="#E8A0C8" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <!-- yeux -->
+        <circle cx="249" cy="254" r="3" fill="#E8A0C8"/>
+        <circle cx="271" cy="254" r="3" fill="#E8A0C8"/>
+
+        <!-- Texte centre -->
+        <text x="260" y="244" text-anchor="middle" font-family="Gruppo,sans-serif" font-size="13" fill="#a85a88" letter-spacing="1.5">QVE</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 6 · ZOOM ATELIER ÉTINCELLE
+══════════════════════════════════════════════ -->
+<section id="etincelle">
+  <div class="blob blob-e"></div>
+  <div class="section-label reveal">Premier dispositif · Phase 1</div>
+  <div class="section-title reveal">Atelier <span>Étincelle</span></div>
+
+  <div class="etincelle-layout">
+    <div class="etincelle-details">
+      <div class="detail-row reveal">
+        <div class="detail-icon">👨‍👧</div>
+        <div class="detail-body">
+          <div class="detail-title">Public cible</div>
+          <div class="detail-text">Binômes parent-enfant · Enfants de 6 à 12 ans · 4 à 6 binômes par session</div>
+        </div>
+      </div>
+      <div class="detail-row reveal">
+        <div class="detail-icon">⏱️</div>
+        <div class="detail-body">
+          <div class="detail-title">Format</div>
+          <div class="detail-text">Atelier participatif de 2 heures · Petits groupes · Esprit convivial et bienveillant</div>
+        </div>
+      </div>
+      <div class="detail-row reveal">
+        <div class="detail-icon">📍</div>
+        <div class="detail-body">
+          <div class="detail-title">Lieu d'intervention</div>
+          <div class="detail-text">Locaux du centre social partenaire · Salle, tables, chaises fournis par le centre · Matériel pédagogique apporté par BRILLE</div>
+        </div>
+      </div>
+      <div class="detail-row reveal">
+        <div class="detail-icon">🎯</div>
+        <div class="detail-body">
+          <div class="detail-title">Objectifs</div>
+          <div class="detail-text">Permettre à l'enfant de prendre la parole sur sa qualité de vie · Créer un espace d'écoute active pour le parent · Repartir ensemble avec un plan d'action concret</div>
+        </div>
+      </div>
+      <div class="detail-row reveal">
+        <div class="detail-icon">💶</div>
+        <div class="detail-body">
+          <div class="detail-title">Offre de démarrage</div>
+          <div class="detail-text">Première session <strong>gratuite</strong> pour le centre partenaire · Atelier pilote sans engagement · Évaluation conjointe à l'issue</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-label" style="margin-bottom:20px;font-size:0.62rem;">Déroulé de l'atelier</div>
+      <div class="etincelle-flow">
+        <div class="flow-step reveal">
+          <div class="flow-num">1</div>
+          <div class="flow-content">
+            <div class="flow-title">Accueil & mise en confiance</div>
+            <div class="flow-desc">Présentation du cadre, des règles de bienveillance. Icebreaker adapté à la tranche d'âge.</div>
+            <span class="flow-time">20 min</span>
+          </div>
+        </div>
+        <div class="flow-step reveal">
+          <div class="flow-num">2</div>
+          <div class="flow-content">
+            <div class="flow-title">Exploration de la QVE</div>
+            <div class="flow-desc">L'enfant complète sa "fleur de vie" avec des outils visuels. Le parent observe et note.</div>
+            <span class="flow-time">35 min</span>
+          </div>
+        </div>
+        <div class="flow-step reveal">
+          <div class="flow-num">3</div>
+          <div class="flow-content">
+            <div class="flow-title">Dialogue parent-enfant</div>
+            <div class="flow-desc">Échange guidé autour des découvertes. Le parent répond à son tour sur sa perception de la QVE de son enfant.</div>
+            <span class="flow-time">30 min</span>
+          </div>
+        </div>
+        <div class="flow-step reveal">
+          <div class="flow-num">4</div>
+          <div class="flow-content">
+            <div class="flow-title">Co-construction Kanban</div>
+            <div class="flow-desc">Identification d'une action concrète à mener ensemble. Formalisation sur un tableau Kanban simplifié.</div>
+            <span class="flow-time">25 min</span>
+          </div>
+        </div>
+        <div class="flow-step reveal">
+          <div class="flow-num">5</div>
+          <div class="flow-content">
+            <div class="flow-title">Clôture & engagement</div>
+            <div class="flow-desc">Chaque binôme partage une prise de conscience. Remise du "livret Étincelle". Évaluation à chaud.</div>
+            <span class="flow-time">10 min</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 7 · APPROCHE & VALEURS
+══════════════════════════════════════════════ -->
+<section id="approche">
+  <div class="blob blob-ap"></div>
+  <div class="section-label reveal">ADN de BRILLE</div>
+  <div class="section-title reveal">Notre <span>approche</span></div>
+  <p class="approche-intro reveal">
+    La démarche BRILLE n'est pas thérapeutique — elle est éducative, participative et émancipatrice. Elle s'appuie sur la conviction que les familles possèdent les ressources nécessaires : notre rôle est de créer les conditions pour qu'elles les mobilisent.
+  </p>
+
+
+    <!-- MÉTHODE BRILLE -->
+    <div class="methode-bloc reveal">
+      <div class="methode-title">La Méthode BRILLE</div>
+      <div class="methode-letters">
+        <div class="methode-row">
+          <span class="methode-letter" style="color:#7BC67A;">B</span>
+          <span class="methode-word">Bienveillance</span>
+          <span class="methode-def">Un cadre safe, sans jugement, où chacun peut être soi</span>
+        </div>
+        <div class="methode-row">
+          <span class="methode-letter" style="color:#7AB8D4;">R</span>
+          <span class="methode-word">Ressources</span>
+          <span class="methode-def">Chaque enfant, chaque famille en a — notre rôle est de les révéler</span>
+        </div>
+        <div class="methode-row">
+          <span class="methode-letter" style="color:#E8A0C8;">I</span>
+          <span class="methode-word">Intelligence collective</span>
+          <span class="methode-def">Co-construire ensemble, avec les familles, pas pour elles</span>
+        </div>
+        <div class="methode-row">
+          <span class="methode-letter" style="color:#4a9449;">L</span>
+          <span class="methode-word">Lien</span>
+          <span class="methode-def">Entre l'enfant et son parent, entre la famille et son environnement</span>
+        </div>
+        <div class="methode-row">
+          <span class="methode-letter" style="color:#F5C842;">L</span>
+          <span class="methode-word">Ludique</span>
+          <span class="methode-def">Des outils visuels et adaptés, accessibles et engageants</span>
+        </div>
+        <div class="methode-row">
+          <span class="methode-letter" style="color:#D98BB0;">É</span>
+          <span class="methode-word">Épanouissement</span>
+          <span class="methode-def">La finalité de tout — permettre à l'enfant et sa famille de grandir et briller</span>
+        </div>
+      </div>
+      <div class="methode-phrase">
+        « La méthode <strong>B</strong>RILLE crée un cadre de <strong>B</strong>ienveillance pour révéler les <strong>R</strong>essources de chacun, par l'<strong>I</strong>ntelligence collective et le <strong>L</strong>ien, à travers des outils <strong>L</strong>udiques, au service de l'<strong>É</strong>panouissement de l'enfant et de sa famille. »
+      </div>
+    </div>
+
+  <div class="principes-grid">
+    <div class="principe reveal">
+      <div class="principe-icon">🌱</div>
+      <div class="principe-title">Co-construction</div>
+      <p>Les familles ne sont pas destinataires d'un programme — elles en sont les co-auteurs. Chaque atelier se construit avec elles.</p>
+    </div>
+    <div class="principe reveal">
+      <div class="principe-icon">🔍</div>
+      <div class="principe-title">Non-directivité</div>
+      <p>Pas de prescription, pas de jugement. L'animatrice facilite, questionne, ouvre des espaces — sans imposer de réponse.</p>
+    </div>
+    <div class="principe reveal">
+      <div class="principe-icon">🧩</div>
+      <div class="principe-title">Adaptabilité</div>
+      <p>Chaque dispositif s'adapte au contexte du partenaire, à la réalité des familles accueillies, aux contraintes du terrain.</p>
+    </div>
+    <div class="principe reveal">
+      <div class="principe-icon">📐</div>
+      <div class="principe-title">Rigueur méthodologique</div>
+      <p>Des outils empruntés à l'ingénierie (Lean, PDCA, Kanban) rigoureusement adaptés à un public 6-12 ans.</p>
+    </div>
+    <div class="principe reveal">
+      <div class="principe-icon">🤝</div>
+      <div class="principe-title">Complémentarité</div>
+      <p>BRILLE s'inscrit dans l'écosystème existant — en complément des dispositifs des centres sociaux, écoles, structures de loisirs.</p>
+    </div>
+    <div class="principe reveal">
+      <div class="principe-icon">✨</div>
+      <div class="principe-title">Valorisation</div>
+      <p>Chaque séance donne à l'enfant et au parent le sentiment d'être vus, entendus, capables. C'est le cœur de BRILLE.</p>
+    </div>
+  </div>
+
+  <div class="outils-bloc reveal">
+    <div class="outils-title">Outils pédagogiques mobilisés</div>
+    <div class="outils-row">
+      <span class="outil-tag">📊 Kanban adapté enfants</span>
+      <span class="outil-tag">🔄 Cycle PDCA simplifié</span>
+      <span class="outil-tag">🌸 Fleur QVE</span>
+      <span class="outil-tag">🗺️ Carte des émotions</span>
+      <span class="outil-tag">🎴 Cartes visuelles participatives</span>
+      <span class="outil-tag">📋 Livret Étincelle</span>
+      <span class="outil-tag">💬 Protocoles de dialogue guidé</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 8 · PARTENARIAT
+══════════════════════════════════════════════ -->
+<section id="partenariat">
+  <div class="section-label reveal">Travailler ensemble</div>
+  <div class="section-title reveal">Un <span>partenariat</span> simple</div>
+
+  <div class="partenariat-grid">
+    <div class="part-card reveal">
+      <div class="part-card-title">🏠 Ce que le centre apporte</div>
+      <ul>
+        <li>Une salle disponible (tables + chaises)</li>
+        <li>Un vidéoprojecteur ou écran si disponible</li>
+        <li>La mobilisation des familles via leurs réseaux</li>
+        <li>La désignation d'un·e référent·e partenaire</li>
+        <li>Un retour évaluatif après le pilote</li>
+      </ul>
+    </div>
+    <div class="part-card reveal">
+      <div class="part-card-title">🌿 Ce que BRILLE apporte</div>
+      <ul>
+        <li>Tout le matériel pédagogique (livrets, outils visuels)</li>
+        <li>L'animation et la facilitation de l'atelier</li>
+        <li>Un dossier de présentation complet</li>
+        <li>La RC Pro (assurance professionnelle)</li>
+        <li>Un bilan post-atelier avec recommandations</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cta-bloc reveal">
+    <div class="cta-text">
+      <div class="cta-title">Démarrons ensemble ✨</div>
+      <p class="cta-desc">Je propose un premier atelier pilote gratuit pour que vous puissiez vivre Étincelle de l'intérieur — sans engagement de votre part. Discutons d'une date qui convient à votre centre et à vos familles.</p>
+    </div>
+    <div class="cta-contact">
+      <p>Me contacter directement</p>
+      <strong>06 11 14 07 15</strong>
+      <span>tsioryleonard@gmail.com</span>
+    </div>
+  </div>
+</section>
+
+</div><!-- /.main -->
+
+<script>
+// NAVIGATION
+function scrollTo(id){
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+
+// PROGRESS BAR
+window.addEventListener('scroll',()=>{
+  const doc = document.documentElement;
+  const scrolled = doc.scrollTop/(doc.scrollHeight-doc.clientHeight);
+  document.getElementById('progressBar').style.transform=`scaleX(${scrolled})`;
+});
+
+// ACTIVE NAV + REVEAL
+const sections = document.querySelectorAll('section');
+const navDots  = document.querySelectorAll('.nav-dot');
+const reveals  = document.querySelectorAll('.reveal');
+
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      // reveal animation
+      if(e.target.classList.contains('reveal')){
+        e.target.classList.add('visible');
+      }
+      // active nav
+      if(e.target.tagName==='SECTION'){
+        const idx=[...sections].indexOf(e.target);
+        navDots.forEach((d,i)=>{
+          d.classList.toggle('active',i===idx);
+        });
+      }
+    }
+  });
+},{threshold:0.15});
+
+sections.forEach(s=>observer.observe(s));
+reveals.forEach(r=>observer.observe(r));
+</script>
+</body>
+</html>
