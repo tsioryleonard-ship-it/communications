@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BRILLE — Calendrier Éditorial Instagram</title>
+  <title>BRILLE — Calendrier Éditorial Instagram · Mai–Septembre 2026</title>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&family=Gruppo&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -28,6 +28,9 @@
       --text: #1A1A18;
       --text-muted: #6B6960;
       --text-faint: #9E9B94;
+      --purple: #9B7FD4;
+      --purple-pale: #EDE8FA;
+      --purple-dark: #4A2E8A;
       --radius: 14px;
       --radius-sm: 8px;
     }
@@ -122,6 +125,7 @@
     .filter-btn.active.f-mer { background: var(--blue); }
     .filter-btn.active.f-story { background: var(--pink); }
     .filter-btn.active.f-reel { background: var(--yellow); color: #555; }
+    .filter-btn.active.f-scintille { background: var(--purple); }
 
     /* ── LEGEND ── */
     .legend {
@@ -186,7 +190,8 @@
     .post-card.mer  { border-left-color: var(--blue); }
     .post-card.story{ border-left-color: var(--pink); }
     .post-card.reel { border-left-color: var(--yellow); }
-    .post-card.hidden { display: none; }
+    .post-card.scintille { border-left-color: var(--purple); }
+    .badge-scintille { background: var(--purple-pale); color: var(--purple-dark); }
 
     .post-type-badge {
       display: inline-block;
@@ -428,7 +433,7 @@
   <div class="logo">
     BRILLE<span class="logo-dot"></span>
   </div>
-  <span class="topbar-sub">Calendrier éditorial Instagram — Mai → Août 2026</span>
+  <span class="topbar-sub">Calendrier éditorial Instagram — Mai → Septembre 2026</span>
 </header>
 
 <!-- MAIN -->
@@ -440,7 +445,7 @@
     <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div> Carrousel mercredi</div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--pink)"></div> Story</div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--yellow)"></div> Réel</div>
-    <span class="legend-sep">·</span>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--purple)"></div> Teasing Scintille</div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Publié</div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div> Planifié</div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--border-strong)"></div> Idée</div>
@@ -454,6 +459,7 @@
     <button class="filter-btn f-mer"         onclick="setFilter('mer', this)">Mercredi</button>
     <button class="filter-btn f-story"       onclick="setFilter('story', this)">Stories</button>
     <button class="filter-btn f-reel"        onclick="setFilter('reel', this)">Réels</button>
+    <button class="filter-btn f-scintille"   onclick="setFilter('scintille', this)">✨ Scintille</button>
   </div>
 
   <!-- CALENDAR CONTAINER -->
@@ -1170,10 +1176,11 @@ function renderCalendar() {
       card.appendChild(statusDot);
 
       const badgeMap = {
-        dim:   ['badge-dim',   'Dimanche'],
-        mer:   ['badge-mer',   'Mercredi'],
-        story: ['badge-story', 'Story'],
-        reel:  ['badge-reel',  'Réel']
+        dim:       ['badge-dim',       'Dimanche'],
+        mer:       ['badge-mer',       'Mercredi'],
+        story:     ['badge-story',     'Story'],
+        reel:      ['badge-reel',      'Réel'],
+        scintille: ['badge-scintille', '✨ Scintille']
       };
       const [bc, bl] = badgeMap[p.type];
       const badge = document.createElement('div');
@@ -1223,7 +1230,7 @@ function setFilter(type, btn) {
 // ── MODAL ──
 function openModal(p) {
   currentPost = p;
-  const badgeMap = { dim: 'Post dimanche', mer: 'Carrousel mercredi', story: 'Story', reel: 'Réel' };
+  const badgeMap = { dim: 'Post dimanche', mer: 'Carrousel mercredi', story: 'Story', reel: 'Réel', scintille: '✨ Teasing Scintille' };
   document.getElementById('m-type').textContent = badgeMap[p.type];
   document.getElementById('m-title').textContent = p.title;
   document.getElementById('m-date').textContent = p.date + ' · ' + p.theme;
@@ -1284,6 +1291,724 @@ function copyHashtags() {
   if (!currentPost || !currentPost.tags) return;
   navigator.clipboard.writeText(currentPost.tags).then(() => showToast('✓ Hashtags copiés'));
 }
+
+// ── JUILLET–SEPTEMBRE ──
+const postsExtra = [
+
+  // ── SEMAINE 6 JUILLET ──
+  {
+    week: "Semaine du 6 juillet",
+    date: "Dim 6 juil",
+    type: "dim",
+    status: "idea",
+    title: "L'été, c'est fait pour ralentir — vraiment",
+    theme: "Parentalité estivale",
+    content: `Il y a une pression bizarre qui s'installe chaque été.
+
+Remplir les journées. Organiser. Stimuler.
+Comme si "rien faire" était une faute.
+
+Mais les enfants ont besoin d'ennui.
+
+L'ennui, c'est le terreau de la créativité.
+C'est là qu'ils inventent, qu'ils imaginent, qu'ils apprennent à se connaître.
+
+Un enfant qui s'ennuie n'est pas un enfant mal accompagné.
+C'est un enfant à qui on fait confiance.
+
+Cette semaine, je vous invite à un défi simple :
+une demi-heure par jour où votre enfant choisit ce qu'il fait.
+Sans proposition. Sans écran. Sans programme.
+
+Observez ce qui se passe. 🌱
+
+→ Il invente quoi, votre enfant, quand il s'ennuie ?`,
+    tips: "Photo d'un enfant allongé dans l'herbe, regardant le ciel. Lumière d'été, couleurs chaudes et naturelles. Pas de mise en scène.",
+    tags: "#été #parentalité #ennui #créativité #QVE #BRILLE #bienêtreenfant #familles #lienparentenfant #vacances"
+  },
+  {
+    week: "Semaine du 6 juillet",
+    date: "Mer 9 juil",
+    type: "mer",
+    status: "idea",
+    title: "Ce que l'été révèle sur la QVE de votre enfant",
+    theme: "Carrousel : lecture estivale de la QVE",
+    content: `Slide 1 — TITRE
+"Ce que l'été révèle sur la QVE de votre enfant"
+
+Slide 2
+L'été, c'est un révélateur.
+Sans le cadre de l'école, sans les devoirs, sans les horaires fixes — l'enfant se montre tel qu'il est.
+
+Slide 3
+🌟 Ce qui va bien
+Il se lève de lui-même. Il joue seul sans s'épuiser. Il cherche à créer, construire, inventer.
+→ Dimension épanouissement : active.
+
+Slide 4
+⚡ Ce qui est fragile
+Il cherche constamment validation ou attention. Il ne sait pas quoi faire de ses journées. Il s'agace rapidement avec ses proches.
+→ Dimensions expression et relations : à renforcer.
+
+Slide 5
+🌊 Ce qui est révélé
+Il exprime des choses qu'il ne dit jamais pendant l'année. Il parle de l'école autrement. Il confie des petits secrets.
+→ L'été crée de l'espace pour la parole.
+
+Slide 6
+Ces observations sont précieuses.
+Notez-les. Elles seront utiles à la rentrée — pour l'école, pour vous, et si vous revenez en atelier.
+
+Slide 7 — CTA
+Un pétale de la fleur QVE qui vous interpelle cet été ?
+→ Dites-le en commentaire 👇`,
+    tips: "Visuels doux et estivaux. Une couleur par dimension QVE. Style épuré, typographie claire. Ambiance bienveillante, pas clinique.",
+    tags: "#QVE #été #parentalité #BRILLE #bienêtreenfant #atelieretincelle #familles #observation #développementenfant"
+  },
+
+  // ── SEMAINE 13 JUILLET ──
+  {
+    week: "Semaine du 13 juillet",
+    date: "Dim 13 juil",
+    type: "scintille",
+    status: "idea",
+    title: "Quelque chose se prépare… 🌸",
+    theme: "Teasing Scintille — mystère",
+    content: `Quelque chose se prépare chez BRILLE.
+
+Depuis le début, vous me posez des questions :
+"Et si on n'habite pas près d'un centre social ?"
+"Est-ce qu'on peut faire quelque chose à la maison ?"
+"Il n'y a pas d'atelier dans ma ville — qu'est-ce qu'on peut faire ?"
+
+J'ai entendu.
+J'ai travaillé.
+Et ça arrive. 🌸
+
+Je ne vous en dis pas plus pour l'instant.
+Mais je peux vous promettre une chose : ça a été conçu avec la même rigueur que l'Atelier Étincelle.
+Pour vous. Pour votre enfant. Là où vous êtes.
+
+→ Restez proches. La suite arrive bientôt. ✨`,
+    tips: "Visuel épuré avec une fleur en cours de floraison — pétales partiellement ouverts. Fond blanc ou vert très pâle. Typographie mystérieuse mais douce. Pas de logo Scintille encore visible.",
+    tags: "#BRILLE #comingsoon #QVE #parentalité #atelieretincelle #bienêtreenfant #familles #nouveauté #scintille"
+  },
+  {
+    week: "Semaine du 13 juillet",
+    date: "Mer 16 juil",
+    type: "scintille",
+    status: "idea",
+    title: "La fleur QVE — qu'est-ce que c'est ?",
+    theme: "Teasing Scintille — introduire la fleur",
+    content: `Slide 1 — TITRE
+"La fleur QVE : comprendre le bien-être de votre enfant en un coup d'œil"
+
+Slide 2
+Dans l'Atelier Étincelle, j'utilise un outil visuel que les familles adorent : la fleur QVE.
+
+Une fleur à 5 pétales. Chaque pétale représente une dimension de la vie de l'enfant.
+
+Slide 3
+🌸 Pétale 1 : Je me sens bien dans ma tête
+Comment l'enfant se perçoit-il ? Ses émotions, sa confiance, son calme intérieur.
+
+Slide 4
+🌸 Pétale 2 : Je me sens bien avec ma famille
+Le lien, la communication, la sécurité affective à la maison.
+
+Slide 5
+🌸 Pétale 3 : Je me sens bien à l'école
+Le rapport aux apprentissages, aux camarades, aux adultes scolaires.
+
+Slide 6
+🌸 Pétale 4 : Je me sens bien avec mes amis
+La vie sociale, l'appartenance, les relations hors famille.
+
+Slide 7
+🌸 Pétale 5 : Je peux m'exprimer
+Est-ce que l'enfant a des espaces pour dire ce qu'il ressent — à l'oral, à l'écrit, par le dessin, le jeu ?
+
+Slide 8 — Teaser
+Cette fleur... elle va bientôt être entre vos mains. 🌸
+Restez connecté·e. ✨`,
+    tips: "Illustration de la fleur QVE à 5 pétales, chaque pétale dans une couleur BRILLE différente. Style doux et illustratif. Une slide par pétale. Fin avec la fleur entière.",
+    tags: "#fleurQVE #QVE #BRILLE #parentalité #bienêtreenfant #atelieretincelle #familles #outils #comingsoon #scintille"
+  },
+
+  // ── SEMAINE 20 JUILLET ──
+  {
+    week: "Semaine du 20 juillet",
+    date: "Dim 20 juil",
+    type: "scintille",
+    status: "idea",
+    title: "Pour ceux qui ne peuvent pas venir en atelier",
+    theme: "Teasing Scintille — adresse directe",
+    content: `Ce post s'adresse à vous.
+
+Vous qui habitez loin d'un centre social qui propose BRILLE.
+Vous qui n'avez pas de garde le samedi matin.
+Vous qui avez voulu vous inscrire... mais la logistique n'a pas suivi.
+Vous qui suivez ce compte depuis des mois, et qui attendez de pouvoir agir.
+
+Je ne vous ai pas oublié·e.
+
+J'ai conçu quelque chose pour vous. Pour que la QVE ne soit pas réservée à ceux qui peuvent se déplacer. Pour que chaque famille, où qu'elle soit, ait accès aux mêmes outils.
+
+Ce n'est pas un simple PDF.
+Ce n'est pas une formation en ligne.
+C'est un espace à part entière — pensé pour l'enfant et son parent, ensemble, chez vous.
+
+L'annonce arrive très bientôt. 🌸
+
+→ Enregistrez ce post pour ne pas rater la suite.`,
+    tips: "Post texte fort, fond blanc ou vert très pâle. Citation mise en avant en typographie Gruppo. Sobre, direct, émotionnel sans être dramatique.",
+    tags: "#BRILLE #scintille #QVE #parentalité #bienêtreenfant #familles #distanciel #accessibilité #comingsoon #atelieretincelle"
+  },
+  {
+    week: "Semaine du 20 juillet",
+    date: "Mer 23 juil",
+    type: "scintille",
+    status: "idea",
+    title: "5 choses que Scintille va vous permettre de faire",
+    theme: "Teasing Scintille — bénéfices concrets",
+    content: `Slide 1 — TITRE
+"Ce que vous allez pouvoir faire avec Scintille 🌸"
+(bientôt disponible)
+
+Slide 2
+✨ 1. Colorier la fleur QVE avec votre enfant
+Ensemble, vous évaluez chaque pétale — pas pour noter, mais pour comprendre. Un moment de dialogue guidé, chez vous, à votre rythme.
+
+Slide 3
+🏆 2. Construire le Grimoire des Victoires
+Chaque semaine, votre enfant note une victoire — grande ou petite. L'école, les amis, le courage, la créativité. Un carnet de confiance qui se construit au fil du temps.
+
+Slide 4
+🧰 3. Accéder aux outils de l'Atelier Étincelle
+Les mêmes outils pédagogiques que j'utilise en atelier — adaptés pour une utilisation autonome en famille.
+
+Slide 5
+📝 4. Garder une trace de l'évolution
+Semaine après semaine, vous verrez les pétales évoluer. Pas un diagnostic — une conversation continue avec votre enfant.
+
+Slide 6
+👧 5. Donner à votre enfant son propre espace
+Un mode enfant dédié, pensé pour les 6-12 ans. Intuitif, coloré, bienveillant. Parce que l'outil, c'est aussi le sien.
+
+Slide 7 — CTA
+Scintille arrive très bientôt.
+→ Enregistrez ce carrousel pour retrouver la liste 🔖`,
+    tips: "Une slide par bénéfice, icône simple, couleurs BRILLE. Terminer sur une illustration de la fleur entièrement colorée. Énergie positive et concrète.",
+    tags: "#scintille #BRILLE #QVE #fleurQVE #parentalité #bienêtreenfant #familles #outils #comingsoon #grimoire"
+  },
+
+  // ── SEMAINE 27 JUILLET ──
+  {
+    week: "Semaine du 27 juillet",
+    date: "Dim 27 juil",
+    type: "dim",
+    status: "idea",
+    title: "Ce que les parents me disent après l'atelier",
+    theme: "Preuve sociale / réassurance",
+    content: `Après un Atelier Étincelle, il y a souvent un moment de silence.
+
+Pas un silence gêné. Un silence plein.
+
+Et puis une phrase qui revient, sous différentes formes :
+
+"Je ne savais pas que ça lui pesait autant."
+
+"Il m'a dit des choses qu'il n'avait jamais dites."
+
+"On est repartis... différemment."
+
+Je ne promets pas de miracles. L'atelier n'est pas une baguette magique.
+Mais il crée quelque chose de rare : un espace où l'enfant et son parent s'écoutent vraiment. Sans les urgences du quotidien. Sans les écrans. Sans le stress.
+
+Juste eux deux. Et une fleur à colorier ensemble. 🌸
+
+→ Qu'est-ce qui vous manque le plus dans votre quotidien avec votre enfant ?`,
+    tips: "Photo douce d'un parent et un enfant qui font quelque chose ensemble — dessin, puzzle. Lumière tamisée, ambiance intime. Pas besoin de voir les visages.",
+    tags: "#atelieretincelle #BRILLE #QVE #témoignage #parentalité #lienparentenfant #bienêtreenfant #familles #fleurQVE"
+  },
+  {
+    week: "Semaine du 27 juillet",
+    date: "Mer 30 juil",
+    type: "scintille",
+    status: "idea",
+    title: "Scintille : les offres se précisent",
+    theme: "Teasing Scintille — révéler les formules",
+    content: `Slide 1 — TITRE
+"Scintille arrive — voici ce qui vous attend 🌸"
+
+Slide 2
+Scintille, c'est l'application BRILLE pour les familles qui ne peuvent pas venir en atelier.
+Même outil. Même rigueur. Depuis chez vous.
+
+Slide 3
+✨ Étincelle en Poche
+L'essentiel pour commencer : la fleur QVE, le grimoire des victoires, les outils de base.
+Pour les familles qui veulent explorer à leur rythme.
+
+Slide 4
+🏠 Étincelle à la Maison
+Un accompagnement plus complet, avec les ressources pédagogiques de l'atelier adaptées pour la maison.
+Pour les familles qui veulent aller plus loin.
+
+Slide 5
+👪 Étincelle en Famille
+Conçu pour les familles avec deux enfants (6-12 ans).
+Deux profils enfants, un espace famille partagé.
+
+Slide 6
+🌟 Étincelle Durable
+L'offre la plus complète — pour les familles qui veulent faire de la QVE une pratique de long terme.
+Accès à tous les outils, mises à jour incluses.
+
+Slide 7 — CTA
+Les inscriptions ouvrent à la rentrée.
+→ Enregistrez pour être parmi les premiers. 🔖
+→ DM ou lien en bio pour être notifié·e`,
+    tips: "Une slide par offre avec couleur distincte. Style clair et professionnel. Mettre en avant la progressivité des offres. Pas de prix encore — focus sur les bénéfices.",
+    tags: "#scintille #BRILLE #QVE #parentalité #bienêtreenfant #familles #application #comingsoon #atelieretincelle #rentrée"
+  },
+
+  // ── SEMAINE 3 AOÛT ──
+  {
+    week: "Semaine du 3 août",
+    date: "Dim 3 août",
+    type: "scintille",
+    status: "idea",
+    title: "La fleur QVE — un outil pour toute l'année",
+    theme: "Teasing Scintille — usage quotidien",
+    content: `On me demande souvent : "Mais concrètement, ça ressemble à quoi ?"
+
+Alors laissez-moi vous raconter une utilisation type de Scintille.
+
+C'est un dimanche soir. Votre enfant et vous vous installez. Vous ouvrez l'application. Vous choisissez un pétale ensemble.
+
+"Comment tu te sens avec tes amis en ce moment ?"
+
+Il réfléchit. Il hésite. Puis il dit quelque chose de vrai.
+
+Vous colorez le pétale selon ce qu'il ressent. Vert si ça va bien. Orange si c'est mitigé. Rouge si quelque chose cloche.
+
+Vous n'intervenez pas. Vous écoutez. Vous notez peut-être une victoire de la semaine dans le grimoire.
+
+Ça dure 20 minutes. Et pourtant, quelque chose s'est passé.
+
+Cette fleur, semaine après semaine, devient un miroir de la vie de votre enfant. Et de votre relation avec lui. 🌸
+
+→ Scintille arrive à la rentrée. Restez connecté·e. ✨`,
+    tips: "Mockup de l'application sur téléphone — fleur QVE colorée visible. Ambiance douce, lumière tamisée. Ou illustration d'un enfant et un parent autour d'un écran.",
+    tags: "#scintille #fleurQVE #BRILLE #QVE #parentalité #application #bienêtreenfant #familles #rentrée #outilsparentaux"
+  },
+  {
+    week: "Semaine du 3 août",
+    date: "Mer 6 août",
+    type: "mer",
+    status: "idea",
+    title: "Préparer la rentrée avec la QVE",
+    theme: "Carrousel : rentrée sereine",
+    content: `Slide 1 — TITRE
+"Préparer la rentrée avec la QVE — 5 gestes simples"
+
+Slide 2
+La rentrée, c'est une rupture. Nouveaux enseignants, nouvelle classe, nouvelles règles. Pour beaucoup d'enfants, c'est stressant — même quand ils ne le montrent pas.
+
+Slide 3
+1. Parlez-en AVANT 🗣️
+Dans les deux semaines avant la rentrée, ouvrez la conversation. Pas "t'es prêt ?" — mais "qu'est-ce qui t'inquiète le plus ?" et "qu'est-ce que tu attends avec impatience ?"
+
+Slide 4
+2. Revisitez l'été ensemble 🌿
+Prenez 15 minutes pour reparcourir l'été avec votre enfant. Les moments forts. Ce qu'il a appris. Ce dont il est fier. Ça ancre une base positive avant le départ.
+
+Slide 5
+3. Identifiez un "allié scolaire" 🤝
+Aidez votre enfant à identifier quelqu'un à l'école sur qui il peut compter — un camarade, un adulte. Quelqu'un qui sera là si ça ne va pas.
+
+Slide 6
+4. Maintenez un rituel du soir 🌙
+La question du soir (bonne/mauvaise chose) que vous avez peut-être commencée cet été ? Continuez-la à la rentrée. C'est un fil de connexion quotidien.
+
+Slide 7
+5. Observez sans juger 👁️
+Les premières semaines, observez comment votre enfant rentre de l'école. Le corps, le ton, l'appétit. Pas pour intervenir tout de suite — pour comprendre.
+
+Slide 8 — CTA
+Et si vous voulez aller plus loin cet automne...
+quelque chose arrive à la rentrée. 🌸
+→ Restez connecté·e`,
+    tips: "Visuels de rentrée mais doux — cartable posé, feuilles d'automne, lumière de septembre. Palette BRILLE. Pas de stress dans les visuels.",
+    tags: "#rentrée #parentalité #QVE #BRILLE #bienêtreenfant #familles #rentréescolaire #atelieretincelle #scintille #conseils"
+  },
+
+  // ── SEMAINE 10 AOÛT ──
+  {
+    week: "Semaine du 10 août",
+    date: "Dim 10 août",
+    type: "dim",
+    status: "idea",
+    title: "Ce que je veux pour BRILLE dans un an",
+    theme: "Vision / projection fondatrice",
+    content: `Je n'en parle pas souvent. Mais ce soir, j'ai envie.
+
+Dans un an, je veux que BRILLE soit présent dans 10 centres sociaux en Île-de-France.
+
+Je veux que des centaines de familles aient accès à l'Atelier Étincelle ou à Scintille — quelle que soit leur situation géographique, quel que soit leur budget.
+
+Je veux que la QVE soit un concept que les familles connaissent et utilisent. Pas seulement les professionnels. Les parents aussi.
+
+Je veux que des enfants de 6, 8, 11 ans aient un espace où ils peuvent dire "ce pétale-là, il n'est pas très coloré en ce moment" — et que leurs parents les écoutent vraiment.
+
+Ce n'est pas une vision utopique. C'est un plan.
+
+Et il commence maintenant. 🌱
+
+→ Si cette vision vous touche, partagez ce post. Vous m'aidez à avancer.`,
+    tips: "Photo de Tsiory en extérieur, regard vers l'horizon. Lumière dorée. Ou fond simple avec typographie Gruppo pour la vision. Post personnel et engageant.",
+    tags: "#BRILLE #vision #parentalité #QVE #atelieretincelle #scintille #centresocial #familles #entrepreneuriatféminin #impactsocial"
+  },
+  {
+    week: "Semaine du 10 août",
+    date: "Mer 13 août",
+    type: "scintille",
+    status: "idea",
+    title: "Scintille — le grimoire des victoires expliqué",
+    theme: "Teasing Scintille — zoom sur une fonctionnalité",
+    content: `Slide 1 — TITRE
+"Le Grimoire des Victoires ✨ — pourquoi c'est l'outil que j'aurais voulu avoir enfant"
+
+Slide 2
+On parle beaucoup des difficultés des enfants. Les notes. Les comportements. Ce qui ne va pas.
+
+Mais les victoires ? On les oublie presque aussitôt qu'elles arrivent.
+
+Slide 3
+Le Grimoire des Victoires, c'est un outil simple : chaque semaine, votre enfant choisit une victoire et la note dans son espace Scintille.
+
+Slide 4
+📚 Une victoire à l'école
+"J'ai répondu en classe alors que j'avais peur."
+
+🤝 Une victoire avec les amis
+"J'ai défendu quelqu'un qui se faisait embêter."
+
+💪 Une victoire de courage
+"J'ai dit non quand je ne voulais pas."
+
+🎨 Une victoire créative
+"J'ai fini mon dessin. Il est beau."
+
+Slide 5
+Avec le temps, ce grimoire devient quelque chose d'unique : la preuve vivante de qui est votre enfant.
+
+Ses forces. Ses efforts. Sa croissance.
+
+Slide 6
+Pas pour les parents. Pas pour l'école.
+Pour lui. Juste pour lui. 🌟
+
+Slide 7 — CTA
+Scintille arrive à la rentrée.
+→ Enregistrez pour ne pas rater l'ouverture 🔖`,
+    tips: "Illustration d'un carnet ou journal magique — style féerique mais épuré. Chaque catégorie de victoire avec une petite icône et couleur BRILLE distincte.",
+    tags: "#grimoire #victoires #scintille #BRILLE #QVE #enfant #parentalité #bienêtreenfant #confiance #familles"
+  },
+
+  // ── SEMAINE 17 AOÛT ──
+  {
+    week: "Semaine du 17 août",
+    date: "Dim 17 août",
+    type: "scintille",
+    status: "idea",
+    title: "Scintille ouvre à la rentrée — voici comment ça marche",
+    theme: "Teasing Scintille — reveal complet",
+    content: `C'est l'heure de tout vous dire. 🌸
+
+Scintille, c'est l'application BRILLE pour les familles.
+
+Pas besoin d'être en centre social. Pas besoin de vous déplacer. Pas besoin d'un créneau spécifique.
+
+Scintille, c'est :
+
+🌸 La fleur QVE — pour évaluer le bien-être de votre enfant ensemble, pétale par pétale, à votre rythme.
+
+🏆 Le Grimoire des Victoires — pour que votre enfant construise sa confiance semaine après semaine.
+
+🧰 Les outils de l'atelier — les mêmes ressources pédagogiques qu'en Atelier Étincelle, adaptées pour la maison.
+
+👧 Un espace dédié à l'enfant — conçu pour les 6-12 ans. Intuitif, coloré, bienveillant.
+
+L'application ouvre à la rentrée de septembre.
+
+Plusieurs formules disponibles — pour s'adapter à chaque famille.
+
+→ Lien en bio pour être notifié·e dès l'ouverture. 🔗`,
+    tips: "Mockup de l'application sur téléphone — fleur QVE visible, interface colorée. Ou composition avec les 4 fonctionnalités clés illustrées. C'est le post reveal — soigné, mémorable.",
+    tags: "#scintille #BRILLE #QVE #application #parentalité #bienêtreenfant #familles #rentrée #fleurQVE #grimoire #launch"
+  },
+  {
+    week: "Semaine du 17 août",
+    date: "Mer 20 août",
+    type: "scintille",
+    status: "idea",
+    title: "Scintille vs Atelier Étincelle — quelle différence ?",
+    theme: "Carrousel : clarifier les deux offres",
+    content: `Slide 1 — TITRE
+"Atelier Étincelle ou Scintille — lequel est fait pour vous ?"
+
+Slide 2
+Ce sont deux façons d'accéder à la QVE. Différentes dans la forme. Identiques dans l'intention.
+
+Slide 3
+🏫 L'Atelier Étincelle
+Format : 2h en centre social, avec moi comme animatrice
+Public : binôme parent-enfant (6-12 ans)
+Point fort : l'accompagnement humain, la présence, la médiation en direct
+
+Slide 4
+📱 Scintille
+Format : application accessible depuis votre téléphone, à n'importe quel moment
+Public : toutes les familles, partout en France
+Point fort : l'autonomie, la continuité, la flexibilité
+
+Slide 5
+Ils ne se remplacent pas. Ils se complètent.
+
+Certaines familles commencent par Scintille et viennent ensuite en atelier.
+D'autres font l'atelier et utilisent Scintille pour prolonger la dynamique à la maison.
+
+Slide 6
+Et certaines familles n'ont accès qu'à Scintille — parce qu'il n'y a pas d'atelier près de chez elles.
+C'est exactement pour elles que je l'ai conçu.
+
+Slide 7 — CTA
+→ Atelier Étincelle : contactez votre centre social ou DM-moi
+→ Scintille : disponible à la rentrée — lien en bio 🔗`,
+    tips: "Deux colonnes côte à côte — une pour l'atelier, une pour Scintille. Couleurs distinctes mais complémentaires. Schéma visuel clair et lisible.",
+    tags: "#scintille #atelieretincelle #BRILLE #QVE #parentalité #bienêtreenfant #familles #comparaison #rentrée #application"
+  },
+
+  // ── SEMAINE 24 AOÛT ──
+  {
+    week: "Semaine du 24 août",
+    date: "Dim 24 août",
+    type: "dim",
+    status: "idea",
+    title: "La semaine d'avant la rentrée — mode d'emploi",
+    theme: "Post pratique pré-rentrée",
+    content: `La semaine prochaine, pour beaucoup d'enfants, c'est la rentrée.
+
+Cette semaine, c'est celle du seuil.
+
+Voici ce que je vous conseille pour la traverser bien :
+
+Lundi — Parlez de l'été. Les bons souvenirs, les moments drôles, ce dont il est fier. Ancrez le positif.
+
+Mardi — Préparez le cartable ensemble. Pas comme une corvée — comme un rituel. L'enfant choisit comment il range, dans quel ordre.
+
+Mercredi — Demandez-lui d'imaginer sa meilleure rentrée possible. Pas la vraie — l'idéale. Ça aide à mettre des mots sur ce qu'il espère.
+
+Jeudi — Parlez d'un camarade ou d'un adulte de l'école sur qui il peut compter. Un allié nommé, c'est une ancre.
+
+Vendredi — Un rituel du soir ensemble. Pas de grand discours. Juste : "Je suis là, quoi qu'il arrive."
+
+Et le dimanche soir, dites-lui simplement que vous êtes fier·e de lui. Même avant que rien ne soit arrivé. 🌱
+
+→ Bonne rentrée à toutes les familles. ✨`,
+    tips: "Style agenda doux — une couleur par jour de la semaine. Palette BRILLE. Ambiance bienveillante et rassurante. Peut être un carrousel court ou un visuel unique.",
+    tags: "#rentrée #parentalité #QVE #BRILLE #bienêtreenfant #familles #rentréescolaire #conseils #lienparentenfant #scintille"
+  },
+  {
+    week: "Semaine du 24 août",
+    date: "Mer 27 août",
+    type: "scintille",
+    status: "idea",
+    title: "Scintille — derniers jours avant l'ouverture",
+    theme: "Teasing Scintille — compte à rebours",
+    content: `Slide 1 — TITRE
+"Scintille ouvre dans quelques jours 🌸"
+
+Slide 2
+Depuis des semaines, vous m'avez posé des questions.
+"Quand ça ouvre ?"
+"Comment s'inscrire ?"
+"C'est pour quel âge ?"
+
+Voici les réponses.
+
+Slide 3
+📅 Quand ?
+L'application Scintille ouvre à la rentrée de septembre 2026.
+Les premiers accès seront disponibles dès la première semaine.
+
+Slide 4
+👶 Pour qui ?
+Pour tous les parents d'enfants de 6 à 12 ans.
+Aucun prérequis. Aucune expérience nécessaire.
+L'application guide pas à pas.
+
+Slide 5
+📱 Sur quoi ?
+Scintille fonctionne sur téléphone et tablette, directement depuis votre navigateur.
+Aucune installation requise.
+
+Slide 6
+💶 À quel prix ?
+Plusieurs formules disponibles, à partir de 29€.
+Conçues pour s'adapter à chaque famille.
+Détails complets à l'ouverture.
+
+Slide 7 — CTA
+→ Lien en bio pour être notifié·e dès l'ouverture 🔔
+→ DM-moi "SCINTILLE" pour recevoir les infos en avant-première`,
+    tips: "Design compte à rebours ou révélation progressive. Chaque slide répond à une question. Style propre et professionnel. C'est le dernier carrousel avant le launch.",
+    tags: "#scintille #BRILLE #QVE #application #parentalité #rentrée #bienêtreenfant #familles #launch #ouverture"
+  },
+
+  // ── SEMAINE 1 SEPTEMBRE ──
+  {
+    week: "Semaine du 1 septembre",
+    date: "Dim 1 sept",
+    type: "scintille",
+    status: "idea",
+    title: "✨ Scintille est là.",
+    theme: "LAUNCH — annonce officielle",
+    content: `C'est le jour. 🌸
+
+Scintille est officellement ouvert.
+
+Après des mois de travail, de tests, de perfectionnement — l'application BRILLE pour les familles est entre vos mains.
+
+Pour vous, qui n'avez pas de centre social près de chez vous.
+Pour vous, qui ne pouvez pas vous déplacer.
+Pour vous, qui voulez continuer la dynamique de l'atelier à la maison.
+Pour vous, qui découvrez BRILLE aujourd'hui et voulez commencer maintenant.
+
+Scintille, c'est :
+🌸 La fleur QVE
+🏆 Le Grimoire des Victoires
+🧰 Les outils pédagogiques de l'atelier
+👧 Un espace dédié à votre enfant
+
+Plusieurs formules. À partir de 29€.
+Accessible depuis votre téléphone, dès maintenant.
+
+→ Lien en bio. 🔗
+
+Et si vous faites partie des premières familles à s'inscrire, DM-moi — j'ai quelque chose pour vous. ✨`,
+    tips: "POST LAUNCH — le plus soigné de tous. Illustration de la fleur QVE entièrement colorée, éclatante. Typographie Gruppo pour le titre. Fond blanc immaculé. Ce post doit rayonner.",
+    tags: "#scintille #launch #BRILLE #QVE #application #parentalité #bienêtreenfant #familles #fleurQVE #rentrée #nouveau"
+  },
+  {
+    week: "Semaine du 1 septembre",
+    date: "Mer 3 sept",
+    type: "scintille",
+    status: "idea",
+    title: "Comment démarrer sur Scintille — guide pas à pas",
+    theme: "Carrousel : onboarding",
+    content: `Slide 1 — TITRE
+"Vous venez de rejoindre Scintille ? Voici comment commencer 🌸"
+
+Slide 2
+Bienvenue ! Voici les 5 premières choses à faire pour bien démarrer.
+
+Slide 3
+Étape 1 : Créez votre profil famille
+Entrez le prénom et l'âge de votre enfant. Si vous avez deux enfants (6-12 ans), vous pouvez créer deux profils.
+
+Slide 4
+Étape 2 : Explorez la fleur QVE ensemble
+Prenez 10 minutes avec votre enfant pour découvrir les 5 pétales. Pas besoin de tout remplir dès le premier jour.
+
+Slide 5
+Étape 3 : Notez la première victoire
+Demandez à votre enfant : "Tu es fier de quoi cette semaine ?" Et ajoutez-la au Grimoire.
+
+Slide 6
+Étape 4 : Fixez un rendez-vous hebdomadaire
+15-20 minutes, le même jour chaque semaine. Dimanche soir, par exemple. Ce rituel, c'est le cœur de Scintille.
+
+Slide 7
+Étape 5 : Explorez les outils à votre rythme
+Pas de pression. Scintille est conçu pour accompagner — pas pour accabler.
+
+Slide 8 — CTA
+Des questions ? DM-moi ou écrivez à tsioryleonard@gmail.com
+Je réponds personnellement à chaque message. 💚`,
+    tips: "Guide clair et rassurant. Une étape par slide. Icônes simples, couleurs BRILLE. Ton chaleureux — pas un manuel technique, une invitation.",
+    tags: "#scintille #BRILLE #QVE #guide #parentalité #bienêtreenfant #familles #application #démarrage #fleurQVE"
+  },
+
+  // ── SEMAINE 8 SEPTEMBRE ──
+  {
+    week: "Semaine du 8 septembre",
+    date: "Dim 8 sept",
+    type: "dim",
+    status: "idea",
+    title: "La rentrée une semaine après — ce que j'observe",
+    theme: "Post terrain post-rentrée",
+    content: `Une semaine après la rentrée.
+
+Les enfants ont retrouvé leurs camarades. Certains ont retrouvé leur enseignant préféré. D'autres ont dû faire face à une nouvelle classe, un nouveau quartier, une nouvelle école.
+
+Ce que j'observe dans les familles que j'accompagne :
+
+Les premières 48h sont souvent euphoriques. "C'était bien !" Et puis vers le jeudi, la fatigue arrive. L'enfant explose pour un rien. Il ne veut plus aller à l'école.
+
+C'est normal. C'est même un bon signe.
+
+Ça veut dire qu'il a donné tout ce qu'il avait — et qu'il a besoin de se recharger.
+
+Ce week-end, c'est le moment de ralentir. D'écouter. Pas de demander "comment c'était" — mais de laisser l'espace pour que ça vienne.
+
+Vous pouvez aussi ouvrir Scintille ensemble ce dimanche soir.
+Coloriez un pétale. Notez une victoire de la semaine. 🌸
+
+→ Comment s'est passée la première semaine pour votre enfant ?`,
+    tips: "Photo d'un enfant fatigué mais souriant en rentrant de l'école. Ambiance fin de semaine, lumière dorée d'automne. Réel et chaleureux.",
+    tags: "#rentrée #parentalité #QVE #BRILLE #scintille #bienêtreenfant #familles #premièresemaine #école #lienparentenfant"
+  },
+  {
+    week: "Semaine du 8 septembre",
+    date: "Mer 10 sept",
+    type: "scintille",
+    status: "idea",
+    title: "Premiers retours sur Scintille",
+    theme: "Carrousel : feedback premières familles",
+    content: `Slide 1 — TITRE
+"Ce que les premières familles Scintille nous ont dit 🌸"
+
+Slide 2
+Une semaine après l'ouverture, les premiers retours arrivent.
+Et ils me touchent profondément.
+
+Slide 3
+"Mon fils de 9 ans ne me parle jamais de l'école. Avec la fleur, il a colorié un pétale en rouge et m'a expliqué pourquoi. C'était la première fois."
+
+Slide 4
+"Le Grimoire des Victoires, ma fille voulait pas s'arrêter. Elle en avait 7 à ajouter."
+
+Slide 5
+"Je pensais que ce serait moi qui guiderait. En fait, c'est elle qui m'a guidée."
+
+Slide 6
+Ce ne sont pas des témoignages extraordinaires.
+Ce sont des moments ordinaires, rendus possibles par un espace et un outil.
+
+C'est exactement ça que je voulais créer.
+
+Slide 7 — CTA
+Vous êtes sur Scintille ? Partagez votre premier moment avec moi en DM. 💚
+→ Pas encore inscrit·e ? Lien en bio 🔗`,
+    tips: "Slides épurées avec citations mises en avant. Typographie grande, fond blanc ou vert très pâle. Chaque témoignage dans sa propre slide. Sobre et émouvant.",
+    tags: "#scintille #BRILLE #QVE #témoignages #parentalité #bienêtreenfant #familles #fleurQVE #retours #application"
+  }
+];
+
+posts.push(...postsExtra);
 
 // ── INIT ──
 renderCalendar();
