@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BRILLE — Calendrier Éditorial Instagram</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&family=Gruppo&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #7BC47F;
+      --green-pale: #E8F5E9;
+      --green-dark: #3B8540;
+      --blue: #78B8E0;
+      --blue-pale: #E3F2FB;
+      --blue-dark: #1565C0;
+      --pink: #E0A0C8;
+      --pink-pale: #FCE4EC;
+      --pink-dark: #880E4F;
+      --yellow: #F5C842;
+      --yellow-pale: #FFF9C4;
+      --yellow-dark: #795548;
+      --bg: #FAFAF8;
+      --surface: #FFFFFF;
+      --border: #E8E6E0;
+      --border-strong: #D0CEC8;
+      --text: #1A1A18;
+      --text-muted: #6B6960;
+      --text-faint: #9E9B94;
+      --radius: 14px;
+      --radius-sm: 8px;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: 'Gruppo', sans-serif;
+      font-size: 22px;
+      letter-spacing: 3px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-dot {
+      width: 9px; height: 9px;
+      background: var(--green);
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .topbar-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 1.5px;
+      font-family: 'Gruppo', sans-serif;
+      text-transform: uppercase;
+    }
+
+    /* ── LAYOUT ── */
+    .wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    /* ── FILTERS ── */
+    .filters-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+      align-items: center;
+    }
+
+    .filter-label {
+      font-size: 12px;
+      color: var(--text-faint);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-right: 4px;
+    }
+
+    .filter-btn {
+      padding: 6px 16px;
+      border-radius: 20px;
+      border: 1.5px solid var(--border-strong);
+      font-family: 'Quicksand', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      background: var(--surface);
+      color: var(--text-muted);
+      transition: all 0.15s ease;
+    }
+
+    .filter-btn:hover { border-color: var(--green); color: var(--green-dark); }
+    .filter-btn.active { border-color: transparent; color: white; }
+    .filter-btn.active.f-all { background: #444; }
+    .filter-btn.active.f-dim { background: var(--green); }
+    .filter-btn.active.f-mer { background: var(--blue); }
+    .filter-btn.active.f-story { background: var(--pink); }
+    .filter-btn.active.f-reel { background: var(--yellow); color: #555; }
+
+    /* ── LEGEND ── */
+    .legend {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+      font-size: 12px;
+      color: var(--text-muted);
+      align-items: center;
+      padding: 12px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+    }
+
+    .legend-item { display: flex; align-items: center; gap: 6px; }
+    .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .legend-sep { color: var(--border-strong); }
+
+    /* ── WEEK BLOCKS ── */
+    .week-block { margin-bottom: 2.5rem; }
+
+    .week-label {
+      font-family: 'Gruppo', sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      padding-left: 12px;
+      border-left: 3px solid var(--green);
+    }
+
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    /* ── POST CARDS ── */
+    .post-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      border-left: 4px solid;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .post-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+    }
+
+    .post-card.dim  { border-left-color: var(--green); }
+    .post-card.mer  { border-left-color: var(--blue); }
+    .post-card.story{ border-left-color: var(--pink); }
+    .post-card.reel { border-left-color: var(--yellow); }
+    .post-card.hidden { display: none; }
+
+    .post-type-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      text-transform: uppercase;
+      width: fit-content;
+    }
+
+    .badge-dim   { background: var(--green-pale);  color: var(--green-dark); }
+    .badge-mer   { background: var(--blue-pale);   color: var(--blue-dark); }
+    .badge-story { background: var(--pink-pale);   color: var(--pink-dark); }
+    .badge-reel  { background: var(--yellow-pale); color: var(--yellow-dark); }
+
+    .post-date  { font-size: 11px; color: var(--text-faint); }
+    .post-title { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.35; }
+    .post-theme { font-size: 12px; color: var(--text-muted); }
+
+    .post-status {
+      position: absolute;
+      top: 12px; right: 14px;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+    }
+
+    .status-done    { background: var(--green); }
+    .status-planned { background: var(--blue); }
+    .status-idea    { background: var(--border-strong); }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      border-top: 1px dashed var(--border);
+      margin: 2rem 0;
+    }
+
+    /* ── MODAL BACKDROP ── */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 20, 18, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 1rem;
+      backdrop-filter: blur(2px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .modal-backdrop.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-box {
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      max-width: 560px;
+      width: 100%;
+      max-height: 88vh;
+      overflow-y: auto;
+      padding: 1.75rem;
+      transform: translateY(12px);
+      transition: transform 0.2s ease;
+    }
+
+    .modal-backdrop.open .modal-box { transform: translateY(0); }
+
+    .modal-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.25rem;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      font-size: 22px;
+      line-height: 1;
+      padding: 4px 8px;
+      border-radius: 6px;
+      transition: background 0.1s;
+    }
+
+    .modal-close:hover { background: var(--bg); }
+
+    .modal-type-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 3px;
+    }
+
+    .modal-title {
+      font-family: 'Gruppo', sans-serif;
+      font-size: 20px;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .modal-date-badge {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .modal-section { margin-bottom: 1.25rem; }
+
+    .modal-section-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-faint);
+      margin-bottom: 8px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .modal-content {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--text);
+      white-space: pre-wrap;
+    }
+
+    .modal-tips {
+      background: var(--bg);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .modal-hashtags {
+      font-size: 12px;
+      color: var(--blue);
+      line-height: 2;
+      word-break: break-word;
+    }
+
+    /* ── BUTTONS ── */
+    .modal-cta {
+      margin-top: 1.25rem;
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 11px 14px;
+      border-radius: var(--radius-sm);
+      font-family: 'Quicksand', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn-secondary {
+      background: var(--bg);
+      border: 1.5px solid var(--border-strong);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover { background: var(--border); }
+
+    .btn-primary {
+      background: var(--green);
+      border: none;
+      color: white;
+    }
+
+    .btn-primary:hover { background: var(--green-dark); }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #1A1A18;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: 'Quicksand', sans-serif;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s ease;
+      z-index: 9999;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ── EMPTY STATE ── */
+    .empty-state {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--text-faint);
+      font-size: 14px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .topbar { padding: 1rem; flex-direction: column; gap: 4px; align-items: flex-start; }
+      .wrapper { padding: 1.5rem 1rem 3rem; }
+      .posts-grid { grid-template-columns: 1fr; }
+      .modal-cta { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="logo">
+    BRILLE<span class="logo-dot"></span>
+  </div>
+  <span class="topbar-sub">Calendrier éditorial Instagram — Mai → Août 2026</span>
+</header>
+
+<!-- MAIN -->
+<main class="wrapper">
+
+  <!-- LEGEND -->
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Post dimanche</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div> Carrousel mercredi</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--pink)"></div> Story</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--yellow)"></div> Réel</div>
+    <span class="legend-sep">·</span>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Publié</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div> Planifié</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--border-strong)"></div> Idée</div>
+  </div>
+
+  <!-- FILTERS -->
+  <div class="filters-bar">
+    <span class="filter-label">Filtrer :</span>
+    <button class="filter-btn f-all active" onclick="setFilter('all', this)">Tout voir</button>
+    <button class="filter-btn f-dim"         onclick="setFilter('dim', this)">Dimanche</button>
+    <button class="filter-btn f-mer"         onclick="setFilter('mer', this)">Mercredi</button>
+    <button class="filter-btn f-story"       onclick="setFilter('story', this)">Stories</button>
+    <button class="filter-btn f-reel"        onclick="setFilter('reel', this)">Réels</button>
+  </div>
+
+  <!-- CALENDAR CONTAINER -->
+  <div id="calendar"></div>
+
+</main>
+
+<!-- MODAL -->
+<div class="modal-backdrop" id="modal" onclick="handleBackdropClick(event)">
+  <div class="modal-box">
+    <div class="modal-top">
+      <div>
+        <div class="modal-type-label" id="m-type"></div>
+        <div class="modal-title" id="m-title"></div>
+        <div class="modal-date-badge" id="m-date"></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()" aria-label="Fermer">✕</button>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">Texte du post</div>
+      <div class="modal-content" id="m-content"></div>
+    </div>
+
+    <div class="modal-section" id="m-tips-section">
+      <div class="modal-section-title">Conseils visuels</div>
+      <div class="modal-tips" id="m-tips"></div>
+    </div>
+
+    <div class="modal-section" id="m-tags-section">
+      <div class="modal-section-title">Hashtags</div>
+      <div class="modal-hashtags" id="m-tags"></div>
+    </div>
+
+    <div class="modal-cta">
+      <button class="btn btn-secondary" onclick="copyPost()">📋 Copier le texte</button>
+      <button class="btn btn-secondary" onclick="copyHashtags()">🔗 Copier les hashtags</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✓ Copié dans le presse-papiers</div>
+
+<script>
+const posts = [
+  // ── SEMAINE 11 MAI ──
+  {
+    week: "Semaine du 11 mai",
+    date: "Dim 11 mai",
+    type: "dim",
+    status: "planned",
+    title: "Ce que les enfants disent sans les mots",
+    theme: "Signaux QVE",
+    content: `✨ Votre enfant ne dit pas toujours "je ne vais pas bien".
+
+Mais il vous envoie des signaux.
+
+Voici 3 comportements que j'observe souvent — et qui méritent qu'on s'y arrête :
+
+1️⃣ Il refuse d'aller à l'école le matin alors qu'avant, il y allait sans broncher.
+
+2️⃣ Il s'isole dans sa chambre ou devant un écran dès qu'il rentre.
+
+3️⃣ Il explose pour des "petites choses" — un verre renversé, un jouet déplacé.
+
+Ces comportements ne sont pas des caprices. Ce sont des messages.
+
+Et souvent, ni l'enfant ni le parent ne dispose d'un espace pour les décoder ensemble.
+
+C'est exactement pour ça que j'ai créé l'Atelier Étincelle. 🌟
+
+Un moment rien que pour vous deux — pour mettre des mots, trouver des clés, renouer.
+
+→ Est-ce que l'un de ces signaux vous parle ?`,
+    tips: "Photo : mains d'enfant et d'adulte côte à côte, lumière douce naturelle. Ou visuel texturé vert Étincelle avec les 3 points en typographie Quicksand.",
+    tags: "#parentalité #QVE #qualitedeviedenfant #bienêtreenfant #atelieretincelle #BRILLE #familles #centresocial #enfant612"
+  },
+  {
+    week: "Semaine du 11 mai",
+    date: "Mer 14 mai",
+    type: "mer",
+    status: "planned",
+    title: "Comment j'ai conçu l'Atelier Étincelle",
+    theme: "Carrousel : coulisses conception",
+    content: `Slide 1 — TITRE
+"De la QVT à la QVE : comment est né l'Atelier Étincelle"
+
+Slide 2
+Tout a commencé par un mémoire de Master 2 sur la Qualité de Vie au Travail (QVT). J'ai passé des mois à observer comment l'environnement impacte le bien-être des adultes au quotidien.
+
+Slide 3
+Et si on appliquait la même rigueur... à l'enfant ?
+La Qualité de Vie de l'Enfant (QVE) est née de cette question. Ce n'est pas un concept thérapeutique — c'est un outil de médiation, de co-construction.
+
+Slide 4
+J'ai identifié 4 dimensions clés de la QVE :
+→ L'épanouissement personnel
+→ Les relations familiales
+→ L'environnement scolaire et social
+→ La capacité à s'exprimer
+
+Slide 5
+L'Atelier Étincelle, c'est 2h pour explorer ces dimensions ensemble. Parent + enfant (6-12 ans). Un format participatif, pas de diagnostic, pas de thérapie.
+
+Slide 6 — CTA
+Vous êtes coordinateur·trice de centre social ?
+Je suis disponible pour vous présenter le dispositif.
+📩 tsioryleonard@gmail.com`,
+    tips: "Fond blanc avec accents verts (palette Étincelle). Une slide = une idée. Typographie Gruppo pour les titres de slides, Quicksand pour le corps.",
+    tags: "#ingénierie de formation #QVE #QVT #atelieretincelle #conceptionpédagogique #BRILLE #parentalité #centresocial #dispositifsocioéducatif"
+  },
+
+  // ── SEMAINE 18 MAI ──
+  {
+    week: "Semaine du 18 mai",
+    date: "Dim 18 mai",
+    type: "dim",
+    status: "idea",
+    title: "Mon parcours en toute honnêteté",
+    theme: "Humaniser BRILLE",
+    content: `On ne se connaît pas encore vraiment. Alors laissez-moi me présenter autrement.
+
+Je m'appelle Tsiory. Je suis cheffe d'entreprise, ingénieure de formation et maman d'une curiosité sans fond pour le développement de l'enfant.
+
+Avant de créer BRILLE, j'avais un Master 2 MEEF en ingénierie de formation, un Master en politique publique, un droit… et une question qui ne me lâchait pas :
+
+"Pourquoi met-on autant de soin dans la qualité de vie au travail des adultes, et si peu dans celle des enfants ?"
+
+C'est de là qu'est née la QVE — Qualité de Vie de l'Enfant.
+
+Pas une thérapie. Pas un diagnostic.
+Un espace de médiation, d'écoute et de co-construction entre l'enfant et sa famille.
+
+Je ne prétends pas avoir toutes les réponses. Mais je crois profondément que chaque enfant mérite qu'on s'assoie avec lui — vraiment — et qu'on lui demande comment il va. 🌱
+
+→ Et vous, qu'est-ce qui vous a amené à vous intéresser au bien-être de votre enfant ?`,
+    tips: "Portrait de Tsiory en lumière naturelle, souriant. Recadrage circulaire dans le style BRILLE. Fond neutre ou vert pâle.",
+    tags: "#BRILLE #fondatrice #QVE #parentalité #atelieretincelle #ingénierie de formation #entrepreneuriatféminin #actionsociale #bienêtreenfant"
+  },
+  {
+    week: "Semaine du 18 mai",
+    date: "Mer 21 mai",
+    type: "mer",
+    status: "idea",
+    title: "Ce que l'Atelier apporte au centre social",
+    theme: "Carrousel : valeur pour les partenaires",
+    content: `Slide 1 — TITRE
+"Pourquoi accueillir l'Atelier Étincelle dans votre centre social ?"
+
+Slide 2
+Vous accompagnez des familles au quotidien. Vous voyez les tensions, les silences, les ruptures de lien.
+L'Atelier Étincelle vient en complément de vos actions — pas les remplacer.
+
+Slide 3
+✅ Un atelier clé en main
+Je fournis tout le matériel pédagogique. Vous mettez à disposition un espace et vos familles.
+
+Slide 4
+✅ Une approche non-thérapeutique
+BRILLE est positionné sur la médiation et la co-construction. Aucun acte clinique, aucun diagnostic.
+
+Slide 5
+✅ Une animatrice qualifiée
+Master 2 MEEF • BAFA spécialisé • Expérience en accompagnement des familles
+
+Slide 6
+✅ Un renforcement de votre offre famille
+L'atelier peut s'intégrer à vos temps forts : vacances scolaires, journées parentalité, animations de quartier.
+
+Slide 7 — CTA
+📩 Une question ? Une envie d'en savoir plus ?
+tsioryleonard@gmail.com — 07 45 32 30 90`,
+    tips: "Style professionnel mais chaleureux. Icônes simples (coeur, étoile, diplôme). Fond blanc, accents verts Étincelle. Ton B2B mais humain.",
+    tags: "#centresocial #partenariat #atelieretincelle #BRILLE #dispositifsocioéducatif #parentalité #familles #QVE #animationsociale"
+  },
+
+  // ── SEMAINE 25 MAI ──
+  {
+    week: "Semaine du 25 mai",
+    date: "Dim 25 mai",
+    type: "dim",
+    status: "idea",
+    title: "Le centre social : un allié que je ne remplacerai jamais",
+    theme: "Posture de co-construction",
+    content: `Je veux être honnête avec vous.
+
+BRILLE ne remplace pas le centre social. Ni l'assistante sociale. Ni le travailleur de rue. Ni l'éducateur.
+
+Ces professionnels font un travail que je ne sais pas faire — et que je n'ai pas vocation à faire.
+
+Mon rôle est différent : je crée des espaces où l'enfant et son parent peuvent se retrouver, sans pression, sans jugement, sans objectif thérapeutique.
+
+L'Atelier Étincelle, c'est 2h dans un environnement bienveillant, avec des outils pédagogiques conçus pour que la parole circule naturellement.
+
+Et souvent, ces 2h permettent à une famille de repartir avec quelque chose de simple mais précieux :
+mieux se comprendre. 🌿
+
+Le centre social est le terrain. Moi, j'apporte les graines.
+
+→ Vous travaillez dans un centre social ou avec des familles ? Je serais heureuse d'échanger avec vous.`,
+    tips: "Image de plante qui pousse dans une serre ou jardin communautaire. Métaphore végétale cohérente avec le nom BRILLE. Tons verts et naturels.",
+    tags: "#centresocial #partenariat #co-construction #BRILLE #atelieretincelle #actionsociale #parentalité #travailsocial #QVE"
+  },
+  {
+    week: "Semaine du 25 mai",
+    date: "Mer 28 mai",
+    type: "mer",
+    status: "idea",
+    title: "5 idées reçues sur l'aide à la parentalité",
+    theme: "Carrousel éducatif",
+    content: `Slide 1 — TITRE
+"5 idées reçues sur l'aide à la parentalité (et ce que j'en pense)"
+
+Slide 2
+❌ "C'est pour les parents en difficulté."
+✅ Non. C'est pour tous les parents qui veulent comprendre leur enfant — et être mieux compris par lui.
+
+Slide 3
+❌ "Mon enfant va bien, j'en ai pas besoin."
+✅ La QVE, ce n'est pas de la crise. C'est de la prévention. Comme le sport : on n'attend pas d'être malade.
+
+Slide 4
+❌ "C'est une thérapie déguisée."
+✅ Pas du tout. L'Atelier Étincelle est un espace de médiation et de jeu. Aucun acte clinique, aucun diagnostic.
+
+Slide 5
+❌ "Mon enfant ne voudra pas participer."
+✅ Les ateliers sont conçus pour être ludiques et participatifs. En général, ce sont les enfants qui veulent rester ! 😄
+
+Slide 6
+❌ "C'est trop cher pour nous."
+✅ BRILLE travaille en partenariat avec les centres sociaux — ce qui permet d'accéder aux ateliers à tarif adapté ou gratuitement.
+
+Slide 7 — CTA
+Une idée reçue que j'aurais oublié ?
+Dites-le moi en commentaire 👇`,
+    tips: "Format question/réponse avec couleurs alternées. Rouge pâle pour l'idée reçue, vert pour la réponse. Dynamique et pédagogique.",
+    tags: "#idéesreçues #parentalité #QVE #atelieretincelle #BRILLE #bienêtreenfant #familles #centresocial #parentingfrance"
+  },
+
+  // ── SEMAINE 1 JUIN ──
+  {
+    week: "Semaine du 1 juin",
+    date: "Dim 1 juin",
+    type: "dim",
+    status: "idea",
+    title: "Le moment où tout a basculé",
+    theme: "Storytelling fondateur",
+    content: `Je me souviens d'un moment précis.
+
+C'était lors d'un accompagnement de famille. Un enfant de 9 ans, silencieux, les yeux baissés. Sa mère, à côté, qui ne savait plus comment lui parler.
+
+Ils étaient dans la même pièce. Mais à des kilomètres l'un de l'autre.
+
+Ce soir-là, j'ai pensé à mon mémoire de Master sur la QVT — la Qualité de Vie au Travail. Toute cette attention portée aux adultes dans leurs environnements professionnels...
+
+Et cet enfant, lui, qui n'avait pas de "baromètre". Pas d'espace dédié pour dire : voilà comment je vis, voilà ce dont j'ai besoin.
+
+J'ai passé les mois suivants à concevoir ce qui deviendrait l'Atelier Étincelle.
+
+Pas une thérapie. Pas un cours.
+Un espace. Un temps. Une rencontre. 🌟
+
+→ Quelle rencontre vous a un jour changé quelque chose ?`,
+    tips: "Photo en noir et blanc ou sépia d'un carnet de notes, d'un bureau de travail. Ambiance intime et personnelle. Ou illustration minimaliste.",
+    tags: "#storytelling #BRILLE #fondatrice #QVE #atelieretincelle #parentalité #ingénierie de formation #bienêtreenfant #histoirevraie"
+  },
+  {
+    week: "Semaine du 1 juin",
+    date: "Mer 4 juin",
+    type: "mer",
+    status: "idea",
+    title: "Comment se déroule vraiment un atelier Étincelle",
+    theme: "Carrousel : déroulé détaillé",
+    content: `Slide 1 — TITRE
+"Dans les coulisses de l'Atelier Étincelle ✨"
+
+Slide 2 — Avant l'atelier
+Le parent et l'enfant arrivent ensemble. Pas de mise en scène, pas de pression. On s'installe, on respire. Je prends le temps de présenter l'espace.
+
+Slide 3 — Phase 1 : L'accueil (20 min)
+Un temps de "mise en mouvement" pour que le corps et la parole se détendent. Jeux de mise en confiance, icebreakers adaptés à l'âge de l'enfant.
+
+Slide 4 — Phase 2 : L'exploration (60 min)
+C'est le cœur de l'atelier. Parent et enfant travaillent avec des outils visuels et narratifs autour des 4 dimensions de la QVE : épanouissement, relations, environnement, expression.
+
+Slide 5 — Phase 3 : La mise en commun (30 min)
+On partage. On écoute. Sans jugement. Je joue le rôle de médiatrice — pas de juge, pas de thérapeute.
+
+Slide 6 — Après l'atelier
+10 minutes de débrief. L'enfant et le parent repartent avec une "carte des priorités" — un outil concret pour continuer la conversation à la maison.
+
+Slide 7 — CTA
+L'atelier dure 2h et accueille un binôme parent-enfant à la fois.
+→ Votre centre social serait intéressé ? Écrivez-moi 📩`,
+    tips: "Illustrations timeline horizontale ou verticale. Style épuré, cohérent avec la charte BRILLE. Chaque phase avec une icône simple.",
+    tags: "#atelieretincelle #BRILLE #QVE #parentalité #centresocial #dérouléatelier #pedagogieparticipative #bienêtreenfant #familles"
+  },
+
+  // ── SEMAINE 8 JUIN ──
+  {
+    week: "Semaine du 8 juin",
+    date: "Dim 8 juin",
+    type: "dim",
+    status: "idea",
+    title: "Une journée dans la vie d'un enfant épanoui",
+    theme: "Vision positive / aspirationnelle",
+    content: `Imaginez.
+
+7h30 — Il se lève. Pas parce qu'on l'y oblige. Parce qu'il a envie de voir ce que la journée lui réserve.
+
+8h15 — Dans la voiture ou le bus, il vous raconte son rêve de la nuit. Vous l'écoutez. Vous lui répondez. Il se sent entendu.
+
+16h30 — À la sortie de l'école, il ne dit pas "rien" quand vous lui demandez comment s'est passée sa journée. Il vous dit "tu sais quoi..."
+
+20h — Au moment du coucher, il vous demande si demain, vous pourrez encore jouer ensemble.
+
+Ce n'est pas un enfant parfait. C'est un enfant dont la qualité de vie est nourrie — par des liens, par l'écoute, par des espaces pour s'exprimer.
+
+La QVE, c'est ça. Pas un idéal inaccessible.
+Une direction. Une pratique. Un quotidien possible. 🌱
+
+→ Dans votre quotidien, quel moment avec votre enfant vous nourrit le plus ?`,
+    tips: "Série de petites photos de moments du quotidien (petit déjeuner, trajet, jeu). Lumière chaude et naturelle. Montage style journal de bord.",
+    tags: "#QVE #qualitedeviedenfant #parentalité #bienêtreenfant #atelieretincelle #BRILLE #lienparentenfant #familles #viequotidienne"
+  },
+  {
+    week: "Semaine du 8 juin",
+    date: "Mer 11 juin",
+    type: "mer",
+    status: "idea",
+    title: "Les 4 dimensions de la QVE expliquées",
+    theme: "Carrousel : cadre conceptuel",
+    content: `Slide 1 — TITRE
+"La QVE : 4 dimensions pour comprendre le bien-être de votre enfant"
+
+Slide 2
+🌟 Dimension 1 : L'épanouissement personnel
+Comment l'enfant se perçoit-il ? A-t-il des moments pour être lui-même, explorer ses envies, ressentir de la fierté ?
+
+Slide 3
+🤝 Dimension 2 : Les relations familiales
+Quelle est la qualité du lien entre l'enfant et ses proches ? Se sent-il écouté ? En sécurité affective ?
+
+Slide 4
+🏫 Dimension 3 : L'environnement scolaire et social
+Comment l'enfant vit-il son école, ses amis, son quartier ? Se sent-il à sa place dans ces espaces ?
+
+Slide 5
+🗣️ Dimension 4 : La capacité à s'exprimer
+L'enfant peut-il mettre des mots sur ce qu'il ressent ? A-t-il des espaces pour s'exprimer sans crainte ?
+
+Slide 6
+L'Atelier Étincelle explore ces 4 dimensions en 2h, avec parent et enfant ensemble — grâce à des outils visuels et participatifs.
+
+Slide 7 — CTA
+Lequel de ces 4 piliers vous semble le plus fragile pour votre enfant en ce moment ?
+→ Dites-le en commentaire 👇`,
+    tips: "Carrousel graphique avec les 4 dimensions dans 4 couleurs de la palette BRILLE (vert, bleu, jaune, mauve). Design clair et mémorisable.",
+    tags: "#QVE #bienêtreenfant #parentalité #atelieretincelle #BRILLE #développementenfant #qualitedevie #familles #centresocial"
+  },
+
+  // ── SEMAINE 15 JUIN ──
+  {
+    week: "Semaine du 15 juin",
+    date: "Dim 15 juin",
+    type: "dim",
+    status: "idea",
+    title: "Fête des pères : ce que mon enfant m'a appris",
+    theme: "Post thématique fête des pères",
+    content: `Aujourd'hui c'est la fête des pères. 🌻
+
+Mais je voudrais qu'on retourne le prisme une seconde.
+
+Ce que nos enfants nous apprennent, nous, adultes :
+
+→ L'enfant ne ment pas sur ses émotions. Quand il pleure, il pleure. Quand il rit, tout son corps rit. Il n'a pas encore appris à faire semblant.
+
+→ L'enfant vit dans le présent. Il ne ressasse pas hier, il n'anticipe pas demain. Il joue. Maintenant.
+
+→ L'enfant pose les vraies questions. "Pourquoi on meurt ?" "Est-ce qu'on s'aimera toujours ?" Il ne filtre pas.
+
+Dans l'Atelier Étincelle, je ne cherche pas à "corriger" l'enfant. Je cherche à créer les conditions pour que parent et enfant s'apprennent mutuellement.
+
+Parce que la relation, c'est à double sens. Toujours.
+
+Bonne fête à tous les papas. Et merci aux enfants qui nous montrent le chemin. 🌿`,
+    tips: "Photo douce d'une main adulte et d'une main enfant. Ou photo d'un père et son enfant, lumière naturelle. Pas de mise en scène forcée.",
+    tags: "#fêtedespères #parentalité #lienparentenfant #BRILLE #QVE #bienêtreenfant #familles #atelieretincelle #père"
+  },
+  {
+    week: "Semaine du 15 juin",
+    date: "Mer 18 juin",
+    type: "mer",
+    status: "idea",
+    title: "L'auto-audit : comment lire vos résultats",
+    theme: "Carrousel : retour sur l'auto-audit",
+    content: `Slide 1 — TITRE
+"Vous avez fait l'auto-audit QVE ? Voici comment lire vos résultats"
+
+Slide 2
+L'auto-audit n'est pas un test. Il n'y a pas de bonnes ou de mauvaises réponses. C'est un miroir — pour mieux voir où vous en êtes.
+
+Slide 3
+🟢 Vous avez répondu majoritairement "souvent" ou "toujours"
+Votre enfant bénéficie d'un environnement riche en liens et en expression. Continuez à nourrir ces espaces !
+
+Slide 4
+🟡 Vous avez répondu souvent "parfois"
+Il y a des ressources, mais aussi des angles morts. L'Atelier Étincelle peut vous aider à identifier et renforcer ces zones fragiles.
+
+Slide 5
+🔴 Vous avez répondu souvent "rarement" ou "jamais"
+Pas de panique. Le fait de l'avoir remarqué, c'est déjà un premier pas. L'atelier est fait pour vous — sans jugement.
+
+Slide 6
+Quel que soit votre profil, l'auto-audit est un point de départ, pas un verdict.
+
+Slide 7 — CTA
+Vous n'avez pas encore fait l'auto-audit ?
+→ [Lien en bio] 🔗`,
+    tips: "Palette de couleurs feux tricolores (vert / jaune / rouge) sur fond blanc. Cohérent et lisible. Terminer sur le vert pour l'énergie positive.",
+    tags: "#autoaudit #QVE #parentalité #atelieretincelle #BRILLE #bienêtreenfant #évaluation #familles #centresocial"
+  },
+
+  // ── SEMAINE 22 JUIN ──
+  {
+    week: "Semaine du 22 juin",
+    date: "Dim 22 juin",
+    type: "dim",
+    status: "idea",
+    title: "Ce que j'ai appris en observant des enfants",
+    theme: "Observation terrain",
+    content: `Depuis que je travaille avec des familles, j'ai appris une chose fondamentale.
+
+Les enfants ne demandent pas grand chose.
+
+Ils demandent à être vus.
+
+Pas surveillés. Pas corrigés. Pas jugés.
+
+Vus.
+
+"Tu as remarqué que j'avais changé ma coiffure ?"
+"Tu as vu que j'avais fini mon dessin ?"
+"Tu as vu quand j'ai réussi à tenir en équilibre ?"
+
+Ces petits moments où un adulte dit "oui, je t'ai vu" — ils construisent quelque chose d'immense dans l'enfant.
+
+Un sentiment d'existence. De valeur. D'appartenance.
+
+Dans l'Atelier Étincelle, je crée des conditions pour que ces moments arrivent. Et souvent, les parents sont surpris : "Je ne savais pas que ça lui importait autant."
+
+Être parent, c'est un apprentissage permanent. Et c'est beau. 🌟
+
+→ Quel petit moment a compté pour votre enfant cette semaine ?`,
+    tips: "Photo d'enfant en train de faire quelque chose de concentré — dessin, construction. Regardé par un adulte. Lumière naturelle chaude.",
+    tags: "#parentalité #lienparentenfant #QVE #BRILLE #atelieretincelle #bienêtreenfant #observation #familles #développementenfant"
+  },
+  {
+    week: "Semaine du 22 juin",
+    date: "Mer 25 juin",
+    type: "mer",
+    status: "idea",
+    title: "Travailler avec BRILLE : comment ça se passe",
+    theme: "Carrousel : process partenariat",
+    content: `Slide 1 — TITRE
+"Vous êtes coordinateur·trice ? Voici comment accueillir BRILLE dans votre structure"
+
+Slide 2 — Étape 1 : On se parle
+Un premier appel ou échange mail pour vous présenter le dispositif, répondre à vos questions, comprendre vos familles et vos contraintes.
+
+Slide 3 — Étape 2 : On cadre
+On définit ensemble le format : nombre de séances, public cible, planning, espace nécessaire. Je m'adapte à votre fonctionnement.
+
+Slide 4 — Étape 3 : On prépare
+Je fournis tous les supports pédagogiques. Vous communiquez auprès de vos familles. On s'assure que tout est en place pour un accueil bienveillant.
+
+Slide 5 — Étape 4 : On anime
+L'atelier se déroule sur votre site. Je prends en charge l'animation. Vous pouvez être présent·e ou non, selon votre souhait.
+
+Slide 6 — Étape 5 : On évalue
+Après chaque cycle, on fait le point ensemble : retours des familles, ajustements possibles, suite éventuelle.
+
+Slide 7 — CTA
+📩 tsioryleonard@gmail.com
+📞 07 45 32 30 90
+Ou envoyez-moi un DM directement !`,
+    tips: "Timeline en étapes numérotées. Style professionnel mais accessible. Icône simple pour chaque étape. Fond blanc, accent vert Étincelle.",
+    tags: "#centresocial #partenariat #BRILLE #atelieretincelle #dispositifsocioéducatif #animationsociale #parentalité #QVE #professionnel"
+  },
+
+  // ── SEMAINE 29 JUIN ──
+  {
+    week: "Semaine du 29 juin",
+    date: "Dim 29 juin",
+    type: "dim",
+    status: "idea",
+    title: "Avant les grandes vacances : le bon moment",
+    theme: "Post saisonnier / transition",
+    content: `Dans quelques jours, les écoles ferment. ☀️
+
+Pour certains enfants, c'est une libération.
+Pour d'autres, c'est une rupture de repères.
+Pour beaucoup, c'est les deux en même temps.
+
+Les grandes vacances, c'est du temps. Énorme. Précieux. Et parfois un peu vertigineux pour les familles.
+
+C'est souvent là que les tensions montent : les enfants qui s'ennuient, les parents qui travaillent, les journées qui s'étendent, les écrans qui prennent trop de place...
+
+Mais c'est aussi là que les liens peuvent vraiment se tisser. Sans l'urgence du cartable. Sans le stress des devoirs.
+
+Si vous souhaitez aborder ces vacances avec une boussole — pour comprendre ce dont votre enfant a vraiment besoin — l'auto-audit QVE est un bon point de départ.
+
+→ Lien en bio 🔗
+
+Belles vacances à venir. 🌿`,
+    tips: "Visuel estival mais sobre : feuilles, soleil dessiné, couleurs pastels BRILLE. Pas de plage ou de vacances clichés — rester dans l'univers chaleureux de la marque.",
+    tags: "#grandesvacances #parentalité #QVE #BRILLE #atelieretincelle #bienêtreenfant #familles #été #lienparentenfant"
+  },
+  {
+    week: "Semaine du 29 juin",
+    date: "Mer 2 juil",
+    type: "mer",
+    status: "idea",
+    title: "5 façons de prendre soin de la QVE cet été",
+    theme: "Carrousel : activités estivales QVE",
+    content: `Slide 1 — TITRE
+"5 façons simples de prendre soin de la QVE de votre enfant cet été"
+
+Slide 2
+1. La question du soir 🌙
+Chaque soir avant de dormir : "Quelle est la meilleure chose qui t'est arrivée aujourd'hui ?" Et une moins bonne. Sans pression. Juste de l'écoute.
+
+Slide 3
+2. Un projet à lui 🎨
+Laissez votre enfant choisir UN projet pour l'été : construire quelque chose, apprendre quelque chose, créer quelque chose. Et accompagnez-le sans diriger.
+
+Slide 4
+3. Les moments sans écran partagés 📵
+Pas pour punir. Pour se retrouver. Une heure ensemble, sans téléphone. Marche, jeu de cartes, cuisine... Ce que l'enfant choisit.
+
+Slide 5
+4. Dire "je t'ai vu" ✨
+Nommez ce que vous observez chez votre enfant. Pas des compliments vagues — des observations précises : "J'ai vu comment tu as aidé ta sœur ce matin."
+
+Slide 6
+5. Lui demander ce dont il a besoin 🗣️
+"Est-ce qu'il y a quelque chose que tu voudrais qu'on fasse ensemble cet été ?" Et vraiment écouter la réponse — même si elle vous surprend.
+
+Slide 7 — CTA
+Gardez une de ces 5 pratiques pour la rentrée.
+Et si vous voulez aller plus loin → auto-audit QVE en bio !`,
+    tips: "Illustrations simples et estivales pour chaque conseil. Palette BRILLE pastel. Fond blanc, icônes minimalistes. Léger, positif, actionnable.",
+    tags: "#été #vacances #parentalité #QVE #BRILLE #bienêtreenfant #familles #conseilsparentaux #atelieretincelle #lienparentenfant"
+  },
+
+  // ── STORIES ──
+  {
+    week: "Stories suggérées",
+    date: "Story 1",
+    type: "story",
+    status: "idea",
+    title: "Sondage : ton enfant fait-il ça ?",
+    theme: "Engagement / signaux QVE",
+    content: `STORY — Sondage interactif (2 slides)
+
+Slide 1 — Sondage
+Fond : vert BRILLE pastel | Typographie Quicksand
+
+Texte : "Quand je lui demande comment s'est passée sa journée, mon enfant répond..."
+
+Option A : "Bien" (et c'est tout)
+Option B : Il me raconte tout en détail
+
+---
+
+Slide 2 — Résultat commenté
+"Si votre enfant répond surtout 'bien' ou 'rien'...
+vous n'êtes pas seul·e.
+
+C'est souvent le signe que l'espace pour se raconter n'est pas encore tout à fait là.
+
+Et ça, ça se travaille. 💚"
+
+→ Swipe up / Lien : auto-audit QVE`,
+    tips: "Fond pastel vert Étincelle. Sticker sondage Instagram natif. 2 slides : sondage + résultat commenté.",
+    tags: ""
+  },
+  {
+    week: "Stories suggérées",
+    date: "Story 2",
+    type: "story",
+    status: "idea",
+    title: "Coulisses : ma journée de préparation atelier",
+    theme: "Behind the scenes / humaniser",
+    content: `STORY — Série de 4 slides (photos authentiques)
+
+Slide 1
+Photo : espace de travail / matériel pédagogique étalé sur une table
+Texte : "Ce matin, je prépare un atelier Étincelle ✨"
+
+Slide 2
+Photo : gros plan sur un outil pédagogique (carte, fiche...)
+Texte : "Chaque élément est pensé pour que parent et enfant puissent s'exprimer sans se sentir jugés."
+
+Slide 3
+Photo : vous en train de travailler ou de sourire
+Texte : "C'est ma partie préférée — le moment de mise en place, quand tout est encore possible."
+
+Slide 4 — CTA
+"Vous voulez accueillir un atelier dans votre centre social ?
+→ DM ou lien en bio 📩"`,
+    tips: "Photos authentiques, pas trop stylisées. Lumière naturelle. Montrez le vrai travail de préparation — ça humanise et rassure les partenaires.",
+    tags: ""
+  },
+
+  // ── RÉELS ──
+  {
+    week: "Réels suggérés",
+    date: "Réel 3",
+    type: "reel",
+    status: "idea",
+    title: "3 questions à poser à votre enfant ce soir",
+    theme: "Conseil actionnable / format rapide",
+    content: `RÉEL — 45-60 secondes
+Format : face caméra ou texte animé sur fond BRILLE
+
+Script :
+"Si vous ne savez pas comment engager la conversation avec votre enfant ce soir, essayez ces 3 questions.
+
+Numéro 1 : 'Quelle est la chose qui t'a le plus surpris aujourd'hui ?'
+
+Numéro 2 : 'Si tu pouvais changer une chose de ta journée, ce serait quoi ?'
+
+Numéro 3 : 'Est-ce qu'il y a quelque chose que tu aurais voulu me dire, mais tu n'as pas osé ?'
+
+Ces questions ne cherchent pas de réponses parfaites. Elles ouvrent juste une porte. Et parfois, c'est tout ce dont un enfant a besoin.
+
+Pour aller plus loin → l'auto-audit QVE est en bio."`,
+    tips: "Format face caméra avec sous-titres. Rythme calme, voix posée. Ou texte animé sur fond vert avec musique douce. Sous-titres obligatoires.",
+    tags: "#parentalité #réel #bienêtreenfant #QVE #BRILLE #conseilsparentaux #atelieretincelle #lienparentenfant #familles"
+  },
+  {
+    week: "Réels suggérés",
+    date: "Réel 4",
+    type: "reel",
+    status: "idea",
+    title: "C'est quoi exactement la QVE ?",
+    theme: "Explication concept en 60 sec",
+    content: `RÉEL — 60 secondes
+Format : face caméra, décor neutre et soigné
+
+Script :
+"La QVE — Qualité de Vie de l'Enfant — c'est un concept que j'ai développé à partir de mes recherches sur la QVT.
+
+On sait depuis longtemps que l'environnement de travail impacte le bien-être des adultes. Mais l'enfant, lui, a aussi un 'environnement de vie' — son école, sa famille, ses relations, sa capacité à s'exprimer.
+
+La QVE, c'est un cadre pour observer, comprendre et améliorer cet environnement. Sans diagnostic. Sans jugement. Sans thérapie.
+
+C'est la base de tout ce que je fais chez BRILLE — et notamment de l'Atelier Étincelle, qu'on mène dans les centres sociaux.
+
+Si vous voulez évaluer la QVE de votre enfant, l'auto-audit est en bio. Gratuit. Anonyme. 5 minutes."
+
+[Musique douce en fond, sous-titres]`,
+    tips: "Fond neutre, lumière douce. Tenue professionnelle mais chaleureuse. Rythme posé. Accroche forte dans les 3 premières secondes. Sous-titres obligatoires.",
+    tags: "#QVE #qualitedeviedenfant #BRILLE #parentalité #atelieretincelle #bienêtreenfant #ingénierie de formation #centresocial #familles"
+  }
+];
+
+// ── STATE ──
+let currentFilter = 'all';
+let currentPost = null;
+
+// ── RENDER ──
+function renderCalendar() {
+  const cal = document.getElementById('calendar');
+  cal.innerHTML = '';
+
+  const weeks = {};
+  const weekOrder = [];
+
+  posts.forEach(p => {
+    if (!weeks[p.week]) { weeks[p.week] = []; weekOrder.push(p.week); }
+    weeks[p.week].push(p);
+  });
+
+  let hasAny = false;
+
+  weekOrder.forEach(week => {
+    const filtered = weeks[week].filter(p => currentFilter === 'all' || p.type === currentFilter);
+    if (!filtered.length) return;
+    hasAny = true;
+
+    const block = document.createElement('div');
+    block.className = 'week-block';
+
+    const label = document.createElement('div');
+    label.className = 'week-label';
+    label.textContent = week;
+    block.appendChild(label);
+
+    const grid = document.createElement('div');
+    grid.className = 'posts-grid';
+
+    filtered.forEach(p => {
+      const card = document.createElement('div');
+      card.className = `post-card ${p.type}`;
+      card.onclick = () => openModal(p);
+
+      const statusDot = document.createElement('div');
+      statusDot.className = `post-status status-${p.status}`;
+      card.appendChild(statusDot);
+
+      const badgeMap = {
+        dim:   ['badge-dim',   'Dimanche'],
+        mer:   ['badge-mer',   'Mercredi'],
+        story: ['badge-story', 'Story'],
+        reel:  ['badge-reel',  'Réel']
+      };
+      const [bc, bl] = badgeMap[p.type];
+      const badge = document.createElement('div');
+      badge.className = `post-type-badge ${bc}`;
+      badge.textContent = bl;
+      card.appendChild(badge);
+
+      const date = document.createElement('div');
+      date.className = 'post-date';
+      date.textContent = p.date;
+      card.appendChild(date);
+
+      const title = document.createElement('div');
+      title.className = 'post-title';
+      title.textContent = p.title;
+      card.appendChild(title);
+
+      const theme = document.createElement('div');
+      theme.className = 'post-theme';
+      theme.textContent = p.theme;
+      card.appendChild(theme);
+
+      grid.appendChild(card);
+    });
+
+    block.appendChild(grid);
+    cal.appendChild(block);
+
+    const hr = document.createElement('hr');
+    hr.className = 'divider';
+    cal.appendChild(hr);
+  });
+
+  if (!hasAny) {
+    cal.innerHTML = '<div class="empty-state">Aucun contenu pour ce filtre.</div>';
+  }
+}
+
+// ── FILTER ──
+function setFilter(type, btn) {
+  currentFilter = type;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCalendar();
+}
+
+// ── MODAL ──
+function openModal(p) {
+  currentPost = p;
+  const badgeMap = { dim: 'Post dimanche', mer: 'Carrousel mercredi', story: 'Story', reel: 'Réel' };
+  document.getElementById('m-type').textContent = badgeMap[p.type];
+  document.getElementById('m-title').textContent = p.title;
+  document.getElementById('m-date').textContent = p.date + ' · ' + p.theme;
+  document.getElementById('m-content').textContent = p.content;
+
+  const tipsSection = document.getElementById('m-tips-section');
+  const tipsEl = document.getElementById('m-tips');
+  if (p.tips) {
+    tipsEl.textContent = p.tips;
+    tipsSection.style.display = '';
+  } else {
+    tipsSection.style.display = 'none';
+  }
+
+  const tagsSection = document.getElementById('m-tags-section');
+  const tagsEl = document.getElementById('m-tags');
+  if (p.tags) {
+    tagsEl.textContent = p.tags;
+    tagsSection.style.display = '';
+  } else {
+    tagsSection.style.display = 'none';
+  }
+
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+  currentPost = null;
+}
+
+function handleBackdropClick(e) {
+  if (e.target === document.getElementById('modal')) closeModal();
+}
+
+// ── KEYBOARD ──
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
+
+// ── COPY ──
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+function copyPost() {
+  if (!currentPost) return;
+  const text = currentPost.content + (currentPost.tags ? '\n\n' + currentPost.tags : '');
+  navigator.clipboard.writeText(text).then(() => showToast('✓ Texte + hashtags copiés'));
+}
+
+function copyHashtags() {
+  if (!currentPost || !currentPost.tags) return;
+  navigator.clipboard.writeText(currentPost.tags).then(() => showToast('✓ Hashtags copiés'));
+}
+
+// ── INIT ──
+renderCalendar();
+</script>
+</body>
+</html>
