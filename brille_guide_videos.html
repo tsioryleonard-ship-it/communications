@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRILLE — Guide Vidéos Instagram</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Cormorant+Garamond:ital,wght@1,300;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #f49f4c;
+    --rose: #f5abaf;
+    --peche: #fdd5a5;
+    --jaune: #f8f4b8;
+    --lavande: #a4c2e7;
+    --bleu: #a8dbeb;
+    --vert: #cbe1b6;
+    --mauve: #b8aed7;
+    --rose-lilas: #ebc6e0;
+    --noir: #1a1a1a;
+    --gris: #5a5a5a;
+    --blanc: #fefefe;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #f9f6f2;
+    color: var(--noir);
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 40px;
+    position: relative;
+    background: var(--blanc);
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+    background: var(--vert);
+    opacity: 0.25;
+    top: -150px; left: -150px;
+    animation: morph 10s ease-in-out infinite;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 40% 60% 30% 70% / 60% 40% 70% 30%;
+    background: var(--rose-lilas);
+    opacity: 0.3;
+    bottom: -100px; right: -100px;
+    animation: morph 13s ease-in-out infinite reverse;
+  }
+
+  @keyframes morph {
+    0%, 100% { border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%; }
+    33% { border-radius: 40% 60% 30% 70% / 60% 40% 70% 30%; }
+    66% { border-radius: 70% 30% 50% 50% / 30% 60% 40% 70%; }
+  }
+
+  .hero-tag {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gris);
+    margin-bottom: 24px;
+    position: relative; z-index: 2;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -2px;
+    position: relative; z-index: 2;
+    margin-bottom: 8px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--orange);
+  }
+
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--gris);
+    margin-top: 20px;
+    position: relative; z-index: 2;
+    max-width: 500px;
+  }
+
+  .hero-count {
+    margin-top: 48px;
+    display: flex;
+    gap: 40px;
+    position: relative; z-index: 2;
+  }
+
+  .count-item {
+    text-align: center;
+  }
+
+  .count-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--orange);
+    display: block;
+  }
+
+  .count-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gris);
+  }
+
+  /* INTRO DISTINCTION */
+  .distinction {
+    background: var(--noir);
+    color: var(--blanc);
+    padding: 80px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .distinction::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 300px;
+    color: var(--orange);
+    opacity: 0.08;
+    position: absolute;
+    top: -60px; left: 40px;
+    line-height: 1;
+  }
+
+  .distinction h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 400;
+    font-style: italic;
+    max-width: 700px;
+    margin: 0 auto 32px;
+    line-height: 1.3;
+    position: relative; z-index: 2;
+  }
+
+  .distinction p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #aaa;
+    max-width: 580px;
+    margin: 0 auto;
+    position: relative; z-index: 2;
+  }
+
+  .distinction strong { color: var(--peche); }
+
+  /* VIDEOS GRID */
+  .section {
+    padding: 80px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    margin-bottom: 60px;
+  }
+
+  .section-tag {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--orange);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  /* VIDEO CARD */
+  .video-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-bottom: 80px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .video-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .video-card:nth-child(even) { direction: rtl; }
+  .video-card:nth-child(even) > * { direction: ltr; }
+
+  .card-color {
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-color::after {
+    content: '';
+    position: absolute;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    bottom: -100px; right: -100px;
+  }
+
+  .video-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.25);
+    line-height: 1;
+  }
+
+  .video-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--blanc);
+    line-height: 1.2;
+    position: relative; z-index: 2;
+  }
+
+  .video-duration {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    position: relative; z-index: 2;
+  }
+
+  .card-content {
+    background: var(--blanc);
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .content-block h4 {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 12px;
+  }
+
+  .script-box {
+    background: #f9f6f2;
+    border-left: 3px solid var(--orange);
+    padding: 24px;
+    border-radius: 0 12px 12px 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--noir);
+  }
+
+  .info-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .info-pill {
+    background: #f9f6f2;
+    border-radius: 12px;
+    padding: 16px 20px;
+  }
+
+  .info-pill-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gris);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .info-pill-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--noir);
+    line-height: 1.5;
+  }
+
+  .distinction-badge {
+    display: inline-block;
+    background: var(--noir);
+    color: var(--blanc);
+    font-size: 12px;
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  /* COULEURS PAR VIDÉO */
+  .c1 { background: linear-gradient(135deg, #cbe1b6, #a4c2e7); }
+  .c2 { background: linear-gradient(135deg, #a4c2e7, #b8aed7); }
+  .c3 { background: linear-gradient(135deg, #ebc6e0, #b8aed7); }
+  .c4 { background: linear-gradient(135deg, #a8dbeb, #a4c2e7); }
+  .c5 { background: linear-gradient(135deg, #fdd5a5, #f49f4c); }
+  .c6 { background: linear-gradient(135deg, #b8aed7, #ebc6e0); }
+  .c7 { background: linear-gradient(135deg, #f8f4b8, #fdd5a5); }
+  .c8 { background: linear-gradient(135deg, #f5abaf, #ebc6e0); }
+  .c9 { background: linear-gradient(135deg, #cbe1b6, #f8f4b8); }
+  .c10 { background: linear-gradient(135deg, #f49f4c, #f5abaf); }
+  .c11 { background: linear-gradient(135deg, #a8dbeb, #cbe1b6); }
+
+  /* SECTION DISTINCTION FINALE */
+  .manifeste {
+    background: var(--noir);
+    color: var(--blanc);
+    padding: 100px 60px;
+    text-align: center;
+  }
+
+  .manifeste h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 64px);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 40px;
+  }
+
+  .manifeste h2 em { color: var(--orange); font-style: italic; }
+
+  .manifeste-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    max-width: 900px;
+    margin: 60px auto 0;
+  }
+
+  .manifeste-item {
+    background: #222;
+    padding: 40px 32px;
+    text-align: left;
+  }
+
+  .manifeste-item:first-child { border-radius: 20px 0 0 20px; }
+  .manifeste-item:last-child { border-radius: 0 20px 20px 0; }
+
+  .manifeste-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .manifeste-item h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    margin-bottom: 12px;
+    color: var(--peche);
+  }
+
+  .manifeste-item p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #999;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 48px 60px;
+    background: var(--blanc);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #eee;
+  }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .footer-brand em { color: var(--orange); font-style: italic; }
+
+  .footer-contact {
+    font-size: 13px;
+    color: var(--gris);
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .video-card { grid-template-columns: 1fr; }
+    .video-card:nth-child(even) { direction: ltr; }
+    .info-row { grid-template-columns: 1fr; }
+    .manifeste-grid { grid-template-columns: 1fr; gap: 2px; }
+    .manifeste-item:first-child { border-radius: 20px 20px 0 0; }
+    .manifeste-item:last-child { border-radius: 0 0 20px 20px; }
+    footer { flex-direction: column; gap: 20px; text-align: center; }
+    .footer-contact { text-align: center; }
+    .hero-count { gap: 24px; }
+    .distinction { padding: 60px 30px; }
+    .section { padding: 60px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-tag">Brille Ingénierie — Guide de tournage</span>
+  <h1>Tes vidéos<br><em>Instagram</em></h1>
+  <p class="hero-sub">Scripts, tenues, lieux & stratégie de distinction</p>
+  <div class="hero-count">
+    <div class="count-item">
+      <span class="count-num">11</span>
+      <span class="count-label">Vidéos</span>
+    </div>
+    <div class="count-item">
+      <span class="count-num">1</span>
+      <span class="count-label">Identité</span>
+    </div>
+    <div class="count-item">
+      <span class="count-num">∞</span>
+      <span class="count-label">Impact</span>
+    </div>
+  </div>
+</section>
+
+<!-- DISTINCTION -->
+<section class="distinction">
+  <h2>"Ce qui te distingue n'est pas ce que tu dis. C'est qui tu es quand tu le dis."</h2>
+  <p>La parentalité positive est un océan de contenus identiques. Toi, tu es <strong>ingénieure socio-éducative</strong>, <strong>maman de 3</strong>, <strong>malgache</strong>, <strong>ancienne planificatrice logistique</strong>. Personne n'a ce croisement. <strong>C'est ton arme.</strong> Chaque vidéo doit le montrer.</p>
+</section>
+
+<!-- VIDÉOS -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-tag">Les scripts complets</span>
+    <h2 class="section-title">Ton plan de tournage</h2>
+  </div>
+
+  <!-- VIDÉO 1 -->
+  <div class="video-card">
+    <div class="card-color c1">
+      <span class="video-num">01</span>
+      <div>
+        <p class="video-duration">30 secondes · Accroche</p>
+        <h3 class="video-title">"Pourquoi<br>Brille ?"</h3>
+      </div>
+    </div>
+    <div class="card-content">
+      <div class="content-block">
+        <h4>📝 Script</h4>
+        <div class="script-box">
+          "Quand je dis que je m'appelle Brille… les gens pensent que je vends des lunettes ! [sourire] Non. Brille, c'est un programme socio-éducatif que j'ai créé pour aider les enfants de 6 à 12 ans à s'épanouir — avec leurs parents. Pas de thérapie. Pas de coaching. De l'ingénierie. Pour que chaque enfant puisse vraiment… briller."
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-pill">
+          <div class="info-pill-label">📍 Lieu</div>
+          <div class="info-pill-text">Mur beige ou blanc cassé chez toi. Une plante verte ou une carte colorée BRILLE posée devant toi.</div>
+        </div>
+        <div class="info-pill">
+          <div class="info-pill-label">👗 Tenue</div>
+          <div class="info-pill-text">Haut pastel vert sauge ou bleu poudré uni. Boucles d'oreilles légères. Pas d'imprimé.</div>
+        </div>
+      </div>
+      <span class="distinction-badge">✦ Sourire dès la première seconde — regard caméra direct</span>
+    </div>
+  </div>
+
+  <!-- VIDÉO 2 -->
+  <div class="video-card">
+    <div class="card-color c2">
+      <span class="video-num">02</span>
+      <div>
+        <p class="video-duration">60 secondes · Identité</p>
+        <h3 class="video-title">"Qui suis-je<br>vraiment ?"</h3>
+      </div>
+    </div>
+    <div class="card-content">
+      <div class="content-block">
+        <h4>📝 Script</h4>
+        <div class="script-box">
+          "J'ai mis plusieurs années à comprendre que mon métier n'existait pas encore. J'ai une formation en ingénierie de formation, un master en politiques publiques, un diplôme de droit… et je suis maman de 3 enfants, dont des jumeaux. Tout ça m'a menée à une question : comment savoir si un enfant va vraiment bien ? Pas juste à l'école. Dans sa vie entière. C'est pour ça que j'ai créé la QVE — la Qualité de Vie de l'Enfant. Et c'est pour ça que BRILLE existe."
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-pill">
+          <div class="info-pill-label">📍 Lieu</div>
+          <div class="info-pill-text">Extérieur — parc ou jardin. Lumière naturelle. Tu marches vers la caméra puis tu t'arrêtes.</div>
+        </div>
+        <div class="info-pill">
+          <div class="info-pill-label">👗 Tenue</div>
+          <div class="info-pill-text">Veste bleue structurée sur fond uni. Ta tenue signature BRILLE — cohérente avec ton carrousel "Qui suis-je".</div>
+        </div>
+      </div>
+      <span class="distinction-badge">✦ Tu marches d'abord — puis tu t'arrêtes pour parler</span>
+    </div>
+  </div>
+
+  <!-- VIDÉO 3 -->
+  <div class="video-card">
+    <div class="card-color c3">
+      <span class="video-num">03</span>
+      <div>
+        <p class="video-duration">50 secondes · Émotion</p>
+        <h3 class="video-title">"C'est quoi<br>la QVE ?"</h3>
+      </div>
+    </div>
+    <div class="card-content">
+      <div class="content-block">
+        <h4>📝 Script</h4>
+        <div class="script-box">
+          "La QVE — Qualité de Vie de l'Enfant — c'est pas un test scolaire. C'est pas un diagnostic médical. C'est une façon de regarder un enfant dans sa globalité. Moi, tout a commencé avec mon fils. Il avait 3 ans. Et comme beaucoup de mamans, je me posais cette question : est-ce qu'il est heureux ? Vraiment heureux ? Pas juste calme, pas juste sage — mais épanoui. Et j'ai réalisé qu'on n'avait pas vraiment d'outil pour répondre à ça. Alors j'ai créé la QVE. Pour que quand votre enfant a 6, 8, 10 ans — vous puissiez voir. Vraiment voir."
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-pill">
+          <div class="info-pill-label">📍 Lieu</div>
+          <div class="info-pill-text">Coin salon cosy. Coussin pastel, plaid, lampe d'ambiance douce. Feeling "entre nous".</div>
+        </div>
+        <div class="info-pill">
+          <div class="info-pill-label">👗 Tenue</div>
+          <div class="info-pill-text">Pull doux mauve clair ou crème. Cheveux naturels. Tenue décontractée — pas de veste.</div>
+        </div>
+      </div>
+      <span class="distinction-badge">✦ Assise, légèrement penchée vers la caméra — voix posée</span>
+    </div>
+  </div>
+
+  <!-- VIDÉO 4 -->
+  <div class="video-card">
+    <div class="card-color c4">
+      <span class="video-num">04</span>
+      <div>
+        <p class="video-duration">45 secondes · Crédibilité</p>
+        <h3 class="video-title">"Non, c'est pas<br>de la thérapie"</h3>
+      </div>
+    </div>
+    <div class="card-content">
+      <div class="content-block">
+        <h4>📝 Script</h4>
+        <div class="script-box">
+          "Je vais être directe : ce que je fais, c'est pas de la thérapie. C'est pas du coaching parental. C'est de la médiation socio-éducative. Concrètement ? Je crée un espace où le parent et l'enfant travaillent ensemble, sur un pied d'égalité, autour de ce que l'enfant vit. Pas de diagnostic. Pas de pathologie. Juste des outils, de la participation, et beaucoup de bienveillance. La différence ? Chez moi, c'est l'enfant qui tient le crayon."
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-pill">
+          <div class="info-pill-label">📍 Lieu</div>
+          <div class="info-pill-text">Mur mat blanc cassé ou vert pâle. Tableau blanc derrière toi avec "BRILLE" écrit dessus.</div>
+        </div>
+        <div class="info-pill">
+          <div class="info-pill-label">👗 Tenue</div>
+          <div class="info-pill-text">Veste structurée bleue ou verte. Posture droite. C'est ta vidéo crédibilité pour les centres sociaux.</div>
+        </div>
+      </div>
+      <span class="distinction-badge">✦ Debout, ton direct et chaleureux — pas de sourire forcé</span>
+    </div>
+  </div>
+
+  <!-- VIDÉO 5 -->
+  <div class="video-card">
+    <div class="card-color c5">
+      <span class="video-num">05</span>
+      <div>
+        <p class="video-duration">55 secondes · Conversion</p>
+        <h3 class="video-title">"L'Auto-Audit<br>QVE"</h3>
+      </div>
+    </div>
+    <div class="card-content">
+      <div class="content-block">
+        <h4>📝 Script</h4>
+        <div class="script-box">
+          "J'ai créé un outil qui s'appelle l'Auto-Audit QVE. 28 questions, 5 minutes. Et il répond à une question que beaucoup de mamans se posent sans oser le dire : est-ce que mon enfant va vraiment bien ? Ce n'est pas un test de bonne maman. Il n'y a aucune mauvaise réponse. C'est juste un regard différent sur votre enfant. En ce moment, je recherche 5 mamans pour le tester gratuitement. En échange, je vous offre mon analyse experte de vos résultats — personnalisée, en DM. Envoyez-moi le mot BRILLE en message privé. Je vous attends. 🌸"
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-pill">
+          <div class="info-pill-label">📍 Lieu</div>
+          <div class="info-pill-text">Bureau doux. Écran ou feuille de l'audit visible. Une tasse, un stylo, une plante. Environnement de travail apaisé.</div>
+        </div>
+        <div class="info-pill">
+          <div class="info-pill-label">👗 Tenue</div>
+          <div class="info-pill-text">Blouse légère jaune ou crème. Sourire doux. Tu te lèves pour montrer l'outil à un moment.</div>
+        </div>
+      </div>
+      <span class="distinction-badge">✦ Mi-assise mi-debout — tu montres l'outil en live</span>
+    </div>
+  </div>
+
+  <!-- VIDÉO 6 -->
+  <div class="video-card">
+    <div class="card-color c6">
+      <span class="video-num">06</span>
+      <div>
+        <p class="video-duration">60 secondes · Signature</p>
+        <h3 class="video-title">"Mon prénom<br>cache tout"</h3>
+      </div>
+    </div>
+    <div class="card-content">
+      <div class="content-block">
+        <h4>📝 Script</h4>
+        <div class="script-box">
+          "Je vais vous dire quelque chose que même mes proches ne savent pas forcément. Je m'appelle Rindra Tsiory. C'est un prénom malgache. Et pendant longtemps… je n'aimais pas vraiment Rindra. Je trouvais ça trop sérieux, trop structuré pour moi. Et pourtant. Rindra, ça veut dire harmonie. Ordre. Ce qui est fait avec soin et équilibre. Et Tsiory ? Celle qui ne manque de rien. Celle qui est préservée du besoin. Mes proches me disent tout le temps : tu es incroyablement organisée. Tu planifies tout. Tu crées de l'ordre là où il y a du chaos. Je suis… Rindra. Littéralement. Et BRILLE ? Ce que je veux pour chaque enfant — c'est exactement ça. Mon prénom portait ma mission bien avant que je la comprenne."
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-pill">
+          <div class="info-pill-label">📍 Lieu</div>
+          <div class="info-pill-text">Extérieur lumière dorée (1h avant coucher du soleil) ou intérieur avec bougie allumée. Quelque chose d'intime, pas professionnel.</div>
+        </div>
+        <div class="info-pill">
+          <div class="info-pill-label">👗 Tenue</div>
+          <div class="info-pill-text">Couleur terre, ocre, rouille ou bordeaux. Matière douce. Accessoire significatif si tu en as un — bijou hérité.</div>
+        </div>
+      </div>
+      <span class="distinction-badge">✦ Ta vidéo signature — à épingler en premier sur ton profil</span>
+    </div>
+  </div>
+
+  <!-- VIDÉO 7 -->
+  <div class="video-card">
+    <div class="card-color c7">
+      <span class="video-num">07</span>
+      <div>
+        <p class="video-duration">60 secondes · Expertise</p>
+        <h3 class="video-title">"Pourquoi les<br>6-12 ans ?"</h3>
+      </div>
+    </div>
+    <div class="card-content">
+      <div class="content-block">
+        <h4>📝 Script</h4>
+        <div class="script-box">
+          "Pourquoi je travaille avec les 6-12 ans ? Pas avant, pas après. Ce n'est pas un hasard. Avant 6 ans, l'enfant est encore dans une phase très fusionnelle avec ses parents. C'est le rôle de la crèche, de la maternelle. Ce n'est pas mon terrain. Après 12 ans, on entre dans l'adolescence. Autre chose. Autre expertise. Je ne veux pas faire semblant de tout maîtriser. Mais entre 6 et 12 ans ? C'est une fenêtre unique. L'enfant construit qui il est. Il développe ses amitiés, son rapport à l'école, à lui-même. Il peut mettre des mots sur ce qu'il ressent. Il peut participer. C'est l'âge où on peut encore vraiment agir — avant que les schémas se figent. Et c'est exactement là que j'interviens."
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-pill">
+          <div class="info-pill-label">📍 Lieu</div>
+          <div class="info-pill-text">Espace neutre épuré. Mur blanc ou légèrement texturé. Rien qui distrait — c'est une vidéo de conviction.</div>
+        </div>
+        <div class="info-pill">
+          <div class="info-pill-label">👗 Tenue</div>
+          <div class="info-pill-text">Tenue structurée mais accessible. Bleu ou vert BRILLE. Posture droite, ton calme et affirmé.</div>
+        </div>
+      </div>
+      <span class="distinction-badge">✦ Debout, ton de conviction — montre que tu maîtrises ton périmètre</span>
+    </div>
+  </div>
+
+  <!-- VIDÉO 8 -->
+  <div class="video-card">
+    <div class="card-color c8">
+      <span class="video-num">08</span>
+      <div>
+        <p class="video-duration">50 secondes · Proximité</p>
+        <h3 class="video-title">"Maman de 3,<br>ce que ça m'a appris"</h3>
+      </div>
+    </div>
+    <div class="card-content">
+      <div class="content-block">
+        <h4>📝 Script</h4>
+        <div class="script-box">
+          "Être maman de 3 enfants, dont des jumeaux, m'a appris une chose que aucun master ne m'a enseignée : chaque enfant est un monde à part entière. Deux enfants nés le même jour, élevés dans le même foyer — et pourtant tellement différents dans leurs besoins, leurs émotions, leur façon d'apprendre. C'est ça qui m'a menée à la QVE. Pas un concept académique. Une réalité quotidienne. Et si vous êtes maman, vous savez exactement de quoi je parle."
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-pill">
+          <div class="info-pill-label">📍 Lieu</div>
+          <div class="info-pill-text">Chez toi, cuisine ou salon. Un espace qui dit "vraie vie". Pas trop rangé — authentique.</div>
+        </div>
+        <div class="info-pill">
+          <div class="info-pill-label">👗 Tenue</div>
+          <div class="info-pill-text">Tenue du quotidien — pas BRILLE, pas pro. Toi en tant que maman. Pull confortable, couleur douce.</div>
+        </div>
+      </div>
+      <span class="distinction-badge">✦ La vidéo la plus humaine — montre la maman, pas l'experte</span>
+    </div>
+  </div>
+
+  <!-- VIDÉO 9 -->
+  <div class="video-card">
+    <div class="card-color c9">
+      <span class="video-num">09</span>
+      <div>
+        <p class="video-duration">45 secondes · Vulgarisation</p>
+        <h3 class="video-title">"C'est quoi un<br>ingénieur socio-éducatif ?"</h3>
+      </div>
+    </div>
+    <div class="card-content">
+      <div class="content-block">
+        <h4>📝 Script</h4>
+        <div class="script-box">
+          "Ingénieure socio-éducative. Ce titre n'existe pas officiellement. Je l'ai créé. Parce que ce que je fais n'avait pas de nom. Je ne suis pas assistante sociale. Je ne suis pas psychologue. Je ne suis pas prof. Je suis quelqu'un qui conçoit des dispositifs — des outils, des ateliers, des méthodes — pour améliorer la qualité de vie des enfants et de leurs familles. Comme un ingénieur conçoit un pont. Moi je conçois des espaces où les enfants et les parents peuvent se retrouver, se comprendre, et avancer ensemble."
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-pill">
+          <div class="info-pill-label">📍 Lieu</div>
+          <div class="info-pill-text">Bureau ou espace de travail. Quelques outils pédagogiques visibles derrière toi — cahiers, cartes, fleur QVE.</div>
+        </div>
+        <div class="info-pill">
+          <div class="info-pill-label">👗 Tenue</div>
+          <div class="info-pill-text">Veste ou chemise structurée. Couleur BRILLE. Tu incarnes le titre que tu viens d'inventer.</div>
+        </div>
+      </div>
+      <span class="distinction-badge">✦ Le titre que tu as inventé — personne d'autre ne peut faire cette vidéo</span>
+    </div>
+  </div>
+
+  <!-- VIDÉO 10 -->
+  <div class="video-card">
+    <div class="card-color c10">
+      <span class="video-num">10</span>
+      <div>
+        <p class="video-duration">Serie · 7 épisodes</p>
+        <h3 class="video-title">"Pétale de<br>la semaine"</h3>
+      </div>
+    </div>
+    <div class="card-content">
+      <div class="content-block">
+        <h4>📝 Script — Exemple avec "Mes émotions apprivoisées"</h4>
+        <div class="script-box">
+          "Cette semaine je vous présente le pétale 'Mes émotions apprivoisées'. Dans la Fleur QVE, c'est le pétale qui explore comment votre enfant vit et exprime ce qu'il ressent. Est-ce qu'il sait mettre des mots sur sa colère ? Sa tristesse ? Est-ce qu'il a un espace pour le faire sans avoir peur de la réaction des adultes ? Ce n'est pas de la psychologie. C'est de l'éducation émotionnelle. Et ça commence à la maison, dans les petits moments du quotidien. La semaine prochaine : le pétale 'Mon organisation et autonomie'."
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-pill">
+          <div class="info-pill-label">📍 Lieu</div>
+          <div class="info-pill-text">Toujours le même fond pour toute la série — crée une cohérence visuelle forte. Coin bureau ou mur texturé.</div>
+        </div>
+        <div class="info-pill">
+          <div class="info-pill-label">👗 Tenue</div>
+          <div class="info-pill-text">Couleur du pétale concerné à chaque épisode. Ton orange, rose, vert, bleu… La tenue devient un code visuel.</div>
+        </div>
+      </div>
+      <span class="distinction-badge">✦ Série de 7 — une par semaine — crée l'habitude de te suivre</span>
+    </div>
+  </div>
+
+  <!-- VIDÉO 11 -->
+  <div class="video-card">
+    <div class="card-color c11">
+      <span class="video-num">11</span>
+      <div>
+        <p class="video-duration">40 secondes · Coulisses</p>
+        <h3 class="video-title">"Mon premier RDV<br>en centre social"</h3>
+      </div>
+    </div>
+    <div class="card-content">
+      <div class="content-block">
+        <h4>📝 Script</h4>
+        <div class="script-box">
+          "J'ai eu mon premier rendez-vous en centre social. Je vais être honnête — j'avais préparé 40 pages. [sourire] Et ce que j'ai appris ce jour-là, c'est que les directeurs ne veulent pas 40 pages. Ils veulent comprendre en 5 minutes ce que vous apportez concrètement aux familles qu'ils suivent. Alors j'ai appris à parler autrement. Pas en termes d'ingénierie. En termes d'impact. Et cette leçon-là, aucun master ne me l'a donnée."
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-pill">
+          <div class="info-pill-label">📍 Lieu</div>
+          <div class="info-pill-text">Dehors, en marchant ou assise sur un banc. Énergie de retour d'expérience, pas de cours magistral.</div>
+        </div>
+        <div class="info-pill">
+          <div class="info-pill-label">👗 Tenue</div>
+          <div class="info-pill-text">Tenue professionnelle mais décontractée. Veste légère. Comme si tu revenais du rendez-vous.</div>
+        </div>
+      </div>
+      <span class="distinction-badge">✦ Vulnérabilité + leçon = la formule qui crée la confiance</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- MANIFESTE DISTINCTION -->
+<section class="manifeste">
+  <h2>Ce qui te rend<br><em>impossible à copier</em></h2>
+  <div class="manifeste-grid">
+    <div class="manifeste-item">
+      <span class="manifeste-icon">🌿</span>
+      <h3>Ton identité malgache</h3>
+      <p>Rindra Tsiory n'est pas un détail. C'est ton ancrage. Personne d'autre ne peut raconter cette histoire. Elle traverse tout ton contenu comme un fil invisible.</p>
+    </div>
+    <div class="manifeste-item">
+      <span class="manifeste-icon">⚙️</span>
+      <h3>L'ingénierie comme langage</h3>
+      <p>Tu ne "coaches" pas. Tu conçois. Ce mot — ingénieure — te distingue immédiatement de 99% des créateurs de contenu sur la parentalité.</p>
+    </div>
+    <div class="manifeste-item">
+      <span class="manifeste-icon">🌸</span>
+      <h3>La maman ET l'experte</h3>
+      <p>Tu n'as pas à choisir. Alterner entre les deux — la maman de 3 et l'ingénieure QVE — crée une profondeur qu'aucun expert pur ne peut avoir.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">BRILLE <em>Ingénierie</em></div>
+  <div class="footer-contact">
+    07 45 32 30 90<br>
+    tsioryleonard@gmail.com
+  </div>
+</footer>
+
+<script>
+  // Scroll animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 100);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.video-card').forEach(card => {
+    observer.observe(card);
+  });
+</script>
+
+</body>
+</html>
