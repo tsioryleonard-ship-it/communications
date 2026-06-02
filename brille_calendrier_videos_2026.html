@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRILLE — Calendrier Vidéos 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@1,300;1,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --orange: #f49f4c;
+  --rose: #f5abaf;
+  --peche: #fdd5a5;
+  --jaune: #f8f4b8;
+  --lavande: #a4c2e7;
+  --bleu: #a8dbeb;
+  --vert: #cbe1b6;
+  --mauve: #b8aed7;
+  --rose-lilas: #ebc6e0;
+  --noir: #1a1a1a;
+  --gris: #666;
+  --blanc: #fefefe;
+  --bg: #f9f6f2;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--noir); overflow-x:hidden; }
+
+/* NAV */
+nav {
+  position: sticky; top:0; z-index:100;
+  background: var(--noir);
+  display: flex; gap:0; overflow-x:auto;
+  scrollbar-width:none;
+}
+nav::-webkit-scrollbar { display:none; }
+nav a {
+  color:#aaa; text-decoration:none;
+  font-size:11px; letter-spacing:2px; text-transform:uppercase;
+  padding:14px 20px; white-space:nowrap;
+  border-bottom:2px solid transparent;
+  transition: all 0.2s;
+}
+nav a:hover { color:var(--blanc); border-color:var(--orange); }
+
+/* HERO */
+.hero {
+  min-height:85vh; display:flex; flex-direction:column;
+  justify-content:center; align-items:center; text-align:center;
+  padding:80px 40px; position:relative; background:var(--blanc); overflow:hidden;
+}
+.hero::before {
+  content:''; position:absolute;
+  width:700px; height:700px;
+  border-radius:60% 40% 70% 30%/50% 60% 40% 50%;
+  background:var(--vert); opacity:.2;
+  top:-200px; left:-200px;
+  animation: morph 12s ease-in-out infinite;
+}
+.hero::after {
+  content:''; position:absolute;
+  width:500px; height:500px;
+  border-radius:40% 60% 30% 70%/60% 40% 70% 30%;
+  background:var(--rose-lilas); opacity:.25;
+  bottom:-150px; right:-150px;
+  animation: morph 15s ease-in-out infinite reverse;
+}
+@keyframes morph {
+  0%,100%{border-radius:60% 40% 70% 30%/50% 60% 40% 50%}
+  33%{border-radius:40% 60% 30% 70%/60% 40% 70% 30%}
+  66%{border-radius:70% 30% 50% 50%/30% 60% 40% 70%}
+}
+.hero-tag { font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--gris); margin-bottom:20px; position:relative;z-index:2; }
+.hero h1 { font-family:'Playfair Display',serif; font-size:clamp(52px,9vw,110px); font-weight:700; line-height:1; letter-spacing:-3px; position:relative;z-index:2; margin-bottom:8px; }
+.hero h1 em { font-style:italic; color:var(--orange); }
+.hero-sub { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:22px; color:var(--gris); margin-top:20px; position:relative;z-index:2; max-width:560px; }
+.hero-pills { margin-top:40px; display:flex; gap:12px; flex-wrap:wrap; justify-content:center; position:relative;z-index:2; }
+.pill { background:var(--noir); color:var(--blanc); font-size:12px; padding:8px 18px; border-radius:100px; letter-spacing:1px; }
+.pill.accent { background:var(--orange); }
+
+/* SECTION */
+.section { padding:80px 40px; max-width:1200px; margin:0 auto; }
+.section-tag { font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--orange); display:block; margin-bottom:10px; }
+.section-title { font-family:'Playfair Display',serif; font-size:clamp(30px,4vw,52px); font-weight:700; line-height:1.1; margin-bottom:48px; }
+
+/* INTRO NOIRE */
+.intro-dark {
+  background:var(--noir); color:var(--blanc); padding:80px 60px; text-align:center;
+}
+.intro-dark h2 { font-family:'Playfair Display',serif; font-size:clamp(26px,4vw,46px); font-style:italic; font-weight:400; max-width:700px; margin:0 auto 24px; line-height:1.3; }
+.intro-dark p { font-size:15px; line-height:1.9; color:#aaa; max-width:580px; margin:0 auto; }
+.intro-dark strong { color:var(--peche); }
+
+/* PÉTALES GRID */
+.petales-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:24px; margin-top:0; }
+
+.petale-card {
+  border-radius:20px; overflow:hidden;
+  box-shadow:0 8px 30px rgba(0,0,0,0.07);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.petale-card:hover { transform:translateY(-4px); box-shadow:0 16px 40px rgba(0,0,0,0.12); }
+
+.petale-top {
+  padding:32px 32px 24px;
+  display:flex; flex-direction:column; gap:12px;
+  position:relative; overflow:hidden; min-height:160px;
+}
+.petale-top::after {
+  content:''; position:absolute;
+  width:200px; height:200px; border-radius:50%;
+  background:rgba(255,255,255,0.15);
+  bottom:-80px; right:-60px;
+}
+.petale-num {
+  font-family:'Playfair Display',serif;
+  font-size:56px; font-weight:700;
+  color:rgba(255,255,255,0.2); line-height:1;
+}
+.petale-label {
+  font-family:'Playfair Display',serif;
+  font-size:18px; font-weight:700; color:var(--blanc);
+  position:relative;z-index:2; line-height:1.2;
+}
+.petale-emoji { font-size:24px; position:relative;z-index:2; }
+
+.petale-body { background:var(--blanc); padding:28px 32px; display:flex; flex-direction:column; gap:20px; }
+
+.mini-label { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--orange); margin-bottom:6px; display:block; }
+.script-mini {
+  background:var(--bg); border-left:3px solid var(--orange);
+  padding:16px 18px; border-radius:0 10px 10px 0;
+  font-family:'Cormorant Garamond',serif; font-size:16px;
+  font-style:italic; line-height:1.7; color:var(--noir);
+}
+.info-mini { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.info-box { background:var(--bg); padding:12px 16px; border-radius:10px; }
+.info-box-label { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gris); margin-bottom:4px; }
+.info-box-text { font-size:13px; font-weight:500; line-height:1.4; color:var(--noir); }
+.badge-mini { display:inline-block; background:var(--noir); color:var(--blanc); font-size:11px; padding:6px 14px; border-radius:100px; }
+
+/* COULEURS PÉTALES */
+.p1 { background: linear-gradient(135deg,#f8f4b8,#fdd5a5); }
+.p2 { background: linear-gradient(135deg,#f5abaf,#ebc6e0); }
+.p3 { background: linear-gradient(135deg,#a4c2e7,#b8aed7); }
+.p4 { background: linear-gradient(135deg,#cbe1b6,#a8dbeb); }
+.p5 { background: linear-gradient(135deg,#b8aed7,#a4c2e7); }
+.p6 { background: linear-gradient(135deg,#a8dbeb,#cbe1b6); }
+.p7 { background: linear-gradient(135deg,#f49f4c,#f5abaf); }
+
+/* CALENDRIER */
+.cal-month { margin-bottom:64px; }
+.month-header {
+  display:flex; align-items:center; gap:20px; margin-bottom:28px;
+  padding-bottom:16px; border-bottom:2px solid #eee;
+}
+.month-dot {
+  width:14px; height:14px; border-radius:50%; flex-shrink:0;
+}
+.month-name { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; }
+.month-sub { font-size:13px; color:var(--gris); margin-left:auto; }
+
+.video-row {
+  display:grid; grid-template-columns:80px 1fr;
+  gap:0; margin-bottom:16px; border-radius:16px; overflow:hidden;
+  box-shadow:0 4px 16px rgba(0,0,0,0.06);
+  opacity:0; transform:translateX(-20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.video-row.visible { opacity:1; transform:translateX(0); }
+
+.row-date {
+  display:flex; flex-direction:column;
+  justify-content:center; align-items:center;
+  padding:16px 8px; text-align:center;
+}
+.row-day { font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:var(--blanc); line-height:1; }
+.row-month-short { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.7); margin-top:2px; }
+
+.row-content { background:var(--blanc); padding:20px 24px; }
+.row-type { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--orange); margin-bottom:4px; }
+.row-title { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; margin-bottom:8px; line-height:1.2; }
+.row-script {
+  font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:15px; line-height:1.6; color:var(--gris);
+  border-left:2px solid var(--peche); padding-left:12px; margin-bottom:12px;
+}
+.row-meta { display:flex; gap:12px; flex-wrap:wrap; }
+.meta-tag {
+  font-size:11px; padding:4px 12px; border-radius:100px;
+  background:var(--bg); color:var(--gris); font-weight:500;
+}
+
+/* EVENT BANNER */
+.event-banner {
+  background: linear-gradient(135deg,var(--jaune),var(--peche));
+  border-radius:12px; padding:14px 20px; margin-bottom:12px;
+  display:flex; align-items:center; gap:12px;
+}
+.event-banner-icon { font-size:20px; }
+.event-banner-text { font-size:13px; font-weight:600; color:var(--noir); }
+.event-banner-sub { font-size:12px; color:var(--gris); }
+
+/* COULEURS MOIS */
+.m-juin { background:linear-gradient(135deg,#cbe1b6,#a8dbeb); }
+.m-juillet { background:linear-gradient(135deg,#f8f4b8,#fdd5a5); }
+.m-aout { background:linear-gradient(135deg,#fdd5a5,#f49f4c); }
+.m-sept { background:linear-gradient(135deg,#a4c2e7,#b8aed7); }
+.m-oct { background:linear-gradient(135deg,#f5abaf,#ebc6e0); }
+.m-nov { background:linear-gradient(135deg,#b8aed7,#a4c2e7); }
+.m-dec { background:linear-gradient(135deg,#f49f4c,#f5abaf); }
+
+/* FOOTER */
+footer {
+  background:var(--noir); color:var(--blanc);
+  padding:60px; display:flex; justify-content:space-between; align-items:center;
+}
+.footer-brand { font-family:'Playfair Display',serif; font-size:28px; }
+.footer-brand em { color:var(--orange); font-style:italic; }
+.footer-info { text-align:right; font-size:13px; color:#aaa; line-height:1.8; }
+
+@media(max-width:768px){
+  .section{padding:48px 20px;}
+  .petales-grid{grid-template-columns:1fr;}
+  .info-mini{grid-template-columns:1fr;}
+  .video-row{grid-template-columns:60px 1fr;}
+  .intro-dark{padding:60px 24px;}
+  footer{flex-direction:column;gap:20px;text-align:center;padding:40px 24px;}
+  .footer-info{text-align:center;}
+  .month-sub{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#petales">🌸 Les 7 Pétales</a>
+  <a href="#scintille">✨ Scintille</a>
+  <a href="#juin">Juin</a>
+  <a href="#juillet">Juillet</a>
+  <a href="#aout">Août</a>
+  <a href="#septembre">Septembre</a>
+  <a href="#octobre">Octobre</a>
+  <a href="#novembre">Novembre</a>
+  <a href="#decembre">Décembre</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-tag">BRILLE Ingénierie — Stratégie contenu</span>
+  <h1>Calendrier<br><em>Vidéos 2026</em></h1>
+  <p class="hero-sub">7 pétales QVE + planning mensuel calé sur le calendrier des familles françaises</p>
+  <div class="hero-pills">
+    <span class="pill accent">Juin → Décembre 2026</span>
+    <span class="pill">7 Pétales QVE</span>
+    <span class="pill">Zone C · Île-de-France</span>
+    <span class="pill">Scripts complets</span>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro-dark">
+  <h2>"Chaque vidéo au bon moment, pour la bonne raison."</h2>
+  <p>La rentrée, les vacances, la Toussaint, les droits de l'enfant, Noël… Les familles vivent au rythme du calendrier scolaire. <strong>Ton contenu aussi.</strong> Ce guide cale chaque vidéo sur un moment que tes abonnées vivent déjà — pour que tu arrives toujours au bon moment.</p>
+</section>
+
+<!-- LES 7 PÉTALES -->
+<div class="section" id="petales">
+  <span class="section-tag">Série hebdomadaire</span>
+  <h2 class="section-title">Les 7 Pétales de la Fleur QVE</h2>
+
+  <div class="petales-grid">
+
+    <!-- PÉTALE 1 -->
+    <div class="petale-card">
+      <div class="petale-top p1">
+        <span class="petale-num">01</span>
+        <span class="petale-emoji">📅</span>
+        <span class="petale-label">Mon organisation et mon autonomie</span>
+      </div>
+      <div class="petale-body">
+        <div>
+          <span class="mini-label">📝 Script</span>
+          <div class="script-mini">
+            "Le premier pétale de la Fleur QVE, c'est l'organisation et l'autonomie. Est-ce que votre enfant sait s'organiser seul ? Préparer son cartable, gérer son temps, commencer une tâche sans qu'on lui répète dix fois ? Ce n'est pas une question de discipline. C'est une compétence qui se construit. Et quand elle manque, c'est souvent là que les tensions apparaissent à la maison. Ce pétale, c'est le premier qu'on travaille dans l'Atelier Étincelle. Parce que quand un enfant sait s'organiser… tout le reste devient plus léger."
+          </div>
+        </div>
+        <div class="info-mini">
+          <div class="info-box">
+            <div class="info-box-label">📍 Lieu</div>
+            <div class="info-box-text">Bureau ordonné. Cartable ou agenda visible derrière toi.</div>
+          </div>
+          <div class="info-box">
+            <div class="info-box-label">👗 Tenue</div>
+            <div class="info-box-text">Haut jaune ou crème. Couleur du pétale.</div>
+          </div>
+        </div>
+        <span class="badge-mini">✦ À publier : semaine de la rentrée</span>
+      </div>
+    </div>
+
+    <!-- PÉTALE 2 -->
+    <div class="petale-card">
+      <div class="petale-top p2">
+        <span class="petale-num">02</span>
+        <span class="petale-emoji">💛</span>
+        <span class="petale-label">Mes émotions apprivoisées</span>
+      </div>
+      <div class="petale-body">
+        <div>
+          <span class="mini-label">📝 Script</span>
+          <div class="script-mini">
+            "Deuxième pétale : les émotions. Est-ce que votre enfant sait mettre des mots sur ce qu'il ressent ? Pas juste 'je suis triste' ou 'j'ai peur'… mais vraiment nommer, expliquer, traverser l'émotion sans exploser ou se fermer. C'est ce qu'on appelle apprivoiser ses émotions. Et c'est une des clés les plus importantes du bien-être de l'enfant. Parce qu'un enfant qui sait gérer ses émotions, c'est un enfant qui gère mieux l'école, les amitiés, et les conflits à la maison."
+          </div>
+        </div>
+        <div class="info-mini">
+          <div class="info-box">
+            <div class="info-box-label">📍 Lieu</div>
+            <div class="info-box-text">Coin cosy. Coussin rose ou mauve visible.</div>
+          </div>
+          <div class="info-box">
+            <div class="info-box-label">👗 Tenue</div>
+            <div class="info-box-text">Pull rose poudré ou mauve doux.</div>
+          </div>
+        </div>
+        <span class="badge-mini">✦ À publier : octobre (période Toussaint)</span>
+      </div>
+    </div>
+
+    <!-- PÉTALE 3 -->
+    <div class="petale-card">
+      <div class="petale-top p3">
+        <span class="petale-num">03</span>
+        <span class="petale-emoji">📚</span>
+        <span class="petale-label">Le sens de mes apprentissages</span>
+      </div>
+      <div class="petale-body">
+        <div>
+          <span class="mini-label">📝 Script</span>
+          <div class="script-mini">
+            "Troisième pétale : le sens des apprentissages. Est-ce que votre enfant sait pourquoi il va à l'école ? Pas 'pour avoir de bonnes notes'. Pour apprendre à penser. À comprendre le monde. À construire qui il sera. Quand un enfant ne comprend pas le sens de ce qu'il apprend, l'école devient une corvée. Ce pétale, c'est celui qui répond à la question que beaucoup d'enfants posent sans oser : 'À quoi ça sert, tout ça ?'"
+          </div>
+        </div>
+        <div class="info-mini">
+          <div class="info-box">
+            <div class="info-box-label">📍 Lieu</div>
+            <div class="info-box-text">Bibliothèque ou mur de livres. Lumière naturelle.</div>
+          </div>
+          <div class="info-box">
+            <div class="info-box-label">👗 Tenue</div>
+            <div class="info-box-text">Haut bleu lavande ou bleu poudré.</div>
+          </div>
+        </div>
+        <span class="badge-mini">✦ À publier : novembre (après Toussaint)</span>
+      </div>
+    </div>
+
+    <!-- PÉTALE 4 -->
+    <div class="petale-card">
+      <div class="petale-top p4">
+        <span class="petale-num">04</span>
+        <span class="petale-emoji">🗣️</span>
+        <span class="petale-label">Mes liens et ma parole</span>
+      </div>
+      <div class="petale-body">
+        <div>
+          <span class="mini-label">📝 Script</span>
+          <div class="script-mini">
+            "Quatrième pétale : les liens et la parole. Est-ce que votre enfant ose dire ce qu'il pense ? A-t-il des amis avec qui il se sent vraiment lui-même ? Est-ce qu'il sait demander de l'aide ? La parole, c'est un pouvoir. Et beaucoup d'enfants n'ont pas encore appris à l'utiliser — ni avec leurs pairs, ni avec les adultes. Ce pétale, c'est celui où l'on travaille la confiance en soi dans les relations. Et c'est souvent là que tout change."
+          </div>
+        </div>
+        <div class="info-mini">
+          <div class="info-box">
+            <div class="info-box-label">📍 Lieu</div>
+            <div class="info-box-text">Extérieur ou espace ouvert. Énergie vivante et dynamique.</div>
+          </div>
+          <div class="info-box">
+            <div class="info-box-label">👗 Tenue</div>
+            <div class="info-box-text">Vert sauge ou bleu ciel. Tenue accessible.</div>
+          </div>
+        </div>
+        <span class="badge-mini">✦ À publier : septembre (nouvelles amitiés rentrée)</span>
+      </div>
+    </div>
+
+    <!-- PÉTALE 5 -->
+    <div class="petale-card">
+      <div class="petale-top p5">
+        <span class="petale-num">05</span>
+        <span class="petale-emoji">⚖️</span>
+        <span class="petale-label">Ma place et mes droits</span>
+      </div>
+      <div class="petale-body">
+        <div>
+          <span class="mini-label">📝 Script</span>
+          <div class="script-mini">
+            "Cinquième pétale : la place et les droits. Est-ce que votre enfant sait qu'il a une place légitime dans la famille, dans la classe, dans la société ? Sait-il qu'il a des droits ? Pas juste à l'école — dans sa vie entière. Ce pétale, c'est celui qui construit l'estime de soi en profondeur. Parce qu'un enfant qui sait qu'il a une place, qu'il a le droit d'exister et de s'exprimer — cet enfant-là, on ne peut pas l'éteindre."
+          </div>
+        </div>
+        <div class="info-mini">
+          <div class="info-box">
+            <div class="info-box-label">📍 Lieu</div>
+            <div class="info-box-text">Fond épuré, posture droite. Énergie de conviction.</div>
+          </div>
+          <div class="info-box">
+            <div class="info-box-label">👗 Tenue</div>
+            <div class="info-box-text">Mauve ou lilas. Boucles d'oreilles affirmées.</div>
+          </div>
+        </div>
+        <span class="badge-mini">✦ À publier : 20 novembre — Journée droits de l'enfant</span>
+      </div>
+    </div>
+
+    <!-- PÉTALE 6 -->
+    <div class="petale-card">
+      <div class="petale-top p6">
+        <span class="petale-num">06</span>
+        <span class="petale-emoji">⚡</span>
+        <span class="petale-label">Mon équilibre et mon énergie</span>
+      </div>
+      <div class="petale-body">
+        <div>
+          <span class="mini-label">📝 Script</span>
+          <div class="script-mini">
+            "Sixième pétale : l'équilibre et l'énergie. Est-ce que votre enfant dort suffisamment ? Bouge assez ? A des temps calmes dans sa journée ? Dans notre monde hyperconnecté, les enfants sont sollicités en permanence. Et un enfant épuisé ne peut pas apprendre, ne peut pas jouer vraiment, ne peut pas être lui-même. Ce pétale, c'est celui qui rappelle une vérité simple : un enfant épanoui est un enfant qui a le droit de souffler."
+          </div>
+        </div>
+        <div class="info-mini">
+          <div class="info-box">
+            <div class="info-box-label">📍 Lieu</div>
+            <div class="info-box-text">Extérieur verdure ou coin nature. Lumière naturelle.</div>
+          </div>
+          <div class="info-box">
+            <div class="info-box-label">👗 Tenue</div>
+            <div class="info-box-text">Vert sauge ou bleu ciel. Tenue décontractée.</div>
+          </div>
+        </div>
+        <span class="badge-mini">✦ À publier : juillet (été, rythme des vacances)</span>
+      </div>
+    </div>
+
+    <!-- PÉTALE 7 -->
+    <div class="petale-card">
+      <div class="petale-top p7">
+        <span class="petale-num">07</span>
+        <span class="petale-emoji">✨</span>
+        <span class="petale-label">Ce qui me fait briller</span>
+      </div>
+      <div class="petale-body">
+        <div>
+          <span class="mini-label">📝 Script</span>
+          <div class="script-mini">
+            "Le septième pétale — et mon préféré. Ce qui fait briller l'enfant. C'est quoi ? C'est ce qui le fait se lever le matin avec envie. Ce qui lui fait oublier le temps. Ce dans quoi il est vraiment lui-même. Ce n'est pas forcément les maths ou le foot. Ça peut être le dessin, les blagues, les animaux, les constructions. Et notre rôle en tant que parents et professionnels… c'est de l'aider à trouver ça. Puis à en être fier. Parce que quand un enfant brille — tout le monde autour de lui brille aussi."
+          </div>
+        </div>
+        <div class="info-mini">
+          <div class="info-box">
+            <div class="info-box-label">📍 Lieu</div>
+            <div class="info-box-text">Lumière chaude, dorée. Lieu qui t'inspire et te ressemble.</div>
+          </div>
+          <div class="info-box">
+            <div class="info-box-label">👗 Tenue</div>
+            <div class="info-box-text">Orange ou pêche. Ta couleur la plus lumineuse.</div>
+          </div>
+        </div>
+        <span class="badge-mini">✦ À publier : décembre — pour finir l'année en beauté</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SCINTILLE -->
+<div class="section" id="scintille">
+  <span class="section-tag">Lancement septembre 2026</span>
+  <h2 class="section-title">✨ Scintille — Stratégie de teasing</h2>
+
+  <div style="background:linear-gradient(135deg,#b8aed7,#ebc6e0);border-radius:24px;padding:40px;margin-bottom:40px;color:#fff;position:relative;overflow:hidden;">
+    <div style="position:absolute;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,0.1);bottom:-100px;right:-80px;"></div>
+    <p style="font-size:11px;letter-spacing:3px;text-transform:uppercase;opacity:.7;margin-bottom:12px;">C'est quoi Scintille ?</p>
+    <h3 style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;margin-bottom:16px;line-height:1.2;">L'application QVE pour les familles qui ne peuvent pas venir en atelier</h3>
+    <p style="font-size:15px;line-height:1.8;opacity:.9;max-width:600px;">Fleur QVE interactive, grimoire des victoires, kits pétales, espace enfant, espace parent — de 29€ à 290€. Scintille, c'est l'Atelier Étincelle dans la poche de chaque famille.</p>
+    <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;">
+      <span style="background:rgba(255,255,255,0.2);padding:6px 16px;border-radius:100px;font-size:12px;font-weight:600;">5 offres · 29€ → 290€</span>
+      <span style="background:rgba(255,255,255,0.2);padding:6px 16px;border-radius:100px;font-size:12px;font-weight:600;">Fleur QVE interactive</span>
+      <span style="background:rgba(255,255,255,0.2);padding:6px 16px;border-radius:100px;font-size:12px;font-weight:600;">Espace enfant + parent</span>
+      <span style="background:rgba(255,255,255,0.2);padding:6px 16px;border-radius:100px;font-size:12px;font-weight:600;">Kits pétales</span>
+    </div>
+  </div>
+
+  <!-- CALENDRIER TEASING -->
+  <div style="margin-bottom:32px;">
+    <h3 style="font-family:'Playfair Display',serif;font-size:22px;margin-bottom:8px;">La séquence de teasing en 6 étapes</h3>
+    <p style="color:var(--gris);font-size:14px;">De juillet à septembre — un mystère qui se construit semaine après semaine.</p>
+  </div>
+
+  <!-- ÉTAPE 1 -->
+  <div class="video-row visible" style="margin-bottom:16px;">
+    <div class="row-date" style="background:linear-gradient(135deg,#b8aed7,#ebc6e0);">
+      <span class="row-day">13</span><span class="row-month-short">JUIL</span>
+    </div>
+    <div class="row-content" style="border-left:4px solid #b8aed7;">
+      <div class="row-type">✨ Teaser #1 — Le mystère</div>
+      <div class="row-title">"Quelque chose se prépare…"</div>
+      <div class="row-script">"Je travaille sur quelque chose depuis plusieurs mois. Je n'en parle pas encore. Mais je peux vous dire une chose : ça va changer la façon dont les familles qui ne peuvent pas venir en atelier vont pouvoir accéder à la méthode BRILLE. Rendez-vous en septembre. ✨"</div>
+      <div class="row-meta">
+        <span class="meta-tag">📍 Fond sombre mystérieux</span>
+        <span class="meta-tag">👗 Mauve ou noir élégant</span>
+        <span class="meta-tag">⏱ 20 sec · Énigmatique</span>
+        <span class="meta-tag" style="background:#ebc6e0;color:#1a1a1a;">✨ TEASER 1/6</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 2 -->
+  <div class="video-row visible" style="margin-bottom:16px;">
+    <div class="row-date" style="background:linear-gradient(135deg,#b8aed7,#ebc6e0);">
+      <span class="row-day">27</span><span class="row-month-short">JUIL</span>
+    </div>
+    <div class="row-content" style="border-left:4px solid #b8aed7;">
+      <div class="row-type">✨ Teaser #2 — Le problème</div>
+      <div class="row-title">"Ce qui me brisait le cœur"</div>
+      <div class="row-script">"Ce qui me brisait le cœur depuis le début de BRILLE : les familles qui ne peuvent pas venir en atelier. Pas le temps. Pas les moyens. Pas le centre social à côté. Et pourtant, elles en ont autant besoin. Alors j'ai réfléchi. Et j'ai trouvé une solution. Je vous en dis plus dans quelques semaines. ✨"</div>
+      <div class="row-meta">
+        <span class="meta-tag">📍 Intérieur, lumière basse</span>
+        <span class="meta-tag">👗 Tenue sobre et sincère</span>
+        <span class="meta-tag">⏱ 30 sec · Émotion</span>
+        <span class="meta-tag" style="background:#ebc6e0;color:#1a1a1a;">✨ TEASER 2/6</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 3 -->
+  <div class="video-row visible" style="margin-bottom:16px;">
+    <div class="row-date" style="background:linear-gradient(135deg,#b8aed7,#ebc6e0);">
+      <span class="row-day">17</span><span class="row-month-short">AOÛT</span>
+    </div>
+    <div class="row-content" style="border-left:4px solid #b8aed7;">
+      <div class="row-type">✨ Teaser #3 — L'indice</div>
+      <div class="row-title">"Un indice. Juste un."</div>
+      <div class="row-script">"Je vous donne un indice. Ce que je prépare, ça tient dans votre téléphone. Ça se fait à votre rythme. Ça implique votre enfant. Et ça coûte moins cher qu'un repas en famille. Vous voyez où je veux en venir ? Réponse dans 3 semaines. ✨"</div>
+      <div class="row-meta">
+        <span class="meta-tag">📍 Téléphone visible mais flou</span>
+        <span class="meta-tag">👗 Mauve doux</span>
+        <span class="meta-tag">⏱ 25 sec · Intriguant</span>
+        <span class="meta-tag" style="background:#ebc6e0;color:#1a1a1a;">✨ TEASER 3/6</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 4 -->
+  <div class="video-row visible" style="margin-bottom:16px;">
+    <div class="row-date" style="background:linear-gradient(135deg,#b8aed7,#ebc6e0);">
+      <span class="row-day">31</span><span class="row-month-short">AOÛT</span>
+    </div>
+    <div class="row-content" style="border-left:4px solid #b8aed7;">
+      <div class="row-type">✨ Teaser #4 — Le nom</div>
+      <div class="row-title">"Elle s'appelle Scintille."</div>
+      <div class="row-script">"Elle s'appelle Scintille. C'est une application que j'ai conçue pour les familles qui ne peuvent pas venir en atelier. Tout ce qu'on fait ensemble en centre social — la Fleur QVE, les outils, les kits, les victoires — vous allez pouvoir le faire depuis chez vous, à votre rythme, avec votre enfant. Lancement le 1er septembre. Je vous montre tout."</div>
+      <div class="row-meta">
+        <span class="meta-tag">📍 Fond épuré, lumière dorée</span>
+        <span class="meta-tag">👗 Mauve ou rose-lilas élégant</span>
+        <span class="meta-tag">⏱ 35 sec · Révélation du nom</span>
+        <span class="meta-tag" style="background:#ebc6e0;color:#1a1a1a;">✨ TEASER 4/6</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 5 — LANCEMENT -->
+  <div class="video-row visible" style="margin-bottom:16px;">
+    <div class="row-date" style="background:linear-gradient(135deg,#f49f4c,#ebc6e0);">
+      <span class="row-day">01</span><span class="row-month-short">SEPT</span>
+    </div>
+    <div class="row-content" style="border-left:4px solid #f49f4c;">
+      <div class="row-type">🚀 LANCEMENT — Vidéo principale</div>
+      <div class="row-title">"Scintille est là. Je vous présente tout."</div>
+      <div class="row-script">"Voilà. C'est le jour. Scintille est disponible. Qu'est-ce que c'est ? C'est l'application que j'ai conçue pour vous — parents — qui n'avez pas accès à un atelier BRILLE près de chez vous. À l'intérieur : la Fleur QVE que vous pouvez colorier avec votre enfant. Des outils adaptés à son âge. Un grimoire pour noter ses victoires — petites et grandes. Et un espace rien que pour lui, en mode enfant. Cinq offres, de 29€ à 290€ selon vos besoins. Le lien est dans ma bio. Et si vous avez des questions — je suis là, en DM."</div>
+      <div class="row-meta">
+        <span class="meta-tag">📍 Bureau avec téléphone + appli visible</span>
+        <span class="meta-tag">👗 Tenue signature BRILLE — orange ou mauve fort</span>
+        <span class="meta-tag">⏱ 75 sec · Vidéo à épingler</span>
+        <span class="meta-tag" style="background:#f49f4c;color:#fff;">🚀 LANCEMENT OFFICIEL</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 6 — DÉMONSTRATION -->
+  <div class="video-row visible" style="margin-bottom:16px;">
+    <div class="row-date" style="background:linear-gradient(135deg,#b8aed7,#ebc6e0);">
+      <span class="row-day">08</span><span class="row-month-short">SEPT</span>
+    </div>
+    <div class="row-content" style="border-left:4px solid #b8aed7;">
+      <div class="row-type">✨ Teaser #6 — Démo live</div>
+      <div class="row-title">"Je vous montre Scintille de l'intérieur"</div>
+      <div class="row-script">"Cette semaine, je vous emmène à l'intérieur de Scintille. Voilà à quoi ressemble la Fleur QVE interactive — votre enfant peut toucher chaque pétale, donner son ressenti, et vous voir ensemble où il en est. Voilà le grimoire des victoires — parce que chaque progrès mérite d'être célébré. Et voilà les kits pétales — des outils concrets à utiliser à la maison. Le lien est dans la bio. Première semaine : offre de découverte disponible."</div>
+      <div class="row-meta">
+        <span class="meta-tag">📍 Écran téléphone filmé en screencast</span>
+        <span class="meta-tag">👗 Tenue décontractée mauve</span>
+        <span class="meta-tag">⏱ 60 sec · Démo visuelle</span>
+        <span class="meta-tag" style="background:#ebc6e0;color:#1a1a1a;">✨ TEASER 6/6</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- RECAP TEASING -->
+  <div style="background:var(--noir);border-radius:20px;padding:36px;margin-top:8px;color:var(--blanc);">
+    <h4 style="font-family:'Playfair Display',serif;font-size:20px;margin-bottom:20px;color:var(--peche);">📅 Récap de la séquence Scintille</h4>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;">
+      <div style="background:#222;border-radius:12px;padding:16px;border-top:3px solid #b8aed7;">
+        <div style="font-size:11px;letter-spacing:2px;color:#aaa;margin-bottom:4px;">13 JUILLET</div>
+        <div style="font-size:14px;font-weight:600;">Teaser #1</div>
+        <div style="font-size:12px;color:#aaa;margin-top:4px;">Le mystère</div>
+      </div>
+      <div style="background:#222;border-radius:12px;padding:16px;border-top:3px solid #b8aed7;">
+        <div style="font-size:11px;letter-spacing:2px;color:#aaa;margin-bottom:4px;">27 JUILLET</div>
+        <div style="font-size:14px;font-weight:600;">Teaser #2</div>
+        <div style="font-size:12px;color:#aaa;margin-top:4px;">Le problème</div>
+      </div>
+      <div style="background:#222;border-radius:12px;padding:16px;border-top:3px solid #b8aed7;">
+        <div style="font-size:11px;letter-spacing:2px;color:#aaa;margin-bottom:4px;">17 AOÛT</div>
+        <div style="font-size:14px;font-weight:600;">Teaser #3</div>
+        <div style="font-size:12px;color:#aaa;margin-top:4px;">L'indice</div>
+      </div>
+      <div style="background:#222;border-radius:12px;padding:16px;border-top:3px solid #b8aed7;">
+        <div style="font-size:11px;letter-spacing:2px;color:#aaa;margin-bottom:4px;">31 AOÛT</div>
+        <div style="font-size:14px;font-weight:600;">Teaser #4</div>
+        <div style="font-size:12px;color:#aaa;margin-top:4px;">Le nom révélé</div>
+      </div>
+      <div style="background:#222;border-radius:12px;padding:16px;border-top:3px solid #f49f4c;">
+        <div style="font-size:11px;letter-spacing:2px;color:#aaa;margin-bottom:4px;">1er SEPT</div>
+        <div style="font-size:14px;font-weight:600;color:#f49f4c;">🚀 LANCEMENT</div>
+        <div style="font-size:12px;color:#aaa;margin-top:4px;">Vidéo principale</div>
+      </div>
+      <div style="background:#222;border-radius:12px;padding:16px;border-top:3px solid #b8aed7;">
+        <div style="font-size:11px;letter-spacing:2px;color:#aaa;margin-bottom:4px;">8 SEPT</div>
+        <div style="font-size:14px;font-weight:600;">Démo live</div>
+        <div style="font-size:12px;color:#aaa;margin-top:4px;">L'intérieur de l'appli</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CALENDRIER MENSUEL -->
+<section class="intro-dark" style="padding:60px 40px;">
+  <h2>Le planning mois par mois</h2>
+  <p>Chaque vidéo est calée sur un moment que tes abonnées vivent. <strong>Rentrée, vacances, Toussaint, droits de l'enfant, Noël</strong> — ton contenu arrive toujours au bon moment, pour la bonne émotion.</p>
+</section>
+
+<div class="section">
+
+  <!-- JUIN -->
+  <div class="cal-month" id="juin">
+    <div class="month-header">
+      <div class="month-dot" style="background:#cbe1b6;"></div>
+      <h3 class="month-name">Juin 2026</h3>
+      <span class="month-sub">Fin d'année scolaire · Bilan · Fatigue</span>
+    </div>
+
+    <div class="event-banner">
+      <span class="event-banner-icon">🌍</span>
+      <div>
+        <div class="event-banner-text">1er juin — Journée mondiale des Parents</div>
+        <div class="event-banner-sub">Thème ONU 2026 : "Ensemble pour les parents"</div>
+      </div>
+    </div>
+
+    <div class="video-row">
+      <div class="row-date m-juin"><span class="row-day">01</span><span class="row-month-short">JUIN</span></div>
+      <div class="row-content">
+        <div class="row-type">🎬 Vidéo · Journée mondiale des Parents</div>
+        <div class="row-title">"Être parent aujourd'hui, c'est quoi vraiment ?"</div>
+        <div class="row-script">"Aujourd'hui, c'est la Journée mondiale des Parents. Et j'ai envie de vous poser une question simple : être parent aujourd'hui, c'est quoi vraiment ? C'est pas juste nourrir, habiller, emmener à l'école. C'est accompagner un enfant qui grandit dans un monde que nous n'avons pas connu. Et c'est pour ça que BRILLE existe. Pour qu'on ne soit jamais seul dans ce rôle."</div>
+        <div class="row-meta">
+          <span class="meta-tag">📍 Extérieur, lumière douce</span>
+          <span class="meta-tag">👗 Haut crème ou pêche</span>
+          <span class="meta-tag">⏱ 40 sec</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-row">
+      <div class="row-date m-juin"><span class="row-day">08</span><span class="row-month-short">JUIN</span></div>
+      <div class="row-content">
+        <div class="row-type">🌸 Pétale #1 · Série</div>
+        <div class="row-title">"Mon organisation et mon autonomie"</div>
+        <div class="row-script">"Premier pétale de la Fleur QVE — l'organisation et l'autonomie. Est-ce que votre enfant sait s'organiser seul ? Ce n'est pas une question de discipline. C'est une compétence qui se construit. Et quand elle manque, c'est souvent là que les tensions apparaissent à la maison."</div>
+        <div class="row-meta">
+          <span class="meta-tag">📍 Bureau ordonné</span>
+          <span class="meta-tag">👗 Jaune ou crème</span>
+          <span class="meta-tag">⏱ 45 sec</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-row">
+      <div class="row-date m-juin"><span class="row-day">22</span><span class="row-month-short">JUIN</span></div>
+      <div class="row-content">
+        <div class="row-type">🎬 Vidéo · Fin d'année scolaire</div>
+        <div class="row-title">"Bilan de fin d'année — ce qu'on oublie de regarder"</div>
+        <div class="row-script">"Les bulletins vont arriver. Et je veux vous dire quelque chose : les notes, c'est un indicateur. Pas un verdict. Ce que j'aimerais que vous regardiez aussi cette fin d'année : est-ce que votre enfant est épanoui ? Est-ce qu'il a des amis ? Est-ce qu'il va à l'école avec envie ? Ce sont ces questions-là que pose la QVE. Et elles valent bien plus que la moyenne de français."</div>
+        <div class="row-meta">
+          <span class="meta-tag">📍 Intérieur doux</span>
+          <span class="meta-tag">👗 Bleu poudré</span>
+          <span class="meta-tag">⏱ 50 sec</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JUILLET -->
+  <div class="cal-month" id="juillet">
+    <div class="month-header">
+      <div class="month-dot" style="background:#f8f4b8;"></div>
+      <h3 class="month-name">Juillet 2026</h3>
+      <span class="month-sub">Grandes vacances dès le 4 juillet · Rythme relâché</span>
+    </div>
+
+    <div class="event-banner">
+      <span class="event-banner-icon">☀️</span>
+      <div>
+        <div class="event-banner-text">4 juillet — Début des grandes vacances (Zone C)</div>
+        <div class="event-banner-sub">8 semaines · Rentrée le 1er septembre 2026</div>
+      </div>
+    </div>
+
+    <div class="video-row">
+      <div class="row-date m-juillet"><span class="row-day">06</span><span class="row-month-short">JUIL</span></div>
+      <div class="row-content">
+        <div class="row-type">🌸 Pétale #6 · Série</div>
+        <div class="row-title">"Mon équilibre et mon énergie"</div>
+        <div class="row-script">"Les vacances commencent. Et c'est le moment parfait pour parler du sixième pétale de la Fleur QVE : l'équilibre et l'énergie. Est-ce que votre enfant dort suffisamment ? Bouge assez ? A des temps calmes dans sa journée ? Un enfant épuisé ne peut pas être lui-même. Les vacances, c'est fait pour ça — recharger. Profitez-en vraiment."</div>
+        <div class="row-meta">
+          <span class="meta-tag">📍 Extérieur verdure</span>
+          <span class="meta-tag">👗 Vert sauge décontracté</span>
+          <span class="meta-tag">⏱ 40 sec</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-row">
+      <div class="row-date" style="background:linear-gradient(135deg,#b8aed7,#ebc6e0);min-height:80px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:16px 8px;text-align:center;"><span style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:rgba(255,255,255,0.9);line-height:1;">13</span><span style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-top:2px;">JUIL</span></div>
+      <div class="row-content" style="border-left:4px solid #b8aed7;">
+        <div class="row-type">✨ Scintille · Teaser #1</div>
+        <div class="row-title">"Quelque chose se prépare…"</div>
+        <div class="row-script">"Je travaille sur quelque chose depuis plusieurs mois. Je n'en parle pas encore. Mais ça va changer la façon dont les familles qui ne peuvent pas venir en atelier vont accéder à la méthode BRILLE. Rendez-vous en septembre. ✨"</div>
+        <div class="row-meta">
+          <span class="meta-tag">📍 Fond sombre mystérieux</span>
+          <span class="meta-tag">👗 Mauve ou noir élégant</span>
+          <span class="meta-tag">⏱ 20 sec</span>
+          <span class="meta-tag" style="background:#ebc6e0;color:#1a1a1a;">✨ Scintille</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-row">
+      <div class="row-date m-juillet"><span class="row-day">20</span><span class="row-month-short">JUIL</span></div>
+      <div class="row-content">
+        <div class="row-type">🎬 Vidéo · Été</div>
+        <div class="row-title">"3 choses à observer chez votre enfant cet été"</div>
+        <div class="row-script">"Cet été, je vous propose une mission : observer votre enfant. Pas le surveiller — l'observer. Première chose : avec qui choisit-il de jouer ? Deuxième : qu'est-ce qui le fait rire vraiment ? Troisième : comment réagit-il quand les choses ne se passent pas comme prévu ? Ces trois observations, elles vous en apprendront plus sur votre enfant qu'un bulletin de toute l'année."</div>
+        <div class="row-meta">
+          <span class="meta-tag">📍 Extérieur, lumière d'été</span>
+          <span class="meta-tag">👗 Orange ou pêche vif</span>
+          <span class="meta-tag">⏱ 50 sec</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AOÛT -->
+  <div class="cal-month" id="aout">
+    <div class="month-header">
+      <div class="month-dot" style="background:#fdd5a5;"></div>
+      <h3 class="month-name">Août 2026</h3>
+      <span class="month-sub">Prérentrée · Anxiété · Préparation</span>
+    </div>
+
+    <div class="video-row">
+      <div class="row-date" style="background:linear-gradient(135deg,#b8aed7,#ebc6e0);min-height:80px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:16px 8px;text-align:center;"><span style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:rgba(255,255,255,0.9);line-height:1;">17</span><span style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-top:2px;">AOÛT</span></div>
+      <div class="row-content" style="border-left:4px solid #b8aed7;">
+        <div class="row-type">✨ Scintille · Teaser #3 — L'indice</div>
+        <div class="row-title">"Un indice. Juste un."</div>
+        <div class="row-script">"Je vous donne un indice. Ce que je prépare, ça tient dans votre téléphone. Ça se fait à votre rythme. Ça implique votre enfant. Et ça coûte moins cher qu'un repas en famille. Vous voyez où je veux en venir ? Réponse dans 3 semaines. ✨"</div>
+        <div class="row-meta">
+          <span class="meta-tag">📍 Téléphone visible mais flou</span>
+          <span class="meta-tag">👗 Mauve doux</span>
+          <span class="meta-tag">⏱ 25 sec</span>
+          <span class="meta-tag" style="background:#ebc6e0;color:#1a1a1a;">✨ Scintille</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-row">
+      <div class="row-date m-aout"><span class="row-day">10</span><span class="row-month-short">AOÛT</span></div>
+      <div class="row-content">
+        <div class="row-type">🎬 Vidéo · Avant-rentrée</div>
+        <div class="row-title">"L'angoisse de la rentrée — ce que ressent vraiment votre enfant"</div>
+        <div class="row-script">"Dans 3 semaines, c'est la rentrée. Et certains enfants commencent déjà à sentir quelque chose dans leur ventre. On appelle ça l'angoisse de la rentrée. Ce n'est pas du caprice. Ce n'est pas de la faiblesse. C'est leur façon de vous dire qu'ils ont besoin d'être rassurés. Ce que vous pouvez faire ? En parler. Simplement. 'T'inquiètes de quoi pour la rentrée ?' Trois mots qui ouvrent tout."</div>
+        <div class="row-meta">
+          <span class="meta-tag">📍 Intérieur cosy</span>
+          <span class="meta-tag">👗 Mauve doux</span>
+          <span class="meta-tag">⏱ 50 sec</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-row">
+      <div class="row-date" style="background:linear-gradient(135deg,#b8aed7,#ebc6e0);min-height:80px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:16px 8px;text-align:center;"><span style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:rgba(255,255,255,0.9);line-height:1;">31</span><span style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-top:2px;">AOÛT</span></div>
+      <div class="row-content" style="border-left:4px solid #b8aed7;">
+        <div class="row-type">✨ Scintille · Teaser #4 — Le nom</div>
+        <div class="row-title">"Elle s'appelle Scintille."</div>
+        <div class="row-script">"Elle s'appelle Scintille. C'est une application que j'ai conçue pour les familles qui ne peuvent pas venir en atelier. Tout ce qu'on fait en centre social — la Fleur QVE, les outils, les kits, les victoires — vous allez pouvoir le faire depuis chez vous, à votre rythme, avec votre enfant. Lancement le 1er septembre."</div>
+        <div class="row-meta">
+          <span class="meta-tag">📍 Fond épuré, lumière dorée</span>
+          <span class="meta-tag">👗 Rose-lilas élégant</span>
+          <span class="meta-tag">⏱ 35 sec · Révélation du nom</span>
+          <span class="meta-tag" style="background:#ebc6e0;color:#1a1a1a;">✨ Scintille</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-row">
+      <div class="row-date m-aout"><span class="row-day">24</span><span class="row-month-short">AOÛT</span></div>
+      <div class="row-content">
+        <div class="row-type">🎬 Vidéo · Pré-rentrée</div>
+        <div class="row-title">"Comment préparer votre enfant à la rentrée sans le stresser"</div>
+        <div class="row-script">"La rentrée est dans une semaine. Et si au lieu de parler des fournitures et des horaires, vous parliez à votre enfant de ce qu'il attend de cette nouvelle année ? Pas ce que vous attendez de lui. Ce que lui attend. Ce changement de perspective, c'est ce qui fait toute la différence entre une rentrée subie et une rentrée choisie."</div>
+        <div class="row-meta">
+          <span class="meta-tag">📍 Salon, ton préparation</span>
+          <span class="meta-tag">👗 Bleu structuré</span>
+          <span class="meta-tag">⏱ 45 sec</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEPTEMBRE -->
+  <div class="cal-month" id="septembre">
+    <div class="month-header">
+      <div class="month-dot" style="background:#a4c2e7;"></div>
+      <h3 class="month-name">Septembre 2026</h3>
+      <span class="month-sub">Rentrée le 1er · Nouvelles amitiés · Nouveaux rythmes</span>
+    </div>
+
+    <div class="event-banner">
+      <span class="event-banner-icon">🎒</span>
+      <div>
+        <div class="event-banner-text">1er septembre — Rentrée scolaire 2026-2027</div>
+        <div class="event-banner-sub">Le moment fort de l'année pour toutes les familles</div>
+      </div>
+    </div>
+
+    <div class="video-row">
+      <div class="row-date" style="background:linear-gradient(135deg,#f49f4c,#ebc6e0);min-height:80px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:16px 8px;text-align:center;"><span style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:rgba(255,255,255,0.9);line-height:1;">01</span><span style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-top:2px;">SEPT</span></div>
+      <div class="row-content" style="border-left:4px solid #f49f4c;background:linear-gradient(135deg,#fffdf9,#fff9f2);">
+        <div class="row-type" style="color:#f49f4c;">🚀 LANCEMENT SCINTILLE — Vidéo principale</div>
+        <div class="row-title">"Scintille est là. Je vous présente tout."</div>
+        <div class="row-script">"Voilà. C'est le jour. Scintille est disponible. Qu'est-ce que c'est ? C'est l'application que j'ai conçue pour vous — parents — qui n'avez pas accès à un atelier BRILLE. La Fleur QVE que vous colorez avec votre enfant. Des outils adaptés à son âge. Un grimoire pour noter ses victoires. Un espace rien que pour lui, en mode enfant. Cinq offres, de 29€ à 290€. Le lien est dans ma bio. Je suis là en DM pour toutes vos questions."</div>
+        <div class="row-meta">
+          <span class="meta-tag">📍 Bureau avec appli visible sur téléphone</span>
+          <span class="meta-tag">👗 Orange ou mauve fort — tenue signature</span>
+          <span class="meta-tag">⏱ 75 sec · À épingler en priorité</span>
+          <span class="meta-tag" style="background:#f49f4c;color:#fff;">🚀 Jour J Scintille</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-row">
+      <div class="row-date m-sept"><span class="row-day">01</span><span class="row-month-short">SEPT</span></div>
+      <div class="row-content">
+        <div class="row-type">🎬 Vidéo · Jour J</div>
+        <div class="row-title">"C'est la rentrée. Ce que j'aimerais dire à chaque parent aujourd'hui."</div>
+        <div class="row-script">"C'est la rentrée. Votre enfant est parti ce matin avec son cartable. Et vous, vous vous demandez peut-être comment ça va se passer. Je veux vous dire une chose : votre enfant a tout ce qu'il faut pour traverser ça. Il a besoin de vous — pas pour tout résoudre. Juste pour être là. Ce soir, posez-lui une question simple : 'C'était comment ta journée ?' Et écoutez vraiment la réponse."</div>
+        <div class="row-meta">
+          <span class="meta-tag">📍 Extérieur matin</span>
+          <span class="meta-tag">👗 Tenue signature bleue</span>
+          <span class="meta-tag">⏱ 45 sec</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-row">
+      <div class="row-date" style="background:linear-gradient(135deg,#b8aed7,#ebc6e0);min-height:80px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:16px 8px;text-align:center;"><span style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:rgba(255,255,255,0.9);line-height:1;">08</span><span style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-top:2px;">SEPT</span></div>
+      <div class="row-content" style="border-left:4px solid #b8aed7;">
+        <div class="row-type">✨ Scintille · Démo live</div>
+        <div class="row-title">"Je vous montre Scintille de l'intérieur"</div>
+        <div class="row-script">"Cette semaine, je vous emmène à l'intérieur de Scintille. La Fleur QVE interactive — votre enfant touche chaque pétale, donne son ressenti. Le grimoire des victoires — parce que chaque progrès mérite d'être célébré. Les kits pétales — des outils concrets à la maison. Le lien est dans la bio."</div>
+        <div class="row-meta">
+          <span class="meta-tag">📍 Écran téléphone filmé</span>
+          <span class="meta-tag">👗 Mauve décontracté</span>
+          <span class="meta-tag">⏱ 60 sec · Screencast appli</span>
+          <span class="meta-tag" style="background:#ebc6e0;color:#1a1a1a;">✨ Scintille démo</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-row">
+      <div class="row-date m-sept"><span class="row-day">14</span><span class="row-month-short">SEPT</span></div>
+      <div class="row-content">
+        <div class="row-type">🌸 Pétale #4 · Série</div>
+        <div class="row-title">"Mes liens et ma parole"</div>
+        <div class="row-script">"Quatrième pétale — les liens et la parole. Est-ce que votre enfant ose dire ce qu'il pense à l'école ? A-t-il trouvé des amis avec qui il se sent vraiment lui-même ? La rentrée, c'est le moment où ces questions se posent fort. Et ce pétale, c'est celui qui travaille exactement ça : la confiance en soi dans les relations."</div>
+        <div class="row-meta">
+          <span class="meta-tag">📍 Extérieur dynamique</span>
+          <span class="meta-tag">👗 Vert ou bleu ciel</span>
+          <span class="meta-tag">⏱ 45 sec</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-row">
+      <div class="row-date m-sept"><span class="row-day">28</span><span class="row-month-short">SEPT</span></div>
+      <div class="row-content">
+        <div class="row-type">🎬 Vidéo · Expertise</div>
+        <div class="row-title">"Pourquoi je travaille avec les centres sociaux et pas en libéral"</div>
+        <div class="row-script">"On me demande souvent pourquoi je ne reçois pas les familles en cabinet. Ma réponse : parce que je veux toucher les familles qui n'auraient jamais poussé la porte d'un cabinet. Les centres sociaux, c'est là où sont les familles qui ont le plus besoin d'être accompagnées — et qui ont le moins accès aux ressources. C'est mon terrain. C'est mon choix. Et je l'assume pleinement."</div>
+        <div class="row-meta">
+          <span class="meta-tag">📍 Extérieur, quartier</span>
+          <span class="meta-tag">👗 Veste structurée verte</span>
+          <span class="meta-tag">⏱ 50 sec</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OCTOBRE -->
+  <div class="cal-month" id="octobre">
+    <div class="month-header">
+      <div class="month-dot" style="background:#f5abaf;"></div>
+      <h3 class="month-name">Octobre 2026</h3>
+      <span class="month-sub">Toussaint 17→2 nov · Bilan 1er mois · Fatigue rentrée</span>
+    </div>
+
+    <div class="event-banner">
+      <span class="event-banner-icon">🍂</span>
+      <div>
+        <div class="event-banner-text">17 oct → 2 nov — Vacances Toussaint (Zone C)</div>
+        <div class="event-banner-sub">Moment de pause et de bilan après le 1er mois de rentrée</div>
+      </div>
+    </div>
+
+    <div class="video-row">
+      <div class="row-date m-oct"><span class="row-day">05</span><span class="row-month-short">OCT</span></div>
+      <div class="row-content">
+        <div class="row-type">🌸 Pétale #2 · Série</div>
+        <div class="row-title">"Mes émotions apprivoisées"</div>
+        <div class="row-script">"Deuxième pétale — les émotions. Un mois après la rentrée, c'est souvent là que ça craque. L'enthousiasme du début est retombé. La fatigue arrive. Et les émotions refont surface. Est-ce que votre enfant sait nommer ce qu'il ressent ? Pas juste 'je suis fatigué'. Mais vraiment — est-ce qu'il est inquiet, déçu, exclu, incompris ? Ce pétale, c'est la clé de tout."</div>
+        <div class="row-meta">
+          <span class="meta-tag">📍 Coin cosy, plaid rose</span>
+          <span class="meta-tag">👗 Pull rose poudré</span>
+          <span class="meta-tag">⏱ 45 sec</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-row">
+      <div class="row-date m-oct"><span class="row-day">19</span><span class="row-month-short">OCT</span></div>
+      <div class="row-content">
+        <div class="row-type">🎬 Vidéo · Toussaint</div>
+        <div class="row-title">"Les vacances de Toussaint — ce que j'observe chez les enfants"</div>
+        <div class="row-script">"Les vacances de Toussaint, c'est le premier vrai souffle depuis la rentrée. Et c'est aussi le moment où l'on voit comment l'enfant va vraiment. Est-ce qu'il se détend facilement ? Ou est-ce qu'il reste tendu même sans école ? Est-ce qu'il cherche du calme ou de la stimulation ? Ce que vous observez ces deux semaines vous en dit long sur son niveau d'équilibre. Notez-le."</div>
+        <div class="row-meta">
+          <span class="meta-tag">📍 Intérieur automnal</span>
+          <span class="meta-tag">👗 Bordeaux ou terracotta</span>
+          <span class="meta-tag">⏱ 50 sec</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOVEMBRE -->
+  <div class="cal-month" id="novembre">
+    <div class="month-header">
+      <div class="month-dot" style="background:#b8aed7;"></div>
+      <h3 class="month-name">Novembre 2026</h3>
+      <span class="month-sub">20 nov CIDE · Droits de l'enfant · Engagement</span>
+    </div>
+
+    <div class="event-banner">
+      <span class="event-banner-icon">🌸</span>
+      <div>
+        <div class="event-banner-text">20 novembre — Journée internationale des droits de l'enfant (CIDE)</div>
+        <div class="event-banner-sub">Ton événement phare de l'année — Atelier Étincelle CIDE</div>
+      </div>
+    </div>
+
+    <div class="video-row">
+      <div class="row-date m-nov"><span class="row-day">09</span><span class="row-month-short">NOV</span></div>
+      <div class="row-content">
+        <div class="row-type">🌸 Pétale #3 · Série</div>
+        <div class="row-title">"Le sens de mes apprentissages"</div>
+        <div class="row-script">"Troisième pétale — le sens des apprentissages. On est en plein milieu de l'année scolaire. Et beaucoup d'enfants commencent à décrocher — pas parce qu'ils ne sont pas capables, mais parce qu'ils ne comprennent pas pourquoi ils apprennent. Ce pétale, c'est celui qui répond à la question que beaucoup d'enfants posent sans oser : 'À quoi ça sert, tout ça ?'"</div>
+        <div class="row-meta">
+          <span class="meta-tag">📍 Bibliothèque ou livres</span>
+          <span class="meta-tag">👗 Bleu lavande</span>
+          <span class="meta-tag">⏱ 45 sec</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-row">
+      <div class="row-date m-nov"><span class="row-day">16</span><span class="row-month-short">NOV</span></div>
+      <div class="row-content">
+        <div class="row-type">🎬 Teaser · CIDE</div>
+        <div class="row-title">"Dans 4 jours, quelque chose de spécial se passe"</div>
+        <div class="row-script">"Le 20 novembre, c'est la Journée internationale des droits de l'enfant. Et cette année, je fais quelque chose de spécial pour marquer cette date. Je vous en dis plus jeudi. Mais je voulais juste vous poser cette question aujourd'hui : est-ce que votre enfant sait qu'il a des droits ?"</div>
+        <div class="row-meta">
+          <span class="meta-tag">📍 Fond épuré mauve</span>
+          <span class="meta-tag">👗 Mauve ou lilas</span>
+          <span class="meta-tag">⏱ 30 sec</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-row">
+      <div class="row-date m-nov"><span class="row-day">20</span><span class="row-month-short">NOV</span></div>
+      <div class="row-content">
+        <div class="row-type">🌸 Pétale #5 · CIDE Special</div>
+        <div class="row-title">"Ma place et mes droits — Journée des droits de l'enfant"</div>
+        <div class="row-script">"Aujourd'hui, 20 novembre — Journée internationale des droits de l'enfant. Et je voulais vous parler du cinquième pétale de la Fleur QVE : la place et les droits. Est-ce que votre enfant sait qu'il a une place légitime dans la famille, dans la classe, dans la société ? Sait-il qu'il a le droit d'être entendu ? D'être protégé ? D'être lui-même ? Un enfant qui sait ça, on ne peut pas l'éteindre. Et c'est le travail qu'on fait ensemble dans l'Atelier Étincelle."</div>
+        <div class="row-meta">
+          <span class="meta-tag">📍 Fond mauve conviction</span>
+          <span class="meta-tag">👗 Mauve affirmé, bijoux</span>
+          <span class="meta-tag">⏱ 55 sec · Épingler</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-row">
+      <div class="row-date m-nov"><span class="row-day">23</span><span class="row-month-short">NOV</span></div>
+      <div class="row-content">
+        <div class="row-type">🎬 Vidéo · Auto-Audit</div>
+        <div class="row-title">"5 mamans recherchées — Testez l'Auto-Audit QVE"</div>
+        <div class="row-script">"J'ai créé un outil : l'Auto-Audit QVE. 28 questions, 5 minutes. Pour savoir comment va vraiment votre enfant. Je recherche 5 mamans pour le tester gratuitement. En échange, je vous offre mon analyse experte de vos résultats — personnalisée, en DM. Envoyez-moi le mot BRILLE en message privé. Je vous attends."</div>
+        <div class="row-meta">
+          <span class="meta-tag">📍 Bureau doux, audit visible</span>
+          <span class="meta-tag">👗 Blouse jaune crème</span>
+          <span class="meta-tag">⏱ 45 sec · Appel à l'action</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DÉCEMBRE -->
+  <div class="cal-month" id="decembre">
+    <div class="month-header">
+      <div class="month-dot" style="background:#f49f4c;"></div>
+      <h3 class="month-name">Décembre 2026</h3>
+      <span class="month-sub">Noël · Vacances 19 déc → 4 jan · Bilan d'année · Gratitude</span>
+    </div>
+
+    <div class="event-banner">
+      <span class="event-banner-icon">🎄</span>
+      <div>
+        <div class="event-banner-text">19 décembre → 4 janvier — Vacances de Noël (Zone C)</div>
+        <div class="event-banner-sub">Temps fort familial · Bilan de l'année · Projection 2027</div>
+      </div>
+    </div>
+
+    <div class="video-row">
+      <div class="row-date m-dec"><span class="row-day">07</span><span class="row-month-short">DÉC</span></div>
+      <div class="row-content">
+        <div class="row-type">🌸 Pétale #7 · Série · Final</div>
+        <div class="row-title">"Ce qui me fait briller — le pétale de fin d'année"</div>
+        <div class="row-script">"Le septième pétale — et mon préféré. Ce qui fait briller l'enfant. C'est ce qui le fait se lever le matin avec envie. Ce qui lui fait oublier le temps. Ce dans quoi il est vraiment lui-même. Ce n'est pas forcément les maths ou le foot. Et notre rôle, c'est de l'aider à trouver ça. Puis à en être fier. Parce que quand un enfant brille — tout le monde autour de lui brille aussi. Bonne fin d'année à toutes. 🌟"</div>
+        <div class="row-meta">
+          <span class="meta-tag">📍 Lumière dorée, bougie</span>
+          <span class="meta-tag">👗 Orange lumineux</span>
+          <span class="meta-tag">⏱ 55 sec · Épingler</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-row">
+      <div class="row-date m-dec"><span class="row-day">14</span><span class="row-month-short">DÉC</span></div>
+      <div class="row-content">
+        <div class="row-type">🎬 Vidéo · Noël</div>
+        <div class="row-title">"Ce que je voudrais offrir à chaque enfant pour Noël"</div>
+        <div class="row-script">"Noël approche. Et je veux vous parler d'un cadeau qu'on ne trouve pas dans les catalogues. Ce que je voudrais offrir à chaque enfant, c'est la certitude qu'il compte. Pas à travers les cadeaux. À travers le temps qu'on prend pour l'écouter. Pour le regarder. Pour lui dire : 'Ce que tu ressens, ça compte. Ce que tu aimes, ça compte. Toi, tu comptes.' C'est ça, la QVE. Et vous pouvez commencer ce soir."</div>
+        <div class="row-meta">
+          <span class="meta-tag">📍 Déco de Noël douce</span>
+          <span class="meta-tag">👗 Rouge doux ou bordeaux</span>
+          <span class="meta-tag">⏱ 50 sec</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-row">
+      <div class="row-date m-dec"><span class="row-day">28</span><span class="row-month-short">DÉC</span></div>
+      <div class="row-content">
+        <div class="row-type">🎬 Vidéo · Bilan année</div>
+        <div class="row-title">"Ce que BRILLE a accompli en 2026 — et ce qui arrive en 2027"</div>
+        <div class="row-script">"2026 s'achève. BRILLE a existé. Pour de vrai. Les premières familles, les premiers ateliers, les premières structures. Et 2027 ? Il y a des projets que je n'ai pas encore partagés. Des nouvelles offres. De nouveaux partenariats. Je vous donne rendez-vous en janvier pour tout vous dire. En attendant, merci d'avoir été là. De m'avoir suivie. De m'avoir fait confiance. Cette communauté, c'est ma plus belle réussite de l'année."</div>
+        <div class="row-meta">
+          <span class="meta-tag">📍 Intérieur chaleureux</span>
+          <span class="meta-tag">👗 Tenue festive douce</span>
+          <span class="meta-tag">⏱ 60 sec · Bilan émouvant</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">BRILLE <em>Ingénierie</em></div>
+  <div class="footer-info">
+    Rindra Tsiory Leonard<br>
+    07 45 32 30 90 · tsioryleonard@gmail.com<br>
+    @brille.ingenierie
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.video-row').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
