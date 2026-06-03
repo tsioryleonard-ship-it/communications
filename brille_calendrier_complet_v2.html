@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRILLE — Calendrier Éditorial Détaillé · Mai–Septembre 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Gruppo&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --white: #ffffff; --off: #f9f7f4; --border: #ede9e2;
+    --text: #2a2420; --muted: #7a7068; --faint: #b8b0a6;
+    --green: #3B6D11; --green-bg: #EAF3DE; --green-mid: #639922; --green-pale: #f2f8e8;
+    --blue: #185FA5; --blue-bg: #E6F1FB; --blue-mid: #378ADD;
+    --pink: #993556; --pink-bg: #FBEAF0; --pink-mid: #D4537E;
+    --purple: #534AB7; --purple-bg: #EEEDFE; --purple-mid: #7F77DD;
+    --yellow: #BA7517; --yellow-bg: #FAEEDA; --yellow-mid: #EF9F27;
+    --teal: #0F6E56; --teal-bg: #E1F5EE;
+    --gray-bg: #f1efe8; --gray-text: #5f5e5a;
+    --radius-sm: 6px; --radius-md: 10px; --radius-lg: 16px;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Quicksand', sans-serif; background: var(--off); color: var(--text); line-height: 1.6; }
+
+  /* HEADER */
+  .site-header { background: var(--white); border-bottom: 1px solid var(--border); padding: 1.25rem 2rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+  .logo { font-family: 'Gruppo', sans-serif; font-size: 1.4rem; letter-spacing: .08em; color: var(--text); text-decoration: none; }
+  .header-meta { font-size: 11px; color: var(--muted); font-weight: 600; letter-spacing: .05em; text-transform: uppercase; }
+
+  /* HERO */
+  .hero { background: var(--white); border-bottom: 1px solid var(--border); padding: 2.5rem 2rem 2rem; text-align: center; }
+  .hero-eye { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--green-mid); margin-bottom: .6rem; }
+  .hero-title { font-family: 'Gruppo', sans-serif; font-size: clamp(1.6rem, 3.5vw, 2.4rem); color: var(--text); margin-bottom: .5rem; }
+  .hero-sub { font-size: .85rem; color: var(--muted); max-width: 540px; margin: 0 auto 1.5rem; font-weight: 300; line-height: 1.7; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: .4rem .75rem; justify-content: center; }
+  .leg { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 500; color: var(--muted); background: var(--off); padding: 3px 10px; border-radius: 20px; border: 1px solid var(--border); }
+  .leg-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+  /* FILTERS */
+  .filters { padding: 1rem 2rem; display: flex; gap: .4rem; flex-wrap: wrap; align-items: center; background: var(--off); border-bottom: 1px solid var(--border); position: sticky; top: 63px; z-index: 90; }
+  .filter-label { font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--faint); margin-right: .25rem; }
+  .filter-btn { font-family: 'Quicksand', sans-serif; font-size: 11px; font-weight: 600; padding: 4px 14px; border-radius: 20px; border: 1px solid var(--border); background: var(--white); color: var(--muted); cursor: pointer; transition: all .15s; letter-spacing: .02em; }
+  .filter-btn:hover { border-color: var(--green-mid); color: var(--green); }
+  .filter-btn.active { background: var(--text); color: var(--white); border-color: var(--text); }
+
+  /* MAIN */
+  .main { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
+
+  /* MONTH */
+  .month-section { margin-bottom: 2.5rem; }
+  .month-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+  .month-name { font-family: 'Gruppo', sans-serif; font-size: 1.2rem; color: var(--text); letter-spacing: .04em; }
+  .month-count { font-size: 10px; font-weight: 700; color: var(--faint); text-transform: uppercase; letter-spacing: .06em; }
+  .month-line { flex: 1; height: 1px; background: var(--border); }
+
+  /* POST CARD */
+  .post-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); margin-bottom: .625rem; overflow: hidden; transition: border-color .15s; }
+  .post-card:hover { border-color: #cdc7be; }
+  .post-card.hidden { display: none; }
+  .post-card[data-type="dim"]  { border-left: 3px solid var(--green-mid); }
+  .post-card[data-type="mer"]  { border-left: 3px solid var(--blue-mid); }
+  .post-card[data-type="eve"]  { border-left: 3px solid var(--pink-mid); }
+  .post-card[data-type="teas"] { border-left: 3px solid var(--purple-mid); }
+
+  .post-summary { padding: .875rem 1.25rem; cursor: pointer; display: grid; grid-template-columns: 1fr auto; gap: .75rem; align-items: start; user-select: none; }
+  .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 5px; }
+  .tag { font-size: 10px; font-weight: 700; padding: 2px 9px; border-radius: 20px; letter-spacing: .02em; }
+  .tag-dim  { background: var(--green-bg); color: var(--green); }
+  .tag-mer  { background: var(--blue-bg); color: var(--blue); }
+  .tag-eve  { background: var(--pink-bg); color: var(--pink); }
+  .tag-teas { background: var(--purple-bg); color: var(--purple); }
+  .tag-type { background: var(--gray-bg); color: var(--gray-text); }
+
+  .post-title { font-size: .88rem; font-weight: 700; color: var(--text); margin-bottom: 2px; line-height: 1.4; }
+  .post-hook-preview { font-size: .78rem; color: var(--muted); font-weight: 300; }
+  .post-right { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0; }
+  .date-badge { font-size: 10px; font-weight: 600; color: var(--faint); white-space: nowrap; }
+  .chevron { width: 22px; height: 22px; border-radius: 50%; background: var(--off); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; transition: all .2s; }
+  .chevron svg { width: 11px; height: 11px; stroke: var(--muted); transition: transform .2s; }
+  .post-card.open .chevron { background: var(--text); border-color: var(--text); }
+  .post-card.open .chevron svg { stroke: var(--white); transform: rotate(180deg); }
+
+  /* POST BODY */
+  .post-body { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+  .post-body.open { max-height: 3000px; }
+  .post-body-inner { border-top: 1px solid var(--border); }
+
+  /* TABS */
+  .tab-nav { display: flex; border-bottom: 1px solid var(--border); padding: 0 1.25rem; gap: 0; }
+  .tab-btn { font-family: 'Quicksand', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; padding: .6rem 1rem; border: none; background: none; color: var(--faint); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all .15s; }
+  .tab-btn.active { color: var(--text); border-bottom-color: var(--text); }
+  .tab-panel { display: none; padding: 1.25rem; }
+  .tab-panel.active { display: block; }
+
+  /* TEXTE INSTAGRAM */
+  .insta-preview { background: var(--off); border-radius: var(--radius-md); padding: 1rem 1.125rem; margin-bottom: 1rem; position: relative; }
+  .insta-preview pre { font-family: 'Quicksand', sans-serif; font-size: .82rem; color: var(--text); white-space: pre-wrap; line-height: 1.75; font-weight: 400; }
+  .hashtags-block { font-size: .78rem; color: var(--blue); font-weight: 500; line-height: 2; margin-top: .75rem; }
+
+  .copy-bar { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .875rem; }
+  .copy-btn { font-family: 'Quicksand', sans-serif; font-size: 11px; font-weight: 600; padding: 5px 14px; border-radius: 20px; border: 1px solid var(--border); background: var(--white); color: var(--muted); cursor: pointer; display: flex; align-items: center; gap: 5px; transition: all .15s; letter-spacing: .02em; }
+  .copy-btn:hover { background: var(--text); color: var(--white); border-color: var(--text); }
+  .copy-btn.ok { background: var(--green-bg); color: var(--green); border-color: transparent; }
+
+  /* SLIDES CARROUSEL */
+  .slides-grid { display: flex; flex-direction: column; gap: .75rem; }
+  .slide-item { display: grid; grid-template-columns: 52px 1fr; gap: .875rem; align-items: start; background: var(--off); border-radius: var(--radius-md); padding: .875rem 1rem; }
+  .slide-num { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Gruppo', sans-serif; font-size: .95rem; color: var(--white); flex-shrink: 0; }
+  .slide-content { }
+  .slide-label { font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--faint); margin-bottom: 3px; }
+  .slide-title { font-size: .85rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .slide-desc { font-size: .78rem; color: var(--muted); line-height: 1.65; font-weight: 300; }
+  .slide-desc strong { font-weight: 600; color: var(--text); }
+  .slide-visual { font-size: .75rem; color: var(--faint); margin-top: 4px; font-style: italic; }
+
+  /* VISUEL */
+  .visual-block { background: var(--off); border-radius: var(--radius-md); padding: 1rem 1.125rem; }
+  .visual-block h4 { font-size: .8rem; font-weight: 700; color: var(--text); margin-bottom: .5rem; letter-spacing: .03em; }
+  .visual-block ul { padding-left: 1.1rem; }
+  .visual-block li { font-size: .78rem; color: var(--muted); line-height: 1.8; }
+  .visual-block li strong { font-weight: 600; color: var(--text); }
+  .canva-note { background: var(--green-bg); border-radius: var(--radius-sm); padding: .5rem .75rem; margin-top: .75rem; font-size: .75rem; color: var(--green); font-weight: 500; }
+
+  /* SECTION LABELS */
+  .section-label { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); margin-bottom: .5rem; }
+
+  footer { text-align: center; padding: 2rem; font-size: .72rem; color: var(--faint); border-top: 1px solid var(--border); }
+
+  @media (max-width: 600px) {
+    .site-header { padding: 1rem; }
+    .filters { padding: .75rem 1rem; top: 55px; }
+    .main { padding: 1.25rem 1rem 4rem; }
+    .post-summary { grid-template-columns: 1fr; }
+    .post-right { flex-direction: row; align-items: center; justify-content: space-between; }
+    .slide-item { grid-template-columns: 40px 1fr; gap: .6rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="#">BRILLE</a>
+  <span class="header-meta">Calendrier détaillé · Mai → Sept 2026</span>
+</header>
+
+<div class="hero">
+  <p class="hero-eye">Instagram · QVE · Atelier Étincelle</p>
+  <h1 class="hero-title">Calendrier éditorial — version complète</h1>
+  <p class="hero-sub">Chaque post contient le texte Instagram prêt à publier, le brief slides par slides pour les carrousels, et les instructions visuelles Canva.</p>
+  <div class="legend">
+    <div class="leg"><div class="leg-dot" style="background:var(--green-mid)"></div>Post dimanche</div>
+    <div class="leg"><div class="leg-dot" style="background:var(--blue-mid)"></div>Carrousel mercredi</div>
+    <div class="leg"><div class="leg-dot" style="background:var(--pink-mid)"></div>Événement famille</div>
+    <div class="leg"><div class="leg-dot" style="background:var(--purple-mid)"></div>Teasing Scintille</div>
+  </div>
+</div>
+
+<div class="filters">
+  <span class="filter-label">Filtrer</span>
+  <button class="filter-btn active" data-filter="all">Tout</button>
+  <button class="filter-btn" data-filter="dim">Dimanche</button>
+  <button class="filter-btn" data-filter="mer">Mercredi</button>
+  <button class="filter-btn" data-filter="eve">Événements</button>
+  <button class="filter-btn" data-filter="teas">Scintille</button>
+</div>
+
+<main class="main" id="main"></main>
+
+<footer>BRILLE · tsioryleonard@gmail.com · 07 45 32 30 90 · Pontault-Combault</footer>
+
+<script>
+const POSTS = [
+  {
+    date:"Dim 18 mai", month:"Mai 2026", type:"dim", subtype:"Outil",
+    title:"La roue QVE",
+    hook:"Tu as reçu ton score. Et maintenant, tu fais quoi avec ?",
+    insta:`Tu as reçu ton score Auto-Audit QVE.
+
+Et maintenant, tu fais quoi avec ?
+
+Cette semaine, je t'offre un deuxième outil : 𝗹𝗮 𝗿𝗼𝘂𝗲 𝗤𝗩𝗘.
+
+7 secteurs — un par dimension de la vie de ton enfant.
+Tu colorïes chaque secteur de 1 (centre) à 10 (bord extérieur), selon ton ressenti.
+
+En 5 minutes, tu obtiens une image.
+Une forme. Un dessin de là où en est ton enfant aujourd'hui.
+
+Là où la roue est "creuse" → c'est là qu'on peut agir.
+Là où elle est pleine → c'est là que ça rayonne.
+
+𝗖'𝗲𝘀𝘁 𝗽𝗮𝘀 𝘂𝗻 𝗱𝗶𝗮𝗴𝗻𝗼𝘀𝘁𝗶𝗰. C'est un point de départ.
+Un outil de conversation entre vous deux.
+
+👉 La roue est disponible en story cette semaine.
+Enregistre-la, colorie-la avec ton enfant, et envoie-moi ta photo en DM si tu veux qu'on en parle.`,
+    hashtags:"#QVE #qualitedevieenfant #parentalite #outilparent #BRILLE #rouequve #epanouissement #atelieretincelle",
+    slides: null,
+    visuel: {
+      format: "Post carré 1080×1080px + Story 1080×1920px",
+      fond: "Blanc, formes vagues organiques aux coins (couleur verte pale #EAF3DE)",
+      elements: [
+        "Titre en Gruppo : 'La Roue QVE'",
+        "Sous-titre Quicksand 300 : '7 dimensions · À colorier'",
+        "Illustration de la roue centrée — version miniature (sans les cercles de notation)",
+        "Texte : 'Disponible en story ↑' avec flèche",
+        "Footer : logo BRILLE + @brille_officiel"
+      ],
+      story: "Fond blanc, roue en grand au centre, avec les 7 secteurs vides (à colorier). En bas : 'Enregistre → Imprime → Colorie avec ton enfant'"
+    }
+  },
+  {
+    date:"Mer 21 mai", month:"Mai 2026", type:"eve", subtype:"Carrousel",
+    title:"Fête des mères : ce que votre enfant observe en vous",
+    hook:"Et si votre enfant vous renvoyait votre propre image ?",
+    insta:`Bonne fête, maman.
+
+Ou plutôt — bonne fête à toi qui portes, organises, rassures, recommences.
+
+Cette année, au lieu d'une liste de cadeaux idéaux, je t'offre quelque chose de différent.
+
+𝟱 𝗰𝗵𝗼𝘀𝗲𝘀 𝗾𝘂𝗲 𝘁𝗼𝗻 𝗲𝗻𝗳𝗮𝗻𝘁 𝗼𝗯𝘀𝗲𝗿𝘃𝗲 𝗲𝗻 𝘁𝗼𝗶 — sans jamais te le dire.
+
+→ Swipe pour découvrir.
+
+Et toi, quelle qualité de ton enfant vient… de toi ?
+Dis-moi en commentaire. 💛`,
+    hashtags:"#fetedesmeres #maman #parentalite #BRILLE #QVE #bonnefete #mere #famille",
+    slides: [
+      { num:1, title:"Couverture", desc:"Visuel doux, fond blanc. Titre : 'Ce que ton enfant observe en toi (sans jamais te le dire)'. Sous-titre : 'Pour la fête des mères 🌸'. Logo BRILLE en bas.", visual:"Photo floue/aquarelle d'une mère et enfant de dos. Tons pastels." },
+      { num:2, title:"Il observe ton calme", desc:"Texte : 'Quand tu respires au lieu de crier. Quand tu gardes ton calme alors que tu es épuisée. Il voit ça. Et il apprend que les émotions ne sont pas des ennemis.' Mot-clé en grand : CALME.", visual:"Fond vert pâle. Mot 'CALME' en Gruppo, large. Texte Quicksand 300 en dessous." },
+      { num:3, title:"Il observe ton effort", desc:"'Quand tu continues même quand c'est dur. Quand tu recommences après une mauvaise journée. Sans t'en rendre compte, tu lui montres ce que signifie la persévérance.' Mot-clé : EFFORT.", visual:"Fond bleu pâle. Même mise en page." },
+      { num:4, title:"Il observe ton soin", desc:"'Quand tu t'occupes des autres — et parfois de toi. Quand tu prépares, anticipes, prends soin. Il absorbe que prendre soin de ceux qu'on aime, ça a de la valeur.' Mot-clé : SOIN.", visual:"Fond rose pâle." },
+      { num:5, title:"Il observe ton humour", desc:"'Les moments où tu ris de toi-même. Où tu rends le quotidien léger. Il apprend que la légèreté n'est pas une fuite — c'est une force.' Mot-clé : HUMOUR.", visual:"Fond jaune pâle." },
+      { num:6, title:"Il observe ta résilience", desc:"'Quand quelque chose ne va pas et que tu te relèves. Pas parfaitement. Pas toujours vite. Mais tu te relèves. Et ça, c'est la leçon la plus précieuse.' Mot-clé : RÉSILIENCE.", visual:"Fond violet pâle." },
+      { num:7, title:"Call to action", desc:"'Quelle qualité de ton enfant vient de toi ? Dis-le en commentaire. Bonne fête 💛' Logo BRILLE centré. Lien bio pour l'Auto-Audit QVE.", visual:"Fond blanc. Typographie douce. Formes organiques vertes aux coins." }
+    ],
+    visuel: {
+      format: "Carrousel Instagram — 7 slides 1080×1080px",
+      fond: "Slide 1 : blanc avec photo. Slides 2–6 : fonds pastels alternés (vert, bleu, rose, jaune, violet). Slide 7 : blanc.",
+      elements: ["Police Gruppo pour les mots-clés (grande taille)", "Quicksand 300 pour les textes", "Couleurs BRILLE pastel", "Logo en bas à droite sur chaque slide"],
+      story: "Reprendre slide 1 en format 9:16 pour story de promotion"
+    }
+  },
+  {
+    date:"Dim 25 mai", month:"Mai 2026", type:"dim", subtype:"Conseil pratique",
+    title:"La règle des 3 questions",
+    hook:"Rentrer de l'école : 3 questions qui changent tout.",
+    insta:`Rentrer de l'école.
+
+"Ça s'est bien passé ?"
+"Oui."
+Fin de conversation.
+
+Ce n'est pas que ton enfant ne veut pas parler.
+C'est que la question ne lui laisse pas de porte d'entrée.
+
+Depuis quelques semaines, j'utilise avec les familles 𝗹𝗮 𝗿𝗲̀𝗴𝗹𝗲 𝗱𝗲𝘀 𝟯 𝗾𝘂𝗲𝘀𝘁𝗶𝗼𝗻𝘀.
+
+𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻 𝟭 : "Qu'est-ce qui t'a surpris aujourd'hui ?"
+→ Ça active la curiosité. Ça sort du jugement "bien/pas bien".
+
+𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻 𝟮 : "Tu as aidé quelqu'un ou quelqu'un t'a aidé ?"
+→ Ça ancre l'enfant dans ses liens sociaux. Une dimension clé de la QVE.
+
+𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻 𝟯 : "Une chose dont tu es fier·e aujourd'hui ?"
+→ Ça construit l'estime de soi. Sans attendre une bonne note.
+
+Tu n'as pas besoin de poser les 3 chaque soir.
+Une suffit. L'important, c'est d'ouvrir.
+
+Essaie ce soir et dis-moi ce qu'il s'est passé en commentaire.`,
+    hashtags:"#conseilparent #communication #QVE #BRILLE #enfant612 #parentalite #ecolemaison #dialogue",
+    slides: null,
+    visuel: {
+      format: "Post carré 1080×1080px",
+      fond: "Blanc. Accent couleur verte à gauche (bande verticale fine 8px #639922).",
+      elements: [
+        "Accroche en haut : 'La règle des 3 questions' (Gruppo)",
+        "Les 3 questions numérotées, bien espacées — numéros en vert, texte Quicksand 400",
+        "Sous chaque question : la réponse courte en Quicksand 300 italique",
+        "Footer : BRILLE + #QVE"
+      ],
+      story: "Version carrousel story en 3 slides séparées — une question par slide, fond alterné blanc/vert pâle"
+    }
+  },
+  {
+    date:"Mer 28 mai", month:"Mai 2026", type:"mer", subtype:"Carrousel",
+    title:"Les 7 dimensions QVE en image",
+    hook:"QVE : 7 dimensions pour comprendre l'épanouissement de votre enfant.",
+    insta:`La Qualité de Vie de l'Enfant — QVE — c'est pas une note.
+Ce n'est pas un classement.
+
+C'est une façon de regarder l'enfant dans sa globalité.
+
+7 dimensions. 7 façons de comprendre ce qui le fait s'épanouir.
+
+→ Swipe pour découvrir chacune.
+
+Et à la fin : une question pour savoir dans laquelle votre enfant brille le plus en ce moment.`,
+    hashtags:"#QVE #qualitedevieenfant #parentalitepositive #BRILLE #atelieretincelle #epanouissementenfant #parentalite",
+    slides: [
+      { num:1, title:"Couverture", desc:"Titre : 'Les 7 dimensions de la QVE'. Sous-titre : 'Pour comprendre l'épanouissement de votre enfant'. Icône de la roue QVE miniature. Logo BRILLE.", visual:"Fond blanc. Roue QVE simplifiée en couleurs BRILLE." },
+      { num:2, title:"Mon organisation et autonomie", desc:"Icône : calendrier / agenda. Titre : 'Mon organisation et autonomie'. Texte : 'Mon enfant sait-il s'organiser dans le temps, gérer son espace, prendre des responsabilités adaptées à son âge ? L'autonomie, ça s'apprend — pas à pas.' Mots-clés : Espace · Temps · Responsabilités. Couleur : vert #3B6D11.", visual:"Fond vert pâle #EAF3DE. Icône calendrier centré. Titre Gruppo, texte Quicksand 300." },
+      { num:3, title:"Mes émotions apprivoisées", desc:"Icône : cœur doux. Titre : 'Mes émotions apprivoisées'. Texte : 'Peut-il nommer ce qu'il ressent ? Exprimer ses émotions sans déborder ? Les réguler progressivement ? Savoir mettre des mots sur ses ressentis, c'est une compétence.' Mots-clés : Nommer · Exprimer · Réguler. Couleur : bleu #185FA5.", visual:"Fond bleu pâle #E6F1FB. Icône cœur. Même mise en page." },
+      { num:4, title:"Le sens de mes apprentissages", desc:"Icône : livres / ampoule. Titre : 'Le sens de mes apprentissages'. Texte : 'Mon enfant est-il curieux ? A-t-il envie d'apprendre — à l'école et ailleurs ? La motivation naît quand l'enfant trouve du sens à ce qu'il fait.' Mots-clés : Curiosité · École · Motivation. Couleur : rose #993556.", visual:"Fond rose pâle #FBEAF0. Icône livres." },
+      { num:5, title:"Mes liens et ma parole", desc:"Icône : bulles de parole / mains. Titre : 'Mes liens et ma parole'. Texte : 'A-t-il des relations qui lui font du bien ? Se sent-il entendu ? Ose-t-il prendre la parole ? Savoir communiquer et entretenir des liens, c'est protecteur.' Mots-clés : Relations · Communication. Couleur : jaune/orange #BA7517.", visual:"Fond jaune pâle #FAEEDA. Icône bulles de parole." },
+      { num:6, title:"Ma place et mes droits", desc:"Icône : balance / étoile. Titre : 'Ma place et mes droits'. Texte : 'L'enfant comprend-il son rôle dans la famille ? Connaît-il ses droits et ses devoirs ? Un cadre clair et des repères stables lui donnent un sentiment de sécurité durable.' Mots-clés : Cadre familial · Devoirs · CDE. Couleur : violet #534AB7.", visual:"Fond violet pâle #EEEDFE. Icône balance." },
+      { num:7, title:"Mon équilibre et mon énergie", desc:"Icône : batterie / énergie. Titre : 'Mon équilibre et mon énergie'. Texte : 'Son corps va bien ? Il dort, bouge, se repose suffisamment ? Le bien-être global — physique et émotionnel — est le carburant de tout le reste.' Mot-clé : Bien-être global. Couleur : teal #0F6E56.", visual:"Fond teal pâle #E1F5EE. Icône batterie ou soleil." },
+      { num:8, title:"Ce qui me fait briller", desc:"Icône : soleil / étoile filante. Titre : 'Ce qui me fait briller'. Texte : 'Quels sont ses talents ? Ses forces ? Ses petites victoires du quotidien ? Identifier ce qui fait briller l'enfant, c'est le point de départ de toute la démarche QVE.' Mots-clés : Talents · Forces · Victoires. Couleur : gris chaleureux #5F5E5A.", visual:"Fond blanc cassé #F1EFE8. Icône étoile filante / soleil." },
+      { num:9, title:"Question finale + CTA", desc:"Texte : 'Et votre enfant — dans quelle dimension il brille le plus en ce moment ? Dites-le en commentaire 👇' CTA : 'Auto-Audit QVE gratuit en bio — 28 questions · 5 min'", visual:"Fond blanc. Roue complète. Logo BRILLE centré." }
+    ],
+    visuel: {
+      format: "Carrousel 9 slides 1080×1080px",
+      fond: "Slide 1 et 9 = blanc. Slides 2–8 = couleur pastel de chaque pétale : vert, bleu, rose, jaune, violet, teal, blanc cassé.",
+      elements: ["Icône centrée en haut (Canva elements)", "Titre Gruppo grande taille", "Texte Quicksand 300 — 2-3 lignes max", "Point de couleur BRILLE en haut à droite", "Slide 9 : roue QVE complète illustrée"],
+      story: "Note de bas de page : ce carrousel est evergreen — peut être reposté tous les 2-3 mois"
+    }
+  },
+  {
+    date:"Dim 1er juin", month:"Juin 2026", type:"dim", subtype:"Question de réflexion",
+    title:"Et si on définissait le bonheur ?",
+    hook:"C'est quoi le bonheur pour un enfant de 6 ans ? Et pour un enfant de 12 ?",
+    insta:`Cette semaine, je vous pose une question simple.
+
+Enfin — simple en apparence.
+
+𝗖'𝗲𝘀𝘁 𝗾𝘂𝗼𝗶 𝗹𝗲 𝗯𝗼𝗻𝗵𝗲𝘂𝗿 𝗽𝗼𝘂𝗿 𝘃𝗼𝘁𝗿𝗲 𝗲𝗻𝗳𝗮𝗻𝘁 ?
+
+Pas le vôtre. Le sien.
+
+En QVE, on ne cherche pas à définir le bonheur à la place de l'enfant.
+On cherche à créer les conditions pour qu'il puisse, lui, le trouver.
+
+Ce week-end, posez-lui la question.
+Juste comme ça. Sans objectif. Sans grille d'évaluation.
+
+"Toi, c'est quoi qui te rend vraiment heureux·se ?"
+
+Et écoutez.
+
+Partagez sa réponse en commentaire — ou en DM si vous préférez.
+Les plus belles seront repostées en story cette semaine. 🌟`,
+    hashtags:"#QVE #enfant #bonheur #parentalite #BRILLE #epanouissement #questiondusoir #famille",
+    slides: null,
+    visuel: {
+      format: "Post carré 1080×1080px",
+      fond: "Fond blanc. Grande typographie. Minimaliste.",
+      elements: [
+        "Question centrale en Gruppo grand format : 'C'est quoi le bonheur pour votre enfant ?'",
+        "Sous-texte en Quicksand 300 : 'Posez-lui ce week-end. Partagez en commentaire.'",
+        "Petite étoile filante (illustration simple) dans un coin",
+        "Couleur accent : jaune doux #FAEEDA"
+      ],
+      story: "Story sondage Instagram : 'Mon enfant dit que le bonheur c'est… [votre réponse]' avec case ouverte"
+    }
+  },
+  {
+    date:"Mer 4 juin", month:"Juin 2026", type:"mer", subtype:"Carrousel",
+    title:"Témoignage : avant / après l'Auto-Audit",
+    hook:"\"Je croyais tout savoir. Le résultat m'a surprise.\"",
+    insta:`"Je pensais connaître ma fille par cœur."
+
+"Et puis j'ai fait l'Auto-Audit QVE."
+
+"Certaines questions m'ont arrêtée net."
+
+👇 Je vous partage le témoignage de Camille, maman de Jade, 9 ans.
+(Prénom modifié, histoire partagée avec son accord.)
+
+→ Swipe pour lire leur parcours.`,
+    hashtags:"#temoignage #parentalite #QVE #autoaudit #BRILLE #parentalitepositive #enfant #famille",
+    slides: [
+      { num:1, title:"Couverture témoignage", desc:"Photo de mère de dos ou illustration. Citation en grand : '\"Je croyais tout savoir. Le résultat m'a surprise.\"' Mention : 'Témoignage — Camille, maman de Jade (9 ans)'.", visual:"Fond rose pâle. Police Gruppo pour la citation. Style éditorial." },
+      { num:2, title:"Avant : le déclic", desc:"'Camille était convaincue que tout allait bien pour Jade. Bonne élève, pas de conflit visible, entourée d'amies. Elle a fait l'Auto-Audit \"pour voir\".'", visual:"Fond blanc. Texte centré. Icône horloge / loupe." },
+      { num:3, title:"Le score inattendu", desc:"'Résultat : dimension Sécurité émotionnelle = score bas. Camille était surprise. Jade souriait toujours. Mais les questions sur \"ce qu'elle ressent quand elle a peur\" révélaient autre chose.'", visual:"Fond vert pâle. Roue QVE partielle avec le secteur 'sécurité' mis en avant (colorié différemment)." },
+      { num:4, title:"La prise de conscience", desc:"'Camille a réalisé qu'elle gérait les crises, mais qu'elles n'avaient jamais vraiment parlé des émotions. Jade n'avait pas les mots. Camille non plus, en fait.'", visual:"Fond bleu pâle. Citation de Camille en italique." },
+      { num:5, title:"L'action concrète", desc:"'Elle a commencé par installer le thermomètre émotionnel dans la chambre de Jade. Chaque soir, une question : \"à combien tu es ce soir ?\" Rien de plus.'", visual:"Fond blanc. Illustration du thermomètre (miniature)." },
+      { num:6, title:"2 semaines après", desc:"'Jade a commencé à dire \"je suis dans le jaune\" quand quelque chose la tracassait. Sans qu'on lui demande. Camille a dit : \"C'est la première fois qu'elle prend l'initiative de me parler de ce qu'elle ressent.\"'", visual:"Fond vert. Citation de Jade et Camille. Étoile filante." },
+      { num:7, title:"CTA", desc:"'L'Auto-Audit QVE est gratuit — 28 questions · 5 min. Et si vous essayiez ce week-end ? Lien en bio.' Logo BRILLE.", visual:"Fond blanc. Bouton/badge vert : 'Auto-Audit QVE gratuit → lien en bio'." }
+    ],
+    visuel: {
+      format: "Carrousel 7 slides 1080×1080px",
+      fond: "Alternance blanc / pastels BRILLE selon l'émotion de chaque slide",
+      elements: ["Style éditorial — grandes citations", "Roue QVE miniature sur slide 3", "Thermomètre miniature sur slide 5"],
+      story: "Note : créer une version témoignage authentique dès qu'une famille participante accepte de partager"
+    }
+  },
+  {
+    date:"Dim 8 juin", month:"Juin 2026", type:"dim", subtype:"Conseil pratique",
+    title:"Le rituel du soir en 5 minutes",
+    hook:"5 minutes le soir. Une habitude qui change la qualité de vie de votre enfant.",
+    insta:`5 minutes le soir.
+
+Pas plus. Pas besoin d'un programme élaboré.
+
+En QVE, on parle de 𝘀𝗲́𝗰𝘂𝗿𝗶𝘁𝗲́ 𝗲́𝗺𝗼𝘁𝗶𝗼𝗻𝗻𝗲𝗹𝗹𝗲 comme d'une des dimensions les plus fondamentales pour l'enfant.
+
+Et cette sécurité, elle se construit dans les micro-moments.
+Surtout le soir.
+
+𝗩𝗼𝗶𝗰𝗶 𝗺𝗼𝗻 𝗿𝗶𝘁𝘂𝗲𝗹 𝗱𝘂 𝘀𝗼𝗶𝗿 𝗲𝗻 𝟯 𝗲́𝘁𝗮𝗽𝗲𝘀 :
+
+𝟭. 𝗟𝗮 𝗿𝗼𝘂𝗻𝗱𝗲 𝗱𝘂 𝘁𝗵𝗲𝗿𝗺𝗼𝗺𝗲̀𝘁𝗿𝗲 (2 min)
+"À combien tu es ce soir ?" — et tu écoutes, sans corriger.
+
+𝟮. 𝗨𝗻𝗲 𝗯𝗼𝗻𝗻𝗲 𝗰𝗵𝗼𝘀𝗲 (2 min)
+"Dis-moi une chose qui t'a rendu·e content·e aujourd'hui." Même toute petite.
+
+𝟯. 𝗟𝗮 𝗽𝗵𝗿𝗮𝘀𝗲-𝘀𝗼𝗰𝗹𝗲 (30 sec)
+"Tu es en sécurité. Demain est un nouveau jour. Je suis là." Toujours la même. Toujours.
+
+La répétition, c'est ce qui crée la sécurité.
+L'enfant a besoin de prévisibilité pour se déposer.
+
+Tu essaies ce soir ?`,
+    hashtags:"#rituelenfant #securiteemotionnelle #QVE #BRILLE #parentalitepratique #soiraveclesenfants #famille #bienetre",
+    slides: null,
+    visuel: {
+      format: "Post carré 1080×1080px",
+      fond: "Fond bleu nuit très doux (#f0f4f8). Ambiance soir, apaisante.",
+      elements: [
+        "Titre Gruppo : 'Le rituel du soir · 3 étapes'",
+        "3 étapes numérotées avec icône lune/étoile pour chacune",
+        "Couleurs douces — bleu, violet, blanc",
+        "En bas : thermomètre miniature colorié à mi-hauteur"
+      ],
+      story: "Story à poster le soir même : 'Tu as essayé le rituel ? Raconte-moi → case ouverte'"
+    }
+  },
+  {
+    date:"Mer 11 juin", month:"Juin 2026", type:"eve", subtype:"Carrousel",
+    title:"Fête des pères : ce que papa enseigne sans le savoir",
+    hook:"5 leçons de vie que votre enfant mémorise en silence.",
+    insta:`Bonne fête, papa.
+
+Ou plutôt — bonne fête à toutes les figures paternelles.
+Ceux qui portent, qui jouent, qui bricolent, qui réparent, qui reconstruisent.
+
+Dans mon travail avec les familles, j'observe une chose :
+𝗹𝗲𝘀 𝗲𝗻𝗳𝗮𝗻𝘁𝘀 𝗮𝗽𝗽𝗿𝗲𝗻𝗻𝗲𝗻𝘁 𝗲𝗻 𝗿𝗲𝗴𝗮𝗿𝗱𝗮𝗻𝘁.
+
+Pas en écoutant les discours.
+En observant les comportements.
+
+5 choses que papa enseigne sans s'en rendre compte — swipe 👇`,
+    hashtags:"#fetedesperes #papa #parentalite #QVE #BRILLE #figurepaternelle #famille #education",
+    slides: [
+      { num:1, title:"Couverture", desc:"Titre : 'Ce que papa enseigne sans le savoir'. Illustration ou photo douce (silhouette père/enfant). Mention fête des pères.", visual:"Fond bleu pâle. Typographie Gruppo élégante. Tons bleu et vert." },
+      { num:2, title:"Gérer un conflit", desc:"'Quand il y a un désaccord et que tu gardes ton calme — ou que tu t'excuses sincèrement. Ton enfant apprend : les conflits se règlent avec les mots, pas avec la force.' Mot-clé : RÉSOLUTION.", visual:"Fond blanc. Grand mot en Gruppo. Texte en Quicksand 300." },
+      { num:3, title:"Dire 'j'ai tort'", desc:"'Trois mots parmi les plus difficiles. Et parmi les plus formateurs. Quand papa dit \"j'avais tort\", l'enfant apprend que l'erreur n'est pas une honte — c'est une étape.' Mot-clé : HUMILITÉ.", visual:"Fond bleu pâle." },
+      { num:4, title:"Prendre soin de soi", desc:"'Quand tu dors, tu te reposes, tu demandes de l'aide quand ça ne va pas. L'enfant enregistre : s'occuper de soi, c'est une responsabilité, pas un luxe.' Mot-clé : SOIN DE SOI.", visual:"Fond vert pâle." },
+      { num:5, title:"S'amuser vraiment", desc:"'Quand tu joues vraiment — sans le téléphone, sans l'œil sur l'heure. Quand tu es là. L'enfant apprend que le plaisir existe, que la légèreté a sa place.' Mot-clé : PRÉSENCE.", visual:"Fond jaune pâle." },
+      { num:6, title:"Montrer ses émotions", desc:"'Quand tu dis \"j'ai peur\", \"je suis fatigué\", \"ça m'a touché\". Pour un garçon surtout — voir un homme nommer ses émotions, c'est une autorisation de faire pareil.' Mot-clé : COURAGE.", visual:"Fond violet pâle." },
+      { num:7, title:"CTA + vœux", desc:"'Quelle leçon voulez-vous que votre enfant retienne de vous ? Dites-le en commentaire. Bonne fête 💙' Logo BRILLE. Lien auto-audit en bio.", visual:"Fond blanc. Citation en grand. Ton chaleureux." }
+    ],
+    visuel: {
+      format: "Carrousel 7 slides 1080×1080px",
+      fond: "Slide 1 : bleu pâle. Slides 2–6 : blanc + pastels alternés. Slide 7 : blanc.",
+      elements: ["Mot-clé en Gruppo grand format sur chaque slide", "Texte Quicksand 300 centré", "Pastels BRILLE"],
+      story: "Story le jour de la fête des pères : 'Papa, quelle leçon tu veux lui laisser ? → Réponds en DM'"
+    }
+  },
+  {
+    date:"Dim 15 juin", month:"Juin 2026", type:"dim", subtype:"Outil",
+    title:"Le thermomètre émotionnel",
+    hook:"Votre enfant ne sait pas toujours dire ce qu'il ressent. Cet outil l'aide.",
+    insta:`Votre enfant ne sait pas toujours dire ce qu'il ressent.
+
+Pas parce qu'il ne veut pas.
+Parce qu'il n'a pas encore les mots.
+
+Le thermomètre émotionnel, c'est un outil visuel.
+5 zones. Des couleurs. Des mots simples.
+
+L'enfant montre. Il n'a pas à expliquer.
+Et ça suffit pour ouvrir la conversation.
+
+𝗖𝗼𝗺𝗺𝗲𝗻𝘁 𝗹'𝘂𝘁𝗶𝗹𝗶𝘀𝗲𝗿 :
+→ Affichez-le dans sa chambre ou sur le frigo
+→ Chaque soir : "À combien tu es ?"
+→ Accueillez la réponse sans la corriger
+→ Avec le temps, il l'utilisera seul pour vous parler
+
+𝗟𝗲 𝘁𝗵𝗲𝗿𝗺𝗼𝗺𝗲̀𝘁𝗿𝗲 𝗲𝘀𝘁 𝗱𝗶𝘀𝗽𝗼𝗻𝗶𝗯𝗹𝗲 𝗲𝗻 𝗯𝗶𝗼.
+Téléchargez-le, imprimez-le, affichez-le.
+
+Dites-moi en commentaire : vous utilisez déjà quelque chose comme ça à la maison ?`,
+    hashtags:"#emotions #intelligenceemotionnelle #QVE #BRILLE #outilenfant #parentalite #thermometreemotionnel #famille",
+    slides: null,
+    visuel: {
+      format: "Post carré 1080×1080px",
+      fond: "Fond blanc. Illustration du thermomètre à gauche (couleurs vives). Texte à droite.",
+      elements: [
+        "Thermomètre illustré en couleurs BRILLE (vert → rouge)",
+        "Titre : 'Le thermomètre émotionnel' en Gruppo",
+        "5 zones avec émojis + mots",
+        "CTA : 'Disponible en téléchargement — lien en bio'"
+      ],
+      story: "Story : 'À quelle zone est ton enfant ce soir ?' — sondage avec les 5 couleurs"
+    }
+  },
+  {
+    date:"Dim 22 juin", month:"Juin 2026", type:"dim", subtype:"Outil",
+    title:"La fresque « Ce que je sais faire seul·e »",
+    hook:"Votre enfant est capable de plus que vous ne croyez. Cet outil le lui prouve.",
+    insta:`Votre enfant attend souvent qu'on lui dise quoi faire.
+
+Pas par flemme.
+Parce qu'il n'a jamais eu l'occasion de nommer ce qu'il sait déjà faire — seul.
+
+𝗟𝗮 𝗳𝗿𝗲𝘀𝗾𝘂𝗲 "𝗖𝗲 𝗾𝘂𝗲 𝗷𝗲 𝘀𝗮𝗶𝘀 𝗳𝗮𝗶𝗿𝗲 𝘀𝗲𝘂𝗹·𝗲", c'est une affiche à remplir ensemble.
+
+On la divise en 3 colonnes :
+→ Je sais faire seul·e ✅
+→ J'apprends encore 🔄
+→ J'ai besoin d'aide pour 🤝
+
+L'enfant colle, dessine, écrit — selon son âge.
+Et en 20 minutes, vous avez une image claire de là où il en est.
+
+Ce n'est pas un test.
+𝗖'𝗲𝘀𝘁 𝘂𝗻𝗲 𝗰𝗼𝗻𝘃𝗲𝗿𝘀𝗮𝘁𝗶𝗼𝗻 𝗱𝗲́𝗴𝘂𝗶𝘀𝗲́𝗲 𝗲𝗻 𝗮𝗰𝘁𝗶𝘃𝗶𝘁𝗲́.
+
+🖨️ Le gabarit est disponible en bio.
+Essayez ce week-end, et dites-moi : qu'est-ce qui vous a surpris ?`,
+    hashtags:"#QVE #autonomieenfant #outilparent #BRILLE #enfant612 #parentalite #fresquefamille #organisation",
+    slides: null,
+    visuel: {
+      format: "Post carré 1080×1080px",
+      fond: "Fond blanc. Bande couleur sauge (#cbe1b6) à gauche (8px vertical). Formes organiques coins.",
+      elements: [
+        "Titre : 'Ce que je sais faire seul·e' en Gruppo",
+        "Sous-titre : 'Pétale Autonomie · QVE' en Quicksand 300",
+        "Illustration 3 colonnes avec icônes simples (✅ 🔄 🤝)",
+        "CTA : 'Gabarit disponible en bio' — fond sauge pâle",
+        "Footer : logo BRILLE + @brille_officiel"
+      ],
+      story: "Sondage : 'Combien de choses fait votre enfant seul à la maison ?' → Peu / Quelques-unes / Beaucoup"
+    }
+  },
+  {
+    date:"Dim 29 juin", month:"Juin 2026", type:"dim", subtype:"Outil",
+    title:"Le carnet « Pourquoi j'apprends ça ? »",
+    hook:"Quand un enfant comprend à quoi ça sert, il apprend différemment.",
+    insta:`"À quoi ça sert les fractions ?"
+
+Si votre enfant pose cette question — c'est une bonne nouvelle.
+Il cherche du sens. Pas une excuse.
+
+En QVE, la dimension Apprentissages ne parle pas de notes.
+Elle parle de curiosité. De sens. De connexion entre ce qu'on apprend et la vraie vie.
+
+𝗟𝗲 𝗰𝗮𝗿𝗻𝗲𝘁 "𝗣𝗼𝘂𝗿𝗾𝘂𝗼𝗶 𝗷'𝗮𝗽𝗽𝗿𝗲𝗻𝗱𝘀 𝗰̧𝗮 ?" c'est simple.
+
+Chaque semaine, une page. Trois questions seulement :
+→ Qu'est-ce que j'ai découvert cette semaine ?
+→ À quoi ça me sert dans la vraie vie ?
+→ Qu'est-ce que j'ai encore envie de savoir ?
+
+Pas un devoir. Un espace à lui.
+
+𝗨𝗻 𝗲𝗻𝗳𝗮𝗻𝘁 𝗾𝘂𝗶 𝘀𝗮𝗶𝘁 𝗽𝗼𝘂𝗿𝗾𝘂𝗼𝗶 𝗶𝗹 𝗮𝗽𝗽𝗿𝗲𝗻𝗱, 𝗰'𝗲𝘀𝘁 𝘂𝗻 𝗲𝗻𝗳𝗮𝗻𝘁 𝗾𝘂𝗶 𝘃𝗲𝘂𝘁 𝗮𝗽𝗽𝗿𝗲𝗻𝗱𝗿𝗲.
+
+📓 Format téléchargeable en bio.
+Et vous — vous souvenez-vous de la dernière chose que votre enfant vous a appris ?`,
+    hashtags:"#QVE #apprentissage #curiosite #BRILLE #outilenfant #parentalite #enfant612 #sensdelapprendre",
+    slides: null,
+    visuel: {
+      format: "Post carré 1080×1080px",
+      fond: "Fond blanc. Accent couleur lavande (#a4c2e7). Formes organiques coins.",
+      elements: [
+        "Titre : 'Pourquoi j'apprends ça ?' en Gruppo",
+        "Sous-titre : 'Pétale Apprentissages · QVE' en Quicksand 300",
+        "Illustration d'un carnet ouvert avec les 3 questions numérotées",
+        "Icône ampoule en accent lavande",
+        "CTA : 'Téléchargeable en bio'",
+        "Footer : logo BRILLE"
+      ],
+      story: "Question ouverte : 'Quelle matière votre enfant trouve-t-il inutile ?' — réponse libre en DM"
+    }
+  },
+  {
+    date:"Sam 4 juil", month:"Juillet 2026", type:"dim", subtype:"Outil",
+    title:"La boîte à mots",
+    hook:"Votre enfant a des choses à vous dire. Parfois, il lui faut juste un chemin.",
+    insta:`Il y a des choses qu'un enfant n'arrive pas à dire de vive voix.
+
+Pas parce qu'il a un problème.
+Parce que parfois, les mots ne sortent pas — devant vous.
+
+𝗟𝗮 𝗯𝗼𝗶̂𝘁𝗲 𝗮̀ 𝗺𝗼𝘁𝘀, c'est une idée toute simple.
+
+Une boîte. Des petits papiers. Un stylo.
+L'enfant écrit ce qu'il veut vous dire — une pensée, une question, quelque chose qui l'a blessé, quelque chose qui l'a rendu heureux.
+Vous l'ouvrez ensemble, une fois par semaine. Ritualisé. Attendu.
+
+Pas d'obligation d'écrire.
+Pas de pénalité si la boîte est vide.
+
+Mais quand il écrit — vous savez que c'est important.
+
+En QVE, la dimension Liens & Communication c'est ça :
+𝗣𝗮𝘀 𝗹𝗲𝘀 𝗴𝗿𝗮𝗻𝗱𝗲𝘀 𝗰𝗼𝗻𝘃𝗲𝗿𝘀𝗮𝘁𝗶𝗼𝗻𝘀. 𝗟𝗲𝘀 𝗽𝗲𝘁𝗶𝘁𝘀 𝗰𝗮𝗻𝗮𝘂𝘅 𝗾𝘂𝗶 𝗿𝗲𝘀𝘁𝗲𝗻𝘁 𝗼𝘂𝘃𝗲𝗿𝘁𝘀.
+
+📦 Fabriquez-la avec lui ce week-end.
+Dites-moi ce qu'il a mis dedans — en DM si vous voulez.`,
+    hashtags:"#QVE #communication #parentenfant #BRILLE #outilparent #dialogue #famille #lienaffectif",
+    slides: null,
+    visuel: {
+      format: "Post carré 1080×1080px",
+      fond: "Fond blanc. Accent couleur rose-lilas (#ebc6e0). Formes organiques coins.",
+      elements: [
+        "Titre : 'La boîte à mots' en Gruppo",
+        "Sous-titre : 'Pétale Liens & Communication · QVE' en Quicksand 300",
+        "Illustration d'une petite boîte avec des papiers pliés colorés qui dépassent",
+        "Ambiance douce et intime — pastels BRILLE",
+        "Footer : logo BRILLE"
+      ],
+      story: "Tuto rapide en 3 stories : 'Étape 1 : une boîte / Étape 2 : des papiers / Étape 3 : un rituel hebdo'"
+    }
+  },
+  {
+    date:"Jeu 10 juil", month:"Juillet 2026", type:"dim", subtype:"Outil",
+    title:"Le miroir de forces",
+    hook:"Votre enfant se connaît moins bien qu'il ne le croit. Cet outil change ça.",
+    insta:`Demandez à votre enfant de citer 3 qualités qu'il a.
+
+Combien de secondes avant le silence ?
+
+On apprend aux enfants à corriger leurs erreurs.
+On leur apprend moins souvent à nommer ce qui les rend uniques.
+
+𝗟𝗲 𝗺𝗶𝗿𝗼𝗶𝗿 𝗱𝗲 𝗳𝗼𝗿𝗰𝗲𝘀, c'est une affiche personnelle.
+
+On démarre ensemble avec une liste de 30 qualités illustrées.
+L'enfant entoure celles qui lui ressemblent.
+Vous ajoutez celles qu'il a oubliées.
+Il dessine son portrait — pas son visage. 𝗦𝗮 𝗽𝗲𝗿𝘀𝗼𝗻𝗻𝗮𝗹𝗶𝘁𝗲́.
+
+Affichée dans sa chambre, elle lui rappelle chaque matin qui il est.
+
+En QVE, l'Identité & Estime de soi, c'est le socle.
+𝗨𝗻 𝗲𝗻𝗳𝗮𝗻𝘁 𝗾𝘂𝗶 𝘀𝗮𝗶𝘁 𝗾𝘂𝗶 𝗶𝗹 𝗲𝘀𝘁 𝗿𝗲́𝘀𝗶𝘀𝘁𝗲 𝗺𝗶𝗲𝘂𝘅 𝗮̀ 𝘁𝗼𝘂𝘁 𝗹𝗲 𝗿𝗲𝘀𝘁𝗲.
+
+🪞 Gabarit disponible en bio.
+Quelle qualité de votre enfant mérite d'être dans son miroir ? Dites-le en commentaire.`,
+    hashtags:"#QVE #estimedesoi #identite #BRILLE #outilenfant #parentalite #confiance #enfant612",
+    slides: null,
+    visuel: {
+      format: "Post carré 1080×1080px",
+      fond: "Fond blanc. Accent couleur pêche (#fdd5a5). Formes organiques coins.",
+      elements: [
+        "Titre : 'Le miroir de forces' en Gruppo",
+        "Sous-titre : 'Pétale Identité & Estime · QVE' en Quicksand 300",
+        "Illustration d'un miroir avec des étoiles et des mots-qualités autour (créatif, courageux, curieux…)",
+        "Ambiance lumineuse et chaleureuse",
+        "Footer : logo BRILLE"
+      ],
+      story: "Sondage : 'Quelle est la première qualité que vous voyez chez votre enfant ?' → liste de 4 choix pastels"
+    }
+  },
+  {
+    date:"Jeu 17 juil", month:"Juillet 2026", type:"dim", subtype:"Outil",
+    title:"La carte énergie du jour",
+    hook:"Votre enfant connaît-il les signaux que lui envoie son corps ?",
+    insta:`Votre enfant dit "je suis fatigué" — ou il ne dit rien.
+
+Mais entre les deux, il y a tout un vocabulaire corporel qu'il n'a jamais appris à lire.
+
+𝗟𝗮 𝗰𝗮𝗿𝘁𝗲 𝗲́𝗻𝗲𝗿𝗴𝗶𝗲 𝗱𝘂 𝗷𝗼𝘂𝗿, c'est une grille visuelle hebdomadaire.
+
+Chaque soir, l'enfant colorie son niveau d'énergie avec une couleur :
+🔴 Épuisé
+🟠 Fatigué
+🟡 Moyen
+🟢 En forme
+⭐ Super chargé
+
+En une semaine, vous voyez apparaître un rythme.
+Un profil. Des jours creux. Des jours pleins.
+
+Ce n'est pas médical. 𝗖'𝗲𝘀𝘁 𝘂𝗻𝗲 𝗲́𝗰𝗼𝘂𝘁𝗲 𝗱𝗲 𝘀𝗼𝗶.
+
+En QVE, le Corps & Bien-être physique, c'est apprendre à son enfant à habiter son corps — pas seulement à le performer.
+
+📊 Grille téléchargeable en bio.
+Est-ce que votre enfant sait reconnaître quand il est vraiment fatigué ?`,
+    hashtags:"#QVE #bienetre #corpsenfant #BRILLE #sante #parentalite #energieenfant #ecoutedecorps",
+    slides: null,
+    visuel: {
+      format: "Post carré 1080×1080px",
+      fond: "Fond blanc. Accent couleur ciel (#a8dbeb). Formes organiques coins.",
+      elements: [
+        "Titre : 'Ma carte énergie du jour' en Gruppo",
+        "Sous-titre : 'Pétale Corps & Bien-être · QVE' en Quicksand 300",
+        "Grille 7 jours × 5 niveaux avec les 5 couleurs (rouge → étoile or)",
+        "Simple, lisible, à remplir — style cahier d'écolier doux",
+        "Footer : logo BRILLE"
+      ],
+      story: "Story interactive : 'À quelle couleur est ton enfant ce soir ?' — 5 bulles colorées à taper"
+    }
+  },
+  {
+    date:"Jeu 24 juil", month:"Juillet 2026", type:"dim", subtype:"Outil",
+    title:"Le panneau « Ce qui est à moi »",
+    hook:"Votre enfant sait-il ce à quoi il a droit — et ce qui lui appartient vraiment ?",
+    insta:`Un enfant qui connaît ses droits n'est pas un enfant difficile.
+C'est un enfant qui a appris à se respecter.
+
+Mais comment leur parler de droits sans que ça semble lointain, abstrait, trop grand ?
+
+𝗟𝗲 𝗽𝗮𝗻𝗻𝗲𝗮𝘂 "𝗖𝗲 𝗾𝘂𝗶 𝗲𝘀𝘁 𝗮̀ 𝗺𝗼𝗶", c'est un outil ancré dans le quotidien.
+
+Avec votre enfant, vous listez ensemble en 3 catégories :
+→ Mes espaces (ma chambre, mon sac, mon corps)
+→ Mes choix (ce que je peux décider seul)
+→ Mes droits (être entendu, me tromper, dire non)
+
+On l'affiche. On le relit. On en parle.
+
+Ce n'est pas un contrat. C'est un repère.
+𝗨𝗻 𝗲𝗻𝗳𝗮𝗻𝘁 𝗾𝘂𝗶 𝘀𝗮𝗶𝘁 𝗰𝗲 𝗾𝘂𝗶 𝗹𝘂𝗶 𝗮𝗽𝗽𝗮𝗿𝘁𝗶𝗲𝗻𝘁 𝗮𝗽𝗽𝗿𝗲𝗻𝗱 𝗮𝘂𝘀𝘀𝗶 𝗮̀ 𝗿𝗲𝘀𝗽𝗲𝗰𝘁𝗲𝗿 𝗰𝗲 𝗾𝘂𝗶 𝗮𝗽𝗽𝗮𝗿𝘁𝗶𝗲𝗻𝘁 𝗮𝘂𝘅 𝗮𝘂𝘁𝗿𝗲𝘀.
+
+En QVE, la dimension Place & Droits, c'est ce qui donne à l'enfant le sentiment d'exister — vraiment.
+
+📌 Gabarit à compléter ensemble — disponible en bio.
+Qu'est-ce que votre enfant aimerait pouvoir décider seul ?`,
+    hashtags:"#QVE #droitsdelenfant #BRILLE #parentalite #enfant612 #respectdesoi #place #autonomie",
+    slides: null,
+    visuel: {
+      format: "Post carré 1080×1080px",
+      fond: "Fond blanc. Accent couleur mauve (#b8aed7). Formes organiques coins.",
+      elements: [
+        "Titre : 'Ce qui est à moi' en Gruppo",
+        "Sous-titre : 'Pétale Place & Droits · QVE' en Quicksand 300",
+        "3 zones illustrées : Mes espaces / Mes choix / Mes droits — icônes simples et douces",
+        "Palette mauve et blanc — typographie Quicksand 300 pour les listes",
+        "Footer : logo BRILLE"
+      ],
+      story: "Question : 'Votre enfant sait-il dire non — avec respect ?' → Sondage Oui / Pas encore / On travaille dessus"
+    }
+  },
+  {
+    date:"Mer 18 juin", month:"Juin 2026", type:"mer", subtype:"Carrousel",
+    title:"Autonomie : ni trop, ni trop peu",
+    hook:"Laisser faire ou protéger ? L'équilibre que cherche chaque parent.",
+    insta:`"Je veux qu'il soit autonome."
+"Mais j'ai peur qu'il se bloque, qu'il échoue, qu'il souffre."
+
+Ce paradoxe, je l'entends dans chaque famille.
+
+En QVE, l'autonomie est une dimension à part entière.
+Pas un objectif de performance. Une construction progressive.
+
+→ Swipe pour comprendre comment trouver l'équilibre.`,
+    hashtags:"#autonomieenfant #QVE #parentalite #BRILLE #enfant612 #education #lacherprise #famille",
+    slides: [
+      { num:1, title:"Couverture", desc:"Titre : 'Autonomie : ni trop, ni trop peu'. Sous-titre : 'Comment trouver l'équilibre ?'. Illustration : enfant qui monte une marche seul, main du parent en retrait (pas absente).", visual:"Fond vert pâle. Style doux et positif." },
+      { num:2, title:"Ce que l'autonomie N'est pas", desc:"'L'autonomie, ce n'est pas laisser tomber l'enfant dans le vide. Ce n'est pas \"démerde-toi\". C'est lui donner les outils ET l'espace pour les utiliser.'", visual:"Fond blanc. Texte en contraste. Icône croix ≠ icône check." },
+      { num:3, title:"Les signes que votre enfant est prêt", desc:"'→ Il répète ce qu'il vous a vu faire. → Il demande à essayer seul. → Il exprime une frustration quand on fait à sa place. → Il revient vous voir après pour raconter.'", visual:"Fond vert pâle. Liste avec icônes douces." },
+      { num:4, title:"Les freins inconscients", desc:"'→ La peur de l'échec (la vôtre, pas la sienne). → La rapidité : \"c'est plus vite si je le fais\". → Le doute sur ses capacités. Ces freins sont normaux. Ils se travaillent.'", visual:"Fond bleu pâle. Liste. Ton bienveillant, pas culpabilisant." },
+      { num:5, title:"3 micro-actions cette semaine", desc:"'1. Choisir une tâche que vous faites pour lui — et laissez-le faire. Juste une. 2. Résistez 30 secondes avant d'intervenir quand il bloque. 3. Demandez-lui : \"tu penses que tu peux essayer ?\" avant de proposer votre aide.'", visual:"Fond jaune pâle. 3 encadrés distincts, un par action." },
+      { num:6, title:"La phrase magique", desc:"'\"Je sais que tu peux — et je suis là si tu as besoin.\" Pas l'un sans l'autre. La confiance ET la présence. C'est ça, l'étayage.'", visual:"Fond blanc. Grande citation en Gruppo. Ton chaleureux." },
+      { num:7, title:"CTA", desc:"'Dans quelle tâche allez-vous laisser faire votre enfant cette semaine ? Dites-moi en commentaire. Et si vous voulez aller plus loin → Auto-Audit QVE en bio.'", visual:"Fond vert pâle. Logo BRILLE. Ton invitant." }
+    ],
+    visuel: {
+      format: "Carrousel 7 slides 1080×1080px",
+      fond: "Vert pâle et blanc en alternance. Touches de jaune et bleu.",
+      elements: ["Illustration enfant + main parent (silhouette)", "Listes bien aérées", "Pas de jargon pédagogique — langage parent"],
+      story: "Story sondage : 'Votre plus grand défi avec l'autonomie ?' → 3 options : Peur de l'échec / Manque de temps / Doute sur ses capacités"
+    }
+  },
+  {
+    date:"Dim 22 juin", month:"Juin 2026", type:"eve", subtype:"Question de réflexion",
+    title:"Fête de la musique",
+    hook:"La musique et votre enfant : est-ce une porte vers quelque chose ?",
+    insta:`Ce soir, c'est la fête de la musique.
+
+Et je me pose une question.
+
+𝗤𝘂𝗲𝗹𝗹𝗲 𝗰𝗵𝗮𝗻𝘀𝗼𝗻 𝗿𝗲́𝘀𝘂𝗺𝗲 𝘃𝗼𝘁𝗿𝗲 𝗲𝗻𝗳𝗮𝗻𝘁 𝗲𝗻 𝗰𝗲 𝗺𝗼𝗺𝗲𝗻𝘁 ?
+
+En QVE, la dimension Expression & créativité, c'est ça.
+Pas juste "est-ce qu'il fait de la musique ?".
+Mais : a-t-il un espace pour s'exprimer librement, sans être jugé, sans objectif de performance ?
+
+La musique, le dessin, la danse, le jeu — ce sont des portes.
+Pas vers une carrière. Vers lui-même.
+
+Ce soir, si vous allez à un concert ou que vous mettez de la musique à la maison — regardez votre enfant.
+Ce qu'il fait avec son corps. Comment il réagit. Ce qu'il chante.
+
+Il vous dit quelque chose.
+
+Dites-moi en commentaire : c'est quoi sa chanson du moment ? 🎵`,
+    hashtags:"#fetedelamusique #creativite #QVE #BRILLE #famille #expressionenfant #musique #parentalite",
+    slides: null,
+    visuel: {
+      format: "Post carré 1080×1080px",
+      fond: "Fond violet pâle #EEEDFE. Ambiance musicale, légère.",
+      elements: [
+        "Note de musique illustrée (simple, illustrative)",
+        "Titre : 'Fête de la musique 🎵' en Gruppo",
+        "Question centrale : 'Quelle chanson résume votre enfant en ce moment ?'",
+        "Couleur accent violet BRILLE"
+      ],
+      story: "Story question ouverte : 'Sa chanson du moment → ?' avec case de réponse"
+    }
+  },
+  {
+    date:"Mer 25 juin", month:"Juin 2026", type:"mer", subtype:"Carrousel",
+    title:"Ce que les grandes vacances font à la QVE",
+    hook:"Été approche. Et si c'était la saison la plus importante pour l'épanouissement ?",
+    insta:`Les grandes vacances arrivent.
+
+Et avec elles, une question que je reçois chaque année :
+"Est-ce qu'on doit prévoir des activités ? Des stages ? Un programme ?"
+
+Ma réponse courte : 𝗽𝗮𝘀 𝗳𝗼𝗿𝗰𝗲́𝗺𝗲𝗻𝘁.
+
+Les vacances sont l'une des périodes les plus fertiles pour la QVE.
+Mais pas pour les raisons qu'on croit.
+
+→ Swipe pour comprendre ce qui se passe vraiment pendant l'été.`,
+    hashtags:"#grandesvacances #vacancesenfant #QVE #BRILLE #ete2026 #jetlibre #parentaliteete #famille",
+    slides: [
+      { num:1, title:"Couverture", desc:"Titre : 'Ce que les grandes vacances font à la QVE'. Illustration estivale douce (soleil, herbe, enfant qui court). Fond vert-jaune pâle.", visual:"Ambiance légère et estivale. Tons chauds pastels." },
+      { num:2, title:"Ce qu'on croit", desc:"'On pense que les vacances sans programme = perte de temps. Régression scolaire. Ennui problématique. Temps \"gâché\".'", visual:"Fond blanc. Texte barré ou avec icône ✗. Ton humoristique." },
+      { num:3, title:"Ce que dit la recherche", desc:"'Les études sur le développement de l'enfant montrent que le jeu libre — non structuré, sans adulte qui dirige — est un accélérateur de développement cognitif, émotionnel et social.'", visual:"Fond bleu pâle. Icône livre/loupe. Ton informatif." },
+      { num:4, title:"Ce que l'été active en QVE", desc:"'→ Autonomie : il gère son temps, ses choix, ses ennuis. → Créativité : sans programme, il invente. → Liens sociaux : il joue, négocie, se dispute, se réconcilie. → Sécurité émotionnelle : il décompresse.'", visual:"Fond vert pâle. Roue QVE avec 4 secteurs mis en avant." },
+      { num:5, title:"3 idées pour un été QVE", desc:"'1. Une journée par semaine sans programme du tout — laissez l'ennui s'installer. 2. Un carnet vide et des crayons dans le sac — pas de consigne. 3. Un ami à la maison régulièrement — le jeu libre social est irremplaçable.'", visual:"Fond jaune pâle. 3 encadrés avec icônes simples." },
+      { num:6, title:"Ce qu'on peut faire, nous", desc:"'Notre rôle pendant l'été : être disponible sans diriger. Présent sans programme. \"Je suis là si tu as besoin\" — et ensuite on laisse.'", visual:"Fond blanc. Citation en Gruppo." },
+      { num:7, title:"CTA", desc:"'Comment vous organisez votre été avec vos enfants ? Activités, jeu libre, mix ? Partagez en commentaire ! Et si vous voulez des outils pour la rentrée → Auto-Audit QVE en bio.'", visual:"Fond vert pâle. Logo BRILLE. Ton estival et invitant." }
+    ],
+    visuel: {
+      format: "Carrousel 7 slides 1080×1080px",
+      fond: "Tons chauds et estivaux : vert, jaune, blanc. Formes organiques.",
+      elements: ["Illustrations simples (soleil, herbe, enfant)", "Roue QVE miniature sur slide 4", "Langage direct, sans jargon"],
+      story: "Story sondage : 'Cet été, votre enfant aura…' → 3 options : Surtout du jeu libre / Un mix d'activités / Plein d'activités organisées"
+    }
+  },
+  {
+    date:"Dim 6 juil.", month:"Juillet 2026", type:"dim", subtype:"Conseil pratique",
+    title:"L'ennui, c'est précieux",
+    hook:"\"J'ai rien à faire.\" Bonne nouvelle.",
+    insta:`"J'ai rien à faire."
+
+Et si c'était la meilleure chose qu'il pouvait dire ?
+
+L'ennui est devenu une sorte d'ennemi.
+Quelque chose à remplir, corriger, éviter.
+
+Pourtant — l'ennui est l'une des conditions les plus fertiles pour le développement de l'enfant.
+
+𝗖'𝗲𝘀𝘁 𝗱𝗮𝗻𝘀 𝗹'𝗲𝗻𝗻𝘂𝗶 𝗾𝘂𝗲 𝗻𝗮𝗶𝘁 𝗹𝗮 𝗰𝗿𝗲́𝗮𝘁𝗶𝘃𝗶𝘁𝗲́.
+
+Quand rien n'est proposé, l'enfant invente.
+Il crée un jeu, un monde, une règle, un rôle.
+Il développe sa capacité à s'occuper de lui-même.
+Il apprend à tolérer l'inconfort — compétence essentielle pour la vie.
+
+𝗖𝗲 𝗾𝘂𝗲 𝘃𝗼𝘂𝘀 𝗽𝗼𝘂𝘃𝗲𝘇 𝗳𝗮𝗶𝗿𝗲 𝗾𝘂𝗮𝗻𝗱 𝗶𝗹 𝗱𝗶𝘁 "𝗷'𝗮𝗶 𝗿𝗶𝗲𝗻 à 𝗳𝗮𝗶𝗿𝗲" :
+→ Ne pas proposer une solution immédiate
+→ Dire : "Je suis sûr·e que tu vas trouver quelque chose"
+→ Résister 10 minutes. Puis 15. Puis 20.
+
+Et observer ce qui émerge.
+
+Qu'est-ce que votre enfant a inventé la dernière fois qu'il s'est ennuyé ?`,
+    hashtags:"#ennui #creativite #QVE #BRILLE #parentaliteete #jeulibre #enfant #vacances",
+    slides: null,
+    visuel: {
+      format: "Post carré 1080×1080px",
+      fond: "Fond violet pâle doux. Ambiance rêveuse.",
+      elements: [
+        "Grande citation en Gruppo : '\"J'ai rien à faire.\" Bonne nouvelle.'",
+        "Texte en Quicksand 300 — 2-3 lignes clés",
+        "Illustration : enfant allongé qui regarde le plafond / les nuages",
+        "Couleur accent violet BRILLE"
+      ],
+      story: "Story : 'Votre enfant s'ennuie — vous faites quoi ?' → Sondage : Je propose quelque chose / J'attends / Je l'encourage à chercher"
+    }
+  },
+  {
+    date:"Mer 9 juil.", month:"Juillet 2026", type:"teas", subtype:"Teasing",
+    title:"\"Quelque chose arrive.\"",
+    hook:"Cet été, BRILLE prépare quelque chose pour aller plus loin.",
+    insta:`Depuis le mois de mai, vous êtes de plus en plus nombreux·ses ici.
+
+Vous avez fait l'Auto-Audit. Utilisé la roue. Le thermomètre.
+
+Et certains d'entre vous m'ont écrit : "Et maintenant ? Comment on va plus loin ?"
+
+𝗝'𝗮𝗶 𝗲𝗻𝘁𝗲𝗻𝗱𝘂.
+
+Cet été, je travaille sur quelque chose.
+Quelque chose qui répond exactement à cette question.
+
+Ce n'est pas encore prêt.
+Mais je voulais vous le dire.
+
+Parce que vous en faites partie.
+
+𝗔𝗰𝘁𝗶𝘃𝗲𝘇 𝗹𝗮 𝗰𝗹𝗼𝗰𝗵𝗲 🔔 pour ne rien rater.
+
+On se retrouve bientôt.`,
+    hashtags:"#BRILLE #nouveaute #parentalite #bientot #QVE #atelieretincelle",
+    slides: null,
+    visuel: {
+      format: "Post carré 1080×1080px",
+      fond: "Fond blanc épuré. Très minimaliste. Pas de couleur clin d'œil encore.",
+      elements: [
+        "Logo BRILLE centré en grand (Gruppo)",
+        "Texte minimal : 'Quelque chose arrive.'",
+        "Petite étoile filante dans un coin — couleur verte Étincelle",
+        "En bas : 'Activez la cloche 🔔'"
+      ],
+      story: "Story : fond blanc, texte 'Something is coming ✨' — over en anglais pour le côté mystère, puis version FR le lendemain"
+    }
+  },
+  {
+    date:"Dim 13 juil.", month:"Juillet 2026", type:"dim", subtype:"Question de réflexion",
+    title:"Vos enfants, vos meilleurs profs",
+    hook:"Cette semaine, laissez-les vous apprendre quelque chose.",
+    insta:`Cette semaine, je vous lance un défi.
+
+𝗟𝗮𝗶𝘀𝘀𝗲𝘇 𝘃𝗼𝘁𝗿𝗲 𝗲𝗻𝗳𝗮𝗻𝘁 𝘃𝗼𝘂𝘀 𝗮𝗽𝗽𝗿𝗲𝗻𝗱𝗿𝗲 𝗾𝘂𝗲𝗹𝗾𝘂𝗲 𝗰𝗵𝗼𝘀𝗲.
+
+Un jeu qu'il invente.
+Un mouvement de danse.
+Une règle absurde mais cohérente dans sa tête.
+Une façon de voir quelque chose que vous n'auriez jamais remarqué.
+
+En QVE, la dimension 𝗹𝗶𝗲𝗻𝘀 𝗲𝘁 𝗮𝗽𝗽𝗮𝗿𝘁𝗲𝗻𝗮𝗻𝗰𝗲 passe aussi par ça :
+Le sentiment que ce qu'il pense, sait, crée — a de la valeur pour vous.
+
+Pas besoin d'une heure.
+15 minutes. "Tu veux bien m'apprendre quelque chose ?"
+
+Et observez ce qui se passe sur son visage.
+
+Qu'est-ce qu'il vous a appris cette semaine ?`,
+    hashtags:"#rolesinverses #apprentissage #QVE #BRILLE #famille #liensociaux #parentaliteete #defi",
+    slides: null,
+    visuel: {
+      format: "Post carré 1080×1080px",
+      fond: "Fond vert très pâle. Ambiance douce, estivale.",
+      elements: [
+        "Titre : 'Vos enfants, vos meilleurs profs' en Gruppo",
+        "Illustration : deux silhouettes face à face (enfant qui montre, adulte qui écoute)",
+        "Question en bas : 'Qu'est-ce qu'il vous a appris cette semaine ?'"
+      ],
+      story: "Story défi : 'Je laisse mon enfant m'apprendre quelque chose → je vous montre en story'"
+    }
+  },
+  {
+    date:"Mer 16 juil.", month:"Juillet 2026", type:"teas", subtype:"Carrousel",
+    title:"Scintille : les coulisses",
+    hook:"Ce sur quoi je travaille cet été — et pourquoi ça compte pour vous.",
+    insta:`Je vous avais dit que quelque chose arrivait.
+
+Aujourd'hui, je lève un peu le voile.
+
+Cet été, je développe 𝗦𝗰𝗶𝗻𝘁𝗶𝗹𝗹𝗲.
+
+→ Swipe pour comprendre ce que c'est, et pourquoi je le construis pour vous.`,
+    hashtags:"#Scintille #BRILLE #appliparentale #QVE #bientot #parentalite #coulisses",
+    slides: [
+      { num:1, title:"Couverture révélation", desc:"Titre : 'Scintille.' Sous-titre : 'Ce que je construis cet été.' Logo BRILLE. Style work in progress — léger, authentique.", visual:"Fond blanc. Écriture à la main pour 'Scintille' ou police Gruppo avec étoile filante. Pas trop léché — c'est un WIP." },
+      { num:2, title:"Le problème que ça résout", desc:"'Vous avez fait l'Auto-Audit. Vous avez la roue, le thermomètre. Vous comprenez mieux votre enfant. Mais comment vous souvenir des progrès ? Comment suivre les dimensions dans le temps ?'", visual:"Fond bleu pâle. Questions en grand. Ton conversationnel." },
+      { num:3, title:"Ce que c'est (version courte)", desc:"'Scintille est un outil numérique — une application — conçue pour les parents. Pour suivre la QVE de leur enfant dans le temps. Pour avoir des ressources adaptées à chaque dimension. Pour ne pas repartir de zéro à chaque fois.'", visual:"Fond vert pâle. Texte structuré. Première description concrète." },
+      { num:4, title:"Ce que c'est PAS", desc:"'Scintille n'est pas un réseau social. Pas un outil de surveillance. Pas une application \"d'éducation\" de plus. C'est un compagnon de bord pour les parents qui veulent agir — pas juste s'inquiéter.'", visual:"Fond blanc. Ton direct et assumé." },
+      { num:5, title:"Où j'en suis", desc:"'Je suis en train de le construire. Certains écrans existent. D'autres pas encore. Je veux que ça ressemble à ce dont VOUS avez besoin — pas à ce que je suppose.' CTA : 'Vos besoins comptent → DM ou commentaire'", visual:"Fond violet pâle. Ton authentique, coulisses." },
+      { num:6, title:"CTA liste d'attente", desc:"'Scintille arrive cet automne. Si vous voulez être parmi les premiers à le découvrir → lien en bio pour rejoindre la liste.' Logo BRILLE + étoile filante.", visual:"Fond blanc. Bouton/badge vert : 'Rejoindre la liste → lien en bio'" }
+    ],
+    visuel: {
+      format: "Carrousel 6 slides 1080×1080px",
+      fond: "Alternance blanc / pastels. Slide 1 volontairement imparfaite — effet WIP.",
+      elements: ["Logo Scintille manuscrit ou Gruppo + étoile", "Pastels BRILLE", "Ton authentique — pas trop marketé"],
+      story: "Story sondage : 'Un outil pour suivre la QVE de votre enfant → vous en auriez besoin ?' → Oui absolument / Peut-être / J'utilise déjà quelque chose"
+    }
+  },
+  {
+    date:"Dim 27 juil.", month:"Juillet 2026", type:"dim", subtype:"Outil",
+    title:"Journal d'été QVE",
+    hook:"5 questions pour une semaine. À faire avec votre enfant.",
+    insta:`Cet été, je vous offre un outil simple.
+
+Le Journal d'été QVE.
+
+5 questions. Une par jour du lundi au vendredi.
+À faire avec votre enfant, le soir, en 5 minutes.
+
+Pas d'objectif de performance.
+Pas de bonne ou mauvaise réponse.
+Juste : ouvrir l'espace. Ensemble.
+
+𝗟𝗲𝘀 𝟱 𝗾𝘂𝗲𝘀𝘁𝗶𝗼𝗻𝘀 :
+
+𝗟𝘂𝗻𝗱𝗶 : "Qu'est-ce qui t'a rendu·e heureux·se cette semaine ?"
+𝗠𝗮𝗿𝗱𝗶 : "Tu as aidé quelqu'un ? Quelqu'un t'a aidé ?"
+𝗠𝗲𝗿𝗰𝗿𝗲𝗱𝗶 : "Qu'est-ce que tu as créé, inventé, imaginé ?"
+𝗝𝗲𝘂𝗱𝗶 : "Il y a quelque chose qui t'a inquiété·e ?"
+𝗩𝗲𝗻𝗱𝗿𝗲𝗱𝗶 : "Qu'est-ce que tu as appris — sur toi, sur les autres, sur le monde ?"
+
+Le journal complet (avec espace d'écriture pour l'enfant) est disponible en téléchargement — lien en bio.
+
+Bel été 🌻`,
+    hashtags:"#journalenfant #QVE #BRILLE #activiteete #parentalite #vacances #jeulibre #famille",
+    slides: null,
+    visuel: {
+      format: "Post carré 1080×1080px + PDF A5 téléchargeable",
+      fond: "Fond blanc chaud. Illustrations estivales légères (soleil, plantes, couleurs vives pastels).",
+      elements: [
+        "5 questions listées avec icône jour de la semaine",
+        "Titre : 'Journal d'été QVE' en Gruppo",
+        "Illustration estivale — couleurs chaudes",
+        "CTA : 'PDF téléchargeable en bio'"
+      ],
+      story: "Story : 'Votre enfant répond à laquelle en premier ?' — sondage 5 jours"
+    }
+  },
+  {
+    date:"Dim 17 août", month:"Août 2026", type:"dim", subtype:"Conseil pratique",
+    title:"Préparer la rentrée sans stress",
+    hook:"La rentrée approche. Voici ce qui aide vraiment.",
+    insta:`La rentrée dans 3 semaines.
+
+Et déjà, l'air change un peu.
+Pour eux. Pour vous.
+
+Avant de courir après les fournitures et les listes de classe — 𝘃𝗼𝗶𝗰𝗶 𝟯 𝗰𝗵𝗼𝘀𝗲𝘀 𝗾𝘂𝗶 𝗮𝗶𝗱𝗲𝗻𝘁 𝘃𝗿𝗮𝗶𝗺𝗲𝗻𝘁.
+
+𝟭. 𝗣𝗮𝗿𝗹𝗲𝘇-𝗹𝘂𝗶 𝗱𝗲 𝗰𝗲 𝗾𝘂𝗶 𝘃𝗮 𝗿𝗲𝗰𝗼𝗺𝗺𝗲𝗻𝗰𝗲𝗿 — pas de ce qui va changer.
+"Tu vas retrouver ta maîtresse, tes amis, ta cour." Le familier rassure.
+
+𝟮. 𝗥𝗲́𝗶𝗻𝘁𝗿𝗼𝗱𝘂𝗶𝘀𝗲𝘇 𝗱𝗼𝘂𝗰𝗲𝗺𝗲𝗻𝘁 𝗹𝗲𝘀 𝗿𝘆𝘁𝗵𝗺𝗲𝘀.
+La semaine avant la rentrée : coucher 15 min plus tôt chaque soir. Réveil progressif. Sans pression.
+
+𝟯. 𝗙𝗮𝗶𝘁𝗲𝘀 𝗹𝗮 𝗿𝗼𝘂𝗲 𝗤𝗩𝗘 𝗮𝘃𝗲𝗰 𝗹𝘂𝗶 𝗰𝗲 𝘄𝗲𝗲𝗸-𝗲𝗻𝗱.
+Un moment calme. "Là où tu en es avant de repartir." Ça donne un point de départ.
+
+La rentrée fait partie de la vie de l'enfant.
+Il n'a pas besoin que vous supprimiez le stress.
+Il a besoin de vous voir y faire face sereinement.
+
+Bon courage à vous 💙`,
+    hashtags:"#rentree2026 #rentrée #QVE #BRILLE #back2school #preparerlarentree #parentalite #famille",
+    slides: null,
+    visuel: {
+      format: "Post carré 1080×1080px",
+      fond: "Fond bleu pâle. Ambiance de transition — été/rentrée.",
+      elements: [
+        "Titre : 'Préparer la rentrée — 3 choses qui aident vraiment' en Gruppo",
+        "3 conseils numérotés, bien aérés",
+        "Illustration : cartable + feuille verte (rentrée + nature)",
+        "Footer chaleureux"
+      ],
+      story: "Story compte à rebours : 'J-21 avant la rentrée — on respire' avec checklist QVE"
+    }
+  },
+  {
+    date:"Mer 20 août", month:"Août 2026", type:"teas", subtype:"Lancement",
+    title:"Scintille — lancement proche",
+    hook:"Scintille arrive. Voici ce que vous allez pouvoir faire.",
+    insta:`Je vous avais dit que quelque chose arrivait.
+
+𝗖'𝗲𝘀𝘁 𝗦𝗰𝗶𝗻𝘁𝗶𝗹𝗹𝗲.
+
+Une application conçue pour les parents qui veulent suivre et soutenir la Qualité de Vie de leur enfant.
+
+Dans Scintille, vous pourrez :
+✦ Refaire l'Auto-Audit QVE régulièrement et voir l'évolution
+✦ Accéder à des ressources ciblées pour chaque dimension
+✦ Retrouver tous vos outils BRILLE en un endroit
+✦ Suivre les progrès dans le temps
+
+Scintille arrive 𝗰𝗲𝘁 𝗮𝘂𝘁𝗼𝗺𝗻𝗲.
+
+Si vous voulez être parmi les premiers à y accéder → lien en bio pour rejoindre la liste.
+
+On y est presque. 🌟`,
+    hashtags:"#Scintille #BRILLE #lancement #appliparentale #QVE #parentalite #bientot #nouveaute",
+    slides: null,
+    visuel: {
+      format: "Post carré 1080×1080px + optionnel : reel court 15s",
+      fond: "Fond blanc épuré. Étoile filante verte. Typographie propre.",
+      elements: [
+        "Nom 'Scintille' en grand — Gruppo + étoile filante intégrée",
+        "4 fonctionnalités clés en liste avec icônes étoiles",
+        "Badge : 'Automne 2026'",
+        "CTA : 'Rejoindre la liste → lien en bio'"
+      ],
+      story: "Série de 3 stories : Story 1 : nom révélé. Story 2 : 3 fonctionnalités. Story 3 : lien liste d'attente"
+    }
+  },
+  {
+    date:"Dim 31 août", month:"Août 2026", type:"dim", subtype:"Question de réflexion",
+    title:"Bilan d'été",
+    hook:"L'été touche à sa fin. Qu'est-ce que votre enfant a grandi cette saison ?",
+    insta:`L'été se termine.
+
+Et avant de se lancer dans le tourbillon de la rentrée —
+je vous invite à une dernière pause.
+
+Un moment pour regarder.
+
+𝗤𝘂'𝗲𝘀𝘁-𝗰𝗲 𝗾𝘂𝗲 𝘃𝗼𝘁𝗿𝗲 𝗲𝗻𝗳𝗮𝗻𝘁 𝗮 𝗴𝗿𝗮𝗻𝗱𝗶 𝗰𝗲𝘁 𝗲́𝘁𝗲́ ?
+
+Pas en termes de programme. Pas en termes de performances.
+En termes de lui. D'elle.
+
+3 questions à lui poser ce soir :
+→ "Quel a été ton meilleur moment de l'été ?"
+→ "Tu as découvert quelque chose sur toi cet été ?"
+→ "Si tu pouvais garder une chose de cet été dans ta vie — ce serait quoi ?"
+
+Écoutez.
+Et laissez-vous surprendre.
+
+L'enfant que vous allez emmener à l'école dans quelques jours n'est pas tout à fait le même qu'en juin.
+L'été l'a travaillé, à sa façon.
+
+Qu'est-ce qu'il a grandi ? Dites-moi en commentaire. 🌻`,
+    hashtags:"#bilanete #QVE #BRILLE #parentalite #rentrée #famille #croissance #epanouissement",
+    slides: null,
+    visuel: {
+      format: "Post carré 1080×1080px",
+      fond: "Fond vert chaud. Ambiance fin d'été, nostalgique et douce.",
+      elements: [
+        "Titre : 'Bilan d'été' en Gruppo",
+        "3 questions listées avec icônes soleil/étoile",
+        "Illustration : coucher de soleil estival simplifié",
+        "Ton chaleureux, pas mélancolique"
+      ],
+      story: "Story : 'Le plus beau moment de l'été de votre enfant → répondez en DM' + sélection repostée"
+    }
+  },
+  {
+    date:"Dim 6 sept.", month:"Septembre 2026", type:"dim", subtype:"Conseil pratique",
+    title:"La rentrée émotionnelle",
+    hook:"Le cartable est prêt. Et les émotions ?",
+    insta:`Le cartable est prêt.
+Les fournitures sont couvertes.
+Le nom est écrit sur les affaires.
+
+Mais les émotions ?
+
+La rentrée mobilise beaucoup plus que de la logistique.
+
+En QVE, trois dimensions sont particulièrement activées en septembre :
+
+𝟭. 𝗦𝗲́𝗰𝘂𝗿𝗶𝘁𝗲́ 𝗲́𝗺𝗼𝘁𝗶𝗼𝗻𝗻𝗲𝗹𝗹𝗲
+Il retourne dans un espace qu'il ne contrôle pas. C'est normal d'être anxieux.
+Ce qui aide : maintenir les rituels du soir. Garder la maison comme un espace stable.
+
+𝟮. 𝗟𝗶𝗲𝗻𝘀 𝘀𝗼𝗰𝗶𝗮𝘂𝘅
+"Est-ce que mes amis de l'an dernier seront là ?" Cette question tourne dans leur tête.
+Ce qui aide : permettre à votre enfant de recontacter un ami avant la rentrée.
+
+𝟯. 𝗔𝘂𝘁𝗼𝗻𝗼𝗺𝗶𝗲
+Il va devoir gérer seul : le cartable, les récréations, les conflits.
+Ce qui aide : lui faire confiance. Et lui dire que vous lui faites confiance.
+
+La première semaine, l'important n'est pas la performance scolaire.
+C'est qu'il se sente en sécurité pour apprendre.
+
+Bonne rentrée à vous et à vos enfants 💙`,
+    hashtags:"#rentree #emotionsenfant #QVE #BRILLE #parentalite #bonnerentree #serenite #famille",
+    slides: null,
+    visuel: {
+      format: "Post carré 1080×1080px",
+      fond: "Fond bleu doux. Ambiance rentrée apaisante.",
+      elements: [
+        "Titre : 'La rentrée émotionnelle' en Gruppo",
+        "3 dimensions QVE avec icônes — sécurité, liens, autonomie",
+        "Pour chaque : une action concrète courte",
+        "Message final bienveillant"
+      ],
+      story: "Story J-1 rentrée : 'Ce soir avec votre enfant → thermomètre émotionnel. À combien il est ?' + template roue QVE"
+    }
+  },
+  {
+    date:"Mer 10 sept.", month:"Septembre 2026", type:"dim", subtype:"Post spécial",
+    title:"Atelier Étincelle : on y est.",
+    hook:"Les premières familles ont rejoint l'Atelier Étincelle. Voici ce qui s'est passé.",
+    insta:`On y est.
+
+Les premières familles ont rejoint l'Atelier Étincelle.
+
+Des parents et des enfants de 6 à 12 ans.
+Deux heures ensemble.
+Autour de la QVE.
+
+Je ne vais pas vous faire un compte-rendu parfait.
+Je vais vous dire ce que j'ai vu.
+
+𝗨𝗻𝗲 𝗳𝗶𝗹𝗹𝗲𝘁𝘁𝗲 𝗱𝗲 𝟳 𝗮𝗻𝘀 𝗾𝘂𝗶 𝗮 𝗱𝗶𝘁 à 𝘀𝗮 𝗺𝗮𝗺𝗮𝗻 : "Je savais pas que tu te posais ces questions-là."
+
+𝗨𝗻 𝗽𝗮𝗽𝗮 𝗾𝘂𝗶 𝗮 𝗿𝗲𝗺𝗽𝗹𝗶 𝗹𝗮 𝗿𝗼𝘂𝗲 𝗮𝘃𝗲𝗰 𝘀𝗼𝗻 𝗳𝗶𝗹𝘀 𝗽𝗼𝘂𝗿 𝗹𝗮 𝗽𝗿𝗲𝗺𝗶𝗲̀𝗿𝗲 𝗳𝗼𝗶𝘀.
+Ils ont découvert qu'ils avaient la même note dans la même dimension. Les liens.
+
+𝗗𝗲𝘀 𝗲𝗻𝗳𝗮𝗻𝘁𝘀 𝗾𝘂𝗶 𝗼𝗻𝘁 𝗱𝗲𝗺𝗮𝗻𝗱𝗲́ 𝗮̀ 𝗿𝗲𝘃𝗲𝗻𝗶𝗿.
+
+C'est pour ça que BRILLE existe.
+
+Si vous voulez rejoindre les prochains ateliers → lien en bio.
+Et si vous avez des questions → DM ouvert.
+
+Merci à tous ceux qui me suivent depuis mai. Cette première session, c'est aussi un peu grâce à vous. 🌟`,
+    hashtags:"#AtelierEtincelle #BRILLE #QVE #centresocial #parentalite #famille #lancement #soutienparentalite",
+    slides: null,
+    visuel: {
+      format: "Post carré 1080×1080px — format authentique",
+      fond: "Photo réelle de l'atelier (floue pour anonymat) ou illustration douce. Pas trop léchée.",
+      elements: [
+        "Titre sobre : 'Atelier Étincelle — Première session' en Gruppo",
+        "3 citations anonymisées des familles",
+        "Logo BRILLE en bas",
+        "Ton : chaleureux, authentique, pas commercial"
+      ],
+      story: "Série de stories le jour de l'atelier (si possible en direct) : préparation / ambiance / un moment partagé"
+    }
+  }
+];
+
+function tagClass(t){ return {dim:'tag-dim',mer:'tag-mer',eve:'tag-eve',teas:'tag-teas'}[t]||'tag-dim'; }
+function tagLabel(t){ return {dim:'Dimanche',mer:'Mercredi',eve:'Événement',teas:'Scintille'}[t]||''; }
+
+function buildCalendar(filter){
+  const main = document.getElementById('main');
+  main.innerHTML = '';
+  const filtered = filter==='all' ? POSTS : POSTS.filter(p=>p.type===filter);
+  if(!filtered.length){ main.innerHTML='<p style="text-align:center;color:#b8b0a6;padding:3rem;font-size:.85rem;">Aucun post pour ce filtre.</p>'; return; }
+  const months=[...new Set(filtered.map(p=>p.month))];
+  months.forEach(month=>{
+    const ps=filtered.filter(p=>p.month===month);
+    const sec=document.createElement('section');
+    sec.className='month-section';
+    sec.innerHTML=`<div class="month-header"><h2 class="month-name">${month}</h2><span class="month-count">${ps.length} publication${ps.length>1?'s':''}</span><div class="month-line"></div></div>`;
+    ps.forEach((p,i)=>{
+      const uid=`${month.replace(/\s/g,'')}-${i}`;
+      const hasTabs = p.slides || p.visuel;
+      const card=document.createElement('article');
+      card.className='post-card';
+      card.dataset.type=p.type;
+
+      const slidesHTML = p.slides ? `
+        <div class="slides-grid">
+          ${p.slides.map(s=>`
+            <div class="slide-item">
+              <div class="slide-num" style="background:${
+                p.type==='dim'?'var(--green-mid)':p.type==='mer'?'var(--blue-mid)':p.type==='eve'?'var(--pink-mid)':'var(--purple-mid)'
+              }">${s.num}</div>
+              <div class="slide-content">
+                <div class="slide-label">Slide ${s.num}</div>
+                <div class="slide-title">${s.title}</div>
+                <div class="slide-desc">${s.desc}</div>
+                <div class="slide-visual">📐 ${s.visual}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      ` : '<p style="font-size:.8rem;color:var(--faint);font-style:italic;">Post image unique — pas de carrousel.</p>';
+
+      const visuelHTML = p.visuel ? `
+        <div class="visual-block">
+          <h4>Format</h4>
+          <p style="font-size:.78rem;color:var(--muted);margin-bottom:.75rem;">${p.visuel.format}</p>
+          <h4>Fond & style</h4>
+          <p style="font-size:.78rem;color:var(--muted);margin-bottom:.75rem;">${p.visuel.fond}</p>
+          <h4>Éléments à créer</h4>
+          <ul>${p.visuel.elements.map(e=>`<li>${e}</li>`).join('')}</ul>
+          ${p.visuel.story ? `<div class="canva-note">📱 Story : ${p.visuel.story}</div>` : ''}
+        </div>
+      ` : '';
+
+      card.innerHTML=`
+        <div class="post-summary">
+          <div>
+            <div class="tags">
+              <span class="tag ${tagClass(p.type)}">${tagLabel(p.type)}</span>
+              <span class="tag tag-type">${p.subtype}</span>
+            </div>
+            <div class="post-title">${p.title}</div>
+            <div class="post-hook-preview">${p.hook}</div>
+          </div>
+          <div class="post-right">
+            <span class="date-badge">${p.date}</span>
+            <div class="chevron"><svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><polyline points="2,4 6,8 10,4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+        </div>
+        <div class="post-body" id="body-${uid}">
+          <div class="post-body-inner">
+            <div class="tab-nav">
+              <button class="tab-btn active" data-tab="insta-${uid}">✦ Texte Instagram</button>
+              <button class="tab-btn" data-tab="slides-${uid}">☰ Slides / Brief</button>
+              <button class="tab-btn" data-tab="visuel-${uid}">◈ Visuel Canva</button>
+            </div>
+            <div class="tab-panel active" id="insta-${uid}">
+              <div class="section-label">Texte prêt à publier</div>
+              <div class="insta-preview"><pre>${p.insta}</pre></div>
+              <div class="section-label" style="margin-top:.75rem;">Hashtags</div>
+              <div class="hashtags-text">${p.hashtags}</div>
+              <div class="copy-bar">
+                <button class="copy-btn" onclick="copyText(this,'${uid}','post')">⎘ Copier le texte</button>
+                <button class="copy-btn" onclick="copyText(this,'${uid}','hash')">⎘ Copier les hashtags</button>
+                <button class="copy-btn" onclick="copyText(this,'${uid}','all')">⎘ Tout copier</button>
+              </div>
+            </div>
+            <div class="tab-panel" id="slides-${uid}">${slidesHTML}</div>
+            <div class="tab-panel" id="visuel-${uid}">${visuelHTML}</div>
+          </div>
+        </div>
+      `;
+
+      // Toggle open/close
+      card.querySelector('.post-summary').addEventListener('click',()=>{
+        const open=card.classList.toggle('open');
+        card.querySelector('.post-body').classList.toggle('open',open);
+      });
+
+      // Tab switching
+      card.querySelectorAll('.tab-btn').forEach(btn=>{
+        btn.addEventListener('click',e=>{
+          e.stopPropagation();
+          const tab=btn.dataset.tab;
+          card.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+          card.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+          btn.classList.add('active');
+          document.getElementById(tab).classList.add('active');
+        });
+      });
+
+      // Store post data for copy
+      card.dataset.insta = p.insta;
+      card.dataset.hash = p.hashtags;
+      card.dataset.uid = uid;
+
+      sec.appendChild(card);
+    });
+    main.appendChild(sec);
+  });
+}
+
+function copyText(btn, uid, mode){
+  const card = btn.closest('.post-card');
+  let text = '';
+  if(mode==='post') text = card.dataset.insta;
+  else if(mode==='hash') text = card.dataset.hash;
+  else text = card.dataset.insta + '\n\n' + card.dataset.hash;
+  navigator.clipboard.writeText(text).catch(()=>{});
+  const orig = btn.textContent;
+  btn.classList.add('ok');
+  btn.textContent = '✓ Copié !';
+  setTimeout(()=>{ btn.classList.remove('ok'); btn.textContent=orig; },2000);
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    buildCalendar(btn.dataset.filter);
+  });
+});
+
+buildCalendar('all');
+</script>
+</body>
+</html>
