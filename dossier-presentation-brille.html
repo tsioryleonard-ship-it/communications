@@ -134,6 +134,55 @@
     #formation { background: linear-gradient(180deg, rgba(253,213,165,0.25) 0%, #fdfcf8 100%); }
     #offres { background: linear-gradient(180deg, rgba(168,219,235,0.25) 0%, #fdfcf8 100%); }
     #qve { background: linear-gradient(180deg, rgba(235,198,224,0.25) 0%, #fdfcf8 100%); }
+    #manifeste { background: linear-gradient(180deg, rgba(184,174,215,0.22) 0%, #fdfcf8 100%); }
+    .manifeste-body { max-width: 760px; }
+    .manifeste-body p {
+      font-size: 1.02rem;
+      line-height: 1.9;
+      margin-bottom: 1.15rem;
+      color: var(--text);
+    }
+    .manifeste-lead {
+      font-family: 'Gruppo', cursive;
+      font-size: clamp(1.2rem, 2.6vw, 1.55rem);
+      line-height: 1.6;
+      color: var(--t-mauve);
+      margin-bottom: 1.6rem;
+    }
+    .manifeste-sub {
+      font-family: 'Gruppo', cursive;
+      font-size: 1.15rem;
+      color: var(--t-mauve);
+      margin: 1.8rem 0 0.6rem;
+    }
+    .manifeste-petales {
+      list-style: none;
+      margin: 0.4rem 0 1.4rem;
+      padding-left: 0;
+    }
+    .manifeste-petales li {
+      position: relative;
+      padding-left: 1.6rem;
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    .manifeste-petales li::before {
+      content: '❀';
+      position: absolute;
+      left: 0;
+      color: var(--t-mauve);
+    }
+    .manifeste-signature {
+      margin-top: 2rem;
+      padding-top: 1.4rem;
+      border-top: 1.5px solid var(--mauve);
+      font-family: 'Gruppo', cursive;
+      line-height: 1.6;
+    }
+    .manifeste-signature .nom { font-size: 1.15rem; color: var(--text); }
+    .manifeste-signature .role { font-size: 0.95rem; color: var(--light-text); }
+    .manifeste-signature .date { font-size: 0.85rem; color: var(--light-text); margin-top: 0.4rem; }
     #atelier { background: linear-gradient(180deg, rgba(203,225,182,0.25) 0%, #fdfcf8 100%); }
     #methode { background: linear-gradient(180deg, rgba(248,244,184,0.35) 0%, #fdfcf8 100%); }
     #partenariat { background: linear-gradient(180deg, rgba(168,219,235,0.25) 0%, #fdfcf8 100%); }
@@ -638,6 +687,7 @@
   <a href="#formation">🎓 Formation</a>
   <a href="#offres">🌸 Mes offres</a>
   <a href="#qve">🌼 La QVE</a>
+  <a href="#manifeste">📜 Manifeste</a>
   <a href="#atelier">✨ Atelier Étincelle</a>
   <a href="#charte">📋 Charte</a>
   <a href="#approche">🧭 Approche</a>
@@ -1096,6 +1146,57 @@
       <div class="charte-footer">
         ✨ Cette charte est présentée et co-signée symboliquement (par un geste collectif ou une signature sur le livret)
         au début de chaque atelier. Elle pose le cadre commun dans lequel je m'engage à intervenir — et dans lequel les familles choisissent de participer.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTE -->
+<section id="manifeste">
+  <div class="section-inner">
+    <div class="section-label">Texte fondateur</div>
+    <div class="section-title" style="color:var(--t-mauve);border-left-color:var(--mauve);">Et si on parlait de la Qualité de Vie de l'Enfant ?</div>
+
+    <div class="manifeste-body">
+      <p class="manifeste-lead">On écrit beaucoup sur la qualité de vie au travail. On mesure le bien-être des adultes, on l'analyse, on légifère. Mais quand il s'agit de l'enfant, le silence.</p>
+
+      <p class="manifeste-sub">Un silence qui interroge</p>
+      <p>Comme si l'enfant n'était pas, lui aussi, un être humain à part entière. Pourtant il reçoit des émotions, il traverse des situations compliquées, il vit des relations difficiles. Il a des besoins, exactement comme nous. Et il n'existe aucun outil pour le reconnaître, aucune manière de mesurer et de valoriser ce qu'il vit.</p>
+      <p>C'est d'autant plus frappant que l'enfant de 6 à 12 ans traverse une période charnière. Il vient de quitter le monde protégé de la maternelle. Le voilà au CP, puis en route vers le collège — un nouvel environnement, encore. À côté de l'école, il y a les activités périscolaires, les loisirs, tout un quotidien à apprivoiser. Et à la maison, on continue souvent de le voir comme un petit, alors qu'il grandit, qu'il gagne en autonomie, qu'il devient quelqu'un.</p>
+      <p>Cet enfant-là est en pleine découverte de la vie. Et personne ne pense son épanouissement comme un tout.</p>
+
+      <p class="manifeste-sub">Du travail à l'enfant</p>
+      <p>Ce vide, je l'ai compris de l'intérieur.</p>
+      <p>Mon Master 2 en ingénierie de formation m'a conduite à consacrer mon mémoire à la Qualité de Vie au Travail. J'ai découvert un concept qui fonctionne remarquablement bien. Né dans le secteur privé, il gagne aujourd'hui le public : de plus en plus d'administrations mettent en place des dispositifs pour leurs agents. L'objectif, toujours le même : le bien-être de chacun.</p>
+      <p>Et c'est ce mot — bien-être — qui a tout déclenché.</p>
+      <p>Car le bien-être de l'enfant, on en parle de plus en plus. Montessori, l'éducation positive, cette vague qui monte et qui redonne à l'enfant sa place. Les outils du quotidien se multiplient. Mais un cadre structuré, écrit noir sur blanc, l'équivalent d'une QVT posée et reconnue ? Cela n'existe pas.</p>
+      <p>Alors je me suis dit : si ce concept fonctionne pour les adultes, il est transposable à l'enfant. Le bien-être n'a pas d'âge.</p>
+
+      <p class="manifeste-sub">Regarder l'enfant à sa juste valeur</p>
+      <p>La Qualité de Vie de l'Enfant, c'est regarder l'enfant dans sa globalité.</p>
+      <p>C'est le reconnaître comme un être humain à part entière — avec ses émotions, ses besoins, ses relations, les complexités de sa vie et l'immense découverte qu'est, pour lui, le monde. C'est le regarder à sa juste valeur. Comme nous.</p>
+      <p>Pour rendre cette approche concrète, j'ai construit la <strong>Fleur QVE à 7 pétales</strong>, sept dimensions qui, ensemble, dessinent l'épanouissement de l'enfant :</p>
+      <ul class="manifeste-petales">
+        <li>Mon organisation et mon autonomie</li>
+        <li>Mes émotions apprivoisées</li>
+        <li>Le sens de mes apprentissages</li>
+        <li>Mes liens et ma parole</li>
+        <li>Ma place et mes droits</li>
+        <li>Mon équilibre et mon énergie</li>
+        <li>Ce qui me fait briller</li>
+      </ul>
+      <p>Vous l'aurez remarqué : chaque pétale est écrit à la première personne. Ce n'est pas l'adulte qui parle de l'enfant. C'est l'enfant qui parle de lui-même. Ce choix résume toute ma philosophie : placer l'enfant au centre, lui donner la parole, le considérer comme le sujet de sa propre vie et non comme un objet d'attention.</p>
+      <p>Chaque pétale est un point d'appui pour accompagner l'enfant — et pour accompagner ses parents.</p>
+      <p>Car on n'aide jamais un enfant seul. On aide un enfant en lien.</p>
+      <p>Ma conviction est là : mieux comprendre l'enfant, et partager avec le parent les difficultés de la relation, c'est faire rayonner toute la famille. L'épanouissement de l'enfant et l'harmonie du foyer avancent ensemble.</p>
+      <p>Ma vision est simple, et je la crois possible : que chaque enfant de 6 à 12 ans grandisse dans des relations harmonieuses, et que chaque parent trouve un soutien pour mieux le comprendre. Non pas une prise en charge individuelle ou thérapeutique, mais un espace collectif pour structurer l'épanouissement, ensemble.</p>
+      <p>La Qualité de Vie de l'Enfant mérite d'exister, d'être nommée, d'être reconnue. C'est le début d'une conversation. Et j'aimerais la mener avec vous.</p>
+
+      <div class="manifeste-signature">
+        <div class="nom">Rindra Tsiory Léonard</div>
+        <div class="role">Fondatrice de BRILLE Ingénierie — ingénierie socio-éducative</div>
+        <div class="role">Créatrice de la Qualité de Vie de l'Enfant (QVE)</div>
+        <div class="date">Juillet 2026</div>
       </div>
     </div>
   </div>
