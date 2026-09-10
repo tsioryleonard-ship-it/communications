@@ -141,6 +141,9 @@
       line-height: 1.9;
       margin-bottom: 1.15rem;
       color: var(--text);
+      text-align: justify;
+      text-justify: inter-word;
+      hyphens: auto;
     }
     .manifeste-lead {
       font-family: 'Gruppo', cursive;
@@ -331,10 +334,10 @@
       text-align: center;
       position: relative;
     }
-    .offre-card.green  { background: #cbe1b6; border: 2px solid var(--green); }
-    .offre-card.yellow { background: rgba(248,244,184,0.4); border: 2px solid var(--yellow); }
-    .offre-card.mauve  { background: rgba(184,174,215,0.2); border: 2px solid var(--mauve); }
-    .offre-card.blue   { background: #a8dbeb; border: 2px solid var(--blue); }
+    .offre-card.green  { background: rgba(203,225,182,0.45); border: 2px solid var(--green); }
+    .offre-card.yellow { background: rgba(248,244,184,0.55); border: 2px solid var(--yellow); }
+    .offre-card.pink   { background: rgba(235,198,224,0.50); border: 2px solid var(--pink); }
+    .offre-card.blue   { background: rgba(168,219,235,0.45); border: 2px solid var(--blue); }
     .offre-phase {
       font-size: 0.7rem;
       font-weight: 600;
@@ -344,7 +347,7 @@
     }
     .offre-card.green  .offre-phase { color: var(--t-green); }
     .offre-card.yellow .offre-phase { color: var(--t-peach); }
-    .offre-card.mauve  .offre-phase { color: var(--t-mauve); }
+    .offre-card.pink   .offre-phase { color: var(--t-rose); }
     .offre-card.blue   .offre-phase { color: var(--t-blue); }
     .offre-icon { font-size: 2.2rem; margin-bottom: 0.7rem; }
     .offre-card h3 {
@@ -355,7 +358,7 @@
     }
     .offre-card.green  h3 { color: var(--t-green); }
     .offre-card.yellow h3 { color: var(--t-peach); }
-    .offre-card.mauve  h3 { color: var(--t-mauve); }
+    .offre-card.pink   h3 { color: var(--t-rose); }
     .offre-card.blue   h3 { color: var(--t-blue); }
     .offre-location {
       font-size: 0.78rem;
@@ -370,6 +373,31 @@
       line-height: 1.75;
       max-width: 700px;
       margin-bottom: 2rem;
+      text-align: justify;
+      text-justify: inter-word;
+      hyphens: auto;
+    }
+
+    /* Justification des blocs de prose longs */
+    .section-inner > p,
+    .approche-card p,
+    .step-body p,
+    .partenariat-card p {
+      text-align: justify;
+      text-justify: inter-word;
+      hyphens: auto;
+    }
+    /* Sur mobile, l'aligné à gauche reste plus lisible que le justifié étroit */
+    @media (max-width: 560px) {
+      .manifeste-body p,
+      .qve-intro,
+      .section-inner > p,
+      .approche-card p,
+      .step-body p,
+      .partenariat-card p {
+        text-align: left;
+        hyphens: none;
+      }
     }
     .petales-list {
       display: grid;
@@ -688,10 +716,11 @@
   <a href="#offres">🌸 Mes offres</a>
   <a href="#qve">🌼 La QVE</a>
   <a href="#manifeste">📜 Manifeste</a>
-  <a href="#atelier">✨ Atelier Étincelle</a>
+  <a href="#atelier">✨ L'atelier type</a>
   <a href="#charte">📋 Charte</a>
   <a href="#approche">🧭 Approche</a>
   <a href="#partenariat">🤝 Partenariat</a>
+  <a href="#contact">💌 Devis</a>
 </nav>
 
 <!-- HERO -->
@@ -868,37 +897,40 @@
     <div class="section-label">L'écosystème BRILLE</div>
     <div class="section-title">4 offres pour une vision</div>
     <p style="font-size:0.95rem;line-height:1.75;max-width:700px;margin-bottom:2rem;">
-      Je structure mon action autour de quatre dispositifs complémentaires, chacun pensé pour un contexte d'intervention
-      spécifique. Tous partagent la même philosophie : mettre l'enfant et sa famille en position d'acteurs.
+      Je structure mon action autour de quatre dispositifs complémentaires. C'est le groupe accompagné qui définit
+      l'offre : un groupe d'enfants (Lueur), un groupe de parents (Main Tendue) ou des binômes parent-enfant
+      (Étincelle). Ces trois offres se proposent en parallèle, selon les besoins de chaque structure. Rayon,
+      dédié à l'école, s'inscrit sur le long terme. Toutes partagent la même philosophie : mettre l'enfant et sa
+      famille en position d'acteurs.
     </p>
     <div class="offres-grid">
-      <div class="offre-card green">
-        <div class="offre-phase">Phase 1 · En cours</div>
-        <div class="offre-icon">✨</div>
-        <h3>Étincelle</h3>
-        <div class="offre-location">📍 Centre social</div>
-        <p>Atelier de 2h parent-enfant (6-12 ans) autour de la QVE. Espace de parole, d'écoute et de co-construction dans un lieu de proximité. Premier dispositif déployé.</p>
-      </div>
       <div class="offre-card yellow">
-        <div class="offre-phase">À venir</div>
+        <div class="offre-phase">Proposée en parallèle</div>
         <div class="offre-icon">☀️</div>
         <h3>Lueur</h3>
-        <div class="offre-location">📍 Centre de loisirs</div>
-        <p>Dispositif participatif en centre de loisirs. L'enfant explore sa QVE dans un cadre ludique et collectif, avec des outils visuels adaptés au temps libre.</p>
-      </div>
-      <div class="offre-card mauve">
-        <div class="offre-phase">À venir</div>
-        <div class="offre-icon">🌟</div>
-        <h3>Rayon</h3>
-        <div class="offre-location">📍 École élémentaire</div>
-        <p>Intervention en milieu scolaire pour intégrer la QVE dans le quotidien de l'enfant. En lien avec les équipes enseignantes et éducatives.</p>
+        <div class="offre-location">👧 Groupe d'enfants</div>
+        <p>Atelier avec un groupe d'enfants (6-12 ans). L'enfant explore sa QVE dans un cadre ludique et collectif, avec des outils visuels pensés pour lui.</p>
       </div>
       <div class="offre-card blue">
-        <div class="offre-phase">À venir</div>
+        <div class="offre-phase">Proposée en parallèle</div>
         <div class="offre-icon">🤲</div>
         <h3>Main Tendue</h3>
-        <div class="offre-location">📍 Accompagnement parents</div>
-        <p>Dispositif dédié aux parents. Ateliers de soutien à la parentalité, d'écoute et d'outillage pour mieux comprendre et accompagner l'épanouissement de leur enfant.</p>
+        <div class="offre-location">👩‍👦 Groupe de parents</div>
+        <p>Atelier avec un groupe de parents. Soutien à la parentalité, écoute et outillage pour mieux comprendre et accompagner l'épanouissement de leur enfant.</p>
+      </div>
+      <div class="offre-card green">
+        <div class="offre-phase">Proposée en parallèle</div>
+        <div class="offre-icon">✨</div>
+        <h3>Étincelle</h3>
+        <div class="offre-location">👨‍👧 Binôme parent-enfant</div>
+        <p>Atelier en binômes parent-enfant (6-12 ans). Espace de parole, d'écoute et de co-construction où le lien se travaille ensemble, à deux.</p>
+      </div>
+      <div class="offre-card pink">
+        <div class="offre-phase">À long terme</div>
+        <div class="offre-icon">🌟</div>
+        <h3>Rayon</h3>
+        <div class="offre-location">🏫 École élémentaire</div>
+        <p>Intervention en milieu scolaire pour intégrer la QVE dans le quotidien de l'enfant, en lien avec les équipes enseignantes et éducatives.</p>
       </div>
     </div>
   </div>
@@ -974,92 +1006,94 @@
   </div>
 </section>
 
-<!-- ATELIER ÉTINCELLE -->
+<!-- ATELIER TYPE -->
 <section id="atelier">
   <div class="section-inner">
-    <div class="section-label">Premier dispositif · Phase 1</div>
-    <div class="section-title">Atelier Étincelle</div>
+    <div class="section-label">Le format d'intervention</div>
+    <div class="section-title">Un atelier type de 2h</div>
+    <p style="font-size:0.95rem;line-height:1.75;max-width:700px;margin-bottom:2rem;">
+      Voici une idée de la façon dont se déroule un atelier BRILLE. Le format reste le même — 2 heures,
+      participatif, collectif — et s'adapte au public accueilli : un groupe d'enfants (Lueur),
+      un groupe de parents (Main Tendue) ou des binômes parent-enfant (Étincelle). Chaque format mobilise
+      ses propres outils : la Fleur QVE avec les enfants, d'autres supports d'ingénierie avec les parents.
+    </p>
 
     <div class="atelier-grid">
       <div class="atelier-card">
-        <div class="ico">👨‍👧</div>
+        <div class="ico">👪</div>
         <h4>Public cible</h4>
-        <p>Binômes parent-enfant · Enfants de 6 à 12 ans · 4 à 6 binômes par session</p>
+        <p>Selon le besoin de la structure : groupe d'enfants (6-12 ans), groupe de parents, ou binômes parent-enfant · Petits groupes</p>
       </div>
       <div class="atelier-card">
         <div class="ico">⏱️</div>
         <h4>Format</h4>
-        <p>Atelier participatif de 2 heures · Petits groupes · Esprit convivial et bienveillant</p>
-      </div>
-      <div class="atelier-card">
-        <div class="ico">📍</div>
-        <h4>Lieu d'intervention</h4>
-        <p>Locaux du centre social partenaire · Salle, tables, chaises fournis par le centre · Matériel pédagogique apporté par BRILLE</p>
+        <p>Atelier participatif de 2 heures · Esprit convivial et bienveillant · Outils visuels adaptés au public</p>
       </div>
       <div class="atelier-card">
         <div class="ico">🎯</div>
         <h4>Objectifs</h4>
-        <p>Permettre à l'enfant de prendre la parole sur sa qualité de vie · Créer un espace d'écoute active pour le parent · Repartir ensemble avec un plan d'action concret</p>
-      </div>
-      <div class="atelier-card highlight">
-        <div class="ico">💶</div>
-        <h4>Offre de démarrage</h4>
-        <p>Première session <strong>gratuite</strong> pour le centre partenaire · Atelier pilote sans engagement · Évaluation conjointe à l'issue</p>
+        <p>Ouvrir un espace de parole et d'écoute autour de la qualité de vie de l'enfant · Repartir avec une action concrète à mettre en œuvre</p>
       </div>
     </div>
 
-    <div style="font-family:'Gruppo',cursive;font-size:1.2rem;color:var(--text);margin-bottom:1rem;">Déroulé de l'atelier</div>
+    <div style="font-family:'Gruppo',cursive;font-size:1.2rem;color:var(--text);margin-bottom:1rem;">Déroulé type</div>
+    <p style="font-size:0.9rem;line-height:1.7;max-width:700px;margin-bottom:1.2rem;color:var(--light-text);">
+      La trame reste la même quel que soit le public ; ce sont les outils et les mots qui s'adaptent — un groupe
+      d'enfants, un groupe de parents ou des binômes n'explorent pas la même chose de la même façon.
+    </p>
     <div class="deroulé">
       <div class="step">
         <div class="step-num">1</div>
         <div class="step-body">
-          <h4>Accueil &amp; mise en confiance</h4>
-          <p>Présentation du cadre, des règles de bienveillance. Icebreaker adapté à la tranche d'âge.</p>
+          <h4>Accueil &amp; brise-glace</h4>
+          <p>Accueil chaleureux et tour de table léger. On pose une envie, un ressenti ou un désir avant toute contrainte : c'est le fil rouge gardé jusqu'à la fin. Objectif : créer la sécurité du groupe.</p>
         </div>
-        <div class="step-time">20 min</div>
+        <div class="step-time">15 min</div>
       </div>
       <div class="step">
         <div class="step-num">2</div>
         <div class="step-body">
-          <h4>Exploration de la QVE</h4>
-          <p>L'enfant et le parent colorient chacun <strong>leur propre fleur</strong> de façon indépendante, en évaluant les 7 pétales selon leur ressenti. Puis vient une <strong>mise en commun</strong> : confronter les deux perceptions — celle de l'enfant sur sa propre vie, celle du parent sur son enfant — est souvent le moment le plus révélateur de l'atelier.</p>
-        </div>
-        <div class="step-time">35 min</div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-body">
-          <h4>Dialogue parent-enfant</h4>
-          <p>Échange guidé autour des découvertes. Le parent répond à son tour sur sa perception de la QVE de son enfant.</p>
+          <h4>Prendre conscience</h4>
+          <p>À l'aide d'un support visuel adapté au public (Fleur QVE avec les enfants, grille de la charge avec les parents…), chacun repère pour lui ce qui compte, ce qui pèse ou ce qui fait défaut. Objectif : rendre visible l'invisible.</p>
         </div>
         <div class="step-time">30 min</div>
       </div>
       <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>Explorer ensemble — cœur de l'atelier</h4>
+          <p>Temps d'échange collectif où les idées et les astuces circulent entre participants. Mon rôle est de relancer et de relier, pas d'apporter la solution : c'est l'entraide du groupe qui fait émerger le concret.</p>
+        </div>
+        <div class="step-time">35 min</div>
+      </div>
+      <div class="step">
         <div class="step-num">4</div>
         <div class="step-body">
-          <h4>Co-construction Kanban</h4>
-          <p>Identification d'une action concrète à mener ensemble. Formalisation sur un tableau Kanban simplifié.</p>
+          <h4>Mon engagement concret</h4>
+          <p>Chacun définit UNE action réaliste, datée et tenable : quoi, quand, la condition pour que ça tienne, l'obstacle probable et sa parade. Objectif : passer de l'envie à un engagement réalisable dès cette semaine.</p>
         </div>
-        <div class="step-time">25 min</div>
+        <div class="step-time">30 min</div>
       </div>
       <div class="step">
         <div class="step-num">5</div>
         <div class="step-body">
-          <h4>Clôture &amp; engagement</h4>
-          <p>Chaque binôme partage une prise de conscience. Remise du "livret Étincelle". Évaluation à chaud.</p>
+          <h4>Clôture &amp; intention</h4>
+          <p>Tour final : chacun dit en un mot ce qu'il emporte, ou lit son intention à voix haute. Remise du livret à emporter. On termine sur le désir de départ, désormais transformé en projet.</p>
         </div>
         <div class="step-time">10 min</div>
       </div>
     </div>
 
     <div style="font-family:'Gruppo',cursive;font-size:1.1rem;color:var(--text);margin-bottom:0.7rem;">Outils pédagogiques mobilisés</div>
+    <p style="font-size:0.85rem;line-height:1.6;max-width:700px;margin-bottom:0.9rem;color:var(--light-text);">Une boîte à outils issue de l'ingénierie, dans laquelle je pioche selon le format et le public :</p>
     <div class="outils-tags">
-      <span class="outil-tag">📊 Kanban adapté enfants</span>
+      <span class="outil-tag">🌸 Fleur QVE (enfants)</span>
+      <span class="outil-tag">🗂️ Grilles de tri &amp; priorisation (parents)</span>
+      <span class="outil-tag">📊 Kanban adapté</span>
       <span class="outil-tag">🔄 Cycle PDCA simplifié</span>
-      <span class="outil-tag">🌸 Fleur QVE</span>
       <span class="outil-tag">🗺️ Carte des émotions</span>
       <span class="outil-tag">🎴 Cartes visuelles participatives</span>
-      <span class="outil-tag">📋 Livret Étincelle</span>
+      <span class="outil-tag">📋 Livret participant</span>
       <span class="outil-tag">💬 Protocoles de dialogue guidé</span>
     </div>
   </div>
@@ -1071,13 +1105,13 @@
     <div class="section-label">Cadre éthique</div>
     <div class="section-title">Charte d'engagement</div>
     <p style="font-size:0.95rem;line-height:1.75;max-width:680px;margin-bottom:1.5rem;">
-      L'atelier Étincelle repose sur un cadre de confiance co-construit. Cette charte définit les engagements
-      mutuels entre les familles participantes et moi en tant qu'intervenante, pour garantir un espace sûr,
+      Chaque atelier BRILLE repose sur un cadre de confiance co-construit. Cette charte définit les engagements
+      mutuels entre les participants et moi en tant qu'intervenante, pour garantir un espace sûr,
       bienveillant et efficace.
     </p>
     <div class="charte-section">
       <div class="charte-title">📋 Nos engagements mutuels</div>
-      <div class="charte-subtitle">Atelier Étincelle · Binômes parent-enfant (6-12 ans)</div>
+      <div class="charte-subtitle">Ateliers BRILLE · Enfants (6-12 ans), parents ou binômes</div>
 
       <div class="charte-grid">
         <!-- Participants -->
@@ -1316,12 +1350,20 @@
         </ul>
       </div>
     </div>
+  </div>
+</section>
 
+<!-- INTÉRESSÉ·E / DEVIS -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-label">Envie d'aller plus loin ?</div>
+    <div class="section-title">Intéressé·e ?</div>
     <div class="cta">
-      <h3>Démarrons ensemble ✨</h3>
+      <h3>Contactez-moi pour un devis ✨</h3>
       <p>
-        Je propose un premier atelier pilote gratuit pour que vous puissiez vivre Étincelle de l'intérieur — sans
-        engagement de votre part. Discutons d'une date qui convient à votre centre et à vos familles.
+        Vous développez un dispositif de soutien à la parentalité ou souhaitez proposer un atelier
+        à vos familles ? Parlons-en. Chaque intervention est construite sur mesure, selon votre public
+        et vos besoins — je vous établis un devis adapté après un premier échange.
       </p>
       <div class="contact-info">
         <div class="contact-item">📞 07 45 32 30 90</div>
