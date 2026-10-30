@@ -858,6 +858,7 @@ footer a{color:rgba(255,255,255,.7);}
   <a href="#qve">La Fleur QVE</a>
   <a href="#atelier">L'atelier</a>
   <a href="#etincelle">Étincelle</a>
+  <a href="#audit">Auto-audit</a>
   <a href="#qui">Fondatrice</a>
   <a href="#charte">Charte</a>
   <a href="#approche">Approche</a>
@@ -896,6 +897,7 @@ footer a{color:rgba(255,255,255,.7);}
   <div class="hero-cta">
     <a class="btn primary" href="#offres">🌸 Découvrir les offres</a>
     <a class="btn ghost" href="#lien">🤝 Voir le parcours</a>
+    <a class="btn ghost" href="#audit">🌸 Auto-audit QVE</a>
     <a class="btn soft" href="#contact">✉️ Demander un devis</a>
   </div>
   <div class="social-bar social-slot"></div>
@@ -1179,6 +1181,33 @@ footer a{color:rgba(255,255,255,.7);}
   </div>
 </section>
 
+<!-- AUTO-AUDIT QVE -->
+<section id="audit">
+  <div class="section-inner">
+    <div class="section-label">Un outil pour la famille</div>
+    <div class="section-title">L'auto-audit QVE : se regarder, puis se parler</div>
+    <p class="lead">
+      L'<strong>auto-audit QVE</strong> est un outil en ligne, simple et ludique, qui permet à l'enfant et à son parent de
+      faire le point sur les <strong>7 pétales</strong> de la Fleur QVE. Chacun répond de son côté, avec ses mots et son
+      ressenti, puis la famille <strong>compare les deux fleurs</strong> pour ouvrir un dialogue.
+    </p>
+    <div class="how">
+      <div class="how-card rv"><div class="n">1</div><h4>🌈 Pour l'enfant</h4><p>Des questions courtes, des météos et des visages à choisir, la lecture à voix haute des questions, et une fleur qui s'épanouit au fil des réponses. Un jeu, pas un test.</p></div>
+      <div class="how-card rv"><div class="n">2</div><h4>🏠 Pour le parent</h4><p>Le « miroir parent » : les mêmes 7 pétales, regardés avec son œil d'adulte. Des pistes concrètes pour les deux prochaines semaines sur le pétale qui a le plus besoin d'être arrosé.</p></div>
+      <div class="how-card rv"><div class="n">3</div><h4>🪞 Les deux fleurs, côte à côte</h4><p>Là où les regards se rejoignent, on célèbre. Là où ils diffèrent, on s'écoute : des phrases d'ouverture et des règles simples aident à engager la conversation, sans chercher qui a raison.</p></div>
+    </div>
+    <div class="centre-benef rv">
+      <h4>🤝 Créer du lien, pas un score</h4>
+      Un écart entre ce que vit l'enfant et ce que voit le parent n'est pas une erreur : c'est une invitation à se parler.
+      L'auto-audit est un <strong>support de dialogue</strong>, non thérapeutique, qui ne pose aucun diagnostic et ne donne lieu à aucun suivi individuel.
+      Il s'utilise en famille, en amont d'un atelier ou pour le prolonger, et s'inscrit dans la même philosophie que le reste de BRILLE : le lien avant tout.
+    </div>
+    <div class="hero-cta" style="margin-top:1.8rem;justify-content:flex-start">
+      <a class="btn primary" href="https://tsioryleonard-ship-it.github.io/brille.ingenierie/audit_qve.html" target="_blank" rel="noopener">🌸 Faire l'auto-audit</a>
+    </div>
+  </div>
+</section>
+
 <!-- QUI SUIS-JE -->
 <section id="qui">
   <div class="section-inner">
@@ -1372,6 +1401,9 @@ footer a{color:rgba(255,255,255,.7);}
       mutuels entre les participants et moi en tant qu'intervenante, pour garantir un espace sûr,
       bienveillant et efficace.
     </p>
+    <details class="fold" id="charte-fold">
+      <summary>📋 Lire la charte d'engagement</summary>
+      <div class="fold-body">
     <div class="charte-section">
       <div class="charte-title">📋 Nos engagements mutuels</div>
       <div class="charte-subtitle">Ateliers BRILLE · Enfants (6-12 ans) ou parents</div>
@@ -1445,6 +1477,8 @@ footer a{color:rgba(255,255,255,.7);}
         au début de chaque atelier. Elle pose le cadre commun dans lequel je m'engage à intervenir — et dans lequel les familles choisissent de participer.
       </div>
     </div>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -1637,6 +1671,7 @@ document.querySelectorAll('.social-slot').forEach(function(slot){
 })();
 /* ouvrir le manifeste si on y arrive par un lien */
 if(location.hash==='#manifeste'){var m=document.getElementById('manifeste');if(m)m.open=true;}
+if(location.hash==='#charte'){var c=document.getElementById('charte-fold');if(c)c.open=true;}
 </script>
 </body>
 </html>
