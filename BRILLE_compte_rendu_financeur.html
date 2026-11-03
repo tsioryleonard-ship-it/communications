@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compte rendu BRILLE</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: bibliothèque de comptes rendus à gauche, formulaire ou aperçu A4 à droite. Palette de la charte BRILLE. */
+:root {
+  --bg: #FDFCF8; --surface: #ffffff; --fg: #2E2A2A; --muted: #6f6767; --line: #e4dfd6;
+  --accent: #3f6fa8; --accent-fg: #ffffff; --accent-soft: #e6f3f9;
+  --cta: #f49f4c; --cta-fg: #2E2A2A; --ok: #4a7a2e; --danger: #a83840; --danger-soft: #fdeaea;
+  --font: 'Quicksand', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1c1b1f; --surface: #26242a; --fg: #efeaea; --muted: #b3abab; --line: #3b3840;
+    --accent: #8db4e8; --accent-fg: #14202e; --accent-soft: #223244; --cta: #f49f4c; --cta-fg: #2E2A2A;
+    --ok: #a5cf86; --danger: #f5abaf; --danger-soft: #3a2427; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1c1b1f; --surface: #26242a; --fg: #efeaea; --muted: #b3abab; --line: #3b3840;
+  --accent: #8db4e8; --accent-fg: #14202e; --accent-soft: #223244; --cta: #f49f4c; --cta-fg: #2E2A2A;
+  --ok: #a5cf86; --danger: #f5abaf; --danger-soft: #3a2427; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 15px; line-height: 1.5; margin: 0;
+  padding-block: 0; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: 1180px; margin: 0 auto; padding-block: 18px 60px; }
+.bar7 { display: flex; height: 8px; border-radius: 4px; overflow: hidden; margin-bottom: 14px; }
+.bar7 i { flex: 1; }
+header.top { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: flex-end; justify-content: space-between; }
+h1 { font-size: 26px; line-height: 1.15; margin: 0; color: var(--accent); text-wrap: balance; }
+.sub { color: var(--muted); font-size: 14px; margin: 4px 0 0; max-width: 62ch; }
+.status { font-size: 13px; font-weight: 600; padding: 4px 12px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+.status.dirty { background: var(--danger-soft); color: var(--danger); }
+.layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 20px; margin-top: 18px; align-items: start; }
+@media (max-width: 820px) { .layout { grid-template-columns: minmax(0, 1fr); } }
+aside, .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 14px; }
+aside h2 { font-size: 14px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+.list { display: flex; flex-direction: column; gap: 6px; }
+.item { text-align: left; font: inherit; border: 1px solid var(--line); background: transparent; color: var(--fg); border-radius: 12px; padding: 9px 11px; cursor: pointer; }
+.item small { display: block; color: var(--muted); font-size: 12px; }
+.item[aria-current="true"] { border-color: var(--accent); background: var(--accent-soft); }
+button { font: inherit; font-weight: 600; cursor: pointer; border-radius: 999px; border: 2px solid var(--line); background: var(--surface); color: var(--fg); padding: 7px 16px; }
+button:hover { border-color: var(--accent); }
+button.primary { background: var(--cta); border-color: var(--cta); color: var(--cta-fg); }
+button.blue { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
+button.warn { border-color: var(--danger); color: var(--danger); }
+button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+button[disabled] { opacity: .5; cursor: not-allowed; }
+.toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+.tabs button { border-radius: 12px; }
+.tabs button[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
+.notice { background: var(--accent-soft); border-radius: 12px; padding: 10px 14px; font-size: 14px; margin-bottom: 14px; }
+.notice.err { background: var(--danger-soft); color: var(--danger); }
+fieldset.sec { border: 1px solid var(--line); border-radius: 16px; background: var(--surface); margin: 0 0 16px; padding: 4px 18px 18px; min-width: 0; }
+fieldset.sec legend { font-weight: 700; font-size: 17px; color: var(--accent); padding: 0 8px; }
+.intro { color: var(--muted); font-size: 14px; margin: 8px 0 12px; }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 16px; }
+@media (max-width: 640px) { .grid2 { grid-template-columns: minmax(0, 1fr); } }
+.f { display: flex; flex-direction: column; gap: 4px; min-width: 0; margin-top: 10px; }
+.f.full { grid-column: 1 / -1; }
+.f > label, .f > .lab { font-weight: 600; font-size: 14px; }
+.hint { color: var(--muted); font-size: 12.5px; font-weight: 500; }
+input[type=text], input[type=date], input[type=number], select, textarea { font: inherit; width: 100%; padding: 8px 10px; border-radius: 10px; border: 1.5px solid var(--line); background: var(--bg); color: var(--fg); min-width: 0; }
+textarea { resize: vertical; min-height: 84px; }
+.checks { display: flex; flex-wrap: wrap; gap: 6px 16px; }
+.checks label { display: flex; gap: 8px; align-items: flex-start; font-weight: 500; font-size: 14px; }
+.checks input, .pr input[type=checkbox] { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--accent); flex: none; }
+.pr { border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; margin-top: 10px; }
+.pr .head { display: flex; gap: 8px; align-items: flex-start; font-weight: 700; font-size: 14px; }
+.pr .cite { color: var(--muted); font-size: 12.5px; margin: 2px 0 6px 26px; }
+.pr textarea { min-height: 64px; }
+.tw { overflow-x: auto; }
+table.sat { border-collapse: collapse; width: 100%; min-width: 520px; font-size: 14px; }
+table.sat th, table.sat td { border: 1px solid var(--line); padding: 6px 8px; text-align: left; }
+table.sat td input { width: 64px; }
+.versions { margin-top: 10px; display: flex; flex-direction: column; gap: 6px; }
+.versions .row { display: flex; gap: 10px; align-items: center; justify-content: space-between; font-size: 14px; border: 1px solid var(--line); border-radius: 10px; padding: 6px 10px; }
+details.hist { margin-bottom: 14px; border: 1px solid var(--line); border-radius: 12px; padding: 8px 14px; background: var(--surface); }
+details.hist summary { cursor: pointer; font-weight: 700; }
+.empty { color: var(--muted); font-size: 14px; }
+.stage { overflow-x: auto; background: var(--line); border-radius: 16px; padding: 16px; }
+.sheet { width: 794px; margin: 0 auto; background: #ffffff; color: #2E2A2A; padding: 44px 50px 40px; font-family: var(--font); font-size: 12.5px; line-height: 1.5; }
+.sheet h1 { font-size: 21px; color: #3f6fa8; margin: 10px 0 2px; }
+.sheet .meta { color: #6f6767; font-size: 12px; margin-bottom: 10px; }
+.sheet .b7 { display: flex; height: 6px; border-radius: 3px; overflow: hidden; }
+.sheet .b7 i { flex: 1; }
+.sheet h2 { font-size: 14px; color: #3f6fa8; border-bottom: 2px solid #a8dbeb; padding-bottom: 3px; margin: 18px 0 8px; }
+.sheet .kv { display: grid; grid-template-columns: 170px 1fr; gap: 3px 12px; margin: 0 0 4px; }
+.sheet .kv b { font-weight: 700; }
+.sheet .kv div { white-space: pre-wrap; overflow-wrap: anywhere; }
+.sheet .pri { margin: 6px 0; page-break-inside: avoid; }
+.sheet .pri b { display: block; }
+.sheet .pri span { white-space: pre-wrap; }
+.sheet table { border-collapse: collapse; width: 100%; margin: 4px 0; }
+.sheet th, .sheet td { border: 1px solid #bdb6ac; padding: 4px 6px; text-align: left; }
+.sheet .sig { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 10px; }
+.sheet .sig div { border: 1px solid #bdb6ac; border-radius: 6px; min-height: 80px; padding: 6px 8px; }
+.sheet .foot { margin-top: 16px; font-size: 10.5px; color: #6f6767; border-top: 1px solid #ddd6cb; padding-top: 6px; }
+.sheet .none { color: #6f6767; font-style: italic; }
+@page { size: A4; margin: 12mm; }
+@media print {
+  .sheet { width: auto; padding: 0; }
+  body { background: #fff; padding: 0; }
+  .wrap > header, aside, .toolbar, .tabs, .notice, details.hist, fieldset.sec, .panel > :not(.stage) { display: none !important; }
+  .layout { display: block; } .panel { border: 0; padding: 0; } .stage { background: #fff; padding: 0; overflow: visible; }
+}
+@media (prefers-reduced-motion: no-preference) { button { transition: border-color .15s, background .15s; } }
+</style>
+
+</head>
+<body>
+<script>
+(function () {
+  window.__standalone = true;
+  var KEY = 'brille-cr-v1', subs = [];
+  function load() { try { return JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { return {}; } }
+  function save(o) { try { localStorage.setItem(KEY, JSON.stringify(o)); } catch (e) {} }
+  function notify() { subs.slice().forEach(function (f) { f(); }); }
+  function snap(path) { var v = load()[path]; return { id: path.split('/').pop(), exists: v !== undefined, data: function () { return v === undefined ? undefined : JSON.parse(JSON.stringify(v)); } }; }
+  function listen(f) { subs.push(f); setTimeout(f, 0); return function () { subs = subs.filter(function (x) { return x !== f; }); }; }
+  var db = {
+    doc: function (path) { return {
+      id: path.split('/').pop(),
+      set: function (d) { var o = load(); o[path] = JSON.parse(JSON.stringify(d)); save(o); notify(); return Promise.resolve(); },
+      delete: function () { var o = load(); delete o[path]; save(o); notify(); return Promise.resolve(); },
+      onSnapshot: function (next) { return listen(function () { next(snap(path)); }); } }; },
+    collection: function (path) { return { onSnapshot: function (next) { return listen(function () {
+      var o = load(), docs = Object.keys(o).filter(function (k) { var p = k.split('/'); return p.length === 2 && p[0] === path; }).map(snap);
+      next({ docs: docs, size: docs.length, empty: !docs.length }); }); } }; }
+  };
+  var dl = { save: function (req) { try {
+      var blob = req.data instanceof Blob ? req.data : new Blob([req.data], { type: 'text/html;charset=utf-8' });
+      var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = req.filename; document.body.appendChild(a); a.click();
+      setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); return Promise.resolve({ status: 'saved' });
+    } catch (e) { return Promise.reject({ code: 'unavailable', message: String(e) }); } } };
+  window.claude = { use: function (n) { return Promise.resolve(n === 'db' ? db : n === 'downloads' ? dl : null); } };
+})();
+</script>
+<div class="wrap">
+  <div class="bar7" aria-hidden="true"><i style="background:#cbe1b6"></i><i style="background:#f5abaf"></i><i style="background:#b8aed7"></i><i style="background:#f8f4b8"></i><i style="background:#a4c2e7"></i><i style="background:#ebc6e0"></i><i style="background:#f49f4c"></i></div>
+  <header class="top">
+    <div>
+      <h1>Compte rendu d'atelier pour les financeurs</h1>
+      <p class="sub">Un modèle de base que tu complètes à chaque atelier. Il montre comment l'action répond aux critères de la CAF et des autres financeurs, et il s'imprime en PDF. Tes comptes rendus sont enregistrés dans ce navigateur, sur cet ordinateur.</p>
+    </div>
+    <span id="status" class="status" role="status">Brouillon non enregistré</span>
+  </header>
+  <div class="layout">
+    <aside aria-label="Mes comptes rendus">
+      <h2>Mes comptes rendus</h2>
+      <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px;"><button id="btn-new" class="primary">Nouveau CR</button></div>
+      <div id="list" class="list"></div>
+    </aside>
+    <main class="panel" id="main"></main>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ---------- Modèle de base d'origine (le « point de retour ») ---------- */
+  var CHARTE = [
+    ['ch1', 'Reconnaissance des parents', 'Reconnaître et valoriser prioritairement les rôles, le projet et les compétences des parents.',
+      'Les parents sont reconnus comme premiers éducateurs. Chaque engagement est choisi par eux, à partir de leurs idées et de ce qui fonctionne déjà dans leur famille.'],
+    ['ch2', 'Accueil de toutes les familles', 'S’adresser à toutes les familles quels que soient la situation familiale, le milieu social.',
+      'L’atelier est ouvert à toutes les familles, sans condition de situation familiale ou sociale. Les supports sont visuels et ludiques pour rester accessibles à tous.'],
+    ['ch3', 'Approche globale', 'Accompagner les parents en intégrant toutes les dimensions et l’ensemble du contexte de la vie familiale.',
+      'La Fleur QVE explore sept dimensions de la vie de l’enfant (organisation, émotions, apprentissages, liens, place et droits, énergie, ce qui fait briller), dans leur contexte familial.'],
+    ['ch4', 'Accompagnement tout au long du parcours', 'Proposer un accompagnement et un soutien, de l’arrivée de l’enfant jusqu’à l’âge adulte.',
+      'L’atelier s’inscrit dans un parcours : ateliers en centre social, prolongement à la maison avec une application gratuite, puis accompagnement en école élémentaire.'],
+    ['ch5', 'Égalité femmes-hommes', 'Respecter les principes d’égalité entre les femmes et les hommes dans la parentalité.',
+      'Les deux parents sont invités à participer. Les échanges veillent à une place équitable pour chacun·e.'],
+    ['ch6', 'Place de chaque parent', 'Permettre à chaque parent d’occuper, dans la mesure du possible, sa place dans le développement de l’enfant.',
+      'Quelle que soit la configuration familiale, chaque parent est invité à trouver sa place dans le projet de l’enfant.'],
+    ['ch7', 'Accessibilité et neutralité', 'Proposer des interventions accessibles à toutes les familles, dans le respect de la neutralité politique, philosophique et confessionnelle.',
+      'Atelier proposé dans un lieu de proximité (centre social). Posture neutre sur le plan politique, philosophique et confessionnel.'],
+    ['ch8', 'Compétence des intervenants', 'Garantir que les bénévoles ou professionnels sont compétents ou formés.',
+      'Intervenante titulaire d’un Master 2 Ingénierie de la Formation, d’un Master Politiques Publiques, d’une Licence de Droit et d’un BAFA (spécialisation).']
+  ];
+  var DEF = {
+    porteur: 'BRILLE (micro-entreprise), dispositifs socio-éducatifs pour les enfants de 6 à 12 ans et leurs familles',
+    siret: '',
+    contact: 'Tsiory Leonard · 07 45 32 30 90 · tsioryleonard@gmail.com',
+    presentation: 'BRILLE conçoit des ateliers autour de la Qualité de Vie de l’Enfant (QVE). La démarche est non thérapeutique, bienveillante et co-construite avec les familles.',
+    objectifs: '• Permettre aux participants de repérer ce qui va bien et ce qui pèse dans la vie de l’enfant, grâce à la Fleur QVE.\n• Favoriser le dialogue entre parents et enfants, et entre parents.\n• Aboutir à un engagement concret, choisi par chaque participant.',
+    deroule: '15 min · Accueil et brise-glace\n30 min · Prendre conscience\n35 min · Explorer ensemble\n30 min · Mon engagement concret\n10 min · Clôture et intention',
+    redacteur: 'Tsiory Leonard, fondatrice de BRILLE'
+  };
+  CHARTE.forEach(function (c) { DEF[c[0]] = c[3]; });
+  var SOCLE_KEYS = Object.keys(DEF);
+
+  var PETALES = ['Mon organisation et mon autonomie', 'Mes émotions apprivoisées', 'Le sens de mes apprentissages', 'Mes liens et ma parole', 'Ma place et mes droits', 'Mon équilibre et mon énergie', 'Ce qui me fait briller'];
+  var OUTILS = ['Fleur QVE', 'Grilles de tri', 'Kanban adapté', 'PDCA simplifié', 'Carte des émotions', 'Cartes visuelles', 'Livret', 'Dialogue guidé'];
+  var CRITERES = [
+    'Démarche d’accompagnement non jugeante et non thérapeutique',
+    'Action fondée sur des besoins exprimés par les familles ou repérés sur le territoire',
+    'Action articulée avec les acteurs et le réseau du territoire',
+    'Action distincte des missions propres de la structure d’accueil',
+    'Évaluation recueillie auprès des bénéficiaires (questionnaire ou entretien)',
+    'Mention ou logo du financeur respecté sur les supports'
+  ];
+  var SAT = ['Je me suis senti·e écouté·e et respecté·e', 'J’ai repéré des idées ou des ressources utiles', 'Je me sens capable de tenir mon engagement', 'Je recommanderais cet atelier'];
+  var SATCOLS = ['Tout à fait', 'Plutôt oui', 'Plutôt non', 'Pas du tout'];
+
+  var SECTIONS = [
+    { id: 'ident', t: '1. Identification de l’action', f: [
+      { k: 'action', t: 'select', l: 'Atelier', o: ['', 'Lueur (groupe d’enfants)', 'Main tendue (groupe de parents)', 'Étincelle (binôme parent-enfant)', 'Rayon (école élémentaire)', 'Autre'] },
+      { k: 'intitule', t: 'text', l: 'Intitulé de l’action', ph: 'ex. Atelier QVE parents-enfants' },
+      { k: 'date', t: 'date', l: 'Date' },
+      { k: 'horaires', t: 'text', l: 'Horaires', ph: 'ex. 14h00 – 16h00' },
+      { k: 'structure', t: 'text', l: 'Structure d’accueil', ph: 'ex. Centre social …' },
+      { k: 'lieu', t: 'text', l: 'Commune ou quartier' },
+      { k: 'referent', t: 'text', l: 'Référent·e de la structure' },
+      { k: 'seance', t: 'text', l: 'Séance n° ou cycle', ph: 'ex. séance 1 sur 3' },
+      { k: 'porteur', t: 'text', l: 'Porteur de l’action', full: 1, s: 1 },
+      { k: 'siret', t: 'text', l: 'SIRET', ph: 'À compléter dans le modèle de base', s: 1 },
+      { k: 'contact', t: 'text', l: 'Contact', s: 1 },
+      { k: 'presentation', t: 'area', l: 'Présentation du porteur', full: 1, s: 1 }
+    ] },
+    { id: 'besoin', t: '2. Contexte et dispositif de financement', f: [
+      { k: 'dispositif', t: 'select', l: 'Dispositif visé', o: ['', 'REAAP (soutien à la parentalité)', 'Animation collective famille (centre social)', 'CLAS (accompagnement à la scolarité)', 'Fonds national parentalité', 'Convention territoriale globale (CTG)', 'Autre'] },
+      { k: 'financeur', t: 'text', l: 'Financeur', ph: 'ex. Caf de …' },
+      { k: 'besoin', t: 'area', l: 'Besoin repéré sur le territoire ou exprimé par les familles', full: 1, h: 'Qui l’a exprimé, à quelle occasion, quels constats ?' },
+      { k: 'projet', t: 'area', l: 'Lien avec le projet social de la structure ou la convention territoriale', full: 1 },
+      { k: 'articulation', t: 'area', l: 'Articulation avec les acteurs du territoire', full: 1, h: 'Partenaires, réseau parentalité, autres actions de la structure.' }
+    ] },
+    { id: 'public', t: '3. Public et participation', f: [
+      { k: 'nbParents', t: 'number', l: 'Nombre de parents' },
+      { k: 'nbEnfants', t: 'number', l: 'Nombre d’enfants' },
+      { k: 'nbFamilles', t: 'number', l: 'Nombre de familles' },
+      { k: 'nouveaux', t: 'number', l: 'Familles nouvelles pour la structure' },
+      { k: 'ages', t: 'text', l: 'Âges des enfants', ph: '6-12 ans' },
+      { k: 'mobilisation', t: 'area', l: 'Mobilisation des familles', full: 1, h: 'Comment les familles ont été invitées et accueillies.' }
+    ] },
+    { id: 'deroule', t: '4. Objectifs et déroulé', f: [
+      { k: 'objectifs', t: 'area', l: 'Objectifs de l’atelier', full: 1, s: 1 },
+      { k: 'petales', t: 'checks', l: 'Dimensions de la QVE travaillées', full: 1, o: PETALES },
+      { k: 'deroule', t: 'area', l: 'Déroulé (durée totale 2 h)', full: 1, s: 1, rows: 6 },
+      { k: 'outils', t: 'checks', l: 'Outils utilisés', full: 1, o: OUTILS }
+    ] },
+    { id: 'charte', t: '5. Cohérence avec la Charte nationale du soutien à la parentalité', intro: 'Coche les principes que l’atelier met en œuvre et ajuste la réponse à cette séance. Les réponses de départ viennent du modèle de base.', f: [
+      { t: 'charte' },
+      { k: 'criteres', t: 'checks', l: 'Autres critères souvent demandés par les financeurs', full: 1, o: CRITERES, h: 'D’après les appels à projets REAAP. Les critères varient selon la Caf : vérifie le cahier des charges local.' }
+    ] },
+    { id: 'eval', t: '6. Évaluation', f: [
+      { k: 'nbQuest', t: 'number', l: 'Bilans à chaud recueillis' },
+      { k: 'nbEngag', t: 'number', l: 'Engagements concrets pris' },
+      { t: 'sat' },
+      { k: 'engagements', t: 'area', l: 'Exemples d’engagements pris', full: 1 },
+      { k: 'forts', t: 'area', l: 'Points forts constatés', full: 1 },
+      { k: 'ameliorer', t: 'area', l: 'Points à améliorer', full: 1 },
+      { k: 'verbatim', t: 'area', l: 'Paroles de familles (anonymisées)', full: 1, h: 'Sans nom ni prénom, en citant les mots utilisés.' }
+    ] },
+    { id: 'suites', t: '7. Suites et perspectives', f: [
+      { k: 'suites', t: 'area', l: 'Suites envisagées', full: 1, h: 'Nouvelles séances, prolongement à la maison, autres publics.' },
+      { k: 'besoins', t: 'area', l: 'Besoins identifiés pour la suite', full: 1 }
+    ] },
+    { id: 'valid', t: '8. Validation', f: [
+      { k: 'redacteur', t: 'text', l: 'Rédigé par', s: 1 },
+      { k: 'dateRedac', t: 'date', l: 'Date de rédaction' },
+      { k: 'visa', t: 'text', l: 'Visa de la structure (nom, fonction)', full: 1 }
+    ] }
+  ];
+
+  /* ---------- État ---------- */
+  var db = null, dl = null;
+  var S = { crs: [], cur: null, savedJson: '', tab: 'saisie', socle: clone(DEF), msg: '', err: '', confirm: '', pdfBusy: false };
+
+  function clone(o) { return JSON.parse(JSON.stringify(o)); }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function uid() { return 'cr-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+  function fmtDate(d) { if (!d) return ''; var p = String(d).split('-'); return p.length === 3 ? p[2] + '/' + p[1] + '/' + p[0] : d; }
+  function fmtAt(ms) { var d = new Date(ms); return d.toLocaleDateString('fr-FR') + ' à ' + d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }); }
+
+  function blankData(socle) {
+    var d = {};
+    SECTIONS.forEach(function (s) { s.f.forEach(function (f) { if (f.k) d[f.k] = f.t === 'checks' ? [] : ''; }); });
+    d.sat = {}; d.okch = {};
+    SOCLE_KEYS.forEach(function (k) { d[k] = socle[k] != null ? socle[k] : DEF[k]; });
+    return d;
+  }
+  function newCr() { return { id: uid(), data: blankData(S.socle), versions: [], createdAt: Date.now(), updatedAt: 0, saved: false }; }
+  function titreOf(c) {
+    var d = c.data || {};
+    var a = (d.action || '').split(' (')[0] || 'Atelier';
+    return (d.date ? fmtDate(d.date) + ' · ' : '') + (d.structure || 'Structure à préciser') + ' · ' + a;
+  }
+  function isDirty() { return !S.cur || JSON.stringify(S.cur.data) !== S.savedJson; }
+  function markSaved() { S.savedJson = JSON.stringify(S.cur.data); }
+
+  /* ---------- Base de données ---------- */
+  function loadAll() {
+    if (!db) return;
+    db.collection('cr').onSnapshot(function (snap) {
+      S.crs = snap.docs.map(function (d) { var x = d.data() || {}; x.id = d.id; return x; })
+        .sort(function (a, b) { return (b.updatedAt || 0) - (a.updatedAt || 0); });
+      renderList();
+    }, function () { S.err = 'La sauvegarde en ligne est interrompue. Tu peux continuer à écrire, mais rien ne sera conservé.'; renderMain(); });
+    db.doc('base/socle').onSnapshot(function (snap) {
+      var x = snap.exists ? snap.data() : null;
+      if (x && x.data) {
+        S.socle = Object.assign(clone(DEF), x.data);
+        if (S.cur && !S.cur.saved && !isDirtyVsBlank()) { /* garde le brouillon tel quel */ }
+        if (S.tab === 'base') renderMain();
+      }
+    }, function () {});
+  }
+  function isDirtyVsBlank() { return false; }
+
+  function saveCur() {
+    if (!db) { S.err = 'La sauvegarde en ligne n’est pas disponible dans cet affichage.'; renderMain(); return; }
+    var c = S.cur;
+    var snap = { at: Date.now(), titre: titreOf(c), data: clone(c.data) };
+    var versions = (c.versions || []).concat([snap]).slice(-8);
+    var doc = { titre: titreOf(c), data: clone(c.data), versions: versions, createdAt: c.createdAt || Date.now(), updatedAt: Date.now() };
+    db.doc('cr/' + c.id).set(doc).then(function () {
+      c.versions = versions; c.updatedAt = doc.updatedAt; c.saved = true; markSaved();
+      S.msg = 'Enregistré. Une version de retour a été ajoutée à l’historique.'; S.err = ''; render();
+    }).catch(function (e) { S.err = 'Enregistrement impossible (' + (e && e.code || 'erreur') + ').'; renderMain(); });
+  }
+  function openCr(id) {
+    var c = S.crs.filter(function (x) { return x.id === id; })[0]; if (!c) return;
+    var base = blankData(S.socle);
+    S.cur = { id: c.id, data: Object.assign(base, clone(c.data || {})), versions: c.versions || [], createdAt: c.createdAt, updatedAt: c.updatedAt, saved: true };
+    markSaved(); S.msg = ''; S.err = ''; S.confirm = ''; S.tab = 'saisie'; render();
+  }
+  function deleteCr(id) {
+    if (!db) return;
+    db.doc('cr/' + id).delete().then(function () {
+      if (S.cur && S.cur.id === id) { S.cur = newCr(); markSaved(); }
+      S.msg = 'Compte rendu supprimé.'; S.confirm = ''; render();
+    }).catch(function () { S.err = 'Suppression impossible.'; renderMain(); });
+  }
+
+  /* ---------- Rendu : saisie ---------- */
+  function fieldHtml(f) {
+    var d = S.cur.data, id = 'f-' + f.k, v = d[f.k];
+    var cls = 'f' + (f.full ? ' full' : '');
+    var hint = f.h ? '<span class="hint">' + esc(f.h) + '</span>' : '';
+    if (f.t === 'select') {
+      return '<div class="' + cls + '"><label for="' + id + '">' + esc(f.l) + '</label><select id="' + id + '" data-k="' + f.k + '">' +
+        f.o.map(function (o) { return '<option' + (o === v ? ' selected' : '') + '>' + esc(o) + '</option>'; }).join('') + '</select>' + hint + '</div>';
+    }
+    if (f.t === 'area') {
+      return '<div class="' + cls + '"><label for="' + id + '">' + esc(f.l) + '</label>' + hint + '<textarea id="' + id + '" data-k="' + f.k + '" rows="' + (f.rows || 4) + '">' + esc(v) + '</textarea></div>';
+    }
+    if (f.t === 'checks') {
+      var arr = v || [];
+      return '<div class="' + cls + '"><span class="lab">' + esc(f.l) + '</span>' + hint + '<div class="checks">' + f.o.map(function (o, i) {
+        return '<label><input type="checkbox" data-ck="' + f.k + '" data-v="' + esc(o) + '"' + (arr.indexOf(o) > -1 ? ' checked' : '') + '>' + esc(o) + '</label>';
+      }).join('') + '</div></div>';
+    }
+    var type = f.t === 'number' ? 'number' : (f.t === 'date' ? 'date' : 'text');
+    return '<div class="' + cls + '"><label for="' + id + '">' + esc(f.l) + '</label><input id="' + id + '" type="' + type + '"' + (type === 'number' ? ' min="0" inputmode="numeric"' : '') +
+      ' data-k="' + f.k + '" value="' + esc(v) + '"' + (f.ph ? ' placeholder="' + esc(f.ph) + '"' : '') + '>' + hint + '</div>';
+  }
+  function charteHtml() {
+    var d = S.cur.data;
+    return '<div class="f full">' + CHARTE.map(function (c) {
+      var ok = d.okch && d.okch[c[0]];
+      return '<div class="pr"><div class="head"><input type="checkbox" id="ok-' + c[0] + '" data-ok="' + c[0] + '"' + (ok ? ' checked' : '') + '><label for="ok-' + c[0] + '">' + esc(c[1]) + '</label></div>' +
+        '<div class="cite">« ' + esc(c[2]) + ' »</div><textarea id="f-' + c[0] + '" data-k="' + c[0] + '" aria-label="Comment l’atelier répond à : ' + esc(c[1]) + '">' + esc(d[c[0]]) + '</textarea></div>';
+    }).join('') + '</div>';
+  }
+  function satHtml() {
+    var d = S.cur.data, s = d.sat || {};
+    return '<div class="f full"><span class="lab">Bilan à chaud : nombre de réponses par item</span><div class="tw"><table class="sat"><thead><tr><th>Item</th>' +
+      SATCOLS.map(function (c) { return '<th>' + esc(c) + '</th>'; }).join('') + '</tr></thead><tbody>' +
+      SAT.map(function (r, i) {
+        return '<tr><td>' + esc(r) + '</td>' + SATCOLS.map(function (c, j) {
+          return '<td><input type="number" min="0" inputmode="numeric" aria-label="' + esc(r + ' : ' + c) + '" data-sat="' + i + '_' + j + '" value="' + esc(s[i + '_' + j] || '') + '"></td>';
+        }).join('') + '</tr>';
+      }).join('') + '</tbody></table></div></div>';
+  }
+  function formHtml() {
+    return SECTIONS.map(function (s) {
+      var inner = s.f.map(function (f) {
+        if (f.t === 'charte') return charteHtml();
+        if (f.t === 'sat') return satHtml();
+        return fieldHtml(f);
+      }).join('');
+      return '<fieldset class="sec"><legend>' + esc(s.t) + '</legend>' + (s.intro ? '<p class="intro">' + esc(s.intro) + '</p>' : '') + '<div class="grid2">' + inner + '</div></fieldset>';
+    }).join('');
+  }
+
+  /* ---------- Rendu : aperçu A4 ---------- */
+  function kv(l, v) { return v ? '<b>' + esc(l) + '</b><div>' + esc(v) + '</div>' : '<b>' + esc(l) + '</b><div class="none">Non renseigné</div>'; }
+  function sheetHtml() {
+    var d = S.cur.data, h = '';
+    h += '<div class="b7"><i style="background:#cbe1b6"></i><i style="background:#f5abaf"></i><i style="background:#b8aed7"></i><i style="background:#f8f4b8"></i><i style="background:#a4c2e7"></i><i style="background:#ebc6e0"></i><i style="background:#f49f4c"></i></div>';
+    h += '<h1>Compte rendu d’action – ' + esc(d.intitule || (d.action || 'Atelier')) + '</h1>';
+    h += '<div class="meta">BRILLE · Le lien avant tout' + (d.date ? ' · ' + esc(fmtDate(d.date)) : '') + '</div>';
+    SECTIONS.forEach(function (s) {
+      h += '<h2>' + esc(s.t) + '</h2>';
+      if (s.id === 'charte') {
+        CHARTE.forEach(function (c) {
+          var ok = d.okch && d.okch[c[0]];
+          h += '<div class="pri"><b>' + (ok ? '☑ ' : '☐ ') + esc(c[1]) + '</b><span>' + esc(d[c[0]] || '') + '</span></div>';
+        });
+        h += '<div class="kv" style="margin-top:8px">' + kv('Autres critères', (d.criteres || []).join('\n')) + '</div>';
+        return;
+      }
+      h += '<div class="kv">';
+      s.f.forEach(function (f) {
+        if (f.t === 'sat') {
+          h += '</div><table><thead><tr><th>Bilan à chaud (nombre de réponses)</th>' + SATCOLS.map(function (c) { return '<th>' + esc(c) + '</th>'; }).join('') + '</tr></thead><tbody>' +
+            SAT.map(function (r, i) { return '<tr><td>' + esc(r) + '</td>' + SATCOLS.map(function (c, j) { return '<td>' + esc((d.sat || {})[i + '_' + j] || '') + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table><div class="kv" style="margin-top:6px">';
+          return;
+        }
+        var v = d[f.k];
+        if (f.t === 'checks') v = (v || []).join('\n');
+        if (f.t === 'date') v = fmtDate(v);
+        h += kv(f.l, v);
+      });
+      h += '</div>';
+      if (s.id === 'valid') h += '<div class="sig"><div><b>Signature de la porteuse</b></div><div><b>Visa de la structure</b></div></div>';
+    });
+    h += '<div class="foot">Les données de cette fiche sont anonymisées : aucun nom d’enfant ou de parent n’y figure. Cadre : Charte nationale du soutien à la parentalité. BRILLE · ' + esc(d.contact || '') + '</div>';
+    return h;
+  }
+
+  /* ---------- Rendu : modèle de base ---------- */
+  function baseHtml() {
+    var so = S.socle;
+    var fields = [];
+    SECTIONS.forEach(function (s) { s.f.forEach(function (f) { if (f.s) fields.push(f); }); });
+    var out = '<div class="notice">Ce modèle de base se recopie dans chaque nouveau compte rendu. Modifie-le ici pour tous tes prochains CR. Les comptes rendus déjà enregistrés ne changent pas.</div><div class="grid2">';
+    fields.forEach(function (f) {
+      var id = 'b-' + f.k;
+      out += '<div class="f ' + (f.full ? 'full' : '') + '"><label for="' + id + '">' + esc(f.l) + '</label>' +
+        (f.t === 'area' ? '<textarea id="' + id + '" data-b="' + f.k + '" rows="' + (f.rows || 4) + '">' + esc(so[f.k]) + '</textarea>'
+          : '<input id="' + id + '" type="text" data-b="' + f.k + '" value="' + esc(so[f.k]) + '">') + '</div>';
+    });
+    CHARTE.forEach(function (c) {
+      out += '<div class="f full"><label for="b-' + c[0] + '">Charte : ' + esc(c[1]) + '</label><textarea id="b-' + c[0] + '" data-b="' + c[0] + '">' + esc(so[c[0]]) + '</textarea></div>';
+    });
+    out += '</div><div class="toolbar" style="margin-top:14px"><button class="primary" id="btn-savebase">Enregistrer le modèle de base</button>' +
+      (S.confirm === 'resetbase' ? '<button class="warn" id="btn-resetbase-ok">Confirmer : revenir au modèle d’origine</button><button id="btn-cancel">Annuler</button>' : '<button id="btn-resetbase">Revenir au modèle d’origine</button>') + '</div>';
+    return out;
+  }
+
+  /* ---------- Rendu général ---------- */
+  function renderList() {
+    var el = document.getElementById('list');
+    if (!S.crs.length) { el.innerHTML = '<p class="empty">Aucun compte rendu enregistré pour l’instant. Remplis le brouillon puis clique sur Enregistrer.</p>'; return; }
+    el.innerHTML = S.crs.map(function (c) {
+      return '<button class="item" data-open="' + esc(c.id) + '" aria-current="' + (S.cur && S.cur.id === c.id ? 'true' : 'false') + '">' + esc(c.titre || 'Compte rendu') +
+        '<small>Modifié le ' + esc(c.updatedAt ? fmtAt(c.updatedAt) : '') + '</small></button>';
+    }).join('');
+  }
+  function renderStatus() {
+    var el = document.getElementById('status'), dirty = isDirty();
+    el.className = 'status' + (dirty ? ' dirty' : '');
+    el.textContent = dirty ? (S.cur && S.cur.saved ? 'Modifications non enregistrées' : 'Brouillon non enregistré') : 'Enregistré';
+  }
+  function renderMain() {
+    var m = document.getElementById('main'), c = S.cur, h = '';
+    var scrollY = window.scrollY;
+    h += '<div class="tabs" role="tablist">' + [['saisie', 'Saisie'], ['apercu', 'Aperçu et PDF'], ['base', 'Modèle de base']].map(function (t) {
+      return '<button role="tab" data-tab="' + t[0] + '" aria-selected="' + (S.tab === t[0]) + '">' + t[1] + '</button>';
+    }).join('') + '</div>';
+    if (S.err) h += '<div class="notice err" role="alert">' + esc(S.err) + '</div>';
+    else if (S.msg) h += '<div class="notice" role="status">' + esc(S.msg) + '</div>';
+    if (!db) h += '<div class="notice err">La sauvegarde en ligne n’est pas disponible dans cet affichage : le texte saisi sera perdu à la fermeture.</div>';
+
+    if (S.tab === 'base') { h += baseHtml(); }
+    else {
+      h += '<div class="toolbar">';
+      h += '<button class="primary" id="btn-save">Enregistrer</button>';
+      h += '<button id="btn-revert"' + (c.saved ? '' : ' disabled') + '>Revenir à la dernière sauvegarde</button>';
+      h += S.confirm === 'blank' ? '<button class="warn" id="btn-blank-ok">Confirmer : repartir du modèle vierge</button><button id="btn-cancel">Annuler</button>' : '<button id="btn-blank">Repartir du modèle vierge</button>';
+      h += '<button id="btn-dup"' + (c.saved ? '' : ' disabled') + '>Dupliquer ce CR</button>';
+      if (c.saved) h += S.confirm === 'del' ? '<button class="warn" id="btn-del-ok">Confirmer la suppression</button><button id="btn-cancel">Annuler</button>' : '<button class="warn" id="btn-del">Supprimer</button>';
+      h += '</div>';
+      if (c.versions && c.versions.length) {
+        h += '<details class="hist"><summary>Historique des versions (' + c.versions.length + ')</summary><div class="versions">' +
+          c.versions.slice().reverse().map(function (v, i) {
+            var idx = c.versions.length - 1 - i;
+            return '<div class="row"><span>' + esc(fmtAt(v.at)) + '</span><button data-restore="' + idx + '">Restaurer cette version</button></div>';
+          }).join('') + '</div></details>';
+      }
+      if (S.tab === 'saisie') h += formHtml();
+      else {
+        h += '<div class="toolbar">' + (dl ? '<button class="blue" id="btn-pdf"' + (S.pdfBusy ? ' disabled' : '') + '>' + (S.pdfBusy ? 'Création du PDF…' : 'Imprimer ou enregistrer en PDF') + '</button><button id="btn-html">Télécharger en HTML</button>' : '<span class="empty">Le téléchargement n’est pas disponible dans cet affichage.</span>') + '</div>';
+        h += '<div class="stage"><div class="sheet" id="sheet">' + sheetHtml() + '</div></div>';
+      }
+    }
+    m.innerHTML = h;
+    window.scrollTo(0, scrollY);
+    renderStatus();
+  }
+  function render() { renderList(); renderMain(); }
+
+  /* ---------- Événements ---------- */
+  document.addEventListener('input', function (e) {
+    var t = e.target;
+    if (t.dataset.k && S.cur) { S.cur.data[t.dataset.k] = t.value; renderStatus(); }
+    else if (t.dataset.sat && S.cur) { S.cur.data.sat = S.cur.data.sat || {}; S.cur.data.sat[t.dataset.sat] = t.value; renderStatus(); }
+    else if (t.dataset.b) { S.socle[t.dataset.b] = t.value; }
+  });
+  document.addEventListener('change', function (e) {
+    var t = e.target;
+    if (t.dataset.ck && S.cur) {
+      var arr = S.cur.data[t.dataset.ck] || [], v = t.dataset.v, i = arr.indexOf(v);
+      if (t.checked && i < 0) arr.push(v); if (!t.checked && i > -1) arr.splice(i, 1);
+      S.cur.data[t.dataset.ck] = arr; renderStatus();
+    } else if (t.dataset.ok && S.cur) {
+      S.cur.data.okch = S.cur.data.okch || {}; S.cur.data.okch[t.dataset.ok] = t.checked; renderStatus();
+    }
+  });
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    var id = b.id, ds = b.dataset;
+    if (ds.open) return openCr(ds.open);
+    if (ds.tab) { S.tab = ds.tab; S.msg = ''; S.err = ''; S.confirm = ''; return renderMain(); }
+    if (ds.restore != null) {
+      var v = S.cur.versions[+ds.restore];
+      S.cur.data = Object.assign(blankData(S.socle), clone(v.data)); S.msg = 'Version du ' + fmtAt(v.at) + ' restaurée. Clique sur Enregistrer pour la conserver.'; S.err = ''; return renderMain();
+    }
+    if (id === 'btn-new') { S.cur = newCr(); markSaved(); S.msg = 'Nouveau brouillon prérempli avec ton modèle de base.'; S.err = ''; S.tab = 'saisie'; S.confirm = ''; return render(); }
+    if (id === 'btn-save') return saveCur();
+    if (id === 'btn-revert') {
+      var c = S.crs.filter(function (x) { return x.id === S.cur.id; })[0];
+      if (c) { S.cur.data = Object.assign(blankData(S.socle), clone(c.data)); markSaved(); S.msg = 'Retour à la dernière sauvegarde.'; S.err = ''; }
+      return renderMain();
+    }
+    if (id === 'btn-blank') { S.confirm = 'blank'; return renderMain(); }
+    if (id === 'btn-blank-ok') { S.cur.data = blankData(S.socle); S.confirm = ''; S.msg = 'Modèle vierge rechargé. Rien n’est perdu tant que tu n’enregistres pas : « Revenir à la dernière sauvegarde » récupère l’ancien contenu.'; return renderMain(); }
+    if (id === 'btn-dup') {
+      var cp = newCr(); cp.data = clone(S.cur.data); cp.data.date = ''; cp.data.dateRedac = ''; cp.data.nbParents = cp.data.nbEnfants = cp.data.nbFamilles = cp.data.nouveaux = cp.data.nbQuest = cp.data.nbEngag = ''; cp.data.sat = {};
+      ['engagements', 'forts', 'ameliorer', 'verbatim', 'seance'].forEach(function (k) { cp.data[k] = ''; });
+      S.cur = cp; markSaved(); S.confirm = ''; S.msg = 'Copie créée : la date, les chiffres et le bilan sont vides, le reste est conservé.'; S.err = ''; S.tab = 'saisie'; return render();
+    }
+    if (id === 'btn-del') { S.confirm = 'del'; return renderMain(); }
+    if (id === 'btn-del-ok') return deleteCr(S.cur.id);
+    if (id === 'btn-cancel') { S.confirm = ''; return renderMain(); }
+    if (id === 'btn-savebase') {
+      if (!db) { S.err = 'Sauvegarde indisponible.'; return renderMain(); }
+      var data = {}; SOCLE_KEYS.forEach(function (k) { data[k] = S.socle[k] != null ? S.socle[k] : DEF[k]; });
+      db.doc('base/socle').set({ data: data, updatedAt: Date.now() }).then(function () { S.msg = 'Modèle de base enregistré. Il sera recopié dans tes prochains CR.'; S.err = ''; renderMain(); })
+        .catch(function () { S.err = 'Enregistrement impossible.'; renderMain(); });
+      return;
+    }
+    if (id === 'btn-resetbase') { S.confirm = 'resetbase'; return renderMain(); }
+    if (id === 'btn-resetbase-ok') { S.socle = clone(DEF); S.confirm = ''; S.msg = 'Modèle d’origine rechargé. Clique sur Enregistrer le modèle de base pour le conserver.'; return renderMain(); }
+    if (id === 'btn-html') return downloadHtml();
+    if (id === 'btn-pdf') return downloadPdf();
+  });
+
+  /* ---------- Téléchargements ---------- */
+  function fname(ext) {
+    var d = S.cur.data, base = ['CR', 'BRILLE', d.date || '', d.structure || ''].filter(Boolean).join('_');
+    return base.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^A-Za-z0-9_-]+/g, '-').replace(/-+/g, '-') + '.' + ext;
+  }
+  function downloadHtml() {
+    var css = '<style>body{margin:0;background:#fff;font-family:Quicksand,system-ui,sans-serif}.sheet{width:794px;margin:0 auto;padding:44px 50px 40px;font-size:12.5px;line-height:1.5;color:#2E2A2A}' +
+      '.sheet h1{font-size:21px;color:#3f6fa8;margin:10px 0 2px}.meta{color:#6f6767;font-size:12px;margin-bottom:10px}.b7{display:flex;height:6px;border-radius:3px;overflow:hidden}.b7 i{flex:1}' +
+      '.sheet h2{font-size:14px;color:#3f6fa8;border-bottom:2px solid #a8dbeb;padding-bottom:3px;margin:18px 0 8px}.kv{display:grid;grid-template-columns:170px 1fr;gap:3px 12px}.kv div{white-space:pre-wrap}' +
+      '.pri{margin:6px 0;page-break-inside:avoid}.pri b{display:block}.pri span{white-space:pre-wrap}table{border-collapse:collapse;width:100%}th,td{border:1px solid #bdb6ac;padding:4px 6px;text-align:left}' +
+      '.sig{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}.sig div{border:1px solid #bdb6ac;border-radius:6px;min-height:80px;padding:6px 8px}.foot{margin-top:16px;font-size:10.5px;color:#6f6767;border-top:1px solid #ddd6cb;padding-top:6px}.none{color:#6f6767;font-style:italic}' +
+      '@page{size:A4;margin:12mm}@media print{.sheet{width:auto;padding:0}}</style>';
+    var doc = '<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Compte rendu BRILLE</title><link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">' + css + '</head><body><div class="sheet">' + sheetHtml() + '</div></body></html>';
+    dl.save({ filename: fname('html'), data: doc }).then(function () { S.msg = 'Fichier HTML enregistré. Ouvre-le dans ton navigateur puis imprime-le (Ctrl ou Cmd + P).'; S.err = ''; renderMain(); })
+      .catch(function (e) { if (!e || e.code !== 'declined') { S.err = 'Téléchargement impossible (' + (e && e.code || 'erreur') + ').'; renderMain(); } });
+  }
+  function downloadPdf() {
+    if (window.__standalone) { window.print(); return; }
+    var el = document.getElementById('sheet');
+    if (!window.html2pdf) { S.err = 'Le générateur de PDF n’est pas chargé. Utilise « Télécharger en HTML », puis imprime depuis ton navigateur.'; return renderMain(); }
+    S.pdfBusy = true; renderMain();
+    var opt = { margin: [10, 0, 10, 0], image: { type: 'jpeg', quality: 0.95 }, html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }, pagebreak: { mode: ['css', 'legacy'], avoid: ['.pri', 'tr', '.sig'] } };
+    window.html2pdf().set(opt).from(document.getElementById('sheet')).outputPdf('blob').then(function (blob) {
+      return dl.save({ filename: fname('pdf'), data: blob });
+    }).then(function () { S.msg = 'PDF enregistré.'; S.err = ''; }).catch(function (e) {
+      if (!e || e.code !== 'declined') S.err = 'Le PDF n’a pas pu être créé. Essaie « Télécharger en HTML ».';
+    }).then(function () { S.pdfBusy = false; renderMain(); });
+  }
+
+  /* ---------- Démarrage ---------- */
+  S.cur = newCr(); markSaved();
+  S.msg = 'Brouillon prérempli avec ton modèle de base. Complète-le puis clique sur Enregistrer.';
+  render();
+  if (window.claude && window.claude.use) {
+    window.claude.use('db').then(function (x) { db = x; if (db) { loadAll(); } renderMain(); }).catch(function () {});
+    window.claude.use('downloads').then(function (x) { dl = x; renderMain(); }).catch(function () {});
+  }
+})();
+</script>
+
+</body>
+</html>
