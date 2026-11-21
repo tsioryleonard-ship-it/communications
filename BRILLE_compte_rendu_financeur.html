@@ -110,6 +110,7 @@ details.hist summary { cursor: pointer; font-weight: 700; }
 .sheet .foot { margin-top: 16px; font-size: 10.5px; color: #6f6767; border-top: 1px solid #ddd6cb; padding-top: 6px; }
 .sheet .none { color: #6f6767; font-style: italic; }
 .sheet .blank { border-bottom: 1px dotted #8a8279; min-height: 20px; }
+.sheet .refcap { font-size: 10px; font-style: italic; color: #9a9288; }
 .sheet .blank.tall { min-height: 58px; background-image: repeating-linear-gradient(transparent 0 18px, #cfc8bd 18px 19px); border-bottom: 0; }
 @page { size: A4; margin: 12mm; }
 @media print {
@@ -195,16 +196,18 @@ details.hist summary { cursor: pointer; font-weight: 700; }
       'Intervenante titulaire d’un Master 2 Ingénierie de la Formation, d’un Master Politiques Publiques, d’une Licence de Droit et d’un BAFA (spécialisation).']
   ];
   var DEF = {
-    porteur: 'BRILLE (micro-entreprise), dispositifs socio-éducatifs pour les enfants de 6 à 12 ans et leurs familles',
-    siret: '',
-    contact: 'Tsiory Leonard · 07 45 32 30 90 · tsioryleonard@gmail.com',
+    porteur: 'BRILLE (micro-entreprise), dispositifs socio-éducatifs pour les enfants de 6 à 12 ans et soutien à la parentalité',
+    siret: '10061119300010',
+    contact: 'Rindra Tsiory Leonard · 07 45 32 30 90 · tsioryleonard@gmail.com',
     presentation: 'BRILLE conçoit des ateliers autour de la Qualité de Vie de l’Enfant (QVE). La démarche est non thérapeutique, bienveillante et co-construite avec les familles.',
     objectifs: '• Permettre aux participants de repérer ce qui va bien et ce qui pèse dans la vie de l’enfant, grâce à la Fleur QVE.\n• Favoriser le dialogue entre parents et enfants, et entre parents.\n• Aboutir à un engagement concret, choisi par chaque participant.',
     deroule: '15 min · Accueil et brise-glace\n30 min · Prendre conscience\n35 min · Explorer ensemble\n30 min · Mon engagement concret\n10 min · Clôture et intention',
-    redacteur: 'Tsiory Leonard, fondatrice de BRILLE'
+    redacteur: 'Rindra Tsiory Leonard, fondatrice de BRILLE'
   };
   CHARTE.forEach(function (c) { DEF[c[0]] = c[3]; });
   var SOCLE_KEYS = Object.keys(DEF);
+  var REF = { dispositif: 1, financeur: 1, besoin: 1, projet: 1, articulation: 1, mobilisation: 1, besoins: 1 };
+  var REFTXT = 'À compléter par la référente famille';
 
   var PETALES = ['Mon organisation et mon autonomie', 'Mes émotions apprivoisées', 'Le sens de mes apprentissages', 'Mes liens et ma parole', 'Ma place et mes droits', 'Mon équilibre et mon énergie', 'Ce qui me fait briller'];
   var OUTILS = ['Fleur QVE', 'Grilles de tri', 'Kanban adapté', 'PDCA simplifié', 'Carte des émotions', 'Cartes visuelles', 'Livret', 'Dialogue guidé'];
@@ -354,6 +357,7 @@ details.hist summary { cursor: pointer; font-weight: 700; }
     var d = S.cur.data, id = 'f-' + f.k, v = d[f.k];
     var cls = 'f' + (f.full ? ' full' : '');
     var hint = f.h ? '<span class="hint">' + esc(f.h) + '</span>' : '';
+    if (REF[f.k]) hint = '<span class="hint" style="color:var(--accent);font-weight:700">' + REFTXT + '</span>' + hint;
     if (f.t === 'select') {
       return '<div class="' + cls + '"><label for="' + id + '">' + esc(f.l) + '</label><select id="' + id + '" data-k="' + f.k + '">' +
         f.o.map(function (o) { return '<option' + (o === v ? ' selected' : '') + '>' + esc(o) + '</option>'; }).join('') + '</select>' + hint + '</div>';
@@ -401,7 +405,7 @@ details.hist summary { cursor: pointer; font-weight: 700; }
   }
 
   /* ---------- Rendu : aperçu A4 ---------- */
-  function kv(l, v, tall) { return v ? '<b>' + esc(l) + '</b><div>' + esc(v) + '</div>' : '<b>' + esc(l) + '</b><div class="blank' + (tall ? ' tall' : '') + '"></div>'; }
+  function kv(l, v, tall, ref) { return v ? '<b>' + esc(l) + '</b><div>' + esc(v) + '</div>' : '<b>' + esc(l) + '</b><div class="blank' + (tall ? ' tall' : '') + '">' + (ref ? '<span class="refcap">' + REFTXT + '</span>' : '') + '</div>'; }
   function sheetHtml() {
     var d = S.cur.data, h = '';
     h += '<img class="logo" alt="BRILLE" src="' + LOGO + '">';
@@ -428,7 +432,7 @@ details.hist summary { cursor: pointer; font-weight: 700; }
         var v = d[f.k];
         if (f.t === 'checks') v = (v || []).join('\n');
         if (f.t === 'date') v = fmtDate(v);
-        h += kv(f.l, v, f.t === 'area' || f.t === 'checks');
+        h += kv(f.l, v, f.t === 'area' || f.t === 'checks', REF[f.k]);
       });
       h += '</div>';
       if (s.id === 'valid') h += '<div class="sig"><div><b>Signature de la porteuse</b></div><div><b>Visa de la structure</b></div></div>';
@@ -590,7 +594,7 @@ details.hist summary { cursor: pointer; font-weight: 700; }
       '.sheet h1{font-size:21px;color:#3f6fa8;margin:10px 0 2px}.meta{color:#6f6767;font-size:12px;margin-bottom:10px}.b7{display:flex;height:6px;border-radius:3px;overflow:hidden}.b7 i{flex:1}' +
       '.sheet h2{font-size:14px;color:#3f6fa8;border-bottom:2px solid #a8dbeb;padding-bottom:3px;margin:18px 0 8px}.kv{display:grid;grid-template-columns:170px 1fr;gap:3px 12px}.kv div{white-space:pre-wrap}' +
       '.pri{margin:6px 0;page-break-inside:avoid}.pri b{display:block}.pri span{white-space:pre-wrap}table{border-collapse:collapse;width:100%}th,td{border:1px solid #bdb6ac;padding:4px 6px;text-align:left}' +
-      '.sig{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}.sig div{border:1px solid #bdb6ac;border-radius:6px;min-height:80px;padding:6px 8px}.foot{margin-top:16px;font-size:10.5px;color:#6f6767;border-top:1px solid #ddd6cb;padding-top:6px}.none{color:#6f6767;font-style:italic}.blank{border-bottom:1px dotted #8a8279;min-height:20px}.blank.tall{min-height:58px;background-image:repeating-linear-gradient(transparent 0 18px,#cfc8bd 18px 19px);border-bottom:0}' +
+      '.sig{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}.sig div{border:1px solid #bdb6ac;border-radius:6px;min-height:80px;padding:6px 8px}.foot{margin-top:16px;font-size:10.5px;color:#6f6767;border-top:1px solid #ddd6cb;padding-top:6px}.none{color:#6f6767;font-style:italic}.blank{border-bottom:1px dotted #8a8279;min-height:20px}.refcap{font-size:10px;font-style:italic;color:#9a9288}.blank.tall{min-height:58px;background-image:repeating-linear-gradient(transparent 0 18px,#cfc8bd 18px 19px);border-bottom:0}' +
       '@page{size:A4;margin:12mm}@media print{.sheet{width:auto;padding:0}}</style>';
     var doc = '<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Compte rendu BRILLE</title><link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">' + css + '</head><body><div class="sheet">' + sheetHtml() + '</div></body></html>';
     dl.save({ filename: fname('html'), data: doc }).then(function () { S.msg = 'Fichier HTML enregistré. Ouvre-le dans ton navigateur puis imprime-le (Ctrl ou Cmd + P).'; S.err = ''; renderMain(); })
