@@ -11,7 +11,9 @@ CHAMPS DU JSON (tous facultatifs : ce qui manque prend la valeur par defaut de l
 - posture : encadre « **Posture.** … **Cadre.** … ». avant : puces de l'encadre « Avant l'atelier : préparer Étincelle » (valeur par defaut deja bonne, utilise {code}, {petale}, {diapo}, {outilCarte}, {outilFiche}).
 - moments : liste d'objets { debut:"0 min", fin:"15 min", horaire:"0 – 15 min" (vue d'ensemble), duree:"15 min", titre:"…", outils:"2, 3" (numeros des outils), label:"" (facultatif, remplace « Outils 2 et 3 »), etincelle:true (ligne en gras dans la vue d'ensemble), contenu:"texte balise" }. Le total des durees doit faire la duree de l'atelier. Ordre type : accueil, jeu ou brise-glace, apport (quiz, repere), mise en pratique, « La flamme qui passe : mon petit geste » (7 min), « Étincelle : à la maison, en famille » (8 min), cloture. Pour le moment Étincelle ecrire contenu:"@etincelle" (texte type fixe) ; ecrire la cloture en entier (merci, distribution de la fiche a emporter et de la carte Etincelle, prochains ateliers, « Dites-nous ce qui vous ferait du bien »).
 - vigilance : puces « Points de vigilance facilitatrice » (valeur par defaut deja bonne). materiel : tableau balise « |% 6 47 17 15 15 », en-tete « | N° | Outil | Format | Quantité | Plastifier | » puis une ligne par outil ; la carte Etincelle en gras. aprevoir : « **À prévoir en plus.** … ».
-- etincelle : { petale:"Ma place, mes droits", code:"CE7U-MFRR" (code de groupe cree par Tsiory dans « Gérer les familles » : ne jamais l'inventer), outilCarte:"14", outilFiche:"13", diapo:"12", mention:"Offert pour votre famille · 3 mois · sans obligation", carte:true }. Le QR code et la page « Carte Étincelle » sont generes automatiquement.
+- emargement : { titre, sous, lignes (nombre, 12 par defaut), intro, oui, enfant, note } = feuille d'emargement et de droit a l'image (onglet « Émargement droit à l'image », couleur selon l'offre : bleu Main tendue, jaune Lueur, rose Rayon). Textes deja au modele ; REGLE : les enfants sont toujours photographies de dos ou avec floutage obligatoire du visage — ne jamais retirer cette mention.
+- fiche : { kicker, titre, intro, titreLignes, colonnes[4], lignes[3-5 affirmations], engagement/plu/changer/mot:{titre,aide}, consentement, note } = fiche de ressenti de fin d'atelier (onglet « Fiche de ressenti », une page A4 anonyme). Valeurs par defaut deja au modele du 21 novembre 2026 : ne renseigner que ce qui change. La case de consentement pour citer les mots (sans nom) reste obligatoire.
+- etincelle : { petale:"Ma place, mes droits", code:"CE7U-MFRR" (code de groupe cree par Tsiory dans « Gérer les familles » : ne jamais l'inventer), outilCarte:"14", outilFiche:"13", diapo:"12", mention:"Offert pour votre famille · 3 mois · sans obligation", carte:false (defaut : le code et le QR sont sur la diapo ; mettre true seulement si Tsiory demande la page « Carte Étincelle ») }. Le QR code et la page « Carte Étincelle » sont generes automatiquement.
 BALISES du texte (une ligne = un bloc) : « Texte » commencant par « = citation a dire (bleu) ; « - » = puce ; « ! Vigilance : texte » = encadre (idem « ! Temps : », « ! Objectif : ») ; lignes « | a | b | » = tableau (1re ligne = en-tete ; ligne facultative « |% 5 30 10 55 » avant = largeurs relatives) ; **gras** ; autre ligne = paragraphe.
 REGLES : pas de conseil juridique (renvoyer a un professionnel) et articles de loi a faire relire sur legifrance.gouv.fr (le dire a Tsiory) ; rien d'invente sur le lieu, la structure ou le nombre de participants ; aucun tarif dans le livret ; aucune donnee personnelle de famille ; garder « © BRILLE, tous droits réservés » (deja dans le pied de page).
 -->
@@ -78,7 +80,7 @@ fieldset.sec{border:1px solid var(--line);border-radius:16px;background:#fff;mar
 .mh .mt{font-size:16px;font-weight:700;color:var(--t);margin-left:11px;flex:1;line-height:1.25}.mh .mo{font-size:10px;color:#777;white-space:nowrap;margin-left:10px}
 table.tb{width:100%;border-collapse:collapse;table-layout:fixed;font-size:10.5px;line-height:1.45}
 table.tb th{color:var(--t);font-weight:700;font-size:9.5px;text-align:left;padding:6px 8px 6px 0;border-bottom:1px solid var(--a);vertical-align:bottom}
-table.tb td{padding:7px 8px 7px 0;border-bottom:1px solid #d7ecf4;vertical-align:top;text-align:left}
+table.tb td{padding:5px 8px 5px 0;border-bottom:1px solid #d7ecf4;vertical-align:top;text-align:left}
 .it.tbl{margin-bottom:0}.it.tbl.last{margin-bottom:10px}
 .it.contact{text-align:center;font-size:9.5px;color:#777;margin-top:14px}
 .page.card{--a:#cfe5b8}
@@ -92,6 +94,30 @@ table.tb td{padding:7px 8px 7px 0;border-bottom:1px solid #d7ecf4;vertical-align
 .card1 .steps{font-size:10.5px;line-height:1.5}.card1 .steps ol{margin:0;padding-left:16px}.card1 .steps li{margin-bottom:3px}
 .card1 .code{margin-top:12px;font-size:10px;color:#3b7a2a;font-weight:700}.card1 .code b{display:block;font-size:11px}
 .card1 .cf{position:absolute;left:22px;right:22px;bottom:18px;font-size:9px;line-height:1.45}.card1 .cf .of{display:block;color:#3b7a2a;font-size:11px;margin-bottom:6px}.card1 .cf .cc{color:#7b7b7b;font-size:8.5px;margin-top:3px}
+
+.fp .intro{font-size:12.5px;margin:0 0 22px}
+.fp h1.ft{font-size:28px;font-weight:700;color:var(--t);margin:0 0 6px;line-height:1.2}
+.fp table.q{width:100%;border-collapse:collapse}.fp table.q th{font-size:10.5px;font-weight:600;color:var(--t);text-align:center;padding-bottom:6px;vertical-align:bottom}
+.fp table.q th:first-child{text-align:left;width:41%}.fp table.q th .em{display:block;margin:0 auto 4px;width:26px;height:26px}
+.fp table.q td{padding:15px 0;border-top:1px solid #e4e4e4;text-align:center}.fp table.q td:first-child{text-align:left;font-size:13px;font-weight:600}
+.fp .c{display:inline-block;width:22px;height:22px;border:2px solid var(--t);border-radius:50%}
+.fp .fb{border-radius:14px;padding:12px 16px 10px;margin-top:22px}.fp .fb .bt{font-weight:700;color:var(--t);font-size:13px}.fp .fb .ba{font-size:9.5px;margin-bottom:4px;min-height:11px}
+.fp .ln{border-bottom:1.5px solid #2E2A2A;height:27px}.fp .frow{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.fp .green{background:#dfecd3}.fp .yellow{background:#fbf1b8}.fp .blue{background:#d6e6f2}.fp .pink{background:#f6dde6}
+.fp .cons{margin-top:12px;font-size:10.5px;display:flex;gap:8px;align-items:center}.fp .cons i{width:14px;height:14px;border:1.5px solid var(--t);border-radius:3px;flex:none}
+.fp .ffoot{position:absolute;left:63px;right:63px;bottom:30px;font-size:9px;color:#555;text-align:right;line-height:1.5}.fp .ffoot b{font-weight:700;color:#2E2A2A}
+.page.fp .pbody{height:auto}
+
+.em2 .hd{position:absolute;left:140px;top:30px;right:63px}.em2 .hd h1{font-size:22px;font-weight:700;color:var(--t);margin:0;line-height:1.2}.em2 .hd p{margin:2px 0 0;font-size:11px;color:var(--t)}
+.em2 .hr{position:absolute;left:63px;right:63px;top:96px;height:2px;background:var(--t);opacity:.8}
+.em2 .pbody{top:112px}.em2 .fl{display:grid;grid-template-columns:1fr 1fr;gap:10px 28px;font-size:11.5px;font-weight:700}.em2 .fl .w{grid-column:1/-1}
+.em2 .fl .l{display:flex;gap:6px;align-items:flex-end}.em2 .fl .l i{flex:1;border-bottom:1px dotted #2E2A2A;height:16px;font-style:normal;font-weight:500;font-size:11px;padding-left:4px;line-height:16px}
+.em2 .of{display:flex;gap:16px;align-items:center}.em2 .of span{display:inline-flex;gap:5px;align-items:center;font-weight:500}.em2 .cb{width:12px;height:12px;border:1.5px solid var(--t);border-radius:3px;display:inline-block;position:relative}.em2 .cb.on:after{content:'';position:absolute;left:2px;top:-2px;width:4px;height:8px;border:solid var(--t);border-width:0 2px 2px 0;transform:rotate(40deg)}
+.em2 .au{margin-top:12px;border:1px solid var(--a);border-radius:12px;padding:8px 13px;font-size:9.6px;line-height:1.42;background:var(--bx)}.em2 .au .at{font-weight:700;color:var(--t);font-size:11px;margin-bottom:3px}.em2 .au p{margin:0 0 4px}
+.em2 .au .enf{background:#fff;border:1.5px solid var(--t);border-radius:8px;padding:5px 9px;margin-top:5px;font-weight:600}
+.em2 table.et{width:100%;table-layout:fixed;border-collapse:collapse;margin-top:12px;font-size:10px}.em2 table.et th{background:var(--a);font-weight:700;font-size:9.6px;padding:6px 6px;border:1px solid #fff;text-align:center}
+.em2 table.et td{border:1px solid var(--a);height:44px;padding:0 6px;vertical-align:middle}.em2 table.et td.n{width:26px;text-align:center;color:var(--t);font-weight:700;background:var(--bx)}.em2 table.et td.ph{white-space:nowrap;text-align:center;font-size:9.6px}.em2 .ph .cb{vertical-align:middle;margin-right:3px}.em2 .ph span+span{margin-left:7px}
+.em2 .enote{margin-top:8px;font-size:8.6px;color:#555}
 
 @media print{
   @page{size:A4;margin:0}
@@ -2427,9 +2453,9 @@ var qrcode = function() {
   };
   var CONTACT = '07 45 32 30 90 · tsioryleonard@gmail.com';
 
-  var DEF_AVANT = "- Code de groupe de l'atelier : **{code}**. Vérifier que le pétale « {petale} » s'ouvre bien.\n- Le QR code est déjà dans la diapo {diapo} et sur la carte Étincelle (outil {outilCarte}) : l'ajouter à la fiche à emporter (outil {outilFiche}), puis **tester sur un téléphone qui n'a jamais ouvert l'application**.\n- Demander le Wi-Fi du lieu et prévoir une tablette ou un téléphone de démonstration.\n- Demander à la référente l'accord pour un petit message de relance 3 à 5 jours après l'atelier.";
+  var DEF_AVANT = "- Code de groupe de l'atelier : **{code}**. Vérifier que le pétale « {petale} » s'ouvre bien.\n- Le code de groupe et le QR code sont sur la diapo {diapo} : les ajouter aussi à la fiche à emporter (outil {outilFiche}), puis **tester sur un téléphone qui n'a jamais ouvert l'application**.\n- Demander le Wi-Fi du lieu et prévoir une tablette ou un téléphone de démonstration.\n- Demander à la référente l'accord pour un petit message de relance 3 à 5 jours après l'atelier.";
   var DEF_ETINCELLE = "« Ce que vous avez choisi tout à l'heure, vous n'êtes pas obligés de le tenir seuls. J'ai créé une petite application gratuite qui vous suit à la maison, avec vos enfants, à votre rythme. Scannez le QR code, on regarde ensemble un seul écran. Si vous avez envie, essayez-la cette semaine. Sinon, ce n'est pas grave. »\n**Dans l'ordre :**\n- **Annoncer (1 min)** : l'application prolonge l'atelier, le lien humain reste le plus important. Montrer la diapo {diapo}.\n- **Scanner ensemble (3 min)** : chaque parent ouvre l'application **sur son appareil**, avec moi à côté. Je passe dans les groupes pour aider. Le pétale « {petale} » s'ouvre directement.\n- **Montrer un seul écran (2 min)** : la petite pratique qui correspond au petit geste qu'ils viennent d'écrire. Rien d'autre.\n- **Laisser explorer (2 min)** : chacun regarde à son rythme, sans consigne.\n**Les messages à faire passer.** Offerte pour votre famille, 3 mois pour ce pétale, sans obligation · pour toute la famille, quel que soit le nombre d'enfants · on reprend quand on veut, à son rythme.\n« Ce que vous avez vécu aujourd'hui, vous pouvez le raconter autour de vous. »\n! Vigilance : aucune injonction, je ne demande pas qui l'a ouverte ni qui l'utilisera. Je ne parle pas de tarifs : l'accès est offert aux familles de l'atelier. Les pionniers partagent ce qu'ils ont vécu en atelier, pas l'application : leur accès reste limité au pétale vécu. Parent sans smartphone ou sans données : je note le code et j'envoie le lien après l'atelier.\n**Après l'atelier.** Via la référente, un petit message de relance 3 à 5 jours plus tard : « Alors, ce petit geste ? ». Recueillir un retour en une phrase auprès de celles qui l'ont essayé, avec leur accord.";
-  var DEF_CLOTURE = "« Merci d'avoir partagé ce moment. Une petite flamme allume une autre flamme : ce que vous ferez cette semaine éclairera toute la maison. »\n- Distribuer la fiche à emporter (outil {outilFiche}), avec le QR code Étincelle, et la carte Étincelle (outil {outilCarte}).\n- **[Date]** — [Prochain atelier] : [thème].\n- Demander une autre idée : « Dites-nous ce qui vous ferait du bien. »";
+  var DEF_CLOTURE = "« Merci d'avoir partagé ce moment. Une petite flamme allume une autre flamme : ce que vous ferez cette semaine éclairera toute la maison. »\n- Distribuer la fiche à emporter (outil {outilFiche}), avec le QR code Étincelle.\n- **[Date]** — [Prochain atelier] : [thème].\n- Demander une autre idée : « Dites-nous ce qui vous ferait du bien. »";
   var DEF_VIGILANCE = "- Rester dans le collectif et le non-nominatif : j'anime une dynamique de groupe, je ne fais pas de suivi ni de bilan individuel par famille.\n- Je ne suis pas thérapeute. Si un parent exprime une souffrance profonde, j'écoute sans traiter et j'oriente avec bienveillance.\n- Je ne suis pas juriste : les repères juridiques donnés sont généraux, jamais un conseil pour une situation personnelle.\n- Aucune injonction : chaque parent avance à son rythme, sans comparaison ni culpabilisation.\n- Faire circuler la parole plutôt que d'apporter la solution.\n- Étincelle prolonge l'atelier, elle ne le remplace pas : le lien avant tout.";
 
   var BLANK = {
@@ -2441,13 +2467,19 @@ var qrcode = function() {
     avant: DEF_AVANT,
     moments: [
       { debut: '0 min', fin: '15 min', horaire: '0 – 15 min', duree: '15 min', titre: 'Accueil', outils: '1', label: '', etincelle: false, contenu: "« … »\n- …\n! Objectif : …" },
-      { debut: '1 h 47', fin: '1 h 55', horaire: '1 h 47 – 1 h 55', duree: '8 min', titre: 'Étincelle : à la maison, en famille', outils: '14', label: 'Outil 14 · diapo 12', etincelle: true, contenu: '@etincelle' },
+      { debut: '1 h 47', fin: '1 h 55', horaire: '1 h 47 – 1 h 55', duree: '8 min', titre: 'Étincelle : à la maison, en famille', outils: '12', label: 'Diapo 12', etincelle: true, contenu: '@etincelle' },
       { debut: '1 h 55', fin: '2 h', horaire: '1 h 55 – 2 h', duree: '5 min', titre: 'Clôture et prochains rendez-vous', outils: '13', label: '', etincelle: false, contenu: '@cloture' }
     ],
     vigilance: DEF_VIGILANCE,
     materiel: "|% 6 47 17 15 15\n| N° | Outil | Format | Quantité | Plastifier |\n| 1 | … | A4 | 1 | Oui |",
     aprevoir: "**À prévoir en plus.** Goûter, boissons, feutres effaçables, stylos de couleur, paperboard, badges, **tablette ou téléphone de démonstration**.",
-    etincelle: { petale: '', code: '', outilCarte: '14', outilFiche: '13', diapo: '12', url: 'https://tsioryleonard-ship-it.github.io/brille/#/c/', mention: 'Offert pour votre famille · 3 mois · sans obligation', carte: true }
+    fiche: { kicker: '', titre: "Mon ressenti de fin d'atelier", intro: "Anonyme : pas de nom à écrire. Je coche une case par ligne, puis j'écris quelques mots. Cela prend 3 minutes.", titreLignes: "Aujourd'hui…", colonnes: ['Tout à fait', 'Plutôt oui', 'Plutôt non', 'Pas du tout'], lignes: ['Je me suis senti·e écouté·e et respecté·e', "J'ai repéré des idées ou des ressources utiles", 'Je me sens capable de tenir mon engagement', 'Je recommanderais cet atelier'], engagement: { titre: 'Mon engagement pour la semaine', aide: 'Un geste concret que je choisis de tenir à la maison.' }, plu: { titre: "Ce qui m'a le plus plu", aide: '' }, changer: { titre: 'Ce que je changerais', aide: '' }, mot: { titre: 'Un mot ou une phrase pour finir', aide: 'Dans mes mots, comme je le dirais à une amie.' }, consentement: "J'accepte que mes mots soient cités dans le compte rendu au financeur, sans mon nom ni mon prénom.", note: "Atelier collectif et non thérapeutique : aucune réponse n'est suivie individuellement" },
+    emargement: { titre: "Émargement & autorisation de droit à l'image", sous: 'Feuille à compléter par les parents · BRILLE', lignes: 12,
+      intro: "Durant l'atelier, des photographies peuvent être prises par l'animatrice, **BRILLE**, afin de présenter l'atelier sur ses réseaux sociaux : **Instagram, LinkedIn, Facebook et TikTok**. Les images ne sont diffusées qu'à ces fins de présentation, sans but commercial et sans nom ni prénom associé.",
+      oui: "En cochant « Oui » et en signant, j'autorise BRILLE à me photographier et à diffuser ces images sur les quatre réseaux ci-dessus, **à titre gratuit**, jusqu'à ce que je retire mon accord. Je peux le retirer à tout moment, sans justification, en écrivant à tsioryleonard@gmail.com ; les images concernées seront alors retirées. En cochant « Non », je ne serai pas photographié(e) de façon identifiable, et ma participation à l'atelier n'en est en rien modifiée.",
+      enfant: "**Enfant mineur :** je donne cet accord ou ce refus **aussi en son nom**, en tant que responsable légal. Les enfants sont **toujours photographiés de dos**, ou avec un **floutage obligatoire** du visage avant toute diffusion, quel que soit mon choix.",
+      note: "Les données de cette feuille (nom, signature) servent uniquement à justifier votre présence et votre choix concernant les photos. Elles ne sont ni diffusées ni transmises." },
+    etincelle: { petale: '', code: '', outilCarte: '', outilFiche: '13', diapo: '12', url: 'https://tsioryleonard-ship-it.github.io/brille/#/c/', mention: 'Offert pour votre famille · 3 mois · sans obligation', carte: false }
   };
 
   /* ---------- utilitaires ---------- */
@@ -2461,7 +2493,9 @@ var qrcode = function() {
     var b = clone(BLANK);
     Object.keys(d || {}).forEach(function (k) {
       if (k.charAt(0) === '_') return;
-      if (k === 'etincelle' && d.etincelle && typeof d.etincelle === 'object') { Object.keys(d.etincelle).forEach(function (x) { b.etincelle[x] = d.etincelle[x]; }); }
+      if (k === 'emargement' && d.emargement && typeof d.emargement === 'object') { Object.keys(d.emargement).forEach(function (x) { b.emargement[x] = d.emargement[x]; }); }
+      else if (k === 'fiche' && d.fiche && typeof d.fiche === 'object') { Object.keys(d.fiche).forEach(function (x) { var v = d.fiche[x]; if (v && typeof v === 'object' && !Array.isArray(v) && b.fiche[x] && typeof b.fiche[x] === 'object') Object.keys(v).forEach(function (y) { b.fiche[x][y] = v[y]; }); else b.fiche[x] = v; }); }
+      else if (k === 'etincelle' && d.etincelle && typeof d.etincelle === 'object') { Object.keys(d.etincelle).forEach(function (x) { b.etincelle[x] = d.etincelle[x]; }); }
       else if (k === 'moments' && Array.isArray(d.moments)) {
         b.moments = d.moments.map(function (m) {
           var r = { debut: '', fin: '', horaire: '', duree: '', titre: '', outils: '', label: '', etincelle: false, contenu: '' };
@@ -2610,7 +2644,7 @@ var qrcode = function() {
       var label = 'ATELIER ' + esc(offU) + ' · LIVRET D\'ANIMATION';
       var pages = paginate(build(d)), html = '';
       pages.forEach(function (p, i) { html += pageShell(p.map(function (it) { return '<div class="it ' + it.c + '">' + it.h + '</div>'; }).join(''), i + 1, offU, '', label, style); });
-      if ((d.etincelle || {}).carte !== false) html += cardPage(d, pages.length + 1);
+      if ((d.etincelle || {}).carte === true) html += cardPage(d, pages.length + 1);
       into.innerHTML = html;
     }
     if (document.fonts && document.fonts.load) {
@@ -2650,20 +2684,57 @@ var qrcode = function() {
     h += '<fieldset class="sec"><legend>Intention et préparation</legend><div class="grid2">' + fld('Intention de l\'atelier', 'intention', 'area', { rows: 12, full: true }) + fld('Posture et cadre (encadré)', 'posture', 'area', { rows: 4, full: true }) + fld('Avant l\'atelier (encadré)', 'avant', 'area', { rows: 6, full: true }) + '</div></fieldset>';
     h += '<fieldset class="sec"><legend>Déroulé</legend><p class="hint">Le total des durées doit faire la durée de l\'atelier.</p>' + (S.d.moments || []).map(momHtml).join('') + '<div class="toolbar" style="margin-top:12px"><button data-a="add">+ Ajouter un moment</button></div></fieldset>';
     h += '<fieldset class="sec"><legend>Fin du livret</legend><div class="grid2">' + fld('Points de vigilance facilitatrice', 'vigilance', 'area', { rows: 7, full: true }) + fld('Impression et matériel (tableau)', 'materiel', 'area', { rows: 10, full: true }) + fld('À prévoir en plus', 'aprevoir', 'area', { rows: 3, full: true }) + '</div></fieldset>';
-    h += '<fieldset class="sec"><legend>Étincelle et carte à emporter</legend><div class="grid2">' + efld('Pétale', 'petale', 'ex. Ma place, mes droits') + efld('Code de groupe', 'code', 'Créé dans « Gérer les familles »') + efld('N° de l\'outil carte Étincelle', 'outilCarte') + efld('N° de l\'outil fiche à emporter', 'outilFiche') + efld('N° de la diapo Étincelle', 'diapo') + efld('Mention en bas de carte', 'mention') + '<div class="f full">' + efld('Adresse de base du QR code', 'url', 'Le code de groupe est ajouté à la fin') + '</div><div class="f"><label><input type="checkbox" data-ec="carte"' + (((S.d.etincelle || {}).carte !== false) ? ' checked' : '') + '> Ajouter la page « Carte Étincelle »</label></div></div></fieldset>';
+    h += '<fieldset class="sec"><legend>Étincelle et carte à emporter</legend><div class="grid2">' + efld('Pétale', 'petale', 'ex. Ma place, mes droits') + efld('Code de groupe', 'code', 'Créé dans « Gérer les familles »') + efld('N° de l\'outil carte Étincelle', 'outilCarte') + efld('N° de l\'outil fiche à emporter', 'outilFiche') + efld('N° de la diapo Étincelle', 'diapo') + efld('Mention en bas de carte', 'mention') + '<div class="f full">' + efld('Adresse de base du QR code', 'url', 'Le code de groupe est ajouté à la fin') + '</div><div class="f"><label><input type="checkbox" data-ec="carte"' + (((S.d.etincelle || {}).carte === true) ? ' checked' : '') + '> Ajouter la page « Carte Étincelle » (facultatif, désactivée par défaut)</label></div></div></fieldset>';
     return h;
   }
   function aideHtml() {
     return '<div class="notice"><b>Pour un nouvel atelier,</b> envoie à Claude : ce fichier, ton idée ou tes notes (thème, durée, public, ce que tu veux faire vivre), puis écris « fais-moi le livret d\'animation ». Claude te renvoie un fichier <b>.json</b>.</div>' +
-      '<ol style="line-height:1.75"><li>Clique sur <b>Importer un brouillon (.json)</b> et choisis le fichier : le livret se remplit.</li><li>Regarde l\'onglet <b>Aperçu et PDF</b> : les pages A4 se composent toutes seules.</li><li>Corrige ce que tu veux dans l\'onglet <b>Modifier</b> (le brouillon s\'enregistre automatiquement).</li><li>Clique sur <b>Imprimer ou enregistrer en PDF</b> et choisis « Enregistrer au format PDF », marges « Aucune », « Graphiques d\'arrière-plan » cochés.</li></ol>' +
+      '<ol style="line-height:1.75"><li>Clique sur <b>Importer un brouillon (.json)</b> et choisis le fichier : le livret se remplit.</li><li>La <b>fiche de ressenti</b> (à imprimer avant l\'atelier) a son propre onglet, avec les mêmes couleurs que le livret.</li><li>Regarde l\'onglet <b>Livret</b> : les pages A4 se composent toutes seules.</li><li>Corrige ce que tu veux dans l\'onglet <b>Modifier</b> (le brouillon s\'enregistre automatiquement).</li><li>Clique sur <b>Imprimer ou enregistrer en PDF</b> et choisis « Enregistrer au format PDF », marges « Aucune », « Graphiques d\'arrière-plan » cochés.</li></ol>' +
       '<h2 style="font-size:16px;color:var(--accent)">Bon à savoir</h2><ul style="line-height:1.75"><li>Le code de groupe Étincelle vient de toi (créé dans « Gérer les familles ») : le QR code et la carte se font tout seuls.</li><li>Les articles de loi cités sont à relire sur legifrance.gouv.fr avant l\'atelier.</li><li>« Exporter » enregistre ton brouillon en .json : garde-le comme sauvegarde ou pour me le renvoyer.</li><li>Ce fichier reste sur ton ordinateur ; il n\'a pas besoin d\'aller sur GitHub. Le brouillon n\'est conservé que dans ce navigateur.</li></ul><p class="hint">© BRILLE, tous droits réservés.</p>';
+  }
+
+  var FACES = ['M8 16q5 5 10 0', 'M8 16q5 3 10 0', 'M8 17q5-3 10 0', 'M8 18q5-6 10 0'];
+  function face(i) { return '<svg class="em" viewBox="0 0 26 26"><circle cx="13" cy="13" r="12" fill="#f8d96a" stroke="#d8a93a"/><circle cx="9.5" cy="10.5" r="1.3" fill="#6b4a14"/><circle cx="16.5" cy="10.5" r="1.3" fill="#6b4a14"/><path d="' + FACES[i] + '" transform="translate(0,-1)" fill="none" stroke="#6b4a14" stroke-width="1.5" stroke-linecap="round"/></svg>'; }
+  function fbox(b, n, cls) { var l = ''; for (var i = 0; i < n; i++) l += '<div class="ln"></div>'; return '<div class="fb ' + cls + '"><div class="bt">' + esc(b.titre) + '</div><div class="ba">' + esc(b.aide) + '</div>' + l + '</div>'; }
+  function fichePage(d) {
+    var fi = d.fiche, o = OFFRES[d.offre] || OFFRES['Main tendue'];
+    var kick = fi.kicker || ('ATELIER ' + String(d.offre || '').toUpperCase() + ' · OUTIL COMPLÉMENTAIRE');
+    var th = '<tr><th>' + esc(fi.titreLignes) + '</th>' + (fi.colonnes || []).slice(0, 4).map(function (c, i) { return '<th>' + face(i) + esc(c) + '</th>'; }).join('') + '</tr>';
+    var tr = (fi.lignes || []).map(function (l) { return '<tr><td>' + esc(l) + '</td>' + '<td><span class="c"></span></td><td><span class="c"></span></td><td><span class="c"></span></td><td><span class="c"></span></td></tr>'; }).join('');
+    return '<section class="page pf fp" style="--a:' + o.a + ';--t:' + o.t + '"><div class="topbar"></div><img class="plogo" src="' + LOGO + '" alt="BRILLE"><div class="ptr"><b>' + esc(kick) + '</b></div><div class="pbody" style="top:118px"><h1 class="ft">' + esc(fi.titre) + '</h1><p class="intro">' + esc(fi.intro) + '</p><table class="q"><thead>' + th + '</thead><tbody>' + tr + '</tbody></table>' + fbox(fi.engagement, 2, 'green') + '<div class="frow">' + fbox(fi.plu, 3, 'yellow') + fbox(fi.changer, 3, 'blue') + '</div>' + fbox(fi.mot, 3, 'pink') + '<div class="cons"><i></i><span>' + esc(fi.consentement) + '</span></div></div><div class="ffoot">' + esc(fi.note) + '<br><b>© BRILLE, tous droits réservés. Reproduction interdite, y compris à domicile.</b></div></section>';
+  }
+  function ffld(label, path, area, rows) {
+    var p = path.split('.'), v = p.length > 1 ? S.d.fiche[p[0]][p[1]] : S.d.fiche[p[0]];
+    if (Array.isArray(v)) v = v.join('\n');
+    return '<div class="f"><label>' + label + '</label>' + (area ? '<textarea data-fk="' + path + '" rows="' + (rows || 3) + '">' + esc(v) + '</textarea>' : '<input type="text" data-fk="' + path + '" value="' + esc(v) + '">') + '</div>';
+  }
+  function ficheEditor() {
+    return '<fieldset class="sec"><legend>Fiche de ressenti (imprimée avant l\'atelier)</legend><div class="grid2">' + ffld('Bandeau en haut à droite (vide = automatique)', 'kicker') + ffld('Titre', 'titre') + ffld('Introduction', 'intro', 1, 2) + ffld('Intitulé du tableau', 'titreLignes') + ffld('4 colonnes (une par ligne)', 'colonnes', 1, 4) + ffld('Affirmations (une par ligne)', 'lignes', 1, 5) + ffld('Case verte : titre', 'engagement.titre') + ffld('Case verte : aide', 'engagement.aide') + ffld('Case jaune : titre', 'plu.titre') + ffld('Case jaune : aide', 'plu.aide') + ffld('Case bleue : titre', 'changer.titre') + ffld('Case bleue : aide', 'changer.aide') + ffld('Case rose : titre', 'mot.titre') + ffld('Case rose : aide', 'mot.aide') + ffld('Consentement', 'consentement', 1, 2) + ffld('Pied de page', 'note', 1, 2) + '</div></fieldset>';
+  }
+
+  function emPage(d) {
+    var e = d.emargement, o = OFFRES[d.offre] || OFFRES['Main tendue'], n = Math.max(1, Math.min(14, parseInt(e.lignes, 10) || 12));
+    var offs = ['Lueur', 'Main tendue', 'Rayon'].map(function (x) { return '<span><i class="cb' + (x === d.offre ? ' on' : '') + '"></i>' + x + '</span>'; }).join('') + '<span><i class="cb"></i>Autre :</span>';
+    var rows = ''; for (var i = 1; i <= n; i++) rows += '<tr><td class="n">' + i + '</td><td></td><td></td><td class="ph"><span><i class="cb"></i>Oui</span><span><i class="cb"></i>Non</span></td><td></td></tr>';
+    var atelier = String(d.titre || '').split(/\r?\n/).join(' ').replace(/\s+/g, ' ').trim();
+    return '<section class="page pf fp em2" style="--a:' + o.a + ';--t:' + o.t + ';--bx:' + o.bx + '"><div class="topbar"></div><img class="plogo" src="' + LOGO + '" alt="BRILLE"><div class="hd"><h1>' + esc(e.titre) + '</h1><p>' + esc(e.sous) + '</p></div><div class="hr"></div><div class="pbody"><div class="fl"><div class="l w">Atelier :<i>' + esc(atelier) + '</i></div><div class="l">Date :<i>' + esc(d.date || '') + '</i></div><div class="l">Horaire :<i></i></div><div class="l">Lieu :<i></i></div><div class="l">Animatrice :<i></i></div><div class="of w">Offre :' + offs + '</div></div>' +
+      '<div class="au"><div class="at">Autorisation de prise et de diffusion de photographies</div><p>' + inl(e.intro) + '</p><p>' + inl(e.oui) + '</p><div class="enf">' + inl(e.enfant) + '</div></div>' +
+      '<table class="et"><colgroup><col style="width:28px"><col style="width:23%"><col style="width:24%"><col style="width:96px"><col></colgroup><thead><tr><th></th><th>Nom et prénom</th><th>Prénom de l\'enfant mineur présent (le cas échéant)</th><th>Photos et diffusion</th><th>Signature (présence + accord)</th></tr></thead><tbody>' + rows + '</tbody></table><div class="enote">' + esc(e.note) + '</div></div>' +
+      '<div class="ffoot" style="left:63px;right:63px;text-align:left;display:flex;justify-content:space-between;border-top:1px solid #dcdcdc;padding-top:6px"><span>© BRILLE, tous droits réservés</span><span>LEONARD Rindra Tsiory · 07 45 32 30 90</span></div></section>';
+  }
+  function emEditor() {
+    var e = S.d.emargement;
+    function t(l, k, r) { return '<div class="f full"><label>' + l + '</label><textarea data-ek="' + k + '" rows="' + r + '">' + esc(e[k]) + '</textarea></div>'; }
+    return '<fieldset class="sec"><legend>Émargement et droit à l\'image</legend><div class="grid2"><div class="f"><label>Titre</label><input type="text" data-ek="titre" value="' + esc(e.titre) + '"></div><div class="f"><label>Sous-titre</label><input type="text" data-ek="sous" value="' + esc(e.sous) + '"></div><div class="f"><label>Nombre de lignes (1 à 14)</label><input type="text" data-ek="lignes" value="' + esc(e.lignes) + '"></div>' + t('Texte d\'introduction', 'intro', 3) + t('Texte « Oui / Non »', 'oui', 4) + t('Encadré enfants (de dos ou floutage)', 'enfant', 3) + t('Mention données personnelles', 'note', 2) + '</div></fieldset>';
   }
   function renderMain() {
     var m = document.getElementById('main'), h = '';
-    h += '<div class="tabs" role="tablist">' + [['apercu', 'Aperçu et PDF'], ['edit', 'Modifier'], ['aide', 'Mode d\'emploi']].map(function (t) { return '<button role="tab" data-tab="' + t[0] + '" aria-selected="' + (S.tab === t[0]) + '">' + t[1] + '</button>'; }).join('') + '</div>';
+    h += '<div class="tabs" role="tablist">' + [['apercu', 'Livret (aperçu et PDF)'], ['fiche', 'Fiche de ressenti'], ['emarg', 'Émargement droit à l\'image'], ['edit', 'Modifier'], ['aide', 'Mode d\'emploi']].map(function (t) { return '<button role="tab" data-tab="' + t[0] + '" aria-selected="' + (S.tab === t[0]) + '">' + t[1] + '</button>'; }).join('') + '</div>';
     if (S.err) h += '<div class="notice err" role="alert">' + esc(S.err) + '</div>'; else if (S.msg) h += '<div class="notice" role="status">' + esc(S.msg) + '</div>';
-    h += '<div class="toolbar"><button class="blue" data-a="import">Importer un brouillon (.json)</button><input type="file" id="imp" accept=".json,application/json" hidden><button data-a="export">Exporter (.json)</button>' + (S.tab === 'apercu' ? '<button class="primary" data-a="print">Imprimer ou enregistrer en PDF</button>' : '') + (S.confirm === 'new' ? '<button class="warn" data-a="new-ok">Confirmer : repartir d\'un modèle vierge</button><button data-a="cancel">Annuler</button>' : '<button data-a="new">Nouveau livret vierge</button>') + '</div>';
-    if (S.tab === 'edit') h += editorHtml();
+    h += '<div class="toolbar"><button class="blue" data-a="import">Importer un brouillon (.json)</button><input type="file" id="imp" accept=".json,application/json" hidden><button data-a="export">Exporter (.json)</button>' + ((S.tab === 'apercu' || S.tab === 'fiche' || S.tab === 'emarg') ? '<button class="primary" data-a="print">Imprimer ou enregistrer en PDF</button>' : '') + (S.confirm === 'new' ? '<button class="warn" data-a="new-ok">Confirmer : repartir d\'un modèle vierge</button><button data-a="cancel">Annuler</button>' : '<button data-a="new">Nouveau livret vierge</button>') + '</div>';
+    if (S.tab === 'edit') h += editorHtml() + ficheEditor() + emEditor();
+    else if (S.tab === 'emarg') h += '<div class="stage" id="stage">' + emPage(S.d) + '</div>';
+    else if (S.tab === 'fiche') h += '<div class="stage" id="stage">' + fichePage(S.d) + '</div>';
     else if (S.tab === 'aide') h += aideHtml();
     else h += '<div class="stage" id="stage"></div>';
     m.innerHTML = h;
@@ -2678,6 +2749,8 @@ var qrcode = function() {
   document.addEventListener('input', function (e) {
     var t = e.target;
     if (t.dataset.k) { S.d[t.dataset.k] = t.value; save(); }
+    else if (t.dataset.fk) { var p = t.dataset.fk.split('.'), v = t.value; if (p[0] === 'colonnes' || p[0] === 'lignes') v = v.split('\n').filter(Boolean); if (p.length > 1) S.d.fiche[p[0]][p[1]] = v; else S.d.fiche[p[0]] = v; save(); }
+    else if (t.dataset.ek) { S.d.emargement[t.dataset.ek] = t.value; save(); }
     else if (t.dataset.e) { S.d.etincelle[t.dataset.e] = t.value; save(); }
     else if (t.dataset.mi != null && t.dataset.mk && t.type !== 'checkbox') { S.d.moments[+t.dataset.mi][t.dataset.mk] = t.value; save(); }
   });
