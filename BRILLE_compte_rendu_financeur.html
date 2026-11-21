@@ -109,6 +109,8 @@ details.hist summary { cursor: pointer; font-weight: 700; }
 .sheet .sig div { border: 1px solid #bdb6ac; border-radius: 6px; min-height: 80px; padding: 6px 8px; }
 .sheet .foot { margin-top: 16px; font-size: 10.5px; color: #6f6767; border-top: 1px solid #ddd6cb; padding-top: 6px; }
 .sheet .none { color: #6f6767; font-style: italic; }
+.sheet .blank { border-bottom: 1px dotted #8a8279; min-height: 20px; }
+.sheet .blank.tall { min-height: 58px; background-image: repeating-linear-gradient(transparent 0 18px, #cfc8bd 18px 19px); border-bottom: 0; }
 @page { size: A4; margin: 12mm; }
 @media print {
   .sheet { width: auto; padding: 0; }
@@ -399,7 +401,7 @@ details.hist summary { cursor: pointer; font-weight: 700; }
   }
 
   /* ---------- Rendu : aperçu A4 ---------- */
-  function kv(l, v) { return v ? '<b>' + esc(l) + '</b><div>' + esc(v) + '</div>' : '<b>' + esc(l) + '</b><div class="none">Non renseigné</div>'; }
+  function kv(l, v, tall) { return v ? '<b>' + esc(l) + '</b><div>' + esc(v) + '</div>' : '<b>' + esc(l) + '</b><div class="blank' + (tall ? ' tall' : '') + '"></div>'; }
   function sheetHtml() {
     var d = S.cur.data, h = '';
     h += '<img class="logo" alt="BRILLE" src="' + LOGO + '">';
@@ -413,7 +415,7 @@ details.hist summary { cursor: pointer; font-weight: 700; }
           var ok = d.okch && d.okch[c[0]];
           h += '<div class="pri"><b>' + (ok ? '☑ ' : '☐ ') + esc(c[1]) + '</b><span>' + esc(d[c[0]] || '') + '</span></div>';
         });
-        h += '<div class="kv" style="margin-top:8px">' + kv('Autres critères', (d.criteres || []).join('\n')) + '</div>';
+        h += '<div class="kv" style="margin-top:8px">' + kv('Autres critères', (d.criteres || []).join('\n'), true) + '</div>';
         return;
       }
       h += '<div class="kv">';
@@ -426,12 +428,12 @@ details.hist summary { cursor: pointer; font-weight: 700; }
         var v = d[f.k];
         if (f.t === 'checks') v = (v || []).join('\n');
         if (f.t === 'date') v = fmtDate(v);
-        h += kv(f.l, v);
+        h += kv(f.l, v, f.t === 'area' || f.t === 'checks');
       });
       h += '</div>';
       if (s.id === 'valid') h += '<div class="sig"><div><b>Signature de la porteuse</b></div><div><b>Visa de la structure</b></div></div>';
     });
-    h += '<div class="foot">Les données de cette fiche sont anonymisées : aucun nom d’enfant ou de parent n’y figure. Cadre : Charte nationale du soutien à la parentalité. BRILLE · ' + esc(d.contact || '') + '</div>';
+    h += '<div class="foot">Les données de cette fiche sont anonymisées : aucun nom d’enfant ou de parent n’y figure. Cadre : Charte nationale du soutien à la parentalité. BRILLE · ' + esc(d.contact || '') + '<br>© BRILLE, tous droits réservés.</div>';
     return h;
   }
 
@@ -482,6 +484,7 @@ details.hist summary { cursor: pointer; font-weight: 700; }
     if (S.tab === 'base') { h += baseHtml(); }
     else {
       h += '<div class="toolbar">';
+      h += '<button class="blue" id="btn-import">Importer un brouillon (.json)</button><input type="file" id="imp-file" accept=".json,application/json" hidden>';
       h += '<button class="primary" id="btn-save">Enregistrer</button>';
       h += '<button id="btn-revert"' + (c.saved ? '' : ' disabled') + '>Revenir à la dernière sauvegarde</button>';
       h += S.confirm === 'blank' ? '<button class="warn" id="btn-blank-ok">Confirmer : repartir du modèle vierge</button><button id="btn-cancel">Annuler</button>' : '<button id="btn-blank">Repartir du modèle vierge</button>';
@@ -516,6 +519,19 @@ details.hist summary { cursor: pointer; font-weight: 700; }
   });
   document.addEventListener('change', function (e) {
     var t = e.target;
+    if (t.id === 'imp-file') {
+      var file = t.files && t.files[0]; if (!file) return;
+      var rd = new FileReader();
+      rd.onload = function () {
+        try {
+          var o = JSON.parse(rd.result), n = 0;
+          Object.keys(o).forEach(function (k) { if (k.charAt(0) === '_') return; S.cur.data[k] = o[k]; n++; });
+          S.msg = 'Brouillon importé (' + n + ' champs remplis). Vérifie, complète les champs vides, puis clique sur Enregistrer.'; S.err = ''; S.tab = 'saisie';
+        } catch (x) { S.err = 'Ce fichier n’est pas un brouillon valide.'; }
+        renderMain();
+      };
+      rd.readAsText(file); return;
+    }
     if (t.dataset.ck && S.cur) {
       var arr = S.cur.data[t.dataset.ck] || [], v = t.dataset.v, i = arr.indexOf(v);
       if (t.checked && i < 0) arr.push(v); if (!t.checked && i > -1) arr.splice(i, 1);
@@ -534,6 +550,7 @@ details.hist summary { cursor: pointer; font-weight: 700; }
       S.cur.data = Object.assign(blankData(S.socle), clone(v.data)); S.msg = 'Version du ' + fmtAt(v.at) + ' restaurée. Clique sur Enregistrer pour la conserver.'; S.err = ''; return renderMain();
     }
     if (id === 'btn-new') { S.cur = newCr(); markSaved(); S.msg = 'Nouveau brouillon prérempli avec ton modèle de base.'; S.err = ''; S.tab = 'saisie'; S.confirm = ''; return render(); }
+    if (id === 'btn-import') { var fi = document.getElementById('imp-file'); if (fi) fi.click(); return; }
     if (id === 'btn-save') return saveCur();
     if (id === 'btn-revert') {
       var c = S.crs.filter(function (x) { return x.id === S.cur.id; })[0];
@@ -573,7 +590,7 @@ details.hist summary { cursor: pointer; font-weight: 700; }
       '.sheet h1{font-size:21px;color:#3f6fa8;margin:10px 0 2px}.meta{color:#6f6767;font-size:12px;margin-bottom:10px}.b7{display:flex;height:6px;border-radius:3px;overflow:hidden}.b7 i{flex:1}' +
       '.sheet h2{font-size:14px;color:#3f6fa8;border-bottom:2px solid #a8dbeb;padding-bottom:3px;margin:18px 0 8px}.kv{display:grid;grid-template-columns:170px 1fr;gap:3px 12px}.kv div{white-space:pre-wrap}' +
       '.pri{margin:6px 0;page-break-inside:avoid}.pri b{display:block}.pri span{white-space:pre-wrap}table{border-collapse:collapse;width:100%}th,td{border:1px solid #bdb6ac;padding:4px 6px;text-align:left}' +
-      '.sig{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}.sig div{border:1px solid #bdb6ac;border-radius:6px;min-height:80px;padding:6px 8px}.foot{margin-top:16px;font-size:10.5px;color:#6f6767;border-top:1px solid #ddd6cb;padding-top:6px}.none{color:#6f6767;font-style:italic}' +
+      '.sig{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}.sig div{border:1px solid #bdb6ac;border-radius:6px;min-height:80px;padding:6px 8px}.foot{margin-top:16px;font-size:10.5px;color:#6f6767;border-top:1px solid #ddd6cb;padding-top:6px}.none{color:#6f6767;font-style:italic}.blank{border-bottom:1px dotted #8a8279;min-height:20px}.blank.tall{min-height:58px;background-image:repeating-linear-gradient(transparent 0 18px,#cfc8bd 18px 19px);border-bottom:0}' +
       '@page{size:A4;margin:12mm}@media print{.sheet{width:auto;padding:0}}</style>';
     var doc = '<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Compte rendu BRILLE</title><link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">' + css + '</head><body><div class="sheet">' + sheetHtml() + '</div></body></html>';
     dl.save({ filename: fname('html'), data: doc }).then(function () { S.msg = 'Fichier HTML enregistré. Ouvre-le dans ton navigateur puis imprime-le (Ctrl ou Cmd + P).'; S.err = ''; renderMain(); })
@@ -595,7 +612,7 @@ details.hist summary { cursor: pointer; font-weight: 700; }
 
   /* ---------- Démarrage ---------- */
   S.cur = newCr(); markSaved();
-  S.msg = 'Brouillon prérempli avec ton modèle de base. Complète-le puis clique sur Enregistrer.';
+  S.msg = 'Brouillon prérempli avec ton modèle de base. Tu peux aussi importer un brouillon (.json) préparé après un atelier.';
   render();
   if (window.claude && window.claude.use) {
     window.claude.use('db').then(function (x) { db = x; if (db) { loadAll(); } renderMain(); }).catch(function () {});
