@@ -1,4 +1,26 @@
 <!doctype html>
+<!--
+INSTRUCTIONS POUR CLAUDE (outil de compte rendu BRILLE pour les financeurs)
+Quand Tsiory t'envoie ce fichier avec un livret d'animation et des photos de fiches de ressenti, et demande un brouillon du CR :
+1. Lis le livret en entier et regarde chaque photo de fiche.
+2. Produis un fichier brouillon_<atelier>_<AAAA-MM-JJ>.json (JSON valide, a importer avec le bouton « Importer un brouillon (.json) » de cet outil). Cles commencant par _ ignorees. Ne rien inventer : ce que les documents ne donnent pas est omis du .json (l'outil laisse une zone vide).
+3. Teste l'import si possible (navigateur headless), puis reponds court : ce qui est rempli, ce qui reste a completer, les points a verifier. Ne pas renvoyer ce fichier HTML sauf si l'outil lui-meme est modifie.
+CLES DU JSON (toutes facultatives)
+- Identification : action (valeur exacte de la liste de l'outil, ex. « Main tendue (groupe de parents) »), intitule, date (AAAA-MM-JJ), horaires, structure, lieu, referent, seance.
+- Contexte (a completer par la structure d'accueil partenaire, laisser vide) : dispositif, financeur, besoin, projet, articulation. Public : nbParents, nbEnfants, nbFamilles, nouveaux, ages, mobilisation (a completer par la structure d'accueil).
+- Deroule : objectifs (puces •), petales (liste parmi : Mon organisation et mon autonomie, Mes émotions apprivoisées, Le sens de mes apprentissages, Mes liens et ma parole, Ma place et mes droits, Mon équilibre et mon énergie, Ce qui me fait briller), deroule (une ligne par moment « 15 min · ... », total 2 h), outils (liste parmi : Fleur QVE, Grilles de tri, Kanban adapté, PDCA simplifié, Carte des émotions, Cartes visuelles, Livret, Dialogue guidé).
+- Charte : okch ({ch1..ch8: true}) et textes ch1..ch8 adaptes a l'atelier ; cocher seulement ce que le livret demontre (ch1 reconnaissance des parents, ch2 accueil de toutes les familles, ch3 approche globale, ch4 accompagnement dans la duree, ch5 egalite femmes-hommes, ch6 place de chaque parent, ch7 accessibilite et neutralite, ch8 competence des intervenants). criteres : liste parmi les criteres proposes par l'outil.
+- Evaluation : nbQuest (nombre de fiches), nbEngag (engagements reellement formules), sat (objet « i_j » : i = ligne 0 ecoute·e et respecte·e, 1 idees ou ressources utiles, 2 capable de tenir mon engagement, 3 je recommanderais ; j = colonne 0 Tout a fait, 1 Plutot oui, 2 Plutot non, 3 Pas du tout ; valeurs en texte, « 0 » pour les cases vides), engagements, forts, ameliorer, verbatim.
+- Suites : suites, besoins (a completer par la structure d'accueil). Validation : redacteur, dateRedac, visa.
+REGLES
+- Consentement : citer mot pour mot (verbatim) uniquement les fiches dont la case « J'accepte que mes mots soient cités... » est cochee ; sinon reformuler de facon generale. Case illisible : le signaler a Tsiory.
+- Anonymat : aucun prenom, nom ni age d'enfant ou de parent.
+- Compter les cases cochees ligne par ligne ; une ligne vide n'est pas comptee.
+- Ne jamais ecrire dans le CR : code de groupe d'Etincelle, tarifs, donnees personnelles. Etincelle = application gratuite offerte aux familles de l'atelier (3 mois pour le petale vecu), qui prolonge l'atelier.
+- Ne pas deviner structure, commune, financeur, dispositif, nombre de participants, besoins du territoire.
+- Points a ameliorer : pistes tirees des fiches, sans juger les participants.
+- Porteur, SIRET et contact sont preenregistres dans l'outil. Garder la mention « © BRILLE, tous droits réservés ».
+-->
 <html lang="fr">
 <head>
 <meta charset="utf-8">
@@ -109,9 +131,10 @@ details.hist summary { cursor: pointer; font-weight: 700; }
 .sheet .sig div { border: 1px solid #bdb6ac; border-radius: 6px; min-height: 80px; padding: 6px 8px; }
 .sheet .foot { margin-top: 16px; font-size: 10.5px; color: #6f6767; border-top: 1px solid #ddd6cb; padding-top: 6px; }
 .sheet .none { color: #6f6767; font-style: italic; }
-.sheet .blank { border-bottom: 1px dotted #8a8279; min-height: 20px; }
-.sheet .refcap { font-size: 10px; font-style: italic; color: #9a9288; }
-.sheet .blank.tall { min-height: 58px; background-image: repeating-linear-gradient(transparent 0 18px, #cfc8bd 18px 19px); border-bottom: 0; }
+.sheet .blank { border: 1px solid #bdb6ac; border-radius: 4px; min-height: 28px; padding: 3px 7px; }
+.sheet .blank.tall { min-height: 72px; }
+.sheet .refcap { display: block; font-size: 10px; font-style: italic; color: #8a8279; line-height: 1.3; }
+.sheet .kv { row-gap: 8px; }
 @page { size: A4; margin: 12mm; }
 @media print {
   .sheet { width: auto; padding: 0; }
@@ -196,7 +219,7 @@ details.hist summary { cursor: pointer; font-weight: 700; }
       'Intervenante titulaire d’un Master 2 Ingénierie de la Formation, d’un Master Politiques Publiques, d’une Licence de Droit et d’un BAFA (spécialisation).']
   ];
   var DEF = {
-    porteur: 'BRILLE (micro-entreprise), dispositifs socio-éducatifs pour les enfants de 6 à 12 ans et soutien à la parentalité',
+    porteur: 'BRILLE (micro-entreprise), dispositifs socio-éducatifs pour les enfants de 6 à 12 ans et soutien à la parentalité pour les parents',
     siret: '10061119300010',
     contact: 'Rindra Tsiory Leonard · 07 45 32 30 90 · tsioryleonard@gmail.com',
     presentation: 'BRILLE conçoit des ateliers autour de la Qualité de Vie de l’Enfant (QVE). La démarche est non thérapeutique, bienveillante et co-construite avec les familles.',
@@ -207,7 +230,7 @@ details.hist summary { cursor: pointer; font-weight: 700; }
   CHARTE.forEach(function (c) { DEF[c[0]] = c[3]; });
   var SOCLE_KEYS = Object.keys(DEF);
   var REF = { dispositif: 1, financeur: 1, besoin: 1, projet: 1, articulation: 1, mobilisation: 1, besoins: 1 };
-  var REFTXT = 'À compléter par la référente famille';
+  var REFTXT = 'À compléter par la structure d’accueil';
 
   var PETALES = ['Mon organisation et mon autonomie', 'Mes émotions apprivoisées', 'Le sens de mes apprentissages', 'Mes liens et ma parole', 'Ma place et mes droits', 'Mon équilibre et mon énergie', 'Ce qui me fait briller'];
   var OUTILS = ['Fleur QVE', 'Grilles de tri', 'Kanban adapté', 'PDCA simplifié', 'Carte des émotions', 'Cartes visuelles', 'Livret', 'Dialogue guidé'];
@@ -461,6 +484,25 @@ details.hist summary { cursor: pointer; font-weight: 700; }
     return out;
   }
 
+  /* ---------- Mode d'emploi ---------- */
+  function aideHtml() {
+    return '<div class="notice"><b>Après chaque atelier</b>, envoie à Claude : ce fichier, le livret de l’atelier (avec le déroulé) et une photo de chaque fiche de ressenti, puis écris « fais-moi un brouillon pour le CR ». Claude te renvoie un fichier <b>.json</b>.</div>' +
+      '<ol style="line-height:1.7">' +
+      '<li>Photographie chaque fiche bien à plat, sans ombre, surtout sur la case « J’accepte que mes mots soient cités ».</li>' +
+      '<li>Ouvre cet outil, onglet <b>Saisie</b>, et clique sur <b>Importer un brouillon (.json)</b> : les champs se remplissent.</li>' +
+      '<li>Relis, puis complète tes champs : structure d’accueil, commune, référente, numéro de séance, nombre de participants.</li>' +
+      '<li>Laisse vides les champs marqués « À compléter par la structure d’accueil ».</li>' +
+      '<li>Clique sur <b>Enregistrer</b>, puis sur l’onglet <b>Aperçu et PDF</b> et enregistre le PDF.</li>' +
+      '<li>Imprime-le : la structure d’accueil (sa référente) complète à la main ses zones, puis tu envoies le tout au financeur.</li></ol>' +
+      '<h2 style="font-size:16px;color:var(--accent)">Bon à savoir</h2>' +
+      '<ul style="line-height:1.7">' +
+      '<li>Ce fichier reste sur ton ordinateur : il n’a pas besoin d’aller sur GitHub.</li>' +
+      '<li>Tes comptes rendus enregistrés sont conservés dans ce navigateur seulement : garde aussi un PDF de chacun.</li>' +
+      '<li>Si un participant n’a pas coché la case de citation, ses mots ne sont pas cités tels quels.</li>' +
+      '<li>Ce que les documents ne donnent pas reste vide : Claude ne devine rien.</li></ul>' +
+      '<p class="hint">© BRILLE, tous droits réservés.</p>';
+  }
+
   /* ---------- Rendu général ---------- */
   function renderList() {
     var el = document.getElementById('list');
@@ -478,7 +520,7 @@ details.hist summary { cursor: pointer; font-weight: 700; }
   function renderMain() {
     var m = document.getElementById('main'), c = S.cur, h = '';
     var scrollY = window.scrollY;
-    h += '<div class="tabs" role="tablist">' + [['saisie', 'Saisie'], ['apercu', 'Aperçu et PDF'], ['base', 'Modèle de base']].map(function (t) {
+    h += '<div class="tabs" role="tablist">' + [['saisie', 'Saisie'], ['apercu', 'Aperçu et PDF'], ['base', 'Modèle de base'], ['aide', 'Mode d’emploi']].map(function (t) {
       return '<button role="tab" data-tab="' + t[0] + '" aria-selected="' + (S.tab === t[0]) + '">' + t[1] + '</button>';
     }).join('') + '</div>';
     if (S.err) h += '<div class="notice err" role="alert">' + esc(S.err) + '</div>';
@@ -486,6 +528,7 @@ details.hist summary { cursor: pointer; font-weight: 700; }
     if (!db) h += '<div class="notice err">La sauvegarde en ligne n’est pas disponible dans cet affichage : le texte saisi sera perdu à la fermeture.</div>';
 
     if (S.tab === 'base') { h += baseHtml(); }
+    else if (S.tab === 'aide') { h += aideHtml(); }
     else {
       h += '<div class="toolbar">';
       h += '<button class="blue" id="btn-import">Importer un brouillon (.json)</button><input type="file" id="imp-file" accept=".json,application/json" hidden>';
@@ -594,7 +637,7 @@ details.hist summary { cursor: pointer; font-weight: 700; }
       '.sheet h1{font-size:21px;color:#3f6fa8;margin:10px 0 2px}.meta{color:#6f6767;font-size:12px;margin-bottom:10px}.b7{display:flex;height:6px;border-radius:3px;overflow:hidden}.b7 i{flex:1}' +
       '.sheet h2{font-size:14px;color:#3f6fa8;border-bottom:2px solid #a8dbeb;padding-bottom:3px;margin:18px 0 8px}.kv{display:grid;grid-template-columns:170px 1fr;gap:3px 12px}.kv div{white-space:pre-wrap}' +
       '.pri{margin:6px 0;page-break-inside:avoid}.pri b{display:block}.pri span{white-space:pre-wrap}table{border-collapse:collapse;width:100%}th,td{border:1px solid #bdb6ac;padding:4px 6px;text-align:left}' +
-      '.sig{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}.sig div{border:1px solid #bdb6ac;border-radius:6px;min-height:80px;padding:6px 8px}.foot{margin-top:16px;font-size:10.5px;color:#6f6767;border-top:1px solid #ddd6cb;padding-top:6px}.none{color:#6f6767;font-style:italic}.blank{border-bottom:1px dotted #8a8279;min-height:20px}.refcap{font-size:10px;font-style:italic;color:#9a9288}.blank.tall{min-height:58px;background-image:repeating-linear-gradient(transparent 0 18px,#cfc8bd 18px 19px);border-bottom:0}' +
+      '.sig{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}.sig div{border:1px solid #bdb6ac;border-radius:6px;min-height:80px;padding:6px 8px}.foot{margin-top:16px;font-size:10.5px;color:#6f6767;border-top:1px solid #ddd6cb;padding-top:6px}.none{color:#6f6767;font-style:italic}.blank{border:1px solid #bdb6ac;border-radius:4px;min-height:28px;padding:3px 7px}.blank.tall{min-height:72px}.refcap{display:block;font-size:10px;font-style:italic;color:#8a8279;line-height:1.3}.kv{row-gap:8px}' +
       '@page{size:A4;margin:12mm}@media print{.sheet{width:auto;padding:0}}</style>';
     var doc = '<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Compte rendu BRILLE</title><link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">' + css + '</head><body><div class="sheet">' + sheetHtml() + '</div></body></html>';
     dl.save({ filename: fname('html'), data: doc }).then(function () { S.msg = 'Fichier HTML enregistré. Ouvre-le dans ton navigateur puis imprime-le (Ctrl ou Cmd + P).'; S.err = ''; renderMain(); })
