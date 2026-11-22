@@ -2860,7 +2860,8 @@ var qrcode = function() {
         var steps = [['1.  Je scanne', 'Le QR code ouvre le pétale « ' + (e.petale || '') + ' »'], ['2.  Je choisis', 'Une idée simple pour tenir mon geste'], ["3.  J'essaie", 'Cette semaine, en famille, à mon rythme']];
         steps.forEach(function (s, i) { P.push({ t: 'text', x: 64, y: 310 + i * 110, w: 640, h: 36, s: s[0], size: 28, bold: true, color: o.t, align: 'l', v: 'm' }); P.push({ t: 'text', x: 64, y: 350 + i * 110, w: 640, h: 30, s: s[1], size: 17, color: '2E2A2A', align: 'l', v: 't' }); });
         P.push({ t: 'rect', x: 840, y: 120, w: 360, h: 520, fill: 'FFFFFF', line: o.a, r: 20 });
-        P.push({ t: 'img', x: 880, y: 150, w: 280, h: 280, src: qrPng((e.url || '') + (e.code || '')) });
+        if (e.code) P.push({ t: 'img', x: 880, y: 150, w: 280, h: 280, src: qrPng((e.url || '') + e.code) });
+        else P.push({ t: 'text', x: 880, y: 150, w: 280, h: 280, s: 'QR code à ajouter : renseigner le code de groupe dans l\'onglet Modifier', size: 16, color: 'A83840', align: 'c', v: 'm' });
         P.push({ t: 'text', x: 850, y: 440, w: 340, h: 26, s: 'Scannez pour ouvrir Étincelle', size: 16, color: '2E2A2A', align: 'c' });
         P.push({ t: 'text', x: 850, y: 478, w: 340, h: 40, s: e.code || '', size: 28, bold: true, color: o.t, align: 'c', v: 'm' });
         P.push({ t: 'text', x: 850, y: 540, w: 340, h: 50, s: e.mention ? String(e.mention).replace(/^Offert pour votre famille/, 'Offert') : '', size: 14, color: o.t, align: 'c', v: 'm' });
