@@ -314,7 +314,7 @@ details.hist summary { cursor: pointer; font-weight: 700; }
   };
   CHARTE.forEach(function (c) { DEF[c[0]] = c[3]; });
   var SOCLE_KEYS = Object.keys(DEF);
-  var REF = { dispositif: 1, financeur: 1, besoin: 1, projet: 1, articulation: 1, mobilisation: 1, besoins: 1 };
+  var REF = { dispositif: 1, financeur: 1, besoin: 1, projet: 1, articulation: 1, nouveaux: 1, mobilisation: 1, besoins: 1 };
   var REFTXT = 'À compléter par la structure d’accueil';
 
   var PETALES = ['Mon organisation et mon autonomie', 'Mes émotions apprivoisées', 'Le sens de mes apprentissages', 'Mes liens et ma parole', 'Ma place et mes droits', 'Mon équilibre et mon énergie', 'Ce qui me fait briller'];
@@ -346,7 +346,7 @@ details.hist summary { cursor: pointer; font-weight: 700; }
       { k: 'presentation', t: 'area', l: 'Présentation du porteur', full: 1, s: 1 }
     ] },
     { id: 'besoin', t: '2. Contexte et dispositif de financement', f: [
-      { k: 'dispositif', t: 'select', l: 'Dispositif visé', o: ['', 'REAAP (soutien à la parentalité)', 'Animation collective famille (centre social)', 'CLAS (accompagnement à la scolarité)', 'Fonds national parentalité', 'Convention territoriale globale (CTG)', 'Autre'] },
+      { k: 'dispositif', t: 'select', l: 'Dispositif visé', o: ['', REFTXT, 'REAAP (soutien à la parentalité)', 'Animation collective famille (centre social)', 'CLAS (accompagnement à la scolarité)', 'Fonds national parentalité', 'Convention territoriale globale (CTG)', 'Autre'] },
       { k: 'financeur', t: 'text', l: 'Financeur', ph: 'ex. Caf de …' },
       { k: 'besoin', t: 'area', l: 'Besoin repéré sur le territoire ou exprimé par les familles', full: 1, h: 'Qui l’a exprimé, à quelle occasion, quels constats ?' },
       { k: 'projet', t: 'area', l: 'Lien avec le projet social de la structure ou la convention territoriale', full: 1 },
@@ -538,6 +538,7 @@ details.hist summary { cursor: pointer; font-weight: 700; }
           return;
         }
         var v = d[f.k];
+        if (v === REFTXT) v = '';
         if (f.t === 'checks') v = (v || []).join('\n');
         if (f.t === 'date') v = fmtDate(v);
         h += kv(f.l, v, f.t === 'area' || f.t === 'checks', REF[f.k]);
