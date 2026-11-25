@@ -168,6 +168,7 @@ tr{break-inside:avoid}
 var COLORS=["#cbe1b6","#f5abaf","#b8aed7","#f8f4b8","#a4c2e7","#ebc6e0","#f49f4c"];
 document.getElementById('b1').innerHTML=document.getElementById('b2').innerHTML=COLORS.map(function(c){return '<i style="background:'+c+'"></i>'}).join('');
 var KEY='brille_cr_perso_v1';
+var PRELOAD=null;
 var Q1=["Je suis contente d’avoir participé à cet atelier","Ce que j’ai appris me sera utile dans mon quotidien","Je me sens un peu mieux / plus légère qu’en arrivant","Je me suis sentie en confiance dans le groupe","J’aimerais revenir à un prochain atelier"];
 var Q2=["Je me suis senti·e écouté·e et respecté·e","J’ai repéré des idées ou des ressources utiles","Je me sens capable de tenir mon engagement","Je recommanderais cet atelier"];
 var SEL_TYPE=["Dit pendant l’atelier","Piste à explorer"];
@@ -221,6 +222,7 @@ function addRow(name){
 function delRow(b){var tr=b.closest('tr');tr.parentNode.removeChild(tr);changed()}
 function bind(root){
  root.querySelectorAll('input,textarea,select').forEach(function(e){
+  if(e.type==='file')return;
   e.oninput=e.onchange=function(){if(e.tagName==='TEXTAREA')sync(e);changed()};
  });
 }
@@ -291,6 +293,7 @@ window.addEventListener('beforeprint',function(){oldTitle=document.title;documen
 window.addEventListener('afterprint',function(){document.title=oldTitle});
 (function init(){
  var d=null;try{d=JSON.parse(localStorage.getItem(KEY)||'null')}catch(e){}
+ if(!d)d=PRELOAD;
  fill(d);
  if(!d)loadQ(1);
  bind(document);
