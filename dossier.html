@@ -861,6 +861,24 @@ footer a{color:rgba(255,255,255,.7);}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none;}html{scroll-behavior:auto;}}
 @media(max-width:680px){section{padding:3.2rem 1.1rem;}.follow-fab{right:10px;bottom:10px;padding:.7rem 1rem;font-size:.82rem;}}
 
+
+/* ===== AJUSTEMENTS LECTURE (v2) : plus de mots coupés, texte aligné à gauche, confort sur grand écran ===== */
+p,li,div,.centre-benef,.fold-body>div,.fold-body li,
+.section-inner>p,.approche-card p,.step-body p,.partenariat-card p,.qve-intro,
+.step-card p,.how-card p,.manifeste-body p{
+  text-align:left!important;hyphens:none!important;-webkit-hyphens:none!important;
+  word-break:normal!important;overflow-wrap:normal;text-wrap:pretty;
+}
+.hero p,.hero-values,.hero-links,.big-social p,.cta p,.hero-lead,.hero-intro{text-align:center!important;}
+.hero-lead,.hero-intro{text-wrap:balance;}
+.section-title,h1,h2,h3,h4{text-wrap:balance;}
+@media(min-width:1000px){
+  body{font-size:17px;}
+  .section-inner{max-width:1080px;}
+  .lead,.section-inner>p{font-size:1.1rem;line-height:1.85;max-width:780px;}
+  .step-card p,.how-card p{font-size:.98rem;line-height:1.7;}
+  section{padding:5.5rem 2rem;}
+}
 </style>
 </head>
 <body>
