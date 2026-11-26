@@ -884,6 +884,11 @@ p,li,div,.centre-benef,.fold-body>div,.fold-body li,
 
 /* Haut de page : tout centré (v3) */
 .hero .hero-tagline,.hero h1,.hero p,.hero .hero-lead,.hero .hero-intro,.hero .hero-values,.hero .hero-links{text-align:center!important;text-justify:auto;}
+
+/* Blocs réseaux & devis : tout centré (v4) */
+.big-social,.cta,.big-social .social-bar,.cta .contact-info{text-align:center!important;}
+.big-social h3,.cta h3,.big-social p,.cta p{text-align:center!important;margin-left:auto;margin-right:auto;}
+.big-social .btn,.cta .contact-item{text-align:center!important;}
 </style>
 </head>
 <body>
@@ -905,7 +910,7 @@ p,li,div,.centre-benef,.fold-body>div,.fold-body li,
   <a class="nav-cta" href="#contact">Devis</a>
 </nav>
 
-<a class="follow-fab" href="https://linktr.ee/Brilleingenierie" target="_blank" rel="noopener">🌐 Nous suivre</a>
+<a class="follow-fab" href="https://linktr.ee/Brilleingenierie" target="_blank" rel="noopener">🌐 Me suivre</a>
 
 <!-- ACCUEIL -->
 <section id="accueil" class="hero">
@@ -946,7 +951,7 @@ p,li,div,.centre-benef,.fold-body>div,.fold-body li,
 <!-- LE LIEN AVANT TOUT -->
 <section id="lien" class="alt">
   <div class="section-inner">
-    <div class="section-label">Notre fil rouge</div>
+    <div class="section-label">Mon fil rouge</div>
     <div class="section-title">Le lien avant tout</div>
     <p class="lead">
       BRILLE n'est pas un programme à consommer, ni une application à télécharger seule.
@@ -1652,7 +1657,7 @@ p,li,div,.centre-benef,.fold-body>div,.fold-body li,
     <div class="big-social rv">
       <h3>Toute la vie de BRILLE, en un clic 🌐</h3>
       <p>Vidéos, astuces pétale par pétale, coulisses des ateliers et actualités : retrouvez BRILLE sur ses réseaux sociaux et rejoignez celles et ceux qui gardent la lumière allumée.</p>
-      <a class="btn primary" href="https://linktr.ee/Brilleingenierie" target="_blank" rel="noopener">🌐 Retrouver tous nos réseaux</a>
+      <a class="btn primary" href="https://linktr.ee/Brilleingenierie" target="_blank" rel="noopener">🌐 Retrouver tous mes réseaux</a>
       <div class="social-bar social-slot" style="margin-top:1.4rem;margin-bottom:0;"></div>
     </div>
   </div>
@@ -1702,11 +1707,11 @@ const SOCIALS = [
   {nom:"YouTube",   ico:"▶️", url:""}
 ];
 document.querySelectorAll('.social-slot').forEach(function(slot){
-  var h='<span class="social-label">Nous suivre</span>';
+  var h='<span class="social-label">Me suivre</span>';
   SOCIALS.filter(function(s){return s.url;}).forEach(function(s){
     h+='<a class="soc" href="'+s.url+'" target="_blank" rel="noopener" aria-label="'+s.nom+'" title="'+s.nom+'">'+s.ico+'<span class="nom"> '+s.nom+'</span></a>';
   });
-  h+='<a class="soc hub" href="'+HUB+'" target="_blank" rel="noopener" aria-label="Tous nos liens" title="Tous nos liens">🌐<span class="nom"> Tous nos liens</span></a>';
+  h+='<a class="soc hub" href="'+HUB+'" target="_blank" rel="noopener" aria-label="Tous mes liens" title="Tous mes liens">🌐<span class="nom"> Tous mes liens</span></a>';
   slot.innerHTML=h;
 });
 /* apparition douce au défilement */
