@@ -866,16 +866,18 @@ footer a{color:rgba(255,255,255,.7);}
 p,li,div,.centre-benef,.fold-body>div,.fold-body li,
 .section-inner>p,.approche-card p,.step-body p,.partenariat-card p,.qve-intro,
 .step-card p,.how-card p,.manifeste-body p{
-  text-align:left!important;hyphens:none!important;-webkit-hyphens:none!important;
-  word-break:normal!important;overflow-wrap:normal;text-wrap:pretty;
+  text-align:justify!important;text-justify:inter-word;hyphens:none!important;-webkit-hyphens:none!important;
+  word-break:normal!important;overflow-wrap:normal;text-wrap:wrap;
 }
 .hero p,.hero-values,.hero-links,.big-social p,.cta p,.hero-lead,.hero-intro{text-align:center!important;}
 .hero-lead,.hero-intro{text-wrap:balance;}
+.hero-flow,.hero-cta,.group-label,.section-title,.section-label,h1,h2,h3,h4,summary,.btn,.badge,.flow-chip,.skill-tag,.outil-tag,.soc{text-align:left!important;}
+.hero-flow,.hero-cta{text-align:center!important;}
 .section-title,h1,h2,h3,h4{text-wrap:balance;}
 @media(min-width:1000px){
   body{font-size:17px;}
-  .section-inner{max-width:1080px;}
-  .lead,.section-inner>p{font-size:1.1rem;line-height:1.85;max-width:780px;}
+  .section-inner{max-width:1000px;}
+  .lead,.section-inner>p{font-size:1.1rem;line-height:1.85;max-width:none!important;}
   .step-card p,.how-card p{font-size:.98rem;line-height:1.7;}
   section{padding:5.5rem 2rem;}
 }
@@ -1003,21 +1005,11 @@ p,li,div,.centre-benef,.fold-body>div,.fold-body li,
 
     <div class="group-label">🏠 Dans les familles · le prolongement</div>
     <div class="offres-grid">
-      <div class="offre-card green feature rv">
-        <div>
-          <div class="offre-top"><div class="offre-icon">✨</div><div><div class="offre-phase">Prolongement à la maison <span class="tag-soon">En ligne</span></div><h3>Étincelle</h3></div></div>
-          <div class="offre-location">👨‍👩‍👧 Pour toute la famille, à la maison</div>
-          <p>Toute la famille se retrouve là où le lien se vit tous les jours : chez soi. Étincelle est une <strong>application offerte aux familles qui ont assisté aux ateliers</strong>, pour faire vivre en famille le lien et ce qui a été découvert en groupe. Elle est aussi <strong>ouverte à toutes les autres familles</strong>, avec un tarif solidaire pour celles qui en ont besoin : chaque famille mérite de s'épanouir.</p>
-          <p><a class="btn primary" href="https://tsioryleonard-ship-it.github.io/brille/" target="_blank" rel="noopener">✨ Accéder à Étincelle</a></p>
-        </div>
-        <ul class="feat-list">
-          <li><span>🎁</span><span><strong>Offerte</strong> aux familles qui ont participé aux ateliers</span></li>
-          <li><span>💛</span><span><strong>Ouverte à toutes les familles</strong>, avec un tarif solidaire pour celles qui en ont besoin</span></li>
-          <li><span>📱</span><span>Accessible sur téléphone, tablette ou ordinateur, depuis un simple lien</span></li>
-          <li><span>🤝</span><span>Le lien avant tout : l'application prolonge la rencontre et invite à rejoindre les ateliers</span></li>
-          <li><span>🌸</span><span>La Fleur QVE : toute la famille l'explore ensemble</span></li>
-          <li><span>🤍</span><span>Un prolongement, pas un suivi : aucun suivi individuel, démarche non thérapeutique</span></li>
-        </ul>
+      <div class="offre-card green rv">
+        <div class="offre-top"><div class="offre-icon">✨</div><div><div class="offre-phase">Prolongement à la maison <span class="tag-soon">En ligne</span></div><h3>Étincelle</h3></div></div>
+        <div class="offre-location">👨‍👩‍👧 Pour toute la famille, à la maison</div>
+        <p>Une application offerte aux familles qui ont participé aux ateliers, et ouverte à toutes les autres avec un tarif solidaire.</p>
+        <p><a href="#etincelle" style="color:var(--blue-t);font-weight:700;text-decoration:underline;text-underline-offset:3px;">Voir comment ça marche ↓</a></p>
       </div>
     </div>
 
@@ -1199,7 +1191,7 @@ p,li,div,.centre-benef,.fold-body>div,.fold-body li,
     <div class="how">
       <div class="how-card rv"><div class="n">1</div><h4>À la fin de l'atelier</h4><p>La famille reçoit son accès à l'application, offert aux familles qui ont participé. Les autres familles peuvent aussi y accéder, avec un tarif solidaire si besoin.</p></div>
       <div class="how-card rv"><div class="n">2</div><h4>À la maison</h4><p>La famille ouvre Étincelle sur un appareil et retrouve les pétales vus en atelier, à son rythme.</p></div>
-      <div class="how-card rv"><div class="n">3</div><h4>À l'atelier suivant</h4><p>On se retrouve, on en parle ensemble : l'application nourrit la rencontre, elle ne la remplace pas.</p></div>
+      <div class="how-card rv"><div class="n">3</div><h4>À l'atelier suivant</h4><p>On se retrouve et on en parle ensemble, chacun comme il le souhaite.</p></div>
     </div>
     <div class="centre-benef rv">
       <h4>🏛️ Ce que cela apporte à la structure partenaire</h4>
@@ -1252,7 +1244,7 @@ p,li,div,.centre-benef,.fold-body>div,.fold-body li,
           a les ressources, il faut créer les conditions pour qu'il les exprime.
         </p>
         <div class="skill-tags">
-          <span class="skill-tag">🤝 Médiation</span>
+          <span class="skill-tag">🤝 Animation de groupes</span>
           <span class="skill-tag">🔧 Ingénierie pédagogique</span>
           <span class="skill-tag">📐 Rigueur méthodologique</span>
           <span class="skill-tag">❤️ Posture bienveillante</span>
@@ -1341,7 +1333,7 @@ p,li,div,.centre-benef,.fold-body>div,.fold-body li,
         </ul>
       </div>
       <div class="comp-card">
-        <h4>Animation &amp; médiation</h4>
+        <h4>Animation de groupes</h4>
         <ul>
           <li>Facilitation participative</li>
           <li>Dialogue parent-enfant</li>
